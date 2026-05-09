@@ -1,0 +1,143 @@
+/* css/style.css */
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes slideUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+@keyframes slideLeft{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:translateX(0)}}
+@keyframes pulse-glow{0%,100%{box-shadow:0 0 20px rgba(99,102,241,.3)}50%{box-shadow:0 0 40px rgba(99,102,241,.6)}}
+@keyframes gradient-shift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+@keyframes rotate{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes scaleIn{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:scale(1)}}
+@keyframes borderGlow{0%,100%{border-color:rgba(99,102,241,.3)}50%{border-color:rgba(99,102,241,.8)}}
+@keyframes counterUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+@keyframes waveFloat{0%,100%{transform:translateY(0) rotate(0deg)}33%{transform:translateY(-8px) rotate(1deg)}66%{transform:translateY(-4px) rotate(-1deg)}}
+@keyframes orbPulse{0%,100%{transform:scale(1);opacity:.4}50%{transform:scale(1.15);opacity:.7}}
+@keyframes lineGrow{from{width:0}to{width:100%}}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+
+.animate-up{animation:slideUp .8s ease forwards;opacity:0}
+.animate-left{animation:slideLeft .8s ease forwards;opacity:0}
+.animate-float{animation:float 3s ease-in-out infinite}
+.animate-wave{animation:waveFloat 5s ease-in-out infinite}
+.animate-pulse-glow{animation:pulse-glow 2s ease-in-out infinite}
+.animate-gradient{background-size:200% 200%;animation:gradient-shift 4s ease infinite}
+.animate-rotate{animation:rotate 20s linear infinite}
+.animate-fade{animation:fadeIn 1s ease forwards;opacity:0}
+.animate-scale{animation:scaleIn .6s ease forwards;opacity:0}
+.animate-border{animation:borderGlow 2s ease-in-out infinite}
+.animate-orb{animation:orbPulse 4s ease-in-out infinite}
+.delay-1{animation-delay:.1s}.delay-2{animation-delay:.2s}.delay-3{animation-delay:.3s}
+.delay-4{animation-delay:.4s}.delay-5{animation-delay:.5s}.delay-6{animation-delay:.6s}
+.delay-7{animation-delay:.7s}.delay-8{animation-delay:.8s}
+
+.glass{background:rgba(255,255,255,.1);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.2)}
+.glass-dark{background:rgba(0,0,0,.3);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.1)}
+.glass-white{background:rgba(255,255,255,.7);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.4)}
+
+.nav-link{position:relative;transition:all .3s}
+.nav-link::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;background:currentColor;transition:width .3s}
+.nav-link:hover::after{width:100%}
+
+.hover-lift{transition:transform .3s,box-shadow .3s}
+.hover-lift:hover{transform:translateY(-6px);box-shadow:0 24px 48px rgba(0,0,0,.2)}
+.btn-glow{transition:all .3s}
+.btn-glow:hover{box-shadow:0 0 30px rgba(99,102,241,.5);transform:scale(1.05)}
+.morph-bg{border-radius:30% 70% 70% 30%/30% 30% 70% 70%;animation:float 6s ease-in-out infinite}
+.morph-bg2{border-radius:60% 40% 30% 70%/60% 30% 70% 40%;animation:waveFloat 8s ease-in-out infinite}
+
+.shimmer-text{background:linear-gradient(90deg,currentColor 0%,rgba(255,255,255,.8) 50%,currentColor 100%);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer 3s linear infinite}
+
+.section-divider{height:1px;background:linear-gradient(90deg,transparent,var(--border-color),transparent);opacity:.4}
+
+.card-hover{transition:all .35s cubic-bezier(.4,0,.2,1)}
+.card-hover:hover{transform:translateY(-8px) scale(1.01)}
+
+.number-glow{text-shadow:0 0 30px var(--accent-color)}
+
+/* Scroll reveal */
+.reveal{opacity:0;transform:translateY(32px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-left{opacity:0;transform:translateX(-32px);transition:opacity .7s ease,transform .7s ease}
+.reveal-left.visible{opacity:1;transform:translateX(0)}
+.reveal-right{opacity:0;transform:translateX(32px);transition:opacity .7s ease,transform .7s ease}
+.reveal-right.visible{opacity:1;transform:translateX(0)}
+
+/* Mobile menu */
+#mobile-menu{display:none}
+#mobile-menu.open{display:flex}
+
+/* Theme Variables */
+:root[data-active-theme="earth"]{
+  --bg-primary:#fef3c7;--bg-secondary:#fde68a;--bg-card:#fff9e6;
+  --text-primary:#92400e;--text-muted:rgba(146,64,14,.6);--text-faint:rgba(146,64,14,.35);
+  --accent-color:#b45309;--accent-light:rgba(180,83,9,.15);
+  --button-bg:#92400e;--button-text:#fff;
+  --gradient:linear-gradient(160deg,#fef3c7,#fde68a);
+  --nav-bg:rgba(254,243,199,.9);--footer-bg:#fef3c7;--border-color:#f59e0b;
+  --orb1:#fcd34d;--orb2:#f59e0b;
+}
+:root[data-active-theme="luxury"]{
+  --bg-primary:#000;--bg-secondary:#111;--bg-card:#1a1a1a;
+  --text-primary:#fff;--text-muted:rgba(255,255,255,.5);--text-faint:rgba(255,255,255,.2);
+  --accent-color:#d97706;--accent-light:rgba(217,119,6,.15);
+  --button-bg:linear-gradient(to right,#b45309,#d97706);--button-text:#fff;
+  --gradient:linear-gradient(135deg,#000,#1a1a1a);
+  --nav-bg:rgba(0,0,0,.9);--footer-bg:#000;--border-color:#b45309;
+  --orb1:#b45309;--orb2:#7c2d12;
+}
+:root[data-active-theme="zen"]{
+  --bg-primary:#f5f5f0;--bg-secondary:#ede9e0;--bg-card:#fff;
+  --text-primary:#3a3a35;--text-muted:rgba(58,58,53,.55);--text-faint:rgba(58,58,53,.25);
+  --accent-color:#8b7355;--accent-light:rgba(139,115,85,.12);
+  --button-bg:#3a3a35;--button-text:#f5f5f0;
+  --gradient:linear-gradient(160deg,#f5f5f0,#ede9e0);
+  --nav-bg:rgba(245,245,240,.9);--footer-bg:#f5f5f0;--border-color:#b8b0a0;
+  --orb1:#d6d0c8;--orb2:#b8b0a0;
+}
+:root[data-active-theme="corporate"]{
+  --bg-primary:#0f172a;--bg-secondary:#1e293b;--bg-card:#1e293b;
+  --text-primary:#f1f5f9;--text-muted:rgba(148,163,184,.8);--text-faint:rgba(148,163,184,.3);
+  --accent-color:#3b82f6;--accent-light:rgba(59,130,246,.15);
+  --button-bg:#3b82f6;--button-text:#fff;
+  --gradient:linear-gradient(135deg,#0f172a,#1e293b);
+  --nav-bg:rgba(15,23,42,.9);--footer-bg:#0f172a;--border-color:#3b82f6;
+  --orb1:#1d4ed8;--orb2:#1e3a8a;
+}
+:root[data-active-theme="space"]{
+  --bg-primary:#0a0a1a;--bg-secondary:#12122a;--bg-card:#1a1a3e;
+  --text-primary:#e0e7ff;--text-muted:rgba(199,210,254,.5);--text-faint:rgba(199,210,254,.2);
+  --accent-color:#7c3aed;--accent-light:rgba(124,58,237,.15);
+  --button-bg:linear-gradient(to right,#4f46e5,#7c3aed);--button-text:#fff;
+  --gradient:radial-gradient(ellipse at 40% 40%,#1a1a3e,#0a0a1a);
+  --nav-bg:rgba(10,10,26,.9);--footer-bg:#0a0a1a;--border-color:#7c3aed;
+  --orb1:#4f46e5;--orb2:#7c3aed;
+}
+
+/* Applied theme classes */
+.t-bg{background:var(--bg-primary)}
+.t-bg2{background:var(--bg-secondary)}
+.t-bg-card{background:var(--bg-card)}
+.t-text{color:var(--text-primary)}
+.t-muted{color:var(--text-muted)}
+.t-faint{color:var(--text-faint)}
+.t-accent{color:var(--accent-color)}
+.t-border{border-color:var(--border-color)}
+.t-accent-bg{background:var(--accent-light)}
+.t-hero{background:var(--gradient)}
+.t-nav{background:var(--nav-bg);border-color:var(--border-color)}
+.t-footer{background:var(--footer-bg)}
+.t-btn{background:var(--button-bg);color:var(--button-text)}
+.t-btn:hover{opacity:.88}
+.t-btn-outline{border:1.5px solid var(--border-color);color:var(--text-primary);background:transparent}
+.t-btn-outline:hover{background:var(--accent-light)}
+.t-divider{background:linear-gradient(90deg,transparent,var(--border-color),transparent);height:1px;opacity:.35}
+
+body{box-sizing:border-box;font-family:'Outfit',sans-serif}
+
+/* Scrollbar */
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--bg-primary)}
+::-webkit-scrollbar-thumb{background:var(--accent-color);border-radius:3px}
+
+/* Counter animation */
+.counter-num{font-variant-numeric:tabular-nums}

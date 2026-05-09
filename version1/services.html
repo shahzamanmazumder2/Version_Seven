@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="en" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Services - Seven Tech Ventures</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Mono:wght@400;700&family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    /* ── Keyframes & Base Styles (same as index.html) ── */
+    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+    @keyframes slideUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes slideLeft{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:translateX(0)}}
+    @keyframes pulse-glow{0%,100%{box-shadow:0 0 20px rgba(99,102,241,.3)}50%{box-shadow:0 0 40px rgba(99,102,241,.6)}}
+    @keyframes gradient-shift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+    @keyframes rotate{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+    @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+    @keyframes scaleIn{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:scale(1)}}
+    @keyframes borderGlow{0%,100%{border-color:rgba(99,102,241,.3)}50%{border-color:rgba(99,102,241,.8)}}
+    @keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+    @keyframes waveFloat{0%,100%{transform:translateY(0) rotate(0deg)}33%{transform:translateY(-8px) rotate(1deg)}66%{transform:translateY(-4px) rotate(-1deg)}}
+    @keyframes orbPulse{0%,100%{transform:scale(1);opacity:.4}50%{transform:scale(1.15);opacity:.7}}
+
+    .animate-up{animation:slideUp .8s ease forwards;opacity:0}
+    .animate-left{animation:slideLeft .8s ease forwards;opacity:0}
+    .animate-float{animation:float 3s ease-in-out infinite}
+    .animate-wave{animation:waveFloat 5s ease-in-out infinite}
+    .animate-pulse-glow{animation:pulse-glow 2s ease-in-out infinite}
+    .animate-gradient{background-size:200% 200%;animation:gradient-shift 4s ease infinite}
+    .animate-fade{animation:fadeIn 1s ease forwards;opacity:0}
+    .animate-scale{animation:scaleIn .6s ease forwards;opacity:0}
+    .animate-border{animation:borderGlow 2s ease-in-out infinite}
+    .animate-orb{animation:orbPulse 4s ease-in-out infinite}
+
+    .delay-1{animation-delay:.1s}.delay-2{animation-delay:.2s}.delay-3{animation-delay:.3s}
+    .delay-4{animation-delay:.4s}.delay-5{animation-delay:.5s}.delay-6{animation-delay:.6s}
+
+    .glass{background:rgba(255,255,255,.1);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.2)}
+    .glass-dark{background:rgba(0,0,0,.3);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.1)}
+
+    .nav-link{position:relative;transition:all .3s}
+    .nav-link::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;background:currentColor;transition:width .3s}
+    .nav-link:hover::after{width:100%}
+
+    .hover-lift{transition:transform .3s,box-shadow .3s}
+    .hover-lift:hover{transform:translateY(-8px);box-shadow:0 24px 48px rgba(0,0,0,.2)}
+    .btn-glow{transition:all .3s}
+    .btn-glow:hover{box-shadow:0 0 30px rgba(99,102,241,.5);transform:scale(1.05)}
+    .card-hover{transition:all .35s cubic-bezier(.4,0,.2,1)}
+    .card-hover:hover{transform:translateY(-8px) scale(1.02)}
+
+    .reveal{opacity:0;transform:translateY(32px);transition:opacity .7s ease,transform .7s ease}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+
+    :root[data-active-theme="earth"]{
+      --bg-primary:#fef3c7;--bg-secondary:#fde68a;--bg-card:#fff9e6;
+      --text-primary:#92400e;--text-muted:rgba(146,64,14,.6);
+      --accent-color:#b45309;--accent-light:rgba(180,83,9,.15);
+      --button-bg:#92400e;--button-text:#fff;
+      --gradient:linear-gradient(160deg,#fef3c7,#fde68a);
+      --nav-bg:rgba(254,243,199,.9);--footer-bg:#fef3c7;--border-color:#f59e0b;
+    }
+    :root[data-active-theme="luxury"]{
+      --bg-primary:#000;--bg-secondary:#111;--bg-card:#1a1a1a;
+      --text-primary:#fff;--text-muted:rgba(255,255,255,.5);
+      --accent-color:#d97706;--accent-light:rgba(217,119,6,.15);
+      --button-bg:linear-gradient(to right,#b45309,#d97706);--button-text:#fff;
+      --gradient:linear-gradient(135deg,#000,#1a1a1a);
+      --nav-bg:rgba(0,0,0,.9);--footer-bg:#000;--border-color:#b45309;
+    }
+    :root[data-active-theme="zen"]{
+      --bg-primary:#f5f5f0;--bg-secondary:#ede9e0;--bg-card:#fff;
+      --text-primary:#3a3a35;--text-muted:rgba(58,58,53,.55);
+      --accent-color:#8b7355;--accent-light:rgba(139,115,85,.12);
+      --button-bg:#3a3a35;--button-text:#f5f5f0;
+      --gradient:linear-gradient(160deg,#f5f5f0,#ede9e0);
+      --nav-bg:rgba(245,245,240,.9);--footer-bg:#f5f5f0;--border-color:#b8b0a0;
+    }
+    :root[data-active-theme="corporate"]{
+      --bg-primary:#0f172a;--bg-secondary:#1e293b;--bg-card:#1e293b;
+      --text-primary:#f1f5f9;--text-muted:rgba(148,163,184,.8);
+      --accent-color:#3b82f6;--accent-light:rgba(59,130,246,.15);
+      --button-bg:#3b82f6;--button-text:#fff;
+      --gradient:linear-gradient(135deg,#0f172a,#1e293b);
+      --nav-bg:rgba(15,23,42,.9);--footer-bg:#0f172a;--border-color:#3b82f6;
+    }
+    :root[data-active-theme="space"]{
+      --bg-primary:#0a0a1a;--bg-secondary:#12122a;--bg-card:#1a1a3e;
+      --text-primary:#e0e7ff;--text-muted:rgba(199,210,254,.5);
+      --accent-color:#7c3aed;--accent-light:rgba(124,58,237,.15);
+      --button-bg:linear-gradient(to right,#4f46e5,#7c3aed);--button-text:#fff;
+      --gradient:radial-gradient(ellipse at 40% 40%,#1a1a3e,#0a0a1a);
+      --nav-bg:rgba(10,10,26,.9);--footer-bg:#0a0a1a;--border-color:#7c3aed;
+    }
+
+    .t-bg{background:var(--bg-primary)}
+    .t-bg2{background:var(--bg-secondary)}
+    .t-bg-card{background:var(--bg-card)}
+    .t-text{color:var(--text-primary)}
+    .t-muted{color:var(--text-muted)}
+    .t-accent{color:var(--accent-color)}
+    .t-border{border-color:var(--border-color)}
+    .t-accent-bg{background:var(--accent-light)}
+    .t-hero{background:var(--gradient)}
+    .t-nav{background:var(--nav-bg);border-color:var(--border-color)}
+    .t-footer{background:var(--footer-bg)}
+    .t-btn{background:var(--button-bg);color:var(--button-text)}
+    .t-btn:hover{opacity:.9}
+    .t-btn-outline{border:1.5px solid var(--border-color);color:var(--text-primary);background:transparent}
+    .t-btn-outline:hover{background:var(--accent-light)}
+
+    body{font-family:'Outfit',sans-serif}
+    .service-icon{font-size:2.25rem;line-height:1}
+  </style>
+</head>
+<body class="h-full">
+<div id="app" class="w-full min-h-full t-bg overflow-x-hidden">
+
+  <!-- Theme Switcher -->
+  <div class="fixed top-4 right-4 z-[100] flex gap-1.5 p-3 glass rounded-xl shadow-2xl">
+    <button class="theme-btn px-3 py-1.5 rounded-lg text-xs font-semibold transition-all" data-theme="earth" style="background:rgba(217,119,6,.2);color:#b45309">🌍</button>
+    <button class="theme-btn px-3 py-1.5 rounded-lg text-xs font-semibold transition-all" data-theme="luxury" style="background:rgba(180,83,9,.2);color:#d97706">💎</button>
+    <button class="theme-btn px-3 py-1.5 rounded-lg text-xs font-semibold transition-all" data-theme="zen" style="background:rgba(120,113,108,.2);color:#8b7355">🗻</button>
+    <button class="theme-btn px-3 py-1.5 rounded-lg text-xs font-semibold transition-all" data-theme="corporate" style="background:rgba(59,130,246,.2);color:#3b82f6">📊</button>
+    <button class="theme-btn px-3 py-1.5 rounded-lg text-xs font-semibold transition-all" data-theme="space" style="background:rgba(79,70,229,.2);color:#4f46e5">🛰️</button>
+  </div>
+
+  <!-- Navbar -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 t-nav border-b backdrop-blur-xl transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2">
+        <div class="w-8 h-8 rounded-lg flex items-center justify-center t-btn text-white font-black text-sm">7</div>
+        <span class="text-lg font-bold t-text tracking-tight">Seven<span class="t-accent">Tech</span></span>
+      </a>
+
+      <div class="hidden md:flex items-center gap-8 t-muted text-sm font-medium">
+        <a href="services.html" class="nav-link t-accent font-semibold">Services</a>
+        <a href="about.html" class="nav-link hover:t-accent transition-colors duration-200">About</a>
+        <a href="work.html" class="nav-link hover:t-accent transition-colors duration-200">Work</a>
+        <a href="team.html" class="nav-link hover:t-accent transition-colors duration-200">Team</a>
+        <a href="contact.html" class="nav-link hover:t-accent transition-colors duration-200">Contact</a>
+      </div>
+
+      <div class="hidden md:flex items-center gap-3">
+        <a href="contact.html" class="t-btn-outline px-4 py-2 rounded-lg text-sm font-medium">Log In</a>
+        <a href="contact.html" class="t-btn px-5 py-2 rounded-lg text-sm font-semibold btn-glow">Get Started</a>
+      </div>
+
+      <button id="menu-toggle" class="md:hidden t-text p-2">
+        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path id="menu-icon-open" d="M4 6h16M4 12h16M4 18h16"/>
+          <path id="menu-icon-close" class="hidden" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- HERO BANNER -->
+  <section class="relative min-h-[90vh] flex items-center t-hero overflow-hidden pt-20">
+    <div class="absolute inset-0 pointer-events-none overflow-hidden">
+      <div class="absolute -top-32 -left-32 w-[500px] h-[500px] rounded-full animate-orb opacity-30" style="background:var(--orb1);filter:blur(100px)"></div>
+      <div class="absolute bottom-10 right-10 w-96 h-96 rounded-full animate-orb opacity-25" style="background:var(--orb2);filter:blur(90px);animation-delay:1.5s"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-6 relative z-10 py-20">
+      <div class="max-w-3xl">
+        <div class="inline-flex items-center gap-2 t-accent-bg t-accent text-sm font-semibold uppercase tracking-widest px-5 py-2.5 rounded-3xl border t-border mb-6 animate-up">
+          <span class="relative flex h-3 w-3">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-current opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-3 w-3 bg-current"></span>
+          </span>
+          WHAT WE BUILD
+        </div>
+        
+        <h1 class="text-6xl md:text-7xl font-black t-text leading-[1.05] tracking-tighter mb-6 animate-up delay-1">
+          Engineering <span class="t-accent">digital excellence</span> for Bangladesh and beyond
+        </h1>
+        
+        <p class="text-xl t-muted mb-10 max-w-lg animate-up delay-2">
+          From custom enterprise software to AI-powered solutions, we deliver high-impact digital products tailored for the Bangladeshi market and global standards.
+        </p>
+        
+        <div class="flex flex-wrap gap-4 animate-up delay-3">
+          <a href="#services-grid" class="t-btn px-8 py-4 rounded-2xl font-semibold text-lg inline-flex items-center gap-3 btn-glow">
+            Explore All Services
+            <span class="text-2xl">↓</span>
+          </a>
+          <a href="contact.html" class="t-btn-outline px-8 py-4 rounded-2xl font-semibold text-lg">Start a Project</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="absolute bottom-10 left-1/2 -translate-x-1/2 text-xs t-muted flex flex-col items-center gap-1">
+      <div class="animate-pulse">Scroll for services</div>
+      <div class="w-px h-12 bg-gradient-to-b from-transparent via-current to-transparent"></div>
+    </div>
+  </section>
+
+  <!-- SERVICES GRID -->
+  <section id="services-grid" class="t-bg py-24">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <div class="reveal inline-flex items-center gap-2 t-accent-bg t-accent text-xs font-semibold uppercase tracking-widest px-5 py-2 rounded-full border t-border mb-4">Our Expertise</div>
+        <h2 class="reveal delay-1 text-5xl font-black t-text tracking-tight">Comprehensive Digital Solutions</h2>
+        <p class="reveal delay-2 t-muted text-lg mt-4 max-w-2xl mx-auto">Tailored for startups, SMEs, and enterprises across Bangladesh and globally.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Service Card Template -->
+        <div class="reveal t-bg-card border t-border rounded-3xl p-8 hover-lift card-hover group">
+          <div class="service-icon mb-6">💻</div>
+          <h3 class="text-2xl font-bold t-text mb-3">Custom Software Development</h3>
+          <p class="t-muted">Bespoke software solutions built from the ground up to solve your unique business challenges.</p>
+          <a href="#" class="mt-6 inline-flex items-center gap-2 text-sm font-semibold t-accent group-hover:gap-3 transition-all">Learn more →</a>
+        </div>
+
+        <div class="reveal delay-1 t-bg-card border t-border rounded-3xl p-8 hover-lift card-hover group">
+          <div class="service-icon mb-6">📱</div>
+          <h3 class="text-2xl font-bold t-text mb-3">Web & Mobile App Development</h3>
+          <p class="t-muted">Modern, responsive web applications and native/cross-platform mobile apps (Android + iOS).</p>
+          <a href="#" class="mt-6 inline-flex items-center gap-2 text-sm font-semibold t-accent group-hover:gap-3 transition-all">Learn more →</a>
+        </div>
+
+        <div class="reveal delay-2 t-bg-card border t-border rounded-3xl p-8 hover-lift card-hover group">
+          <div class="service-icon mb-6">☁️</div>
+          <h3 class="text-2xl font-bold t-text mb-3">Cloud Solutions & Migration</h3>
+          <p class="t-muted">AWS, Azure & Google Cloud consulting, migration, optimization, and managed services.</p>
+          <a href="#" class="mt-6 inline-flex items-center gap-2 text-sm font-semibold t-accent group-hover:gap-3 transition-all">Learn more →</a>
+        </div>
+
+        <div class="reveal delay-3 t-bg-card border t-border rounded-3xl p-8 hover-lift card-hover group">
+          <div class="service-icon mb-6">🧠</div>
+          <h3 class="text-2xl font-bold t-text mb-3">Artificial Intelligence & ML</h3>
+          <p class="t-muted">Intelligent systems, predictive analytics, computer vision, and custom AI models.</p>
+          <a href="#" class="mt-6 inline-flex items-center gap-2 text-sm font-semibold t-accent group-hover:gap-3 transition-all">Learn more →</a>
+        </div>
+
+        <div class="reveal delay-4 t-bg-card border t-border rounded-3xl p-8 hover-lift card-hover group">
+          <div class="service-icon mb-6">🔒</div>
+          <h3 class="text-2xl font-bold t-text mb-3">Cybersecurity Services</h3>
+          <p class="t-muted">Penetration testing, compliance (ISO, SOC2), security audits, and ongoing protection.</p>
+          <a href="#" class="mt-6 inline-flex items-center gap-2 text-sm font-semibold t-accent group-hover:gap-3 transition-all">Learn more →</a>
+        </div>
+
+        <div class="reveal delay-5 t-bg-card border t-border rounded-3xl p-8 hover-lift card-hover group">
+          <div class="service-icon mb-6">📊</div>
+          <h3 class="text-2xl font-bold t-text mb-3">Data Analytics & BI</h3>
+          <p class="t-muted">Turn your data into actionable insights with powerful dashboards and reporting.</p>
+          <a href="#" class="mt-6 inline-flex items-center gap-2 text-sm font-semibold t-accent group-hover:gap-3 transition-all">Learn more →</a>
+        </div>
+
+        <div class="reveal delay-6 t-bg-card border t-border rounded-3xl p-8 hover-lift card-hover group">
+          <div class="service-icon mb-6">🚀</div>
+          <h3 class="text-2xl font-bold t-text mb-3">Digital Transformation</h3>
+          <p class="t-muted">End-to-end transformation strategies specially designed for Bangladeshi businesses.</p>
+          <a href="#" class="mt-6 inline-flex items-center gap-2 text-sm font-semibold t-accent group-hover:gap-3 transition-all">Learn more →</a>
+        </div>
+
+        <div class="reveal delay-7 t-bg-card border t-border rounded-3xl p-8 hover-lift card-hover group">
+          <div class="service-icon mb-6">🛒</div>
+          <h3 class="text-2xl font-bold t-text mb-3">E-commerce Development</h3>
+          <p class="t-muted">High-converting online stores with local payment gateways and logistics integration.</p>
+          <a href="#" class="mt-6 inline-flex items-center gap-2 text-sm font-semibold t-accent group-hover:gap-3 transition-all">Learn more →</a>
+        </div>
+
+        <div class="reveal delay-8 t-bg-card border t-border rounded-3xl p-8 hover-lift card-hover group">
+          <div class="service-icon mb-6">🎨</div>
+          <h3 class="text-2xl font-bold t-text mb-3">UI/UX Design</h3>
+          <p class="t-muted">Human-centered, beautiful, and conversion-focused design systems.</p>
+          <a href="#" class="mt-6 inline-flex items-center gap-2 text-sm font-semibold t-accent group-hover:gap-3 transition-all">Learn more →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SPECIAL BANGLADESH FOCUS -->
+  <section class="t-bg2 py-20 border-t border-b t-border">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid md:grid-cols-2 gap-16 items-center">
+        <div>
+          <div class="text-4xl font-bold t-text mb-6">Built for Bangladesh,<br>Ready for the World</div>
+          <div class="space-y-8">
+            <div class="flex gap-5">
+              <div class="text-4xl">🇧🇩</div>
+              <div>
+                <div class="font-semibold text-lg">Local Market Expertise</div>
+                <div class="t-muted">bKash, Nagad, Rocket integration • Bengali support • Local compliance</div>
+              </div>
+            </div>
+            <div class="flex gap-5">
+              <div class="text-4xl">🌍</div>
+              <div>
+                <div class="font-semibold text-lg">Global Standards</div>
+                <div class="t-muted">Onshore + Offshore delivery model with ISO & SOC2 certified processes</div>
+              </div>
+            </div>
+            <div class="flex gap-5">
+              <div class="text-4xl">💰</div>
+              <div>
+                <div class="font-semibold text-lg">Flexible Pricing</div>
+                <div class="t-muted">Startup-friendly packages, milestone billing, and dedicated teams for SMEs</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="t-bg-card border t-border rounded-3xl p-10">
+          <h3 class="text-2xl font-bold mb-8">Other Key Services</h3>
+          <ul class="space-y-6 text-lg">
+            <li class="flex items-start gap-4"><span class="t-accent font-bold text-xl">→</span> DevOps & Automation</li>
+            <li class="flex items-start gap-4"><span class="t-accent font-bold text-xl">→</span> ERP Implementation (Odoo, SAP, Custom)</li>
+            <li class="flex items-start gap-4"><span class="t-accent font-bold text-xl">→</span> Blockchain & FinTech Solutions</li>
+            <li class="flex items-start gap-4"><span class="t-accent font-bold text-xl">→</span> Quality Assurance & Testing</li>
+            <li class="flex items-start gap-4"><span class="t-accent font-bold text-xl">→</span> Managed IT Support & Maintenance</li>
+            <li class="flex items-start gap-4"><span class="t-accent font-bold text-xl">→</span> IT Strategy Consulting</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="t-hero py-24 text-center">
+    <div class="max-w-2xl mx-auto px-6">
+      <h2 class="text-5xl font-black t-text mb-6">Ready to transform your business?</h2>
+      <p class="text-xl t-muted mb-10">Let's discuss how we can help you achieve your digital goals.</p>
+      <a href="contact.html" class="inline-block t-btn px-10 py-5 rounded-2xl text-xl font-semibold btn-glow">Start Your Project Today</a>
+    </div>
+  </section>
+
+  <!-- Footer (minimal) -->
+  <footer class="t-footer py-12 border-t t-border">
+    <div class="max-w-7xl mx-auto px-6 text-center t-muted text-sm">
+      © 2026 Seven Tech Ventures • Dhaka, Bangladesh
+    </div>
+  </footer>
+</div>
+
+<script>
+  // Theme Switcher
+  document.querySelectorAll('.theme-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const theme = btn.getAttribute('data-theme');
+      document.documentElement.setAttribute('data-active-theme', theme);
+    });
+  });
+
+  // Mobile Menu
+  const menuToggle = document.getElementById('menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  
+  menuToggle.addEventListener('click', () => {
+    mobileMenu.classList.toggle('open');
+    const openPath = document.getElementById('menu-icon-open');
+    const closePath = document.getElementById('menu-icon-close');
+    openPath.classList.toggle('hidden');
+    closePath.classList.toggle('hidden');
+  });
+
+  // Reveal on scroll
+  function handleScroll() {
+    document.querySelectorAll('.reveal').forEach(el => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top <= window.innerHeight * 0.85) {
+        el.classList.add('visible');
+      }
+    });
+  }
+  window.addEventListener('scroll', handleScroll);
+  setTimeout(handleScroll, 300);
+</script>
+</body>
+</html>
