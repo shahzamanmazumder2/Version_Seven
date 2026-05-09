@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Seven Tech Ventures - Versions</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #0f172a;
+      color: white;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 700px;
+      background: #111827;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 35px;
+      font-size: 42px;
+      color: #f97316;
+    }
+
+    .version-list {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .version-card {
+      background: #1f2937;
+      padding: 22px;
+      border-radius: 14px;
+      transition: 0.3s ease;
+      border: 1px solid transparent;
+    }
+
+    .version-card:hover {
+      transform: translateY(-3px);
+      border-color: #f97316;
+      background: #273449;
+    }
+
+    .version-card a {
+      text-decoration: none;
+      color: white;
+      display: block;
+    }
+
+    .version-title {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 8px;
+      color: #f97316;
+    }
+
+    .path {
+      color: #cbd5e1;
+      font-size: 15px;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 32px;
+      }
+
+      .version-title {
+        font-size: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <h1>Versions</h1>
+
+    <div class="version-list">
+
+      <div class="version-card">
+        <a href="version1/index.html">
+          <div class="version-title">Version 1</div>
+          <div class="path">index3.html</div>
+        </a>
+      </div>
+
+      <div class="version-card">
+        <a href="version2/index.html">
+          <div class="version-title">Version 2</div>
+          <div class="path">extra/index5.html</div>
+        </a>
+      </div>
+
+      <div class="version-card">
+        <a href="version3/index.html">
+          <div class="version-title">Version 3</div>
+          <div class="path">extra/index9.html</div>
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,1526 @@
+<!doctype html>
+<html lang="en" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seven Tech Ventures</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Mono:wght@400;700&family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <style>
+    /* ── Keyframes ── */
+    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+    @keyframes slideUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes slideLeft{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:translateX(0)}}
+    @keyframes pulse-glow{0%,100%{box-shadow:0 0 20px rgba(99,102,241,.3)}50%{box-shadow:0 0 40px rgba(99,102,241,.6)}}
+    @keyframes gradient-shift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+    @keyframes rotate{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+    @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+    @keyframes scaleIn{from{opacity:0;transform:scale(.9)}to{opacity:1;transform:scale(1)}}
+    @keyframes borderGlow{0%,100%{border-color:rgba(99,102,241,.3)}50%{border-color:rgba(99,102,241,.8)}}
+    @keyframes counterUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+    @keyframes waveFloat{0%,100%{transform:translateY(0) rotate(0deg)}33%{transform:translateY(-8px) rotate(1deg)}66%{transform:translateY(-4px) rotate(-1deg)}}
+    @keyframes orbPulse{0%,100%{transform:scale(1);opacity:.4}50%{transform:scale(1.15);opacity:.7}}
+    @keyframes lineGrow{from{width:0}to{width:100%}}
+    @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+
+    .animate-up{animation:slideUp .8s ease forwards;opacity:0}
+    .animate-left{animation:slideLeft .8s ease forwards;opacity:0}
+    .animate-float{animation:float 3s ease-in-out infinite}
+    .animate-wave{animation:waveFloat 5s ease-in-out infinite}
+    .animate-pulse-glow{animation:pulse-glow 2s ease-in-out infinite}
+    .animate-gradient{background-size:200% 200%;animation:gradient-shift 4s ease infinite}
+    .animate-rotate{animation:rotate 20s linear infinite}
+    .animate-fade{animation:fadeIn 1s ease forwards;opacity:0}
+    .animate-scale{animation:scaleIn .6s ease forwards;opacity:0}
+    .animate-border{animation:borderGlow 2s ease-in-out infinite}
+    .animate-orb{animation:orbPulse 4s ease-in-out infinite}
+    .delay-1{animation-delay:.1s}.delay-2{animation-delay:.2s}.delay-3{animation-delay:.3s}
+    .delay-4{animation-delay:.4s}.delay-5{animation-delay:.5s}.delay-6{animation-delay:.6s}
+    .delay-7{animation-delay:.7s}.delay-8{animation-delay:.8s}
+
+    .glass{background:rgba(255,255,255,.1);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.2)}
+    .glass-dark{background:rgba(0,0,0,.3);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.1)}
+    .glass-white{background:rgba(255,255,255,.7);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.4)}
+
+    .nav-link{position:relative;transition:all .3s}
+    .nav-link::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;background:currentColor;transition:width .3s}
+    .nav-link:hover::after{width:100%}
+
+    .hover-lift{transition:transform .3s,box-shadow .3s}
+    .hover-lift:hover{transform:translateY(-6px);box-shadow:0 24px 48px rgba(0,0,0,.2)}
+    .btn-glow{transition:all .3s}
+    .btn-glow:hover{box-shadow:0 0 30px rgba(99,102,241,.5);transform:scale(1.05)}
+    .morph-bg{border-radius:30% 70% 70% 30%/30% 30% 70% 70%;animation:float 6s ease-in-out infinite}
+    .morph-bg2{border-radius:60% 40% 30% 70%/60% 30% 70% 40%;animation:waveFloat 8s ease-in-out infinite}
+
+    .shimmer-text{background:linear-gradient(90deg,currentColor 0%,rgba(255,255,255,.8) 50%,currentColor 100%);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer 3s linear infinite}
+
+    .section-divider{height:1px;background:linear-gradient(90deg,transparent,var(--border-color),transparent);opacity:.4}
+
+    .card-hover{transition:all .35s cubic-bezier(.4,0,.2,1)}
+    .card-hover:hover{transform:translateY(-8px) scale(1.01)}
+
+    .number-glow{text-shadow:0 0 30px var(--accent-color)}
+
+    /* ── Scroll reveal ── */
+    .reveal{opacity:0;transform:translateY(32px);transition:opacity .7s ease,transform .7s ease}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+    .reveal-left{opacity:0;transform:translateX(-32px);transition:opacity .7s ease,transform .7s ease}
+    .reveal-left.visible{opacity:1;transform:translateX(0)}
+    .reveal-right{opacity:0;transform:translateX(32px);transition:opacity .7s ease,transform .7s ease}
+    .reveal-right.visible{opacity:1;transform:translateX(0)}
+
+    /* ── Mobile menu ── */
+    #mobile-menu{display:none}
+    #mobile-menu.open{display:flex}
+
+    /* ── Theme Variables ── */
+    :root[data-active-theme="earth"]{
+      --bg-primary:#fef3c7;--bg-secondary:#fde68a;--bg-card:#fff9e6;
+      --text-primary:#92400e;--text-muted:rgba(146,64,14,.6);--text-faint:rgba(146,64,14,.35);
+      --accent-color:#b45309;--accent-light:rgba(180,83,9,.15);
+      --button-bg:#92400e;--button-text:#fff;
+      --gradient:linear-gradient(160deg,#fef3c7,#fde68a);
+      --nav-bg:rgba(254,243,199,.9);--footer-bg:#fef3c7;--border-color:#f59e0b;
+      --orb1:#fcd34d;--orb2:#f59e0b;
+    }
+    :root[data-active-theme="luxury"]{
+      --bg-primary:#000;--bg-secondary:#111;--bg-card:#1a1a1a;
+      --text-primary:#fff;--text-muted:rgba(255,255,255,.5);--text-faint:rgba(255,255,255,.2);
+      --accent-color:#d97706;--accent-light:rgba(217,119,6,.15);
+      --button-bg:linear-gradient(to right,#b45309,#d97706);--button-text:#fff;
+      --gradient:linear-gradient(135deg,#000,#1a1a1a);
+      --nav-bg:rgba(0,0,0,.9);--footer-bg:#000;--border-color:#b45309;
+      --orb1:#b45309;--orb2:#7c2d12;
+    }
+    :root[data-active-theme="zen"]{
+      --bg-primary:#f5f5f0;--bg-secondary:#ede9e0;--bg-card:#fff;
+      --text-primary:#3a3a35;--text-muted:rgba(58,58,53,.55);--text-faint:rgba(58,58,53,.25);
+      --accent-color:#8b7355;--accent-light:rgba(139,115,85,.12);
+      --button-bg:#3a3a35;--button-text:#f5f5f0;
+      --gradient:linear-gradient(160deg,#f5f5f0,#ede9e0);
+      --nav-bg:rgba(245,245,240,.9);--footer-bg:#f5f5f0;--border-color:#b8b0a0;
+      --orb1:#d6d0c8;--orb2:#b8b0a0;
+    }
+    :root[data-active-theme="corporate"]{
+      --bg-primary:#0f172a;--bg-secondary:#1e293b;--bg-card:#1e293b;
+      --text-primary:#f1f5f9;--text-muted:rgba(148,163,184,.8);--text-faint:rgba(148,163,184,.3);
+      --accent-color:#3b82f6;--accent-light:rgba(59,130,246,.15);
+      --button-bg:#3b82f6;--button-text:#fff;
+      --gradient:linear-gradient(135deg,#0f172a,#1e293b);
+      --nav-bg:rgba(15,23,42,.9);--footer-bg:#0f172a;--border-color:#3b82f6;
+      --orb1:#1d4ed8;--orb2:#1e3a8a;
+    }
+    :root[data-active-theme="space"]{
+      --bg-primary:#0a0a1a;--bg-secondary:#12122a;--bg-card:#1a1a3e;
+      --text-primary:#e0e7ff;--text-muted:rgba(199,210,254,.5);--text-faint:rgba(199,210,254,.2);
+      --accent-color:#7c3aed;--accent-light:rgba(124,58,237,.15);
+      --button-bg:linear-gradient(to right,#4f46e5,#7c3aed);--button-text:#fff;
+      --gradient:radial-gradient(ellipse at 40% 40%,#1a1a3e,#0a0a1a);
+      --nav-bg:rgba(10,10,26,.9);--footer-bg:#0a0a1a;--border-color:#7c3aed;
+      --orb1:#4f46e5;--orb2:#7c3aed;
+    }
+
+    /* ── Applied theme classes ── */
+    .t-bg{background:var(--bg-primary)}
+    .t-bg2{background:var(--bg-secondary)}
+    .t-bg-card{background:var(--bg-card)}
+    .t-text{color:var(--text-primary)}
+    .t-muted{color:var(--text-muted)}
+    .t-faint{color:var(--text-faint)}
+    .t-accent{color:var(--accent-color)}
+    .t-border{border-color:var(--border-color)}
+    .t-accent-bg{background:var(--accent-light)}
+    .t-hero{background:var(--gradient)}
+    .t-nav{background:var(--nav-bg);border-color:var(--border-color)}
+    .t-footer{background:var(--footer-bg)}
+    .t-btn{background:var(--button-bg);color:var(--button-text)}
+    .t-btn:hover{opacity:.88}
+    .t-btn-outline{border:1.5px solid var(--border-color);color:var(--text-primary);background:transparent}
+    .t-btn-outline:hover{background:var(--accent-light)}
+    .t-divider{background:linear-gradient(90deg,transparent,var(--border-color),transparent);height:1px;opacity:.35}
+
+    body{box-sizing:border-box;font-family:'Outfit',sans-serif}
+
+    /* Scrollbar */
+    ::-webkit-scrollbar{width:6px}
+    ::-webkit-scrollbar-track{background:var(--bg-primary)}
+    ::-webkit-scrollbar-thumb{background:var(--accent-color);border-radius:3px}
+
+    /* Counter animation */
+    .counter-num{font-variant-numeric:tabular-nums}
+  </style>
+</head>
+<body class="h-full">
+<div id="app" class="w-full min-h-full t-bg overflow-x-hidden">
+
+  <!-- ═══════════════════════════════════════════
+       THEME SWITCHER
+  ═══════════════════════════════════════════ -->
+  <div class="fixed top-4 right-4 z-[100] flex gap-1.5 p-3 glass rounded-xl shadow-2xl">
+    <button class="theme-btn px-3 py-1.5 rounded-lg text-xs font-semibold transition-all" data-theme="earth"   style="background:rgba(217,119,6,.2);color:#b45309">🌍</button>
+    <button class="theme-btn px-3 py-1.5 rounded-lg text-xs font-semibold transition-all" data-theme="luxury"  style="background:rgba(180,83,9,.2);color:#d97706">💎</button>
+    <button class="theme-btn px-3 py-1.5 rounded-lg text-xs font-semibold transition-all" data-theme="zen"     style="background:rgba(120,113,108,.2);color:#8b7355">🗻</button>
+    <button class="theme-btn px-3 py-1.5 rounded-lg text-xs font-semibold transition-all" data-theme="corporate" style="background:rgba(59,130,246,.2);color:#3b82f6">📊</button>
+    <button class="theme-btn px-3 py-1.5 rounded-lg text-xs font-semibold transition-all" data-theme="space"   style="background:rgba(79,70,229,.2);color:#4f46e5">🛰️</button>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       NAVBAR
+  ═══════════════════════════════════════════ -->
+<!-- ═══════════════════════════════════════════
+     NAVBAR
+═══════════════════════════════════════════ -->
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 t-nav border-b backdrop-blur-xl transition-all duration-300" style="border-bottom-width:1px">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    
+    <!-- Logo -->
+    <a href="index.html" class="flex items-center gap-2 animate-fade">
+      <div class="w-8 h-8 rounded-lg flex items-center justify-center t-btn text-white font-black text-sm">7</div>
+      <span class="text-lg font-bold t-text tracking-tight">Seven<span class="t-accent">Tech</span></span>
+    </a>
+
+    <!-- Desktop links -->
+    <div class="hidden md:flex items-center gap-8 t-muted text-sm font-medium">
+      <a href="services.html" class="nav-link hover:t-accent transition-colors duration-200">Services</a>
+      <a href="about.html"    class="nav-link hover:t-accent transition-colors duration-200">About</a>
+      <a href="work.html"     class="nav-link hover:t-accent transition-colors duration-200">Work</a>
+      <a href="team.html"     class="nav-link hover:t-accent transition-colors duration-200">Team</a>
+      <a href="contact.html"  class="nav-link hover:t-accent transition-colors duration-200">Contact</a>
+    </div>
+
+    <!-- CTA -->
+    <div class="hidden md:flex items-center gap-3">
+      <a href="contact.html" class="t-btn-outline px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200">Log In</a>
+      <a href="contact.html" class="t-btn px-5 py-2 rounded-lg text-sm font-semibold transition-all duration-200 btn-glow">Get Started</a>
+    </div>
+
+    <!-- Hamburger -->
+    <button id="menu-toggle" class="md:hidden t-text p-2" aria-label="Menu">
+      <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path id="menu-icon-open" d="M4 6h16M4 12h16M4 18h16"/>
+        <path id="menu-icon-close" class="hidden" d="M6 18L18 6M6 6l12 12"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="md:hidden hidden flex-col gap-1 px-6 pb-5 t-bg border-t t-border">
+    <a href="services.html" class="block py-2.5 t-muted text-sm font-medium hover:t-accent transition">Services</a>
+    <a href="about.html"    class="block py-2.5 t-muted text-sm font-medium hover:t-accent transition">About</a>
+    <a href="work.html"     class="block py-2.5 t-muted text-sm font-medium hover:t-accent transition">Work</a>
+    <a href="team.html"     class="block py-2.5 t-muted text-sm font-medium hover:t-accent transition">Team</a>
+    <a href="contact.html"  class="block py-2.5 t-muted text-sm font-medium hover:t-accent transition">Contact</a>
+    
+    <div class="pt-4 flex gap-2">
+      <a href="contact.html" class="t-btn-outline px-4 py-2 rounded-lg text-sm font-medium flex-1 text-center">Log In</a>
+      <a href="contact.html" class="t-btn px-4 py-2 rounded-lg text-sm font-semibold flex-1 text-center">Get Started</a>
+    </div>
+  </div>
+</nav>
+  <!-- ═══════════════════════════════════════════
+       HERO SECTION  (original style preserved)
+  ═══════════════════════════════════════════ -->
+  <section class="relative min-h-screen flex items-center t-hero overflow-hidden pt-20" style="font-family:'Outfit',sans-serif">
+    <!-- Orbs / background shapes -->
+    <div class="absolute inset-0 pointer-events-none overflow-hidden">
+      <div class="absolute -top-24 -left-24 w-96 h-96 rounded-full animate-orb opacity-30" style="background:var(--orb1);filter:blur(80px)"></div>
+      <div class="absolute bottom-0 right-0 w-80 h-80 rounded-full animate-orb opacity-25" style="background:var(--orb2);filter:blur(100px);animation-delay:2s"></div>
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full opacity-10" style="background:radial-gradient(circle,var(--accent-color),transparent 70%)"></div>
+      <!-- Floating grid dots -->
+      <svg class="absolute inset-0 w-full h-full opacity-10" xmlns="http://www.w3.org/2000/svg">
+        <defs><pattern id="dots" width="40" height="40" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.5" fill="var(--accent-color)"/></pattern></defs>
+        <rect width="100%" height="100%" fill="url(#dots)"/>
+      </svg>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-6 md:px-8 grid md:grid-cols-2 gap-16 items-center z-10 py-20">
+      <!-- Left copy -->
+      <div>
+        <div class="animate-up inline-flex items-center gap-2 t-accent-bg t-accent text-xs font-semibold uppercase tracking-widest px-4 py-2 rounded-full border t-border mb-6">
+          <span class="w-1.5 h-1.5 rounded-full t-btn inline-block"></span>
+          Software · Innovation · Scale
+        </div>
+        <h1 class="animate-up delay-1 text-5xl md:text-6xl lg:text-7xl font-black t-text leading-[1.05] mb-6 tracking-tight">
+          Build the<br>
+          <span class="t-accent relative">
+            future<span class="absolute -bottom-1 left-0 h-1 t-btn rounded-full animate-up delay-3" style="width:100%"></span>
+          </span><br>
+          with us.
+        </h1>
+        <p class="animate-up delay-2 t-muted text-lg md:text-xl leading-relaxed mb-10 max-w-lg">
+          Seven Tech Ventures engineers high-impact digital products — from intelligent platforms to enterprise-grade systems — that transform how businesses operate and grow.
+        </p>
+        <div class="animate-up delay-3 flex flex-wrap gap-4">
+          <a href="#services" class="t-btn px-7 py-3.5 rounded-xl font-semibold text-base transition-all duration-300 btn-glow shadow-lg">Explore Services</a>
+          <a href="#work"     class="t-btn-outline px-7 py-3.5 rounded-xl font-semibold text-base transition-all duration-300 flex items-center gap-2">
+            See Our Work
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+        <!-- Social proof strip -->
+        <div class="animate-up delay-4 mt-12 flex items-center gap-5 flex-wrap">
+          <div class="flex -space-x-2">
+            <div class="w-9 h-9 rounded-full border-2 t-bg t-btn text-white text-xs flex items-center justify-center font-bold">R</div>
+            <div class="w-9 h-9 rounded-full border-2 t-bg t-btn text-white text-xs flex items-center justify-center font-bold">A</div>
+            <div class="w-9 h-9 rounded-full border-2 t-bg t-btn text-white text-xs flex items-center justify-center font-bold">K</div>
+          </div>
+          <div class="t-muted text-sm">Trusted by <strong class="t-text">200+ clients</strong> across 18 countries</div>
+        </div>
+      </div>
+
+      <!-- Right visual -->
+      <div class="animate-left delay-2 flex items-center justify-center relative">
+        <!-- Main morphing shape -->
+        <div class="w-64 h-64 md:w-80 md:h-80 morph-bg opacity-40 absolute" style="background:linear-gradient(135deg,var(--orb1),var(--orb2))"></div>
+        <div class="w-48 h-48 md:w-60 md:h-60 morph-bg2 opacity-30 absolute" style="background:linear-gradient(225deg,var(--accent-color),var(--orb1));animation-delay:2s"></div>
+        <!-- Central card -->
+        <div class="relative z-10 glass rounded-2xl p-6 w-72 shadow-2xl animate-float">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 rounded-xl t-btn text-white font-black text-lg flex items-center justify-center">7</div>
+            <div>
+              <div class="t-text font-bold text-sm">Seven Tech Ventures</div>
+              <div class="t-muted text-xs">Est. 2018 · Dhaka, BD</div>
+            </div>
+          </div>
+          <div class="space-y-3">
+            <div class="h-2 rounded-full t-accent-bg overflow-hidden">
+              <div class="h-full rounded-full t-btn" style="width:82%;transition:width 1.5s ease"></div>
+            </div>
+            <div class="flex justify-between text-xs t-muted"><span>Project delivery</span><span class="t-accent font-semibold">82%</span></div>
+            <div class="h-2 rounded-full t-accent-bg overflow-hidden">
+              <div class="h-full rounded-full t-btn" style="width:95%;transition:width 1.5s ease"></div>
+            </div>
+            <div class="flex justify-between text-xs t-muted"><span>Client satisfaction</span><span class="t-accent font-semibold">95%</span></div>
+          </div>
+          <div class="mt-4 flex items-center gap-2 t-accent text-xs font-medium">
+            <span class="w-2 h-2 rounded-full t-btn animate-pulse"></span>
+            7 projects launching this month
+          </div>
+        </div>
+        <!-- Floating badges -->
+        <div class="absolute top-4 right-0 glass rounded-xl px-3 py-2 text-xs t-text font-semibold animate-float" style="animation-delay:.8s">
+          ⚡ 48h turnaround
+        </div>
+        <div class="absolute bottom-4 left-0 glass rounded-xl px-3 py-2 text-xs t-text font-semibold animate-float" style="animation-delay:1.5s">
+          🏆 Top-rated agency
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll cue -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 t-muted text-xs animate-fade delay-5">
+      <span>Scroll to explore</span>
+      <div class="w-px h-8 t-btn opacity-50 animate-pulse" style="background:var(--accent-color)"></div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       LOGO / PARTNERS STRIP
+  ═══════════════════════════════════════════ -->
+  <section class="t-bg2 py-10 border-y t-border" style="border-width:1px">
+    <div class="max-w-6xl mx-auto px-6">
+      <p class="text-center t-faint text-xs uppercase tracking-[0.25em] font-semibold mb-7">Trusted by world-class teams</p>
+      <div class="flex flex-wrap justify-center items-center gap-10 md:gap-16">
+        <span class="reveal t-muted text-xl font-bold opacity-40 hover:opacity-80 transition-opacity">Nexora</span>
+        <span class="reveal delay-1 t-muted text-xl font-bold opacity-40 hover:opacity-80 transition-opacity">Vaultex</span>
+        <span class="reveal delay-2 t-muted text-xl font-bold opacity-40 hover:opacity-80 transition-opacity">Quorient</span>
+        <span class="reveal delay-3 t-muted text-xl font-bold opacity-40 hover:opacity-80 transition-opacity">Luminary</span>
+        <span class="reveal delay-4 t-muted text-xl font-bold opacity-40 hover:opacity-80 transition-opacity">Crestara</span>
+        <span class="reveal delay-5 t-muted text-xl font-bold opacity-40 hover:opacity-80 transition-opacity">Orbtica</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       STATS SECTION
+  ═══════════════════════════════════════════ -->
+  <section class="t-bg py-20">
+    <div class="max-w-6xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8">
+      <div class="reveal text-center">
+        <div class="text-5xl font-black t-accent number-glow counter-num mb-2" data-target="200">0</div>
+        <div class="t-text font-semibold text-sm">+ Clients</div>
+        <div class="t-muted text-xs mt-1">Globally served</div>
+      </div>
+      <div class="reveal delay-1 text-center">
+        <div class="text-5xl font-black t-accent number-glow counter-num mb-2" data-target="350">0</div>
+        <div class="t-text font-semibold text-sm">+ Projects</div>
+        <div class="t-muted text-xs mt-1">Delivered on time</div>
+      </div>
+      <div class="reveal delay-2 text-center">
+        <div class="text-5xl font-black t-accent number-glow counter-num mb-2" data-target="18">0</div>
+        <div class="t-text font-semibold text-sm">Countries</div>
+        <div class="t-muted text-xs mt-1">Active presence</div>
+      </div>
+      <div class="reveal delay-3 text-center">
+        <div class="text-5xl font-black t-accent number-glow counter-num mb-2" data-target="7">0</div>
+        <div class="t-text font-semibold text-sm">Years</div>
+        <div class="t-muted text-xs mt-1">Industry expertise</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="t-divider mx-auto max-w-4xl"></div>
+
+  <!-- ═══════════════════════════════════════════
+       TRUST & CREDIBILITY
+  ═══════════════════════════════════════════ -->
+  <section class="t-bg2 py-20">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-14">
+        <div class="reveal inline-flex items-center gap-2 t-accent-bg t-accent text-xs font-semibold uppercase tracking-widest px-4 py-2 rounded-full border t-border mb-4">Trust & Credibility</div>
+        <h2 class="reveal delay-1 text-4xl md:text-5xl font-black t-text leading-tight mb-4">Why the world's best <span class="t-accent">trust us</span></h2>
+        <p class="reveal delay-2 t-muted text-lg max-w-xl mx-auto">From ISO certifications to battle-tested delivery records — our credibility is built on evidence.</p>
+      </div>
+      <div class="grid md:grid-cols-4 gap-6">
+        <div class="reveal t-bg-card rounded-2xl p-6 border t-border text-center hover-lift card-hover" style="border-width:1px">
+          <div class="text-4xl mb-3">🏅</div>
+          <div class="t-text font-bold mb-1">ISO 27001</div>
+          <div class="t-muted text-xs">Information Security Certified</div>
+        </div>
+        <div class="reveal delay-1 t-bg-card rounded-2xl p-6 border t-border text-center hover-lift card-hover" style="border-width:1px">
+          <div class="text-4xl mb-3">🔒</div>
+          <div class="t-text font-bold mb-1">SOC 2 Type II</div>
+          <div class="t-muted text-xs">Compliance Audited Annually</div>
+        </div>
+        <div class="reveal delay-2 t-bg-card rounded-2xl p-6 border t-border text-center hover-lift card-hover" style="border-width:1px">
+          <div class="text-4xl mb-3">⭐</div>
+          <div class="t-text font-bold mb-1">4.9 / 5.0</div>
+          <div class="t-muted text-xs">Average Client Rating</div>
+        </div>
+        <div class="reveal delay-3 t-bg-card rounded-2xl p-6 border t-border text-center hover-lift card-hover" style="border-width:1px">
+          <div class="text-4xl mb-3">🚀</div>
+          <div class="t-text font-bold mb-1">98% On-Time</div>
+          <div class="t-muted text-xs">Project Delivery Rate</div>
+        </div>
+      </div>
+      <!-- Award badges row -->
+      <div class="reveal mt-10 flex flex-wrap justify-center gap-4">
+        <div class="t-accent-bg t-accent text-xs font-semibold px-4 py-2 rounded-full border t-border flex items-center gap-2">🏆 BASIS National ICT Award 2023</div>
+        <div class="t-accent-bg t-accent text-xs font-semibold px-4 py-2 rounded-full border t-border flex items-center gap-2">🌟 Top Software Firm — Bangladesh 2024</div>
+        <div class="t-accent-bg t-accent text-xs font-semibold px-4 py-2 rounded-full border t-border flex items-center gap-2">☁️ AWS Advanced Consulting Partner</div>
+        <div class="t-accent-bg t-accent text-xs font-semibold px-4 py-2 rounded-full border t-border flex items-center gap-2">📦 Google Cloud Partner</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="t-divider mx-auto max-w-4xl"></div>
+
+  <!-- ═══════════════════════════════════════════
+       WHY CHOOSE US
+  ═══════════════════════════════════════════ -->
+  <section class="t-bg py-24">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <div class="reveal inline-flex items-center gap-2 t-accent-bg t-accent text-xs font-semibold uppercase tracking-widest px-4 py-2 rounded-full border t-border mb-4">Why Choose Us</div>
+        <h2 class="reveal delay-1 text-4xl md:text-5xl font-black t-text leading-tight mb-4">The <span class="t-accent">Seven Tech</span> difference</h2>
+        <p class="reveal delay-2 t-muted text-lg max-w-xl mx-auto">Other agencies write code. We engineer outcomes — with deep BD roots and a global delivery mindset.</p>
+      </div>
+      <div class="grid md:grid-cols-2 gap-8">
+        <div class="reveal t-bg-card rounded-2xl p-8 border t-border hover-lift card-hover" style="border-width:1px">
+          <div class="flex items-start gap-5">
+            <div class="w-12 h-12 rounded-xl t-accent-bg t-accent flex items-center justify-center text-xl flex-shrink-0">🎯</div>
+            <div>
+              <h3 class="t-text font-bold text-lg mb-2">Outcome-Focused Delivery</h3>
+              <p class="t-muted text-sm leading-relaxed">We don't stop at shipping code. Every sprint is tied to a business metric — revenue, retention, or efficiency.</p>
+            </div>
+          </div>
+        </div>
+        <div class="reveal delay-1 t-bg-card rounded-2xl p-8 border t-border hover-lift card-hover" style="border-width:1px">
+          <div class="flex items-start gap-5">
+            <div class="w-12 h-12 rounded-xl t-accent-bg t-accent flex items-center justify-center text-xl flex-shrink-0">🇧🇩</div>
+            <div>
+              <h3 class="t-text font-bold text-lg mb-2">Made in Bangladesh, Built for the World</h3>
+              <p class="t-muted text-sm leading-relaxed">A Dhaka-born startup with global standards — cost-effective expertise without compromise on quality.</p>
+            </div>
+          </div>
+        </div>
+        <div class="reveal delay-2 t-bg-card rounded-2xl p-8 border t-border hover-lift card-hover" style="border-width:1px">
+          <div class="flex items-start gap-5">
+            <div class="w-12 h-12 rounded-xl t-accent-bg t-accent flex items-center justify-center text-xl flex-shrink-0">⚡</div>
+            <div>
+              <h3 class="t-text font-bold text-lg mb-2">Speed Without Cutting Corners</h3>
+              <p class="t-muted text-sm leading-relaxed">Our pre-built modules, internal toolkits, and agile process mean faster time-to-market — at enterprise quality.</p>
+            </div>
+          </div>
+        </div>
+        <div class="reveal delay-3 t-bg-card rounded-2xl p-8 border t-border hover-lift card-hover" style="border-width:1px">
+          <div class="flex items-start gap-5">
+            <div class="w-12 h-12 rounded-xl t-accent-bg t-accent flex items-center justify-center text-xl flex-shrink-0">🤝</div>
+            <div>
+              <h3 class="t-text font-bold text-lg mb-2">True Partnership Model</h3>
+              <p class="t-muted text-sm leading-relaxed">Dedicated teams, transparent communication, and post-launch support — we're invested in your long-term success.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="t-divider mx-auto max-w-4xl"></div>
+
+  <!-- ═══════════════════════════════════════════
+       SERVICES SECTION
+  ═══════════════════════════════════════════ -->
+  <section id="services" class="t-bg py-24">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <div class="reveal inline-flex items-center gap-2 t-accent-bg t-accent text-xs font-semibold uppercase tracking-widest px-4 py-2 rounded-full border t-border mb-4">
+          What We Build
+        </div>
+        <h2 class="reveal delay-1 text-4xl md:text-5xl font-black t-text leading-tight mb-4">Our Core <span class="t-accent">Services</span></h2>
+        <p class="reveal delay-2 t-muted text-lg max-w-xl mx-auto">End-to-end technology solutions engineered to solve real business problems and unlock sustainable growth.</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <!-- Service card template -->
+        <div class="reveal card-hover t-bg-card rounded-2xl p-7 border t-border hover-lift" style="border-width:1px">
+          <div class="w-12 h-12 rounded-xl t-accent-bg t-accent flex items-center justify-center text-xl mb-5">🧠</div>
+          <h3 class="t-text text-lg font-bold mb-3">AI & Machine Learning</h3>
+          <p class="t-muted text-sm leading-relaxed mb-4">Custom ML pipelines, NLP systems, and intelligent automation that drive measurable outcomes.</p>
+          <a href="#" class="t-accent text-sm font-semibold flex items-center gap-1 hover:gap-2 transition-all">Learn more <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+
+        <div class="reveal delay-1 card-hover t-bg-card rounded-2xl p-7 border t-border hover-lift" style="border-width:1px">
+          <div class="w-12 h-12 rounded-xl t-accent-bg t-accent flex items-center justify-center text-xl mb-5">📱</div>
+          <h3 class="t-text text-lg font-bold mb-3">Product Development</h3>
+          <p class="t-muted text-sm leading-relaxed mb-4">Web apps, mobile platforms, and SaaS products crafted from idea to launch with precision.</p>
+          <a href="#" class="t-accent text-sm font-semibold flex items-center gap-1 hover:gap-2 transition-all">Learn more <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+
+        <div class="reveal delay-2 card-hover t-bg-card rounded-2xl p-7 border t-border hover-lift" style="border-width:1px">
+          <div class="w-12 h-12 rounded-xl t-accent-bg t-accent flex items-center justify-center text-xl mb-5">☁️</div>
+          <h3 class="t-text text-lg font-bold mb-3">Cloud & DevOps</h3>
+          <p class="t-muted text-sm leading-relaxed mb-4">Scalable cloud infrastructure, CI/CD pipelines, and containerised deployments on AWS, GCP & Azure.</p>
+          <a href="#" class="t-accent text-sm font-semibold flex items-center gap-1 hover:gap-2 transition-all">Learn more <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+
+        <div class="reveal delay-3 card-hover t-bg-card rounded-2xl p-7 border t-border hover-lift" style="border-width:1px">
+          <div class="w-12 h-12 rounded-xl t-accent-bg t-accent flex items-center justify-center text-xl mb-5">🔐</div>
+          <h3 class="t-text text-lg font-bold mb-3">Cybersecurity</h3>
+          <p class="t-muted text-sm leading-relaxed mb-4">Penetration testing, secure architecture reviews, and zero-trust security models for enterprises.</p>
+          <a href="#" class="t-accent text-sm font-semibold flex items-center gap-1 hover:gap-2 transition-all">Learn more <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+
+        <div class="reveal delay-4 card-hover t-bg-card rounded-2xl p-7 border t-border hover-lift" style="border-width:1px">
+          <div class="w-12 h-12 rounded-xl t-accent-bg t-accent flex items-center justify-center text-xl mb-5">📊</div>
+          <h3 class="t-text text-lg font-bold mb-3">Data Engineering</h3>
+          <p class="t-muted text-sm leading-relaxed mb-4">Real-time analytics, ETL pipelines, and business intelligence dashboards that surface actionable insight.</p>
+          <a href="#" class="t-accent text-sm font-semibold flex items-center gap-1 hover:gap-2 transition-all">Learn more <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+
+        <div class="reveal delay-5 card-hover t-bg-card rounded-2xl p-7 border t-border hover-lift" style="border-width:1px">
+          <div class="w-12 h-12 rounded-xl t-accent-bg t-accent flex items-center justify-center text-xl mb-5">🎨</div>
+          <h3 class="t-text text-lg font-bold mb-3">UI/UX Design</h3>
+          <p class="t-muted text-sm leading-relaxed mb-4">Research-driven design systems, interactive prototypes, and pixel-perfect interfaces users love.</p>
+          <a href="#" class="t-accent text-sm font-semibold flex items-center gap-1 hover:gap-2 transition-all">Learn more <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="t-divider mx-auto max-w-4xl"></div>
+
+  <!-- ═══════════════════════════════════════════
+       TECH STACK SHOWCASE
+  ═══════════════════════════════════════════ -->
+  <section class="t-bg2 py-24">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <div class="reveal inline-flex items-center gap-2 t-accent-bg t-accent text-xs font-semibold uppercase tracking-widest px-4 py-2 rounded-full border t-border mb-4">Our Stack</div>
+        <h2 class="reveal delay-1 text-4xl md:text-5xl font-black t-text leading-tight mb-4">Technologies we <span class="t-accent">master</span></h2>
+        <p class="reveal delay-2 t-muted text-lg max-w-xl mx-auto">We work with the tools that deliver — proven frameworks and cutting-edge platforms selected for your project's needs.</p>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
+        <div class="reveal t-bg-card rounded-xl p-5 border t-border text-center hover-lift card-hover" style="border-width:1px"><div class="text-3xl mb-2">⚛️</div><div class="t-text font-bold text-sm">React / Next.js</div><div class="t-muted text-xs mt-1">Frontend</div></div>
+        <div class="reveal delay-1 t-bg-card rounded-xl p-5 border t-border text-center hover-lift card-hover" style="border-width:1px"><div class="text-3xl mb-2">🐍</div><div class="t-text font-bold text-sm">Python / Django</div><div class="t-muted text-xs mt-1">Backend</div></div>
+        <div class="reveal delay-2 t-bg-card rounded-xl p-5 border t-border text-center hover-lift card-hover" style="border-width:1px"><div class="text-3xl mb-2">☸️</div><div class="t-text font-bold text-sm">Kubernetes</div><div class="t-muted text-xs mt-1">Orchestration</div></div>
+        <div class="reveal delay-3 t-bg-card rounded-xl p-5 border t-border text-center hover-lift card-hover" style="border-width:1px"><div class="text-3xl mb-2">☁️</div><div class="t-text font-bold text-sm">AWS / GCP</div><div class="t-muted text-xs mt-1">Cloud</div></div>
+        <div class="reveal delay-4 t-bg-card rounded-xl p-5 border t-border text-center hover-lift card-hover" style="border-width:1px"><div class="text-3xl mb-2">📱</div><div class="t-text font-bold text-sm">Flutter</div><div class="t-muted text-xs mt-1">Mobile</div></div>
+        <div class="reveal delay-5 t-bg-card rounded-xl p-5 border t-border text-center hover-lift card-hover" style="border-width:1px"><div class="text-3xl mb-2">🔷</div><div class="t-text font-bold text-sm">TypeScript</div><div class="t-muted text-xs mt-1">Language</div></div>
+        <div class="reveal delay-1 t-bg-card rounded-xl p-5 border t-border text-center hover-lift card-hover" style="border-width:1px"><div class="text-3xl mb-2">🧠</div><div class="t-text font-bold text-sm">TensorFlow</div><div class="t-muted text-xs mt-1">ML / AI</div></div>
+        <div class="reveal delay-2 t-bg-card rounded-xl p-5 border t-border text-center hover-lift card-hover" style="border-width:1px"><div class="text-3xl mb-2">🐳</div><div class="t-text font-bold text-sm">Docker</div><div class="t-muted text-xs mt-1">Containers</div></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="t-divider mx-auto max-w-4xl"></div>
+
+  <!-- ═══════════════════════════════════════════
+       INNOVATION & EMERGING TECH
+  ═══════════════════════════════════════════ -->
+  <section class="t-bg py-24 overflow-hidden">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <div class="reveal inline-flex items-center gap-2 t-accent-bg t-accent text-xs font-semibold uppercase tracking-widest px-4 py-2 rounded-full border t-border mb-4">Innovation Lab</div>
+        <h2 class="reveal delay-1 text-4xl md:text-5xl font-black t-text leading-tight mb-4">Pioneering <span class="t-accent">emerging tech</span></h2>
+        <p class="reveal delay-2 t-muted text-lg max-w-xl mx-auto">We don't just adopt new technology — we help define how it's applied in real business contexts across South Asia and beyond.</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="reveal t-bg-card rounded-2xl p-8 border t-border hover-lift card-hover relative overflow-hidden" style="border-width:1px">
+          <div class="absolute top-0 right-0 w-32 h-32 opacity-5 rounded-bl-full" style="background:var(--accent-color)"></div>
+          <div class="text-4xl mb-4">🤖</div>
+          <h3 class="t-text font-bold text-lg mb-3">Generative AI Solutions</h3>
+          <p class="t-muted text-sm leading-relaxed mb-4">LLM-powered copilots, RAG systems, and AI-native product features tailored for BD and global markets.</p>
+          <div class="t-accent text-xs font-semibold">GPT-4 · Gemini · LangChain · RAG</div>
+        </div>
+        <div class="reveal delay-1 t-bg-card rounded-2xl p-8 border t-border hover-lift card-hover relative overflow-hidden" style="border-width:1px">
+          <div class="absolute top-0 right-0 w-32 h-32 opacity-5 rounded-bl-full" style="background:var(--accent-color)"></div>
+          <div class="text-4xl mb-4">⛓️</div>
+          <h3 class="t-text font-bold text-lg mb-3">Blockchain &amp; Web3</h3>
+          <p class="t-muted text-sm leading-relaxed mb-4">Smart contract development, DeFi integrations, and enterprise blockchain solutions for supply chain and fintech.</p>
+          <div class="t-accent text-xs font-semibold">Ethereum · Solana · Hyperledger</div>
+        </div>
+        <div class="reveal delay-2 t-bg-card rounded-2xl p-8 border t-border hover-lift card-hover relative overflow-hidden" style="border-width:1px">
+          <div class="absolute top-0 right-0 w-32 h-32 opacity-5 rounded-bl-full" style="background:var(--accent-color)"></div>
+          <div class="text-4xl mb-4">🌐</div>
+          <h3 class="t-text font-bold text-lg mb-3">IoT &amp; Edge Computing</h3>
+          <p class="t-muted text-sm leading-relaxed mb-4">Connected device ecosystems, real-time sensor platforms, and edge AI for manufacturing and smart infrastructure.</p>
+          <div class="t-accent text-xs font-semibold">MQTT · Edge AI · AWS IoT · RTOS</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="t-divider mx-auto max-w-4xl"></div>
+
+  <!-- ═══════════════════════════════════════════
+       API / INTEGRATION SHOWCASE
+  ═══════════════════════════════════════════ -->
+  <section class="t-bg2 py-24">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="grid md:grid-cols-2 gap-16 items-center">
+        <div>
+          <div class="reveal inline-flex items-center gap-2 t-accent-bg t-accent text-xs font-semibold uppercase tracking-widest px-4 py-2 rounded-full border t-border mb-4">API &amp; Integrations</div>
+          <h2 class="reveal delay-1 text-4xl md:text-5xl font-black t-text leading-tight mb-6">Connect <span class="t-accent">everything</span> seamlessly</h2>
+          <p class="reveal delay-2 t-muted text-base leading-relaxed mb-8">We build and integrate robust APIs that connect your business systems — ERP, CRM, payment gateways, third-party platforms, and custom services — into a unified digital backbone.</p>
+          <div class="reveal delay-3 space-y-4">
+            <div class="flex items-center gap-3"><div class="w-7 h-7 rounded-lg t-accent-bg t-accent flex items-center justify-center text-sm flex-shrink-0">✓</div><span class="t-muted text-sm">RESTful &amp; GraphQL API design and documentation</span></div>
+            <div class="flex items-center gap-3"><div class="w-7 h-7 rounded-lg t-accent-bg t-accent flex items-center justify-center text-sm flex-shrink-0">✓</div><span class="t-muted text-sm">Payment gateway integration (bKash, Nagad, Stripe, PayPal)</span></div>
+            <div class="flex items-center gap-3"><div class="w-7 h-7 rounded-lg t-accent-bg t-accent flex items-center justify-center text-sm flex-shrink-0">✓</div><span class="t-muted text-sm">ERP &amp; CRM connectors (SAP, Salesforce, HubSpot)</span></div>
+            <div class="flex items-center gap-3"><div class="w-7 h-7 rounded-lg t-accent-bg t-accent flex items-center justify-center text-sm flex-shrink-0">✓</div><span class="t-muted text-sm">Webhook automation &amp; event-driven architectures</span></div>
+          </div>
+        </div>
+        <div class="reveal-right">
+          <div class="t-bg-card rounded-2xl p-6 border t-border shadow-2xl font-mono text-xs" style="border-width:1px">
+            <div class="flex items-center gap-2 mb-5">
+              <div class="w-3 h-3 rounded-full opacity-60" style="background:#ef4444"></div>
+              <div class="w-3 h-3 rounded-full opacity-60" style="background:#f59e0b"></div>
+              <div class="w-3 h-3 rounded-full opacity-60" style="background:#22c55e"></div>
+              <span class="t-muted ml-2 text-xs">seven-tech-api.js</span>
+            </div>
+            <div class="space-y-1.5">
+              <div><span class="t-accent">const</span> <span class="t-text">client</span> <span class="t-muted">= new</span> <span class="t-accent">SevenTechAPI</span><span class="t-muted">({</span></div>
+              <div class="pl-4"><span class="t-text">apiKey</span><span class="t-muted">:</span> <span class="t-accent">'st_live_xxxx'</span><span class="t-muted">,</span></div>
+              <div class="pl-4"><span class="t-text">region</span><span class="t-muted">:</span> <span class="t-accent">'ap-south-1'</span></div>
+              <div class="t-muted">});</div>
+              <div class="mt-3"><span class="t-muted">// Real-time payment processing</span></div>
+              <div><span class="t-accent">await</span> <span class="t-text">client</span><span class="t-muted">.</span><span class="t-accent">payments</span><span class="t-muted">.</span><span class="t-text">charge</span><span class="t-muted">({</span></div>
+              <div class="pl-4"><span class="t-text">amount</span><span class="t-muted">:</span> <span class="t-accent">5000</span><span class="t-muted">,</span></div>
+              <div class="pl-4"><span class="t-text">currency</span><span class="t-muted">:</span> <span class="t-accent">'BDT'</span><span class="t-muted">,</span></div>
+              <div class="pl-4"><span class="t-text">gateway</span><span class="t-muted">:</span> <span class="t-accent">'bkash'</span></div>
+              <div class="t-muted">});</div>
+              <div class="mt-3 flex items-center gap-2"><span class="w-2 h-2 rounded-full t-btn animate-pulse"></span><span class="t-muted">200 OK — Transaction complete</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="t-divider mx-auto max-w-4xl"></div>
+
+  <!-- ═══════════════════════════════════════════
+       ABOUT SECTION
+  ═══════════════════════════════════════════ -->
+  <section  class="t-bg2 py-24 overflow-hidden">
+    <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+      <!-- Left visual -->
+      <div class="reveal-left relative flex justify-center">
+        <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+          <div class="w-72 h-72 rounded-full opacity-20 animate-orb" style="background:radial-gradient(circle,var(--accent-color),transparent 70%)"></div>
+        </div>
+        <!-- Asymmetric card cluster -->
+        <div class="relative w-72 h-80">
+          <div class="absolute top-0 left-0 glass rounded-2xl p-5 w-52 shadow-xl hover-lift">
+            <div class="t-accent text-2xl font-black mb-1">Since 2018</div>
+            <div class="t-muted text-xs">Building digital ventures that outlast trends</div>
+          </div>
+          <div class="absolute bottom-8 right-0 glass rounded-2xl p-5 w-48 shadow-xl hover-lift" style="animation-delay:.4s">
+            <div class="t-text font-bold text-sm mb-2">🌏 18 Countries</div>
+            <div class="t-muted text-xs">Global delivery teams</div>
+          </div>
+          <div class="absolute bottom-0 left-4 glass rounded-2xl p-4 w-40 shadow-xl hover-lift" style="animation-delay:.8s">
+            <div class="t-accent font-black text-xl">7× ROI</div>
+            <div class="t-muted text-xs">Average client return</div>
+          </div>
+        </div>
+      </div>
+      <!-- Right copy -->
+      <div>
+        <div class="reveal inline-flex items-center gap-2 t-accent-bg t-accent text-xs font-semibold uppercase tracking-widest px-4 py-2 rounded-full border t-border mb-4">About Us</div>
+        <h2 class="reveal delay-1 text-4xl md:text-5xl font-black t-text leading-tight mb-6">A different kind of<br><span class="t-accent">tech company</span></h2>
+        <p class="reveal delay-2 t-muted text-base leading-relaxed mb-5">Founded in Dhaka in 2018, Seven Tech Ventures was built on a simple belief: technology should create tangible, lasting value — not just demos. We're a full-spectrum software engineering firm that partners with startups and enterprises to bring ambitious ideas to life.</p>
+        <p class="reveal delay-3 t-muted text-base leading-relaxed mb-8">Our distributed team of 80+ engineers, designers, and strategists operates across three continents, with deep expertise in AI, cloud infrastructure, and product design.</p>
+        <div class="reveal delay-4 flex flex-wrap gap-3">
+          <div class="t-accent-bg t-accent text-xs font-semibold px-3 py-1.5 rounded-full border t-border">ISO 27001 Certified</div>
+          <div class="t-accent-bg t-accent text-xs font-semibold px-3 py-1.5 rounded-full border t-border">AWS Advanced Partner</div>
+          <div class="t-accent-bg t-accent text-xs font-semibold px-3 py-1.5 rounded-full border t-border">Google Cloud Partner</div>
+          <div class="t-accent-bg t-accent text-xs font-semibold px-3 py-1.5 rounded-full border t-border">SOC2 Type II</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="t-divider mx-auto max-w-4xl"></div>
+
+  <!-- ═══════════════════════════════════════════
+       WORK / PORTFOLIO
+  ═══════════════════════════════════════════ -->
+
+  <!-- ═══════════════════════════════════════════
+       CLIENT SUCCESS HIGHLIGHTS
+  ═══════════════════════════════════════════ -->
+  <section class="t-bg py-24">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <div class="reveal inline-flex items-center gap-2 t-accent-bg t-accent text-xs font-semibold uppercase tracking-widest px-4 py-2 rounded-full border t-border mb-4">Client Success</div>
+        <h2 class="reveal delay-1 text-4xl md:text-5xl font-black t-text leading-tight mb-4">Measurable <span class="t-accent">impact</span></h2>
+        <p class="reveal delay-2 t-muted text-lg max-w-xl mx-auto">Numbers don't lie. Here's what happens when our engineering meets your ambition.</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="reveal t-bg-card rounded-2xl p-8 border t-border hover-lift card-hover" style="border-width:1px">
+          <div class="t-accent text-4xl font-black mb-2">40%</div>
+          <div class="t-text font-bold mb-2">Infrastructure Cost Reduction</div>
+          <p class="t-muted text-sm leading-relaxed">A fintech client migrated from on-prem to our cloud architecture, cutting annual infra spend by 40% with zero downtime.</p>
+          <div class="mt-4 t-accent text-xs font-semibold uppercase tracking-wider">Vaultex Finance</div>
+        </div>
+        <div class="reveal delay-1 t-bg-card rounded-2xl p-8 border t-border hover-lift card-hover" style="border-width:1px">
+          <div class="t-accent text-4xl font-black mb-2">6 wks</div>
+          <div class="t-text font-bold mb-2">Early Launch</div>
+          <p class="t-muted text-sm leading-relaxed">Our AI-accelerated development cycle delivered a full product 6 weeks ahead of the original timeline — capturing the market first.</p>
+          <div class="mt-4 t-accent text-xs font-semibold uppercase tracking-wider">Nexora Platform</div>
+        </div>
+        <div class="reveal delay-2 t-bg-card rounded-2xl p-8 border t-border hover-lift card-hover" style="border-width:1px">
+          <div class="t-accent text-4xl font-black mb-2">3×</div>
+          <div class="t-text font-bold mb-2">Conversion Rate Growth</div>
+          <p class="t-muted text-sm leading-relaxed">A complete UX overhaul and performance optimisation tripled checkout conversions for a leading BD e-commerce brand.</p>
+          <div class="mt-4 t-accent text-xs font-semibold uppercase tracking-wider">Crestara Commerce</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="t-divider mx-auto max-w-4xl"></div>
+
+  <!-- ═══════════════════════════════════════════
+       FEATURED PROJECTS
+  ═══════════════════════════════════════════ -->
+  <section id="work" class="t-bg2 py-24">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <div class="reveal inline-flex items-center gap-2 t-accent-bg t-accent text-xs font-semibold uppercase tracking-widest px-4 py-2 rounded-full border t-border mb-4">Featured Projects</div>
+        <h2 class="reveal delay-1 text-4xl md:text-5xl font-black t-text leading-tight mb-4">Work we're <span class="t-accent">proud of</span></h2>
+        <p class="reveal delay-2 t-muted text-lg max-w-xl mx-auto">A selection of high-impact products we've engineered for clients across fintech, logistics, health, and beyond.</p>
+      </div>
+      <div class="grid md:grid-cols-2 gap-8">
+        <div class="reveal t-bg-card rounded-2xl overflow-hidden border t-border hover-lift card-hover" style="border-width:1px">
+          <div class="h-44 flex items-center justify-center t-accent-bg relative overflow-hidden">
+            <div class="absolute inset-0 opacity-20" style="background:radial-gradient(circle at 30% 50%,var(--accent-color),transparent 70%)"></div>
+            <div class="text-6xl">🏦</div>
+          </div>
+          <div class="p-7">
+            <div class="flex items-center gap-2 mb-3">
+              <span class="t-accent-bg t-accent text-xs font-semibold px-2.5 py-1 rounded-full border t-border">Fintech</span>
+              <span class="t-accent-bg t-accent text-xs font-semibold px-2.5 py-1 rounded-full border t-border">AI</span>
+            </div>
+            <h3 class="t-text font-bold text-xl mb-2">Vaultex Digital Banking Suite</h3>
+            <p class="t-muted text-sm leading-relaxed mb-4">End-to-end mobile banking platform with AI-driven fraud detection, real-time notifications, and bKash integration for 500k+ users.</p>
+            <a href="#" class="t-accent text-sm font-semibold flex items-center gap-1 hover:gap-2 transition-all">View case study <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          </div>
+        </div>
+        <div class="reveal delay-1 t-bg-card rounded-2xl overflow-hidden border t-border hover-lift card-hover" style="border-width:1px">
+          <div class="h-44 flex items-center justify-center t-accent-bg relative overflow-hidden">
+            <div class="absolute inset-0 opacity-20" style="background:radial-gradient(circle at 70% 50%,var(--accent-color),transparent 70%)"></div>
+            <div class="text-6xl">🚚</div>
+          </div>
+          <div class="p-7">
+            <div class="flex items-center gap-2 mb-3">
+              <span class="t-accent-bg t-accent text-xs font-semibold px-2.5 py-1 rounded-full border t-border">Logistics</span>
+              <span class="t-accent-bg t-accent text-xs font-semibold px-2.5 py-1 rounded-full border t-border">IoT</span>
+            </div>
+            <h3 class="t-text font-bold text-xl mb-2">Orbtica Smart Logistics OS</h3>
+            <p class="t-muted text-sm leading-relaxed mb-4">Real-time fleet management, IoT-enabled shipment tracking, and AI route optimisation reducing delivery time by 28% across BD.</p>
+            <a href="#" class="t-accent text-sm font-semibold flex items-center gap-1 hover:gap-2 transition-all">View case study <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          </div>
+        </div>
+        <div class="reveal delay-2 t-bg-card rounded-2xl overflow-hidden border t-border hover-lift card-hover" style="border-width:1px">
+          <div class="h-44 flex items-center justify-center t-accent-bg relative overflow-hidden">
+            <div class="absolute inset-0 opacity-20" style="background:radial-gradient(circle at 50% 30%,var(--accent-color),transparent 70%)"></div>
+            <div class="text-6xl">🏥</div>
+          </div>
+          <div class="p-7">
+            <div class="flex items-center gap-2 mb-3">
+              <span class="t-accent-bg t-accent text-xs font-semibold px-2.5 py-1 rounded-full border t-border">Health Tech</span>
+              <span class="t-accent-bg t-accent text-xs font-semibold px-2.5 py-1 rounded-full border t-border">Cloud</span>
+            </div>
+            <h3 class="t-text font-bold text-xl mb-2">MediCore Hospital ERP</h3>
+            <p class="t-muted text-sm leading-relaxed mb-4">Full-stack hospital management system with telemedicine module, FHIR-compliant records, and HL7 integrations deployed across 12 BD hospitals.</p>
+            <a href="#" class="t-accent text-sm font-semibold flex items-center gap-1 hover:gap-2 transition-all">View case study <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          </div>
+        </div>
+        <div class="reveal delay-3 t-bg-card rounded-2xl overflow-hidden border t-border hover-lift card-hover" style="border-width:1px">
+          <div class="h-44 flex items-center justify-center t-accent-bg relative overflow-hidden">
+            <div class="absolute inset-0 opacity-20" style="background:radial-gradient(circle at 40% 70%,var(--accent-color),transparent 70%)"></div>
+            <div class="text-6xl">🛍️</div>
+          </div>
+          <div class="p-7">
+            <div class="flex items-center gap-2 mb-3">
+              <span class="t-accent-bg t-accent text-xs font-semibold px-2.5 py-1 rounded-full border t-border">E-Commerce</span>
+              <span class="t-accent-bg t-accent text-xs font-semibold px-2.5 py-1 rounded-full border t-border">Data</span>
+            </div>
+            <h3 class="t-text font-bold text-xl mb-2">Crestara Marketplace Platform</h3>
+            <p class="t-muted text-sm leading-relaxed mb-4">Multi-vendor marketplace with personalisation engine, advanced analytics dashboard, and mobile-first PWA achieving 3× conversion lift.</p>
+            <a href="#" class="t-accent text-sm font-semibold flex items-center gap-1 hover:gap-2 transition-all">View case study <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="t-divider mx-auto max-w-4xl"></div>
+
+  <!-- ═══════════════════════════════════════════
+       BEFORE & AFTER — PROBLEM TO SOLUTION
+  ═══════════════════════════════════════════ -->
+  <section class="t-bg py-24">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <div class="reveal inline-flex items-center gap-2 t-accent-bg t-accent text-xs font-semibold uppercase tracking-widest px-4 py-2 rounded-full border t-border mb-4">Problem → Solution</div>
+        <h2 class="reveal delay-1 text-4xl md:text-5xl font-black t-text leading-tight mb-4">We turn <span class="t-accent">pain points</span> into progress</h2>
+        <p class="reveal delay-2 t-muted text-lg max-w-xl mx-auto">Every challenge is an opportunity. Here's how we transform real business problems into working solutions.</p>
+      </div>
+      <div class="space-y-6">
+        <div class="reveal t-bg-card rounded-2xl p-8 border t-border" style="border-width:1px">
+          <div class="grid md:grid-cols-2 gap-8 items-center">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl flex items-center justify-center text-xl flex-shrink-0" style="background:rgba(239,68,68,.15)">❌</div>
+              <div>
+                <div class="text-xs font-semibold uppercase tracking-widest mb-2" style="color:#ef4444">Before</div>
+                <h4 class="t-text font-bold mb-2">Manual payment reconciliation taking 3 days/month</h4>
+                <p class="t-muted text-sm">Finance teams at a leading BD retailer spent 72+ hours monthly reconciling bKash, Nagad, and card transactions manually across spreadsheets.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl t-accent-bg t-accent flex items-center justify-center text-xl flex-shrink-0">✅</div>
+              <div>
+                <div class="t-accent text-xs font-semibold uppercase tracking-widest mb-2">After</div>
+                <h4 class="t-text font-bold mb-2">Automated reconciliation in under 4 minutes</h4>
+                <p class="t-muted text-sm">Our unified payment aggregation API auto-reconciles all gateways in real-time, reducing the process from 3 days to 4 minutes with 99.97% accuracy.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="reveal delay-1 t-bg-card rounded-2xl p-8 border t-border" style="border-width:1px">
+          <div class="grid md:grid-cols-2 gap-8 items-center">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl flex items-center justify-center text-xl flex-shrink-0" style="background:rgba(239,68,68,.15)">❌</div>
+              <div>
+                <div class="text-xs font-semibold uppercase tracking-widest mb-2" style="color:#ef4444">Before</div>
+                <h4 class="t-text font-bold mb-2">App crashes during peak traffic events</h4>
+                <p class="t-muted text-sm">An e-commerce platform's monolith crashed every 11.11 and Eid sale, resulting in an estimated BDT 1.2 crore in lost revenue per incident.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl t-accent-bg t-accent flex items-center justify-center text-xl flex-shrink-0">✅</div>
+              <div>
+                <div class="t-accent text-xs font-semibold uppercase tracking-widest mb-2">After</div>
+                <h4 class="t-text font-bold mb-2">99.99% uptime across 10× traffic spikes</h4>
+                <p class="t-muted text-sm">Microservices migration to Kubernetes with auto-scaling sustains 10× normal load with sub-200ms response times and zero downtime events.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="t-divider mx-auto max-w-4xl"></div>
+
+
+  <section class="t-bg2 py-24">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <div class="reveal inline-flex items-center gap-2 t-accent-bg t-accent text-xs font-semibold uppercase tracking-widest px-4 py-2 rounded-full border t-border mb-4">How We Work</div>
+        <h2 class="reveal delay-1 text-4xl md:text-5xl font-black t-text leading-tight">Our <span class="t-accent">Process</span></h2>
+      </div>
+      <div class="grid md:grid-cols-4 gap-6">
+        <div class="reveal text-center">
+          <div class="w-14 h-14 rounded-2xl t-btn text-white font-black text-xl flex items-center justify-center mx-auto mb-4 shadow-lg">01</div>
+          <h3 class="t-text font-bold mb-2">Discover</h3>
+          <p class="t-muted text-sm">Deep-dive into your goals, users, and constraints to shape the right solution.</p>
+        </div>
+        <div class="reveal delay-1 text-center">
+          <div class="w-14 h-14 rounded-2xl t-btn text-white font-black text-xl flex items-center justify-center mx-auto mb-4 shadow-lg">02</div>
+          <h3 class="t-text font-bold mb-2">Design</h3>
+          <p class="t-muted text-sm">Prototype, validate, and craft systems that are beautiful and bulletproof.</p>
+        </div>
+        <div class="reveal delay-2 text-center">
+          <div class="w-14 h-14 rounded-2xl t-btn text-white font-black text-xl flex items-center justify-center mx-auto mb-4 shadow-lg">03</div>
+          <h3 class="t-text font-bold mb-2">Build</h3>
+          <p class="t-muted text-sm">Agile sprints, CI/CD pipelines, and transparent progress — delivered fast.</p>
+        </div>
+        <div class="reveal delay-3 text-center">
+          <div class="w-14 h-14 rounded-2xl t-btn text-white font-black text-xl flex items-center justify-center mx-auto mb-4 shadow-lg">04</div>
+          <h3 class="t-text font-bold mb-2">Scale</h3>
+          <p class="t-muted text-sm">Post-launch support, monitoring, and iterative improvements that compound.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="t-divider mx-auto max-w-4xl"></div>
+
+  <div class="t-divider mx-auto max-w-4xl"></div>
+
+  <!-- ═══════════════════════════════════════════
+       INDUSTRIES WE SERVE
+  ═══════════════════════════════════════════ -->
+  <section class="t-bg py-24">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <div class="reveal inline-flex items-center gap-2 t-accent-bg t-accent text-xs font-semibold uppercase tracking-widest px-4 py-2 rounded-full border t-border mb-4">Industries</div>
+        <h2 class="reveal delay-1 text-4xl md:text-5xl font-black t-text leading-tight mb-4">We serve <span class="t-accent">every sector</span></h2>
+        <p class="reveal delay-2 t-muted text-lg max-w-xl mx-auto">From Dhaka's booming fintech to global healthcare — our engineering adapts to the unique demands of each industry.</p>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
+        <div class="reveal t-bg-card rounded-2xl p-6 border t-border text-center hover-lift card-hover" style="border-width:1px"><div class="text-4xl mb-3">🏦</div><div class="t-text font-bold text-sm mb-1">Fintech &amp; Banking</div><div class="t-muted text-xs">MFS, lending, insurance</div></div>
+        <div class="reveal delay-1 t-bg-card rounded-2xl p-6 border t-border text-center hover-lift card-hover" style="border-width:1px"><div class="text-4xl mb-3">🏥</div><div class="t-text font-bold text-sm mb-1">Healthcare</div><div class="t-muted text-xs">EMR, telemedicine, diagnostics</div></div>
+        <div class="reveal delay-2 t-bg-card rounded-2xl p-6 border t-border text-center hover-lift card-hover" style="border-width:1px"><div class="text-4xl mb-3">🛍️</div><div class="t-text font-bold text-sm mb-1">E-Commerce &amp; Retail</div><div class="t-muted text-xs">Marketplace, POS, CRM</div></div>
+        <div class="reveal delay-3 t-bg-card rounded-2xl p-6 border t-border text-center hover-lift card-hover" style="border-width:1px"><div class="text-4xl mb-3">🚚</div><div class="t-text font-bold text-sm mb-1">Logistics &amp; Supply Chain</div><div class="t-muted text-xs">Fleet, tracking, WMS</div></div>
+        <div class="reveal delay-4 t-bg-card rounded-2xl p-6 border t-border text-center hover-lift card-hover" style="border-width:1px"><div class="text-4xl mb-3">📚</div><div class="t-text font-bold text-sm mb-1">EdTech</div><div class="t-muted text-xs">LMS, assessments, live class</div></div>
+        <div class="reveal delay-5 t-bg-card rounded-2xl p-6 border t-border text-center hover-lift card-hover" style="border-width:1px"><div class="text-4xl mb-3">🏭</div><div class="t-text font-bold text-sm mb-1">Manufacturing</div><div class="t-muted text-xs">ERP, QMS, IoT sensors</div></div>
+        <div class="reveal delay-1 t-bg-card rounded-2xl p-6 border t-border text-center hover-lift card-hover" style="border-width:1px"><div class="text-4xl mb-3">🏛️</div><div class="t-text font-bold text-sm mb-1">Government &amp; Public Sector</div><div class="t-muted text-xs">Digital services, GovTech</div></div>
+        <div class="reveal delay-2 t-bg-card rounded-2xl p-6 border t-border text-center hover-lift card-hover" style="border-width:1px"><div class="text-4xl mb-3">🌾</div><div class="t-text font-bold text-sm mb-1">AgriTech</div><div class="t-muted text-xs">Precision farming, supply chain</div></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="t-divider mx-auto max-w-4xl"></div>
+
+  <!-- ═══════════════════════════════════════════
+       LIFE AT SEVEN TECH
+  ═══════════════════════════════════════════ -->
+  <section class="t-bg2 py-24 overflow-hidden">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="grid md:grid-cols-2 gap-16 items-center">
+        <div>
+          <div class="reveal inline-flex items-center gap-2 t-accent-bg t-accent text-xs font-semibold uppercase tracking-widest px-4 py-2 rounded-full border t-border mb-4">Life at Seven Tech</div>
+          <h2 class="reveal delay-1 text-4xl md:text-5xl font-black t-text leading-tight mb-6">More than a <span class="t-accent">workplace</span></h2>
+          <p class="reveal delay-2 t-muted text-base leading-relaxed mb-6">We've built a culture where talented Bangladeshi engineers can work on world-class problems without leaving home. Flexible hours, continuous learning, and a genuine stake in what we build together.</p>
+          <div class="reveal delay-3 grid grid-cols-2 gap-4">
+            <div class="t-bg-card rounded-xl p-4 border t-border" style="border-width:1px"><div class="text-2xl mb-2">🎓</div><div class="t-text font-semibold text-sm">Learning Budget</div><div class="t-muted text-xs mt-1">BDT 50k/yr for courses &amp; certifications</div></div>
+            <div class="t-bg-card rounded-xl p-4 border t-border" style="border-width:1px"><div class="text-2xl mb-2">🏠</div><div class="t-text font-semibold text-sm">Hybrid-First</div><div class="t-muted text-xs mt-1">Remote 3 days/week across all roles</div></div>
+            <div class="t-bg-card rounded-xl p-4 border t-border" style="border-width:1px"><div class="text-2xl mb-2">🩺</div><div class="t-text font-semibold text-sm">Full Health Cover</div><div class="t-muted text-xs mt-1">Employee &amp; family medical insurance</div></div>
+            <div class="t-bg-card rounded-xl p-4 border t-border" style="border-width:1px"><div class="text-2xl mb-2">📈</div><div class="t-text font-semibold text-sm">Equity Scheme</div><div class="t-muted text-xs mt-1">ESOP available for senior roles</div></div>
+          </div>
+        </div>
+        <div class="reveal-right">
+          <div class="grid grid-cols-2 gap-4">
+            <div class="t-bg-card rounded-2xl p-6 border t-border text-center hover-lift" style="border-width:1px">
+              <div class="t-accent text-3xl font-black mb-1">80+</div>
+              <div class="t-muted text-xs">Team members</div>
+            </div>
+            <div class="t-bg-card rounded-2xl p-6 border t-border text-center hover-lift" style="border-width:1px">
+              <div class="t-accent text-3xl font-black mb-1">94%</div>
+              <div class="t-muted text-xs">Retention rate</div>
+            </div>
+            <div class="t-bg-card rounded-2xl p-6 border t-border text-center hover-lift" style="border-width:1px">
+              <div class="t-accent text-3xl font-black mb-1">12+</div>
+              <div class="t-muted text-xs">Nationalities</div>
+            </div>
+            <div class="t-bg-card rounded-2xl p-6 border t-border text-center hover-lift" style="border-width:1px">
+              <div class="t-accent text-3xl font-black mb-1">4.8★</div>
+              <div class="t-muted text-xs">Glassdoor rating</div>
+            </div>
+          </div>
+          <div class="mt-5 t-bg-card rounded-2xl p-6 border t-border" style="border-width:1px">
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-9 h-9 rounded-full t-btn text-white text-sm font-bold flex items-center justify-center">TJ</div>
+              <div>
+                <div class="t-text font-semibold text-sm">Tanvir Jahan</div>
+                <div class="t-muted text-xs">Senior Engineer, 3 yrs at Seven Tech</div>
+              </div>
+            </div>
+            <p class="t-muted text-xs leading-relaxed">"I've worked with Bay Area startups remotely, but nothing compares to building something meaningful from Dhaka — with a team that genuinely cares about craft."</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="t-divider mx-auto max-w-4xl"></div>
+
+  <!-- ═══════════════════════════════════════════
+       CSR / SOCIAL IMPACT
+  ═══════════════════════════════════════════ -->
+  <section class="t-bg py-24">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <div class="reveal inline-flex items-center gap-2 t-accent-bg t-accent text-xs font-semibold uppercase tracking-widest px-4 py-2 rounded-full border t-border mb-4">Social Impact</div>
+        <h2 class="reveal delay-1 text-4xl md:text-5xl font-black t-text leading-tight mb-4">Technology for <span class="t-accent">Bangladesh</span></h2>
+        <p class="reveal delay-2 t-muted text-lg max-w-xl mx-auto">We believe BD's tech ecosystem belongs to everyone. Our CSR initiatives invest in the next generation of Bangladeshi builders.</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="reveal t-bg-card rounded-2xl p-7 border t-border hover-lift card-hover" style="border-width:1px">
+          <div class="text-4xl mb-4">👩‍💻</div>
+          <h3 class="t-text font-bold text-lg mb-3">Women in Tech BD</h3>
+          <p class="t-muted text-sm leading-relaxed mb-4">Annual scholarship programme placing 50 women from underprivileged backgrounds into six-month paid engineering internships at Seven Tech.</p>
+          <div class="t-accent text-sm font-bold">200+ graduates since 2020</div>
+        </div>
+        <div class="reveal delay-1 t-bg-card rounded-2xl p-7 border t-border hover-lift card-hover" style="border-width:1px">
+          <div class="text-4xl mb-4">🏫</div>
+          <h3 class="t-text font-bold text-lg mb-3">Rural Digital Classrooms</h3>
+          <p class="t-muted text-sm leading-relaxed mb-4">Partnership with 15 secondary schools across Sylhet and Rajshahi to provide computer labs, internet access, and coding curriculum.</p>
+          <div class="t-accent text-sm font-bold">3,000+ students impacted</div>
+        </div>
+        <div class="reveal delay-2 t-bg-card rounded-2xl p-7 border t-border hover-lift card-hover" style="border-width:1px">
+          <div class="text-4xl mb-4">🌱</div>
+          <h3 class="t-text font-bold text-lg mb-3">Carbon-Neutral by 2027</h3>
+          <p class="t-muted text-sm leading-relaxed mb-4">Transitioning all cloud workloads to renewable-energy data centres and planting 10,000 trees across Bangladesh to offset our footprint.</p>
+          <div class="t-accent text-sm font-bold">4,200 trees planted to date</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="t-divider mx-auto max-w-4xl"></div>
+
+  <!-- ═══════════════════════════════════════════
+       GLOBAL PRESENCE
+  ═══════════════════════════════════════════ -->
+  <section class="t-bg2 py-24">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <div class="reveal inline-flex items-center gap-2 t-accent-bg t-accent text-xs font-semibold uppercase tracking-widest px-4 py-2 rounded-full border t-border mb-4">Global Presence</div>
+        <h2 class="reveal delay-1 text-4xl md:text-5xl font-black t-text leading-tight mb-4">Rooted in Dhaka, <span class="t-accent">reaching the world</span></h2>
+        <p class="reveal delay-2 t-muted text-lg max-w-xl mx-auto">Our teams, clients, and partners span 18 countries across Asia, Europe, and North America.</p>
+      </div>
+      <div class="grid md:grid-cols-4 gap-6 mb-10">
+        <div class="reveal t-bg-card rounded-2xl p-6 border t-border text-center hover-lift card-hover" style="border-width:1px">
+          <div class="text-3xl mb-3">🇧🇩</div>
+          <div class="t-text font-bold mb-1">Dhaka HQ</div>
+          <div class="t-muted text-xs">50+ engineers · Main delivery hub</div>
+        </div>
+        <div class="reveal delay-1 t-bg-card rounded-2xl p-6 border t-border text-center hover-lift card-hover" style="border-width:1px">
+          <div class="text-3xl mb-3">🇸🇬</div>
+          <div class="t-text font-bold mb-1">Singapore</div>
+          <div class="t-muted text-xs">APAC sales &amp; enterprise clients</div>
+        </div>
+        <div class="reveal delay-2 t-bg-card rounded-2xl p-6 border t-border text-center hover-lift card-hover" style="border-width:1px">
+          <div class="text-3xl mb-3">🇬🇧</div>
+          <div class="t-text font-bold mb-1">London</div>
+          <div class="t-muted text-xs">Europe partnerships &amp; BD diaspora</div>
+        </div>
+        <div class="reveal delay-3 t-bg-card rounded-2xl p-6 border t-border text-center hover-lift card-hover" style="border-width:1px">
+          <div class="text-3xl mb-3">🇺🇸</div>
+          <div class="t-text font-bold mb-1">New York</div>
+          <div class="t-muted text-xs">North America sales office</div>
+        </div>
+      </div>
+      <div class="reveal t-bg-card rounded-2xl p-8 border t-border text-center" style="border-width:1px">
+        <div class="flex flex-wrap justify-center gap-6 t-muted text-sm">
+          <span>🌏 Bangladesh</span><span>🇸🇬 Singapore</span><span>🇬🇧 UK</span><span>🇺🇸 USA</span><span>🇦🇺 Australia</span><span>🇨🇦 Canada</span><span>🇩🇪 Germany</span><span>🇦🇪 UAE</span><span>🇸🇦 Saudi Arabia</span><span>🇳🇱 Netherlands</span>
+        </div>
+        <p class="t-muted text-xs mt-4">+8 more countries with active client engagements</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="t-divider mx-auto max-w-4xl"></div>
+
+  <!-- ═══════════════════════════════════════════
+       TEAM SECTION
+  ═══════════════════════════════════════════ -->
+  <section id="team" class="t-bg py-24">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <div class="reveal inline-flex items-center gap-2 t-accent-bg t-accent text-xs font-semibold uppercase tracking-widest px-4 py-2 rounded-full border t-border mb-4">Our People</div>
+        <h2 class="reveal delay-1 text-4xl md:text-5xl font-black t-text leading-tight mb-4">Meet the <span class="t-accent">Leadership</span></h2>
+        <p class="reveal delay-2 t-muted text-lg max-w-xl mx-auto">A collective of engineers, designers, and strategists who've built and scaled technology products globally.</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="reveal card-hover t-bg-card rounded-2xl p-7 border t-border text-center hover-lift" style="border-width:1px">
+          <div class="w-20 h-20 rounded-full t-btn text-white text-2xl font-black flex items-center justify-center mx-auto mb-4 shadow-lg">RH</div>
+          <h3 class="t-text font-bold text-lg mb-1">Rafsan Hasan</h3>
+          <div class="t-accent text-xs font-semibold uppercase tracking-wider mb-3">CEO & Co-Founder</div>
+          <p class="t-muted text-sm leading-relaxed">Former engineering lead at BJIT Group with 14 years building enterprise software across Asia and Europe.</p>
+        </div>
+        <div class="reveal delay-1 card-hover t-bg-card rounded-2xl p-7 border t-border text-center hover-lift" style="border-width:1px">
+          <div class="w-20 h-20 rounded-full t-btn text-white text-2xl font-black flex items-center justify-center mx-auto mb-4 shadow-lg">AN</div>
+          <h3 class="t-text font-bold text-lg mb-1">Ayesha Noor</h3>
+          <div class="t-accent text-xs font-semibold uppercase tracking-wider mb-3">CTO & Co-Founder</div>
+          <p class="t-muted text-sm leading-relaxed">PhD in Computer Science (BUET). Ex-Google engineer specialising in distributed systems and ML infrastructure.</p>
+        </div>
+        <div class="reveal delay-2 card-hover t-bg-card rounded-2xl p-7 border t-border text-center hover-lift" style="border-width:1px">
+          <div class="w-20 h-20 rounded-full t-btn text-white text-2xl font-black flex items-center justify-center mx-auto mb-4 shadow-lg">KM</div>
+          <h3 class="t-text font-bold text-lg mb-1">Karim Mahmud</h3>
+          <div class="t-accent text-xs font-semibold uppercase tracking-wider mb-3">Head of Design</div>
+          <p class="t-muted text-sm leading-relaxed">Previously at Pathao and ShopUp. Designs digital experiences that balance elegance with conversion.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="t-divider mx-auto max-w-4xl"></div>
+
+  <!-- ═══════════════════════════════════════════
+       TESTIMONIALS
+  ═══════════════════════════════════════════ -->
+  <section class="t-bg2 py-24">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <div class="reveal inline-flex items-center gap-2 t-accent-bg t-accent text-xs font-semibold uppercase tracking-widest px-4 py-2 rounded-full border t-border mb-4">Client Stories</div>
+        <h2 class="reveal delay-1 text-4xl md:text-5xl font-black t-text leading-tight">What clients <span class="t-accent">say</span></h2>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="reveal t-bg-card rounded-2xl p-7 border t-border hover-lift card-hover" style="border-width:1px">
+          <div class="flex gap-1 t-accent mb-4 text-lg">★★★★★</div>
+          <p class="t-muted text-sm leading-relaxed mb-6">"Seven Tech transformed our logistics system in 3 months. The engineering quality was exceptional and the team communicated flawlessly throughout."</p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full t-btn text-white text-sm font-bold flex items-center justify-center">JL</div>
+            <div>
+              <div class="t-text font-semibold text-sm">James Liu</div>
+              <div class="t-muted text-xs">CTO, Orbtica Logistics</div>
+            </div>
+          </div>
+        </div>
+        <div class="reveal delay-1 t-bg-card rounded-2xl p-7 border t-border hover-lift card-hover" style="border-width:1px">
+          <div class="flex gap-1 t-accent mb-4 text-lg">★★★★★</div>
+          <p class="t-muted text-sm leading-relaxed mb-6">"We launched our fintech product 6 weeks early. The AI features they built are now our biggest competitive advantage in the market."</p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full t-btn text-white text-sm font-bold flex items-center justify-center">SP</div>
+            <div>
+              <div class="t-text font-semibold text-sm">Sara Patel</div>
+              <div class="t-muted text-xs">CEO, Vaultex Finance</div>
+            </div>
+          </div>
+        </div>
+        <div class="reveal delay-2 t-bg-card rounded-2xl p-7 border t-border hover-lift card-hover" style="border-width:1px">
+          <div class="flex gap-1 t-accent mb-4 text-lg">★★★★★</div>
+          <p class="t-muted text-sm leading-relaxed mb-6">"Their cloud architecture cut our infrastructure costs by 40%. Deep expertise, fast delivery, and genuinely invested in our success."</p>
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full t-btn text-white text-sm font-bold flex items-center justify-center">MR</div>
+            <div>
+              <div class="t-text font-semibold text-sm">Mohammed Rashid</div>
+              <div class="t-muted text-xs">VP Eng, Luminary Labs</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="t-divider mx-auto max-w-4xl"></div>
+
+  <div class="t-divider mx-auto max-w-4xl"></div>
+
+  <!-- ═══════════════════════════════════════════
+       LATEST INSIGHTS
+  ═══════════════════════════════════════════ -->
+  <section class="t-bg py-24">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <div class="reveal inline-flex items-center gap-2 t-accent-bg t-accent text-xs font-semibold uppercase tracking-widest px-4 py-2 rounded-full border t-border mb-4">Latest Insights</div>
+        <h2 class="reveal delay-1 text-4xl md:text-5xl font-black t-text leading-tight mb-4">From our <span class="t-accent">engineering blog</span></h2>
+        <p class="reveal delay-2 t-muted text-lg max-w-xl mx-auto">Deep dives, tutorials, and opinion pieces from the Seven Tech engineering team — built for the BD tech community and beyond.</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="reveal t-bg-card rounded-2xl overflow-hidden border t-border hover-lift card-hover" style="border-width:1px">
+          <div class="h-36 t-accent-bg flex items-center justify-center text-5xl">🤖</div>
+          <div class="p-6">
+            <div class="flex items-center gap-2 mb-3">
+              <span class="t-accent-bg t-accent text-xs font-semibold px-2.5 py-1 rounded-full border t-border">AI/ML</span>
+              <span class="t-muted text-xs">8 min read</span>
+            </div>
+            <h3 class="t-text font-bold mb-2">Building RAG pipelines for Bangla NLP: lessons from production</h3>
+            <p class="t-muted text-sm leading-relaxed mb-4">How we adapted LangChain for low-resource Bangla text and achieved 91% retrieval accuracy on legal documents.</p>
+            <a href="#" class="t-accent text-sm font-semibold flex items-center gap-1 hover:gap-2 transition-all">Read more <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          </div>
+        </div>
+        <div class="reveal delay-1 t-bg-card rounded-2xl overflow-hidden border t-border hover-lift card-hover" style="border-width:1px">
+          <div class="h-36 t-accent-bg flex items-center justify-center text-5xl">☸️</div>
+          <div class="p-6">
+            <div class="flex items-center gap-2 mb-3">
+              <span class="t-accent-bg t-accent text-xs font-semibold px-2.5 py-1 rounded-full border t-border">DevOps</span>
+              <span class="t-muted text-xs">6 min read</span>
+            </div>
+            <h3 class="t-text font-bold mb-2">Kubernetes at scale on a BD startup budget: a practical guide</h3>
+            <p class="t-muted text-sm leading-relaxed mb-4">Cost-optimised K8s patterns that helped three of our clients cut cloud spend by 35% without sacrificing reliability.</p>
+            <a href="#" class="t-accent text-sm font-semibold flex items-center gap-1 hover:gap-2 transition-all">Read more <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          </div>
+        </div>
+        <div class="reveal delay-2 t-bg-card rounded-2xl overflow-hidden border t-border hover-lift card-hover" style="border-width:1px">
+          <div class="h-36 t-accent-bg flex items-center justify-center text-5xl">🔐</div>
+          <div class="p-6">
+            <div class="flex items-center gap-2 mb-3">
+              <span class="t-accent-bg t-accent text-xs font-semibold px-2.5 py-1 rounded-full border t-border">Security</span>
+              <span class="t-muted text-xs">5 min read</span>
+            </div>
+            <h3 class="t-text font-bold mb-2">The state of cybersecurity in Bangladesh's fintech sector — 2025</h3>
+            <p class="t-muted text-sm leading-relaxed mb-4">Our annual threat landscape analysis for mobile financial services, with actionable hardening recommendations for MFS platforms.</p>
+            <a href="#" class="t-accent text-sm font-semibold flex items-center gap-1 hover:gap-2 transition-all">Read more <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+          </div>
+        </div>
+      </div>
+      <div class="reveal text-center mt-10">
+        <a href="#" class="t-btn-outline px-7 py-3 rounded-xl font-semibold text-sm transition-all inline-flex items-center gap-2">View all articles <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <div class="t-divider mx-auto max-w-4xl"></div>
+
+  <!-- ═══════════════════════════════════════════
+       EVENTS & WEBINARS
+  ═══════════════════════════════════════════ -->
+  <section class="t-bg2 py-24">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <div class="reveal inline-flex items-center gap-2 t-accent-bg t-accent text-xs font-semibold uppercase tracking-widest px-4 py-2 rounded-full border t-border mb-4">Events &amp; Webinars</div>
+        <h2 class="reveal delay-1 text-4xl md:text-5xl font-black t-text leading-tight mb-4">Learn with <span class="t-accent">Seven Tech</span></h2>
+        <p class="reveal delay-2 t-muted text-lg max-w-xl mx-auto">Join our free webinars, workshops, and community events — designed for BD's growing tech ecosystem.</p>
+      </div>
+      <div class="space-y-5">
+        <div class="reveal t-bg-card rounded-2xl p-6 border t-border hover-lift card-hover" style="border-width:1px">
+          <div class="flex flex-col md:flex-row md:items-center gap-5">
+            <div class="w-20 h-20 rounded-2xl t-accent-bg t-accent flex flex-col items-center justify-center flex-shrink-0 border t-border" style="border-width:1px">
+              <div class="text-xs font-semibold uppercase">JUN</div>
+              <div class="text-2xl font-black">14</div>
+            </div>
+            <div class="flex-1">
+              <div class="flex items-center gap-3 mb-2">
+                <span class="t-accent-bg t-accent text-xs font-semibold px-2.5 py-1 rounded-full border t-border">Webinar · Online</span>
+                <span class="t-muted text-xs">7:00 PM BST</span>
+              </div>
+              <h3 class="t-text font-bold text-lg mb-1">AI-Powered Products: From Idea to Bangladesh Market</h3>
+              <p class="t-muted text-sm">A live walkthrough of how to validate, build, and launch AI-native products in the BD context — with Q&amp;A.</p>
+            </div>
+            <a href="#" class="t-btn px-5 py-2.5 rounded-xl text-sm font-semibold flex-shrink-0 btn-glow transition-all">Register Free</a>
+          </div>
+        </div>
+        <div class="reveal delay-1 t-bg-card rounded-2xl p-6 border t-border hover-lift card-hover" style="border-width:1px">
+          <div class="flex flex-col md:flex-row md:items-center gap-5">
+            <div class="w-20 h-20 rounded-2xl t-accent-bg t-accent flex flex-col items-center justify-center flex-shrink-0 border t-border" style="border-width:1px">
+              <div class="text-xs font-semibold uppercase">JUL</div>
+              <div class="text-2xl font-black">02</div>
+            </div>
+            <div class="flex-1">
+              <div class="flex items-center gap-3 mb-2">
+                <span class="t-accent-bg t-accent text-xs font-semibold px-2.5 py-1 rounded-full border t-border">Workshop · Dhaka</span>
+                <span class="t-muted text-xs">10:00 AM – 4:00 PM</span>
+              </div>
+              <h3 class="t-text font-bold text-lg mb-1">Cloud Architecture Bootcamp for BD Startups</h3>
+              <p class="t-muted text-sm">Hands-on full-day workshop covering AWS, Kubernetes, and cost optimisation — co-hosted with BASIS and a2i.</p>
+            </div>
+            <a href="#" class="t-btn px-5 py-2.5 rounded-xl text-sm font-semibold flex-shrink-0 btn-glow transition-all">Register Free</a>
+          </div>
+        </div>
+        <div class="reveal delay-2 t-bg-card rounded-2xl p-6 border t-border hover-lift card-hover" style="border-width:1px">
+          <div class="flex flex-col md:flex-row md:items-center gap-5">
+            <div class="w-20 h-20 rounded-2xl t-accent-bg t-accent flex flex-col items-center justify-center flex-shrink-0 border t-border" style="border-width:1px">
+              <div class="text-xs font-semibold uppercase">AUG</div>
+              <div class="text-2xl font-black">20</div>
+            </div>
+            <div class="flex-1">
+              <div class="flex items-center gap-3 mb-2">
+                <span class="t-accent-bg t-accent text-xs font-semibold px-2.5 py-1 rounded-full border t-border">Conference · Dhaka</span>
+                <span class="t-muted text-xs">9:00 AM – 6:00 PM</span>
+              </div>
+              <h3 class="t-text font-bold text-lg mb-1">Seven Tech Summit 2025 — Engineering Bangladesh's Digital Future</h3>
+              <p class="t-muted text-sm">Our flagship annual conference bringing together 500+ tech leaders, founders, and engineers from across South Asia.</p>
+            </div>
+            <a href="#" class="t-btn px-5 py-2.5 rounded-xl text-sm font-semibold flex-shrink-0 btn-glow transition-all">Register Free</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="t-divider mx-auto max-w-4xl"></div>
+
+  <!-- ═══════════════════════════════════════════
+       FREE AUDIT CTA
+  ═══════════════════════════════════════════ -->
+  <section class="t-bg py-24">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <div class="reveal inline-flex items-center gap-2 t-accent-bg t-accent text-xs font-semibold uppercase tracking-widest px-4 py-2 rounded-full border t-border mb-6">Free Offer</div>
+      <h2 class="reveal delay-1 text-4xl md:text-5xl font-black t-text leading-tight mb-6">Get your free <span class="t-accent">tech audit</span> — no strings</h2>
+      <p class="reveal delay-2 t-muted text-lg max-w-xl mx-auto mb-10">In 30 minutes, our senior engineers will review your current stack, identify bottlenecks, and give you a written action plan. Worth BDT 50,000 — yours at zero cost.</p>
+      <div class="reveal delay-3 t-bg-card rounded-2xl p-8 border t-border max-w-xl mx-auto" style="border-width:1px">
+        <div class="space-y-4 mb-6">
+          <div class="flex items-center gap-3">
+            <div class="w-7 h-7 rounded-lg t-accent-bg t-accent flex items-center justify-center text-sm flex-shrink-0">✓</div>
+            <span class="t-muted text-sm">Architecture review &amp; scalability assessment</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <div class="w-7 h-7 rounded-lg t-accent-bg t-accent flex items-center justify-center text-sm flex-shrink-0">✓</div>
+            <span class="t-muted text-sm">Security vulnerability &amp; compliance check</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <div class="w-7 h-7 rounded-lg t-accent-bg t-accent flex items-center justify-center text-sm flex-shrink-0">✓</div>
+            <span class="t-muted text-sm">Cloud cost optimisation recommendations</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <div class="w-7 h-7 rounded-lg t-accent-bg t-accent flex items-center justify-center text-sm flex-shrink-0">✓</div>
+            <span class="t-muted text-sm">Written report delivered within 48 hours</span>
+          </div>
+        </div>
+        <a href="contact.html" class="t-btn w-full py-3.5 rounded-xl font-semibold text-base btn-glow transition-all block text-center">Claim Your Free Audit →</a>
+        <p class="t-faint text-xs mt-3">Limited to 5 audits per month. No credit card required.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="t-divider mx-auto max-w-4xl"></div>
+
+  <!-- ═══════════════════════════════════════════
+       FAQ
+  ═══════════════════════════════════════════ -->
+  <section class="t-bg2 py-24">
+    <div class="max-w-3xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <div class="reveal inline-flex items-center gap-2 t-accent-bg t-accent text-xs font-semibold uppercase tracking-widest px-4 py-2 rounded-full border t-border mb-4">FAQ</div>
+        <h2 class="reveal delay-1 text-4xl md:text-5xl font-black t-text leading-tight mb-4">Questions <span class="t-accent">answered</span></h2>
+      </div>
+      <div class="space-y-4" id="faq-list">
+        <div class="reveal t-bg-card rounded-2xl border t-border overflow-hidden" style="border-width:1px">
+          <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between px-6 py-5 t-text font-semibold text-left hover:t-accent transition-colors">
+            <span>How much does a typical project cost?</span>
+            <svg class="faq-icon w-5 h-5 t-accent flex-shrink-0 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-body hidden px-6 pb-5"><p class="t-muted text-sm leading-relaxed">Project costs vary widely based on scope. A focused MVP typically starts at BDT 8–15 lakh, a full-featured SaaS product from BDT 25–60 lakh, and enterprise systems from BDT 80 lakh upwards. We provide a detailed estimate after a free discovery call.</p></div>
+        </div>
+        <div class="reveal delay-1 t-bg-card rounded-2xl border t-border overflow-hidden" style="border-width:1px">
+          <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between px-6 py-5 t-text font-semibold text-left hover:t-accent transition-colors">
+            <span>How long does it take to build a product?</span>
+            <svg class="faq-icon w-5 h-5 t-accent flex-shrink-0 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-body hidden px-6 pb-5"><p class="t-muted text-sm leading-relaxed">A well-scoped MVP takes 8–14 weeks. A production-ready platform with full features typically runs 4–8 months. We use two-week agile sprints so you see progress and can give feedback throughout — not just at the end.</p></div>
+        </div>
+        <div class="reveal delay-2 t-bg-card rounded-2xl border t-border overflow-hidden" style="border-width:1px">
+          <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between px-6 py-5 t-text font-semibold text-left hover:t-accent transition-colors">
+            <span>Do you work with international clients?</span>
+            <svg class="faq-icon w-5 h-5 t-accent flex-shrink-0 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-body hidden px-6 pb-5"><p class="t-muted text-sm leading-relaxed">Yes — 60% of our clients are international. We have offices in Singapore, London, and New York, and our teams are comfortable working across time zones. We accept payments in USD, GBP, SGD, and BDT via wire, Wise, or Payoneer.</p></div>
+        </div>
+        <div class="reveal delay-3 t-bg-card rounded-2xl border t-border overflow-hidden" style="border-width:1px">
+          <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between px-6 py-5 t-text font-semibold text-left hover:t-accent transition-colors">
+            <span>What happens after launch?</span>
+            <svg class="faq-icon w-5 h-5 t-accent flex-shrink-0 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-body hidden px-6 pb-5"><p class="t-muted text-sm leading-relaxed">We offer tiered retainer plans covering 24/7 monitoring, bug fixes, feature updates, and a dedicated account manager. Most clients continue on a monthly retainer — we become an extension of their internal team.</p></div>
+        </div>
+        <div class="reveal delay-4 t-bg-card rounded-2xl border t-border overflow-hidden" style="border-width:1px">
+          <button onclick="toggleFaq(this)" class="w-full flex items-center justify-between px-6 py-5 t-text font-semibold text-left hover:t-accent transition-colors">
+            <span>Is Seven Tech right for early-stage startups?</span>
+            <svg class="faq-icon w-5 h-5 t-accent flex-shrink-0 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-body hidden px-6 pb-5"><p class="t-muted text-sm leading-relaxed">Absolutely. We have a dedicated startup programme with milestone-based pricing and equity-for-services options for very early-stage ventures. We've co-built 30+ BD startups from zero to Series A-ready product.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="t-divider mx-auto max-w-4xl"></div>
+
+  <!-- ═══════════════════════════════════════════
+       FINAL CTA BANNER
+  ═══════════════════════════════════════════ -->
+  <section class="t-bg py-28 overflow-hidden relative">
+    <div class="absolute inset-0 pointer-events-none">
+      <div class="absolute -top-20 -left-20 w-80 h-80 rounded-full animate-orb opacity-25" style="background:var(--orb1);filter:blur(80px)"></div>
+      <div class="absolute -bottom-20 -right-20 w-96 h-96 rounded-full animate-orb opacity-20" style="background:var(--orb2);filter:blur(100px);animation-delay:2s"></div>
+    </div>
+    <div class="max-w-4xl mx-auto px-6 text-center relative z-10">
+      <div class="reveal inline-flex items-center gap-2 t-accent-bg t-accent text-xs font-semibold uppercase tracking-widest px-4 py-2 rounded-full border t-border mb-8 animate-border">
+        <span class="w-1.5 h-1.5 rounded-full t-btn inline-block animate-pulse"></span>
+        Ready to build?
+      </div>
+      <h2 class="reveal delay-1 text-5xl md:text-6xl lg:text-7xl font-black t-text leading-[1.05] mb-6 tracking-tight">
+        Let's turn your <span class="t-accent">idea into reality</span>
+      </h2>
+      <p class="reveal delay-2 t-muted text-xl leading-relaxed mb-12 max-w-2xl mx-auto">
+        Whether you're a Dhaka startup with a bold idea or a global enterprise looking for a reliable technology partner — Seven Tech Ventures is ready to build.
+      </p>
+      <div class="reveal delay-3 flex flex-wrap justify-center gap-5">
+        <a href="contact.html" class="t-btn px-10 py-4 rounded-xl font-bold text-lg btn-glow shadow-2xl transition-all duration-300">Start Your Project →</a>
+        <a href="contact.html" class="t-btn-outline px-10 py-4 rounded-xl font-bold text-lg transition-all duration-300 flex items-center gap-2">
+          Book a Free Call
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+      <div class="reveal delay-4 mt-12 flex flex-wrap justify-center gap-8 t-muted text-sm">
+        <span class="flex items-center gap-2">✅ No setup fees</span>
+        <span class="flex items-center gap-2">✅ 2-week sprint kickoff</span>
+        <span class="flex items-center gap-2">✅ NDA on request</span>
+        <span class="flex items-center gap-2">✅ Free discovery call</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="t-divider mx-auto max-w-4xl"></div>
+
+  <!-- ═══════════════════════════════════════════
+       CONTACT / CTA SECTION
+  ═══════════════════════════════════════════ -->
+
+
+  <!-- ═══════════════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════════════ -->
+  <footer class="t-footer border-t t-border" style="border-top-width:1px">
+    <div class="max-w-6xl mx-auto px-6 py-14 grid md:grid-cols-4 gap-10">
+      <div>
+        <div class="flex items-center gap-2 mb-4">
+          <div class="w-8 h-8 rounded-lg t-btn text-white font-black text-sm flex items-center justify-center">7</div>
+          <span class="text-lg font-bold t-text">Seven<span class="t-accent">Tech</span></span>
+        </div>
+        <p class="t-muted text-sm leading-relaxed mb-4">Engineering tomorrow's digital infrastructure — from Dhaka to the world.</p>
+        <div class="flex gap-3">
+          <a href="#" class="w-8 h-8 rounded-lg t-accent-bg t-accent flex items-center justify-center text-xs font-bold hover:t-btn hover:text-white transition-all">in</a>
+          <a href="#" class="w-8 h-8 rounded-lg t-accent-bg t-accent flex items-center justify-center text-xs font-bold hover:t-btn hover:text-white transition-all">tw</a>
+          <a href="#" class="w-8 h-8 rounded-lg t-accent-bg t-accent flex items-center justify-center text-xs font-bold hover:t-btn hover:text-white transition-all">gh</a>
+        </div>
+      </div>
+      <div>
+        <h4 class="t-text font-bold text-sm uppercase tracking-widest mb-4">Services</h4>
+        <ul class="space-y-2.5">
+          <li><a href="#" class="t-muted text-sm hover:t-accent transition-colors">AI & Machine Learning</a></li>
+          <li><a href="#" class="t-muted text-sm hover:t-accent transition-colors">Product Development</a></li>
+          <li><a href="#" class="t-muted text-sm hover:t-accent transition-colors">Cloud & DevOps</a></li>
+          <li><a href="#" class="t-muted text-sm hover:t-accent transition-colors">Cybersecurity</a></li>
+          <li><a href="#" class="t-muted text-sm hover:t-accent transition-colors">Data Engineering</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="t-text font-bold text-sm uppercase tracking-widest mb-4">Company</h4>
+        <ul class="space-y-2.5">
+          <li><a href="#about"   class="t-muted text-sm hover:t-accent transition-colors">About Us</a></li>
+          <li><a href="#team"    class="t-muted text-sm hover:t-accent transition-colors">Team</a></li>
+          <li><a href="#work"    class="t-muted text-sm hover:t-accent transition-colors">Case Studies</a></li>
+          <li><a href="#"        class="t-muted text-sm hover:t-accent transition-colors">Careers</a></li>
+          <li><a href="#contact" class="t-muted text-sm hover:t-accent transition-colors">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="t-text font-bold text-sm uppercase tracking-widest mb-4">Contact</h4>
+        <ul class="space-y-2.5">
+          <li class="t-muted text-sm">📍 Dhaka, Bangladesh</li>
+          <li class="t-muted text-sm">📧 hello@seventechventures.com</li>
+          <li class="t-muted text-sm">📞 +880 17 0000 0000</li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t t-border px-6 py-5 max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-3" style="border-top-width:1px">
+      <span class="t-muted text-xs">© 2025 Seven Tech Ventures. All rights reserved.</span>
+      <div class="flex gap-6">
+        <a href="#" class="t-muted text-xs hover:t-accent transition-colors">Privacy Policy</a>
+        <a href="#" class="t-muted text-xs hover:t-accent transition-colors">Terms of Service</a>
+        <a href="#" class="t-muted text-xs hover:t-accent transition-colors">Cookie Policy</a>
+      </div>
+    </div>
+  </footer>
+
+</div><!-- #app -->
+
+<script>
+/* ── Theme Management ── */
+const themeButtons = document.querySelectorAll('.theme-btn');
+const html = document.documentElement;
+
+function applyTheme(name) {
+  html.setAttribute('data-active-theme', name);
+  localStorage.setItem('activeTheme', name);
+  themeButtons.forEach(btn => {
+    btn.style.outline = btn.dataset.theme === name ? '2px solid var(--accent-color)' : 'none';
+    btn.style.transform = btn.dataset.theme === name ? 'scale(1.15)' : 'scale(1)';
+  });
+}
+themeButtons.forEach(btn => btn.addEventListener('click', () => applyTheme(btn.dataset.theme)));
+applyTheme(localStorage.getItem('activeTheme') || 'earth');
+
+/* ── Navbar scroll ── */
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.style.boxShadow = window.scrollY > 40 ? '0 4px 30px rgba(0,0,0,.15)' : 'none';
+});
+
+/* ── Mobile menu ── */
+const toggle  = document.getElementById('menu-toggle');
+const menu    = document.getElementById('mobile-menu');
+const iconO   = document.getElementById('menu-icon-open');
+const iconC   = document.getElementById('menu-icon-close');
+toggle.addEventListener('click', () => {
+  const open = menu.classList.toggle('open');
+  iconO.classList.toggle('hidden', open);
+  iconC.classList.toggle('hidden', !open);
+});
+menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  menu.classList.remove('open');
+  iconO.classList.remove('hidden'); iconC.classList.add('hidden');
+}));
+
+/* ── Scroll reveal ── */
+const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+}, { threshold: 0.12 });
+revealEls.forEach(el => io.observe(el));
+
+/* ── Counter animation ── */
+const counters = document.querySelectorAll('.counter-num[data-target]');
+const counterIO = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    const el = e.target;
+    const target = parseInt(el.dataset.target);
+    let current = 0;
+    const step = Math.ceil(target / 60);
+    const timer = setInterval(() => {
+      current = Math.min(current + step, target);
+      el.textContent = current + (target >= 100 ? '' : '');
+      if (current >= target) clearInterval(timer);
+    }, 18);
+    counterIO.unobserve(el);
+  });
+}, { threshold: 0.5 });
+counters.forEach(c => counterIO.observe(c));
+
+/* ── FAQ accordion ── */
+function toggleFaq(btn) {
+  const body = btn.nextElementSibling;
+  const icon = btn.querySelector('.faq-icon');
+  const isOpen = !body.classList.contains('hidden');
+  // close all
+  document.querySelectorAll('.faq-body').forEach(b => b.classList.add('hidden'));
+  document.querySelectorAll('.faq-icon').forEach(i => i.style.transform = 'rotate(0deg)');
+  if (!isOpen) {
+    body.classList.remove('hidden');
+    icon.style.transform = 'rotate(180deg)';
+  }
+}
+
+/* ── Smooth scroll ── */
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+  });
+});
+</script>
+</body>
+</html>

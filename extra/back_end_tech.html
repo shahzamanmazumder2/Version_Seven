@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Back-End Technologies</title>
+
+<style>
+/* ===== BACK-END TECH SECTION ===== */
+.section-back-end {
+  padding: 80px 20px;
+  position: relative;
+  overflow: hidden;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.section-back-end::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg,
+    rgba(16, 185, 129, 0.15),
+    rgba(234, 88, 12, 0.15),
+    rgba(139, 92, 246, 0.15));
+  animation: pulse 6s infinite alternate;
+  transition: opacity 0.3s ease;
+}
+
+/* Light mode: fade overlay */
+html.light-mode .section-back-end::before {
+  opacity: 0.3;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.5; }
+  100% { opacity: 1; }
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+  position: relative;
+}
+
+.back-end-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+@media (min-width: 1024px) {
+  .back-end-layout {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+}
+
+/* ===== LEFT TEXT ===== */
+.back-end-text {
+  flex: 1;
+  opacity: 0;
+  transform: translateX(-100px);
+  transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.back-end-text.in-view {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.back-end-text h2 {
+  color: white;
+  font-size: 32px;
+  line-height: 1.3;
+  margin-bottom: 20px;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.back-end-text p {
+  color: rgba(255,255,255,0.8);
+  transition: color 0.3s ease;
+}
+
+/* Light mode: text becomes dark */
+html.light-mode .back-end-text h2 {
+  color: #0f172a;
+}
+
+html.light-mode .back-end-text p {
+  color: #475569;
+}
+
+/* ===== GRID (ORIGINAL - unchanged) ===== */
+.back-end-grid {
+  flex: 1.4;
+  opacity: 0;
+  transform: translateX(100px);
+  transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition-delay: 0.15s;
+  display: grid;
+  grid-template-columns: 1fr;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.652);
+}
+
+.back-end-grid.in-view {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+@media (min-width: 640px) {
+  .back-end-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* ===== CARD (ORIGINAL - unchanged) ===== */
+.back-end-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px;
+  cursor: pointer;
+  border-bottom: 1px solid #e5e7eb;
+  transition: 0.3s;
+  opacity: 0;
+  transform: scale(0.88);
+  transition: all 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.back-end-card.in-view {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.back-end-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.back-end-left img {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #f3f4f6;
+  padding: 5px;
+  object-fit: contain;
+}
+
+.back-end-left span {
+  font-weight: 500;
+  font-size: 16px;
+  color: #111827;
+  transition: .3s;
+}
+
+/* ===== ARROW (ORIGINAL - unchanged) ===== */
+.arrow {
+  width: 18px;
+  height: 18px;
+  opacity: 0;
+  transition: .3s;
+}
+
+.back-end-card:hover .arrow {
+  opacity: 1;
+}
+
+.back-end-card:hover span {
+  color: white;
+}
+
+/* ===== HOVER COLORS (ORIGINAL - unchanged) ===== */
+.node:hover    { background: #3b82f6; }
+.python:hover  { background: #eab308; }
+.java:hover    { background: #dc2626; }
+.go:hover      { background: #22c55e; }
+.php:hover     { background: #a855f7; }
+.ruby:hover    { background: #ef4444; }
+.dotnet:hover  { background: #2563eb; }
+.spring:hover  { background: #16a34a; }
+
+/* ===== STAGGER DELAYS (ORIGINAL - unchanged) ===== */
+.back-end-card[data-delay="100"] { transition-delay: 100ms; }
+.back-end-card[data-delay="150"] { transition-delay: 150ms; }
+.back-end-card[data-delay="200"] { transition-delay: 200ms; }
+.back-end-card[data-delay="250"] { transition-delay: 250ms; }
+.back-end-card[data-delay="300"] { transition-delay: 300ms; }
+.back-end-card[data-delay="350"] { transition-delay: 350ms; }
+.back-end-card[data-delay="400"] { transition-delay: 400ms; }
+.back-end-card[data-delay="450"] { transition-delay: 450ms; }
+</style>
+</head>
+<body>
+
+<section class="section-back-end">
+
+<div class="container">
+
+<div class="back-end-layout">
+
+  <!-- Left Text -->
+  <div class="back-end-text">
+    <h2>Powerful Back-End Technologies That Drive Modern Applications</h2>
+    <p>
+      We provide expert training and solutions in robust back-end technologies that ensure 
+      scalability, security, and high performance for enterprise-grade applications.
+    </p>
+  </div>
+
+  <!-- Grid -->
+  <div class="back-end-grid">
+
+    <div class="back-end-card node" data-delay="100">
+      <div class="back-end-left">
+        <img src="image/nodejs.png" alt="Node.js">
+        <span>Node.js</span>
+      </div>
+      <svg class="arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17l9.2-9.2M17 17V7H7"></path>
+      </svg>
+    </div>
+
+    <div class="back-end-card python" data-delay="150">
+      <div class="back-end-left">
+        <img src="image/python.png" alt="Python">
+        <span>Python</span>
+      </div>
+      <svg class="arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17l9.2-9.2M17 17V7H7"></path>
+      </svg>
+    </div>
+
+    <div class="back-end-card java" data-delay="200">
+      <div class="back-end-left">
+        <img src="image/java.png" alt="Java">
+        <span>Java</span>
+      </div>
+      <svg class="arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17l9.2-9.2M17 17V7H7"></path>
+      </svg>
+    </div>
+
+    <div class="back-end-card go" data-delay="250">
+      <div class="back-end-left">
+        <img src="image/go.png" alt="Go">
+        <span>Go (Golang)</span>
+      </div>
+      <svg class="arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17l9.2-9.2M17 17V7H7"></path>
+      </svg>
+    </div>
+
+    <div class="back-end-card php" data-delay="300">
+      <div class="back-end-left">
+        <img src="image/php.png" alt="PHP">
+        <span>PHP</span>
+      </div>
+      <svg class="arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17l9.2-9.2M17 17V7H7"></path>
+      </svg>
+    </div>
+
+    <div class="back-end-card ruby" data-delay="350">
+      <div class="back-end-left">
+        <img src="image/ruby.png" alt="Ruby">
+        <span>Ruby on Rails</span>
+      </div>
+      <svg class="arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17l9.2-9.2M17 17V7H7"></path>
+      </svg>
+    </div>
+
+    <div class="back-end-card dotnet" data-delay="400">
+      <div class="back-end-left">
+        <img src="image/net.png" alt=".NET">
+        <span>.NET Core</span>
+      </div>
+      <svg class="arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17l9.2-9.2M17 17V7H7"></path>
+      </svg>
+    </div>
+
+    <div class="back-end-card spring" data-delay="450">
+      <div class="back-end-left">
+        <img src="image/spring.png" alt="Spring Boot">
+        <span>Spring Boot</span>
+      </div>
+      <svg class="arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17l9.2-9.2M17 17V7H7"></path>
+      </svg>
+    </div>
+
+  </div>
+
+</div>
+</div>
+</section>
+
+<script>
+
+/* Sync light-mode class from parent document (index.html) */
+function syncTheme() {
+  try {
+    const parentHtml = window.parent.document.documentElement;
+    const isLight = parentHtml.classList.contains('light-mode');
+    document.documentElement.classList.toggle('light-mode', isLight);
+  } catch(e) {
+    if (localStorage.getItem('theme') === 'light') {
+      document.documentElement.classList.add('light-mode');
+    }
+  }
+}
+
+syncTheme();
+
+try {
+  const themeObserver = new MutationObserver(syncTheme);
+  themeObserver.observe(window.parent.document.documentElement, {
+    attributes: true, attributeFilter: ['class']
+  });
+} catch(e) {}
+
+/* Click handler */
+document.querySelectorAll(".back-end-card").forEach(card => {
+  card.addEventListener("click", () => {
+    const name = card.querySelector("span").textContent;
+    alert("Back-End Technology Selected: " + name);
+  });
+});
+
+</script>
+
+</body>
+</html>

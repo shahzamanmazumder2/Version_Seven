@@ -1,0 +1,938 @@
+<!doctype html>
+<html lang="en" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>20 Tech Landing Designs</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&amp;family=Space+Mono:wght@400;700&amp;family=Syne:wght@400;500;600;700;800&amp;family=DM+Sans:wght@300;400;500;700&amp;family=Clash+Display:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <style>
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes slideUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+@keyframes slideLeft{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:translateX(0)}}
+@keyframes pulse-glow{0%,100%{box-shadow:0 0 20px rgba(99,102,241,0.3)}50%{box-shadow:0 0 40px rgba(99,102,241,0.6)}}
+@keyframes gradient-shift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+@keyframes rotate{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes scaleIn{from{opacity:0;transform:scale(0.9)}to{opacity:1;transform:scale(1)}}
+@keyframes borderGlow{0%,100%{border-color:rgba(99,102,241,0.3)}50%{border-color:rgba(99,102,241,0.8)}}
+@keyframes textReveal{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+.animate-up{animation:slideUp 0.8s ease forwards;opacity:0}
+.animate-left{animation:slideLeft 0.8s ease forwards;opacity:0}
+.animate-float{animation:float 3s ease-in-out infinite}
+.animate-pulse-glow{animation:pulse-glow 2s ease-in-out infinite}
+.animate-gradient{background-size:200% 200%;animation:gradient-shift 4s ease infinite}
+.animate-rotate{animation:rotate 20s linear infinite}
+.animate-fade{animation:fadeIn 1s ease forwards;opacity:0}
+.animate-scale{animation:scaleIn 0.6s ease forwards;opacity:0}
+.animate-border{animation:borderGlow 2s ease-in-out infinite}
+.animate-text{animation:textReveal 1s ease forwards}
+.delay-1{animation-delay:0.1s}.delay-2{animation-delay:0.2s}.delay-3{animation-delay:0.3s}.delay-4{animation-delay:0.4s}.delay-5{animation-delay:0.5s}
+.glass{background:rgba(255,255,255,0.1);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.2)}
+.glass-dark{background:rgba(0,0,0,0.3);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.1)}
+.glass-white{background:rgba(255,255,255,0.7);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.4)}
+.nav-link{position:relative;transition:all 0.3s}
+.nav-link::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;background:currentColor;transition:width 0.3s}
+.nav-link:hover::after{width:100%}
+.section-divider{height:4px;background:linear-gradient(90deg,transparent,rgba(99,102,241,0.5),transparent)}
+.hover-lift{transition:transform 0.3s,box-shadow 0.3s}.hover-lift:hover{transform:translateY(-4px);box-shadow:0 20px 40px rgba(0,0,0,0.2)}
+.btn-glow{transition:all 0.3s}.btn-glow:hover{box-shadow:0 0 30px rgba(99,102,241,0.5);transform:scale(1.05)}
+.morph-bg{border-radius:30% 70% 70% 30%/30% 30% 70% 70%;animation:float 6s ease-in-out infinite}
+</style>
+  <style>body { box-sizing: border-box; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full">
+  <div id="app" class="w-full h-full overflow-auto bg-gray-950">
+   <!-- Design 1: Warm Earth Tones -->
+   <section class="w-full" style="font-family:'Outfit',sans-serif">
+    <nav class="bg-amber-50 px-8 py-5 flex items-center justify-between animate-fade">
+     <div class="text-xl font-bold text-amber-900">
+      terra<span class="text-amber-500">.</span>io
+     </div>
+     <div class="hidden md:flex gap-8 text-amber-800/60 text-sm"><a class="hover:text-amber-600 transition" href="#">Solutions</a><a class="hover:text-amber-600 transition" href="#">Research</a><a class="hover:text-amber-600 transition" href="#">Impact</a>
+     </div><button class="px-5 py-2 bg-amber-800 text-amber-50 rounded-lg text-sm hover:bg-amber-700 transition">Join Us</button>
+    </nav>
+    <div class="relative min-h-[500px] flex items-center" style="background:linear-gradient(160deg,#fef3c7,#fde68a,#f59e0b20)">
+     <div class="absolute inset-0 opacity-10" style="background:radial-gradient(circle at 50% 50%,#92400e,transparent 70%)"></div>
+     <div class="max-w-5xl mx-auto px-8 grid md:grid-cols-2 gap-12 items-center z-10">
+      <div class="animate-up">
+       <h1 class="text-5xl font-bold text-amber-900 leading-tight mb-6">Technology for a<br><span class="text-amber-600">sustainable</span> world</h1>
+       <p class="text-amber-800/60 text-lg mb-8">Carbon-neutral computing infrastructure powered by 100% renewable energy.</p><button class="px-6 py-3 bg-amber-800 text-white rounded-xl hover:bg-amber-700 transition hover:shadow-xl">Learn More</button>
+      </div>
+      <div class="animate-left delay-2 flex justify-center">
+       <div class="w-48 h-48 bg-gradient-to-br from-amber-400 to-orange-500 morph-bg opacity-60"></div>
+      </div>
+     </div>
+    </div>
+    <footer class="bg-amber-50 px-8 py-8 flex justify-between items-center text-amber-400 text-sm border-t border-amber-200">
+     <span>© 2025 Terra.io</span><span>🌱 Carbon Neutral</span>
+    </footer>
+   </section>
+   <div class="section-divider"></div><!-- Design 2: Dark Luxury -->
+   <section class="w-full" style="font-family:'Outfit',sans-serif">
+    <nav class="bg-black px-8 py-6 flex items-center justify-between border-b border-amber-900/20 animate-fade">
+     <div class="text-xl font-light text-white tracking-[0.3em] uppercase">
+      Aurum
+     </div>
+     <div class="hidden md:flex gap-8 text-white/40 text-sm tracking-wider"><a class="hover:text-amber-400 transition" href="#">Collection</a><a class="hover:text-amber-400 transition" href="#">Atelier</a><a class="hover:text-amber-400 transition" href="#">Reserve</a>
+     </div><button class="px-5 py-2 border border-amber-600/40 text-amber-400 text-xs tracking-widest hover:bg-amber-400 hover:text-black transition-all duration-500">DISCOVER</button>
+    </nav>
+    <div class="relative min-h-[520px] flex items-center justify-center bg-black overflow-hidden">
+     <div class="absolute inset-0 opacity-10" style="background:radial-gradient(ellipse at 50% 50%,#b45309,transparent 60%)"></div>
+     <div class="text-center z-10 px-6 animate-up">
+      <div class="text-amber-600/40 text-xs tracking-[0.5em] mb-8 uppercase">
+       Exclusive Technology
+      </div>
+      <h1 class="text-5xl md:text-7xl font-light text-white tracking-tight mb-6">Precision<br><span class="text-amber-400 font-normal">Engineered</span></h1>
+      <p class="text-white/30 max-w-md mx-auto mb-10">Where cutting-edge technology meets uncompromising craftsmanship.</p><button class="px-8 py-4 bg-gradient-to-r from-amber-700 to-amber-500 text-black font-medium tracking-wider hover:from-amber-600 hover:to-amber-400 transition-all duration-500">Experience Now</button>
+     </div>
+    </div>
+    <footer class="bg-black px-8 py-8 flex justify-between items-center text-white/20 text-xs tracking-wider border-t border-amber-900/10">
+     <span>AURUM MMXXV</span><span>HANDCRAFTED IN SWITZERLAND</span>
+    </footer>
+   </section>
+   <div class="section-divider"></div><!-- Design 3: Minimal Japanese -->
+   <section class="w-full" style="font-family:'Outfit',sans-serif">
+    <nav class="bg-stone-50 px-8 py-6 flex items-center justify-between animate-fade">
+     <div class="text-xl text-stone-800 font-light tracking-[0.2em]">
+      枠 WAKU
+     </div>
+     <div class="hidden md:flex gap-8 text-stone-400 text-sm"><a class="hover:text-stone-800 transition" href="#">Philosophy</a><a class="hover:text-stone-800 transition" href="#">Work</a><a class="hover:text-stone-800 transition" href="#">Contact</a>
+     </div><button class="px-5 py-2 text-stone-600 text-sm border-b border-stone-300 hover:border-stone-800 hover:text-stone-900 transition">Enter ↗</button>
+    </nav>
+    <div class="relative min-h-[500px] flex items-center justify-center bg-stone-50 overflow-hidden">
+     <div class="absolute top-1/4 right-1/4 w-px h-40 bg-stone-200"></div>
+     <div class="absolute bottom-1/4 left-1/3 w-40 h-px bg-stone-200"></div>
+     <div class="absolute top-20 left-20 text-[120px] text-stone-100 font-light select-none">
+      間
+     </div>
+     <div class="text-center z-10 px-6 animate-up">
+      <h1 class="text-5xl md:text-6xl font-light text-stone-800 leading-tight mb-6">Less noise.<br><span class="text-stone-400">More meaning.</span></h1>
+      <p class="text-stone-400 max-w-md mx-auto mb-10">Thoughtful technology that respects your attention and amplifies your focus.</p><button class="px-8 py-4 bg-stone-800 text-stone-50 font-light tracking-wider hover:bg-stone-700 transition">Begin →</button>
+     </div>
+    </div>
+    <footer class="bg-stone-50 px-8 py-10 flex justify-between items-center text-stone-300 text-xs tracking-wider border-t border-stone-200">
+     <span>WAKU 2025</span><span>TOKYO • KYOTO</span>
+    </footer>
+   </section>
+   <div class="section-divider"></div><!-- Design 4: Neon Cyberpunk -->
+   <section class="w-full" style="font-family:'Space Mono',monospace">
+    <nav class="bg-indigo-900 px-6 py-4 flex items-center justify-between border-b-4 border-indigo-600 animate-fade">
+     <div class="text-lg text-pink-400 font-bold">
+      ⬡ RETROBYTE
+     </div>
+     <div class="hidden md:flex gap-6 text-indigo-300 text-xs uppercase"><a class="hover:text-pink-400 transition" href="#">Games</a><a class="hover:text-pink-400 transition" href="#">Tools</a><a class="hover:text-pink-400 transition" href="#">Community</a>
+     </div><button class="px-4 py-1 bg-pink-500 text-white text-xs font-bold hover:bg-pink-400 transition">PLAY</button>
+    </nav>
+    <div class="relative min-h-[500px] flex items-center justify-center" style="background:linear-gradient(180deg,#1e1b4b,#312e81)">
+     <div class="absolute bottom-0 w-full h-1/3" style="background:linear-gradient(180deg,transparent,rgba(236,72,153,0.1))"></div>
+     <div class="text-center z-10 px-6 animate-up">
+      <div class="text-6xl mb-4">
+       🎮
+      </div>
+      <h1 class="text-4xl md:text-6xl font-bold text-white mb-2">LEVEL UP YOUR</h1>
+      <h1 class="text-4xl md:text-6xl font-bold text-pink-400 mb-6">DEV SKILLS</h1>
+      <p class="text-indigo-300 text-sm max-w-md mx-auto mb-8">Learn to code through gamified challenges. Earn XP. Unlock achievements. Join 50K+ developers.</p>
+      <div class="flex gap-4 justify-center"><button class="px-6 py-3 bg-pink-500 text-white font-bold hover:bg-pink-400 transition animate-pulse-glow">START QUEST</button><button class="px-6 py-3 border-2 border-indigo-400 text-indigo-300 font-bold hover:bg-indigo-800 transition">LEADERBOARD</button>
+      </div>
+     </div>
+    </div>
+    <footer class="bg-indigo-950 px-6 py-4 flex justify-between items-center text-indigo-600 text-xs border-t-4 border-indigo-800">
+     <span>RETROBYTE 2025</span><span>SCORE: ∞</span>
+    </footer>
+   </section>
+   <div class="section-divider"></div><!-- Design 4.5: Retro Pixel -->
+   <section class="w-full" style="font-family:'Space Mono',monospace">
+    <nav class="bg-indigo-900 px-6 py-4 flex items-center justify-between border-b-4 border-indigo-600 animate-fade">
+     <div class="text-lg text-pink-400 font-bold">
+      ⬡ RETROBYTE
+     </div>
+     <div class="hidden md:flex gap-6 text-indigo-300 text-xs uppercase"><a class="hover:text-pink-400 transition" href="#">Games</a><a class="hover:text-pink-400 transition" href="#">Tools</a><a class="hover:text-pink-400 transition" href="#">Community</a>
+     </div><button class="px-4 py-1 bg-pink-500 text-white text-xs font-bold hover:bg-pink-400 transition">PLAY</button>
+    </nav>
+    <div class="relative min-h-[500px] flex items-center justify-center" style="background:linear-gradient(180deg,#1e1b4b,#312e81)">
+     <div class="absolute bottom-0 w-full h-1/3" style="background:linear-gradient(180deg,transparent,rgba(236,72,153,0.1))"></div>
+     <div class="text-center z-10 px-6 animate-up">
+      <div class="text-6xl mb-4">
+       🎮
+      </div>
+      <h1 class="text-4xl md:text-6xl font-bold text-white mb-2">LEVEL UP YOUR</h1>
+      <h1 class="text-4xl md:text-6xl font-bold text-pink-400 mb-6">DEV SKILLS</h1>
+      <p class="text-indigo-300 text-sm max-w-md mx-auto mb-8">Learn to code through gamified challenges. Earn XP. Unlock achievements. Join 50K+ developers.</p>
+      <div class="flex gap-4 justify-center"><button class="px-6 py-3 bg-pink-500 text-white font-bold hover:bg-pink-400 transition animate-pulse-glow">START QUEST</button><button class="px-6 py-3 border-2 border-indigo-400 text-indigo-300 font-bold hover:bg-indigo-800 transition">LEADERBOARD</button>
+      </div>
+     </div>
+    </div>
+    <footer class="bg-indigo-950 px-6 py-4 flex justify-between items-center text-indigo-600 text-xs border-t-4 border-indigo-800">
+     <span>RETROBYTE 2025</span><span>SCORE: ∞</span>
+    </footer>
+   </section>
+   <div class="section-divider"></div><!-- Design 5: Glass Neumorphism -->
+   <section class="w-full" style="font-family:'DM Sans',sans-serif">
+    <nav class="glass px-8 py-5 flex items-center justify-between animate-fade" style="background:rgba(255,255,255,0.15)">
+     <div class="text-xl font-bold text-white">
+      ◇ Fluid
+     </div>
+     <div class="hidden md:flex gap-8 text-white/70 text-sm"><a class="hover:text-white transition" href="#">Products</a><a class="hover:text-white transition" href="#">About</a><a class="hover:text-white transition" href="#">Careers</a>
+     </div><button class="px-5 py-2 bg-white/10 border border-white/20 text-white rounded-2xl text-sm hover:bg-white/20 transition">Start</button>
+    </nav>
+    <div class="relative min-h-[500px] flex items-center justify-center overflow-hidden" style="background:linear-gradient(135deg,#f0f4ff,#e0e7ff,#f5f3ff)">
+     <div class="absolute top-20 left-1/4 w-96 h-96 bg-blue-400 rounded-full opacity-15 blur-3xl"></div>
+     <div class="absolute bottom-20 right-1/4 w-96 h-96 bg-purple-400 rounded-full opacity-15 blur-3xl"></div>
+     <div class="text-center z-10 px-6 animate-up max-w-4xl">
+      <h1 class="text-5xl md:text-6xl font-bold text-gray-800 leading-tight mb-6">Fluid Design<br><span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">System</span></h1>
+      <p class="text-gray-500 text-lg mb-10">Create amazing interfaces with our drag-and-drop builder. No code required.</p>
+      <div class="flex gap-4 justify-center"><button class="px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-2xl font-medium hover:shadow-xl hover:shadow-blue-300 transition hover-lift">Get Started Free</button><button class="px-6 py-3 border-2 border-gray-300 text-gray-700 rounded-2xl font-medium hover:border-blue-600 transition">Learn More</button>
+      </div>
+     </div>
+    </div>
+    <footer class="bg-white/70 backdrop-blur px-8 py-8 flex justify-between items-center text-gray-500 text-sm">
+     <span>© 2025 Fluid</span>
+     <div class="flex gap-6"><a class="hover:text-blue-600 transition" href="#">Twitter</a><a class="hover:text-blue-600 transition" href="#">GitHub</a>
+     </div>
+    </footer>
+   </section>
+   <div class="section-divider"></div><!-- Design 6: Monochrome Editorial -->
+   <section class="w-full" style="font-family:'Syne',sans-serif">
+    <nav class="bg-white px-8 py-5 flex items-center justify-between border-b-2 border-black animate-fade">
+     <div class="text-2xl font-black text-black">
+      EDITORIAL
+     </div>
+     <div class="hidden md:flex gap-8 text-black text-sm font-bold"><a class="hover:underline transition" href="#">Stories</a><a class="hover:underline transition" href="#">Features</a><a class="hover:underline transition" href="#">Subscribe</a>
+     </div><button class="px-5 py-2 bg-black text-white font-bold text-sm hover:bg-gray-800 transition">JOIN</button>
+    </nav>
+    <div class="relative min-h-[500px] flex items-center bg-white overflow-hidden">
+     <div class="absolute left-0 top-0 w-1/3 h-full bg-black"></div>
+     <div class="max-w-6xl mx-auto px-8 grid md:grid-cols-2 gap-12 z-10">
+      <div class="text-black animate-up">
+       <p class="text-sm font-bold tracking-widest mb-4">EDITORIAL DESIGN</p>
+       <h1 class="text-6xl md:text-7xl font-black leading-tight mb-6">Typography<br>
+        Matters</h1>
+       <p class="text-gray-600 text-lg mb-8">Explore the intersection of design, technology, and human creativity through long-form stories.</p><button class="px-6 py-3 bg-black text-white font-bold hover:bg-gray-800 transition">Read Latest →</button>
+      </div>
+      <div class="text-white animate-left delay-2 px-8 py-12">
+       <div class="text-8xl font-black opacity-20">
+        01
+       </div>
+       <p class="text-white/60 mt-4">Discover how great typography shapes modern web design and digital culture.</p>
+      </div>
+     </div>
+    </div>
+    <footer class="bg-black px-8 py-6 flex justify-between items-center text-white/50 text-sm">
+     <span>EDITORIAL © 2025</span><span class="text-white/30">EST. 2021</span>
+    </footer>
+   </section>
+   <div class="section-divider"></div><!-- Design 7: Sunset Gradient -->
+   <section class="w-full" style="font-family:'Outfit',sans-serif">
+    <nav class="glass px-8 py-5 flex items-center justify-between animate-fade" style="background:rgba(255,94,77,0.1);border-bottom:1px solid rgba(255,152,0,0.2)">
+     <div class="text-xl font-bold text-white">
+      ☀️ Solaris
+     </div>
+     <div class="hidden md:flex gap-8 text-white/70 text-sm"><a class="nav-link hover:text-white" href="#">Agency</a><a class="nav-link hover:text-white" href="#">Work</a><a class="nav-link hover:text-white" href="#">Team</a>
+     </div><button class="px-5 py-2 bg-orange-500/20 border border-orange-400/40 text-orange-200 rounded-lg text-sm hover:bg-orange-500/30 transition">Contact</button>
+    </nav>
+    <div class="relative min-h-[520px] flex items-center justify-center overflow-hidden" style="background:linear-gradient(135deg,#ff5e4d 0%,#ff8a50 25%,#ffc371 50%,#ff7043 75%,#e64a19 100%);background-size:400% 400%;animation:gradient-shift 15s ease infinite">
+     <div class="absolute top-0 right-0 w-96 h-96 bg-white rounded-full opacity-10 blur-3xl"></div>
+     <div class="text-center z-10 px-6 animate-up">
+      <h1 class="text-5xl md:text-7xl font-bold text-white mb-6">Your Brand<br><span class="text-yellow-100">Redefined</span></h1>
+      <p class="text-white/70 text-lg max-w-xl mx-auto mb-10">Strategic design &amp; development for brands that shine bright</p>
+      <div class="flex gap-4 justify-center"><button class="px-6 py-3 bg-white text-orange-600 rounded-lg font-bold hover:bg-yellow-50 transition btn-glow">Start Project</button><button class="px-6 py-3 border-2 border-white text-white rounded-lg hover:bg-white/10 transition">See Work</button>
+      </div>
+     </div>
+    </div>
+    <footer class="bg-orange-900/30 backdrop-blur px-8 py-8 flex justify-between items-center text-white/60 text-sm">
+     <span>© 2025 Solaris</span>
+     <div class="flex gap-6"><a class="hover:text-white transition" href="#">Instagram</a><a class="hover:text-white transition" href="#">Behance</a>
+     </div>
+    </footer>
+   </section>
+   <div class="section-divider"></div><!-- Design 8: Crypto/Web3 -->
+   <section class="w-full" style="font-family:'Space Mono',monospace">
+    <nav class="bg-gray-950 px-8 py-5 flex items-center justify-between border-b border-purple-900/30 animate-fade">
+     <div class="text-lg font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
+      ◈ NEXUS_PROTOCOL
+     </div>
+     <div class="hidden md:flex gap-8 text-purple-400/60 text-xs uppercase"><a class="hover:text-purple-300 transition" href="#">Docs</a><a class="hover:text-purple-300 transition" href="#">DAO</a><a class="hover:text-purple-300 transition" href="#">Bridge</a>
+     </div><button class="px-4 py-2 border border-purple-500/50 text-purple-400 text-xs hover:bg-purple-500/10 transition">Connect Wallet</button>
+    </nav>
+    <div class="relative min-h-[520px] flex items-center justify-center overflow-hidden bg-black">
+     <div class="absolute inset-0" style="background:radial-gradient(circle at 20% 50%,rgba(168,85,247,0.15),transparent 50%),radial-gradient(circle at 80% 80%,rgba(236,72,153,0.15),transparent 50%)"></div>
+     <div class="absolute top-1/3 left-1/3 w-px h-64 bg-gradient-to-b from-purple-500 to-transparent opacity-30"></div>
+     <div class="text-center z-10 px-6 animate-up">
+      <p class="text-purple-500/60 text-xs tracking-widest mb-4">DECENTRALIZED NETWORK</p>
+      <h1 class="text-5xl md:text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-300 to-pink-300 mb-6">The Future<br>
+       of Finance</h1>
+      <p class="text-gray-400 max-w-lg mx-auto mb-8">Trustless. Transparent. Unstoppable. Earn 24% APY on staked assets.</p><button class="px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold rounded hover:from-purple-500 hover:to-pink-500 transition btn-glow">Start Earning →</button>
+     </div>
+    </div>
+    <footer class="bg-gray-950 px-8 py-6 flex justify-between items-center text-purple-900 text-xs border-t border-purple-900/20">
+     <span>NEXUS © 2025</span><span class="text-purple-700">BLOCKCHAIN_VERIFIED</span>
+    </footer>
+   </section>
+   <div class="section-divider"></div><!-- Design 9: Wellness/Coaching -->
+   <section class="w-full" style="font-family:'DM Sans',sans-serif">
+    <nav class="bg-teal-50 px-8 py-5 flex items-center justify-between animate-fade">
+     <div class="text-xl font-bold text-teal-900">
+      ⚡ Thrive
+     </div>
+     <div class="hidden md:flex gap-8 text-teal-700/60 text-sm"><a class="hover:text-teal-600 transition" href="#">Programs</a><a class="hover:text-teal-600 transition" href="#">Coaches</a><a class="hover:text-teal-600 transition" href="#">Community</a>
+     </div><button class="px-5 py-2 bg-teal-600 text-white rounded-full text-sm hover:bg-teal-500 transition">Join Now</button>
+    </nav>
+    <div class="relative min-h-[500px] flex items-center" style="background:linear-gradient(160deg,#f0fdfa,#d1fae5,#ccfbf1)">
+     <div class="absolute right-0 top-0 w-96 h-96 bg-teal-300 rounded-full opacity-20 blur-3xl"></div>
+     <div class="max-w-6xl mx-auto px-8 grid md:grid-cols-2 gap-12 items-center z-10">
+      <div class="animate-up">
+       <div class="inline-block px-4 py-2 bg-teal-100 text-teal-700 text-xs font-bold rounded-full mb-6">
+        🌱 TRANSFORM YOUR LIFE
+       </div>
+       <h1 class="text-5xl md:text-6xl font-bold text-teal-900 leading-tight mb-6">Health,<br><span class="text-teal-600">simplified</span></h1>
+       <p class="text-teal-700/60 text-lg mb-8">Personalized coaching + community. Achieve your goals in 12 weeks.</p><button class="px-6 py-3 bg-teal-700 text-white rounded-xl hover:bg-teal-600 transition hover:shadow-xl">Get Started →</button>
+      </div>
+      <div class="animate-left delay-2 flex justify-center">
+       <div class="relative w-64 h-64 bg-white rounded-3xl shadow-2xl p-6 hover-lift">
+        <div class="text-6xl mb-4">
+         💪
+        </div>
+        <div class="text-teal-900 font-bold text-lg">
+         Week 4 Progress
+        </div>
+        <div class="mt-6 space-y-4">
+         <div class="flex justify-between text-sm"><span class="text-teal-600">Workouts</span><span class="font-bold text-teal-900">12/12</span>
+         </div>
+         <div class="h-2 bg-teal-100 rounded-full">
+          <div class="h-2 bg-teal-600 rounded-full" style="width:100%"></div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+    <footer class="bg-teal-50 px-8 py-8 flex justify-between items-center text-teal-400 text-sm border-t border-teal-100">
+     <span>© 2025 Thrive</span>
+     <div class="flex gap-6"><a class="hover:text-teal-600 transition" href="#">App</a><a class="hover:text-teal-600 transition" href="#">Blog</a>
+     </div>
+    </footer>
+   </section>
+   <div class="section-divider"></div><!-- Design 10: Corporate Sleek -->
+   <section class="w-full" style="font-family:'DM Sans',sans-serif">
+    <nav class="bg-slate-900 px-8 py-5 flex items-center justify-between animate-fade">
+     <div class="text-xl font-bold text-white tracking-tight">
+      VERTEX
+     </div>
+     <div class="hidden md:flex gap-8 text-gray-400 text-sm"><a class="hover:text-white transition" href="#">Solutions</a><a class="hover:text-white transition" href="#">Enterprise</a><a class="hover:text-white transition" href="#">Resources</a><a class="hover:text-white transition" href="#">Contact</a>
+     </div><button class="px-5 py-2 bg-blue-600 text-white rounded text-sm hover:bg-blue-500 transition">Request Demo</button>
+    </nav>
+    <div class="relative min-h-[500px] flex items-center" style="background:linear-gradient(135deg,#0f172a,#1e293b,#0f172a)">
+     <div class="absolute right-0 top-0 w-1/3 h-full opacity-5" style="background:repeating-linear-gradient(45deg,#3b82f6,#3b82f6 1px,transparent 1px,transparent 30px)"></div>
+     <div class="max-w-6xl mx-auto px-8 z-10 animate-up">
+      <div class="text-blue-400 text-sm font-medium mb-4 uppercase tracking-wider">
+       Enterprise Platform
+      </div>
+      <h1 class="text-5xl md:text-6xl font-bold text-white leading-tight mb-6">Transform your<br>
+        business with <span class="text-blue-400">AI</span></h1>
+      <p class="text-gray-400 text-lg max-w-xl mb-8">Trusted by Fortune 500 companies to automate operations, reduce costs, and accelerate growth.</p>
+      <div class="flex gap-4"><button class="px-6 py-3 bg-blue-600 text-white rounded font-medium hover:bg-blue-500 transition">Schedule Call</button><button class="px-6 py-3 text-gray-300 hover:text-white transition flex items-center gap-2"><i data-lucide="play-circle" style="width:20px;height:20px"></i> Watch Overview</button>
+      </div>
+      <div class="flex gap-12 mt-12">
+       <div>
+        <div class="text-3xl font-bold text-white">
+         500+
+        </div>
+        <div class="text-gray-500 text-sm">
+         Enterprises
+        </div>
+       </div>
+       <div>
+        <div class="text-3xl font-bold text-white">
+         $2B+
+        </div>
+        <div class="text-gray-500 text-sm">
+         Savings
+        </div>
+       </div>
+       <div>
+        <div class="text-3xl font-bold text-white">
+         99.9%
+        </div>
+        <div class="text-gray-500 text-sm">
+         Reliability
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+    <footer class="bg-slate-950 px-8 py-8 flex flex-col md:flex-row justify-between items-center text-gray-600 text-sm border-t border-slate-800">
+     <span>© 2025 Vertex Inc. All rights reserved.</span>
+     <div class="flex gap-6 mt-4 md:mt-0"><a class="hover:text-white transition" href="#">Privacy</a><a class="hover:text-white transition" href="#">Terms</a><a class="hover:text-white transition" href="#">Security</a>
+     </div>
+    </footer>
+   </section>
+   <div class="section-divider"></div><!-- Design 12: Playful Rounded -->
+   <section class="w-full" style="font-family:'Outfit',sans-serif">
+    <nav class="bg-violet-50 px-8 py-5 flex items-center justify-between animate-fade">
+     <div class="text-xl font-bold text-violet-900">
+      bubble<span class="text-violet-400">♦</span>
+     </div>
+     <div class="hidden md:flex gap-8 text-violet-600/60 text-sm font-medium"><a class="hover:text-violet-600 transition" href="#">Features</a><a class="hover:text-violet-600 transition" href="#">Community</a><a class="hover:text-violet-600 transition" href="#">Pricing</a>
+     </div><button class="px-5 py-2 bg-violet-600 text-white rounded-full text-sm hover:bg-violet-500 transition hover:scale-105">Get App</button>
+    </nav>
+    <div class="relative min-h-[500px] flex items-center justify-center overflow-hidden" style="background:linear-gradient(160deg,#f5f3ff,#ede9fe,#e0e7ff)">
+     <div class="absolute top-10 left-10 w-20 h-20 bg-violet-300 rounded-full opacity-40 animate-float"></div>
+     <div class="absolute top-32 right-20 w-14 h-14 bg-pink-300 rounded-full opacity-40 animate-float delay-2"></div>
+     <div class="absolute bottom-20 left-1/3 w-10 h-10 bg-blue-300 rounded-full opacity-40 animate-float delay-4"></div>
+     <div class="text-center z-10 px-6 animate-up">
+      <div class="text-6xl mb-6">
+       💬
+      </div>
+      <h1 class="text-5xl md:text-6xl font-bold text-violet-900 mb-6">Chat with your<br><span class="text-violet-500">whole team</span></h1>
+      <p class="text-violet-600/60 text-lg max-w-lg mx-auto mb-8">Beautiful, fast, and fun communication. Say goodbye to boring work chats.</p><button class="px-8 py-4 bg-violet-600 text-white rounded-2xl font-medium text-lg hover:bg-violet-500 transition hover:shadow-2xl hover:shadow-violet-300 hover:-translate-y-1">Download Free ↓</button>
+     </div>
+    </div>
+    <footer class="bg-violet-50 px-8 py-8 flex justify-between items-center text-violet-300 text-sm">
+     <span>© 2025 Bubble</span>
+     <div class="flex gap-6"><a class="hover:text-violet-600 transition" href="#">App Store</a><a class="hover:text-violet-600 transition" href="#">Play Store</a>
+     </div>
+    </footer>
+   </section>
+   <div class="section-divider"></div><!-- Design 13: Dark Luxury -->
+   <section class="w-full" style="font-family:'Outfit',sans-serif">
+    <nav class="bg-black px-8 py-6 flex items-center justify-between border-b border-amber-900/20 animate-fade">
+     <div class="text-xl font-light text-white tracking-[0.3em] uppercase">
+      Aurum
+     </div>
+     <div class="hidden md:flex gap-8 text-white/40 text-sm tracking-wider"><a class="hover:text-amber-400 transition" href="#">Collection</a><a class="hover:text-amber-400 transition" href="#">Atelier</a><a class="hover:text-amber-400 transition" href="#">Reserve</a>
+     </div><button class="px-5 py-2 border border-amber-600/40 text-amber-400 text-xs tracking-widest hover:bg-amber-400 hover:text-black transition-all duration-500">DISCOVER</button>
+    </nav>
+    <div class="relative min-h-[520px] flex items-center justify-center bg-black overflow-hidden">
+     <div class="absolute inset-0 opacity-10" style="background:radial-gradient(ellipse at 50% 50%,#b45309,transparent 60%)"></div>
+     <div class="text-center z-10 px-6 animate-up">
+      <div class="text-amber-600/40 text-xs tracking-[0.5em] mb-8 uppercase">
+       Exclusive Technology
+      </div>
+      <h1 class="text-5xl md:text-7xl font-light text-white tracking-tight mb-6">Precision<br><span class="text-amber-400 font-normal">Engineered</span></h1>
+      <p class="text-white/30 max-w-md mx-auto mb-10">Where cutting-edge technology meets uncompromising craftsmanship.</p><button class="px-8 py-4 bg-gradient-to-r from-amber-700 to-amber-500 text-black font-medium tracking-wider hover:from-amber-600 hover:to-amber-400 transition-all duration-500">Experience Now</button>
+     </div>
+    </div>
+    <footer class="bg-black px-8 py-8 flex justify-between items-center text-white/20 text-xs tracking-wider border-t border-amber-900/10">
+     <span>AURUM MMXXV</span><span>HANDCRAFTED IN SWITZERLAND</span>
+    </footer>
+   </section>
+   <div class="section-divider"></div><!-- Design 14: Startup Energetic -->
+   <section class="w-full" style="font-family:'Syne',sans-serif">
+    <nav class="bg-white px-8 py-5 flex items-center justify-between shadow-sm animate-fade">
+     <div class="text-xl font-extrabold text-gray-900">
+      ⚡ zap
+     </div>
+     <div class="hidden md:flex gap-8 text-gray-500 text-sm font-medium"><a class="hover:text-orange-500 transition" href="#">How it works</a><a class="hover:text-orange-500 transition" href="#">Pricing</a><a class="hover:text-orange-500 transition" href="#">Blog</a>
+     </div><button class="px-5 py-2 bg-orange-500 text-white rounded-lg text-sm font-bold hover:bg-orange-400 transition hover:scale-105">Sign Up Free</button>
+    </nav>
+    <div class="relative min-h-[500px] flex items-center" style="background:linear-gradient(135deg,#fff7ed,#ffedd5)">
+     <div class="absolute top-20 right-20 text-[200px] opacity-5">
+      ⚡
+     </div>
+     <div class="max-w-5xl mx-auto px-8 z-10 animate-up">
+      <div class="inline-block px-3 py-1 bg-orange-100 text-orange-700 text-xs font-bold rounded mb-6">
+       🔥 #1 ON PRODUCT HUNT
+      </div>
+      <h1 class="text-5xl md:text-6xl font-extrabold text-gray-900 leading-tight mb-6">Ship features<br>
+        10x faster</h1>
+      <p class="text-gray-500 text-lg max-w-lg mb-8">The all-in-one toolkit for indie hackers and startup teams. From idea to launch in hours, not months.</p>
+      <div class="flex gap-4"><button class="px-6 py-3 bg-gray-900 text-white rounded-lg font-bold hover:bg-orange-500 transition">Try for Free →</button><span class="text-gray-400 text-sm self-center">No credit card required</span>
+      </div>
+     </div>
+    </div>
+    <footer class="bg-white px-8 py-6 flex justify-between items-center text-gray-400 text-sm border-t">
+     <span>© 2025 Zap</span>
+     <div class="flex gap-6"><a class="hover:text-orange-500 transition" href="#">Twitter</a><a class="hover:text-orange-500 transition" href="#">GitHub</a>
+     </div>
+    </footer>
+   </section>
+   <div class="section-divider"></div><!-- Design 15: Deep Space -->
+   <section class="w-full" style="font-family:'Outfit',sans-serif">
+    <nav class="glass-dark px-8 py-5 flex items-center justify-between animate-fade">
+     <div class="text-xl font-bold text-white">
+      ✦ stellar
+     </div>
+     <div class="hidden md:flex gap-8 text-white/50 text-sm"><a class="nav-link hover:text-white" href="#">Mission</a><a class="nav-link hover:text-white" href="#">Fleet</a><a class="nav-link hover:text-white" href="#">Research</a>
+     </div><button class="px-5 py-2 bg-white/10 text-white rounded-full text-sm hover:bg-white/20 transition border border-white/10">Launch →</button>
+    </nav>
+    <div class="relative min-h-[520px] flex items-center justify-center overflow-hidden" style="background:radial-gradient(ellipse at 50% 50%,#1a1a3e,#0a0a1a)">
+     <div class="absolute top-1/4 left-1/2 w-4 h-4 bg-white rounded-full opacity-60 animate-float"></div>
+     <div class="absolute top-1/3 left-1/4 w-2 h-2 bg-blue-300 rounded-full opacity-40 animate-float delay-2"></div>
+     <div class="absolute bottom-1/3 right-1/4 w-3 h-3 bg-purple-300 rounded-full opacity-30 animate-float delay-4"></div>
+     <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full border border-white/5 animate-rotate"></div>
+     <div class="text-center z-10 px-6 animate-up">
+      <h1 class="text-5xl md:text-7xl font-bold text-white mb-6">Beyond the<br><span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">atmosphere</span></h1>
+      <p class="text-white/40 text-lg max-w-xl mx-auto mb-10">Satellite infrastructure for the next generation of connected devices.</p><button class="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full font-medium hover:from-blue-500 hover:to-purple-500 transition btn-glow">Explore Orbits</button>
+     </div>
+    </div>
+    <footer class="bg-[#0a0a1a] px-8 py-8 flex justify-between items-center text-white/20 text-sm border-t border-white/5">
+     <span>© 2025 Stellar</span><span>☆ 12,000 satellites deployed</span>
+    </footer>
+   </section>
+   <div class="section-divider"></div><!-- Design 16: Neo-Memphis -->
+   <section class="w-full" style="font-family:'Syne',sans-serif">
+    <nav class="bg-[#ffe600] px-8 py-5 flex items-center justify-between animate-fade">
+     <div class="text-2xl font-extrabold text-black">
+      POP●
+     </div>
+     <div class="hidden md:flex gap-8 text-black/60 font-bold text-sm"><a class="hover:text-purple-700 transition" href="#">Create</a><a class="hover:text-purple-700 transition" href="#">Gallery</a><a class="hover:text-purple-700 transition" href="#">About</a>
+     </div><button class="px-5 py-2 bg-purple-700 text-white font-bold text-sm rounded-none hover:bg-black transition">JOIN</button>
+    </nav>
+    <div class="relative min-h-[500px] flex items-center justify-center bg-[#ffe600] overflow-hidden">
+     <div class="absolute top-10 left-10 w-24 h-24 border-4 border-black rounded-full"></div>
+     <div class="absolute bottom-10 right-10 w-16 h-16 bg-purple-700"></div>
+     <div class="absolute top-1/2 right-1/4 w-0 h-0 border-l-[20px] border-l-transparent border-r-[20px] border-r-transparent border-b-[35px] border-b-black"></div>
+     <div class="text-center z-10 px-6 animate-up">
+      <h1 class="text-6xl md:text-8xl font-black text-black leading-none mb-4">CREATE</h1>
+      <h1 class="text-6xl md:text-8xl font-black text-purple-700 leading-none mb-6">BOLDLY.</h1>
+      <p class="text-black/60 text-lg max-w-md mx-auto mb-8">The creative platform for designers who refuse to blend in.</p><button class="px-8 py-4 bg-black text-[#ffe600] font-bold text-lg hover:bg-purple-700 hover:text-white transition-all duration-300">Get Started Free</button>
+     </div>
+    </div>
+    <footer class="bg-black px-8 py-6 flex justify-between items-center text-[#ffe600]/50 text-sm">
+     <span>POP● 2025</span><span>BE BOLD OR BE BORING</span>
+    </footer>
+   </section>
+   <div class="section-divider"></div><!-- Design 17: Clean Developer Tool -->
+   <section class="w-full" style="font-family:'Space Mono',monospace">
+    <nav class="bg-gray-900 px-8 py-4 flex items-center justify-between border-b border-gray-800 animate-fade">
+     <div class="text-lg text-white font-bold">
+      &lt;/&gt; devkit
+     </div>
+     <div class="hidden md:flex gap-6 text-gray-500 text-xs uppercase"><a class="hover:text-teal-400 transition" href="#">Docs</a><a class="hover:text-teal-400 transition" href="#">Playground</a><a class="hover:text-teal-400 transition" href="#">Changelog</a>
+     </div>
+     <div class="flex gap-3"><button class="px-4 py-1 text-gray-400 text-xs border border-gray-700 hover:border-teal-500 hover:text-teal-400 transition rounded">Log In</button><button class="px-4 py-1 bg-teal-500 text-black text-xs font-bold rounded hover:bg-teal-400 transition">Sign Up</button>
+     </div>
+    </nav>
+    <div class="relative min-h-[500px] flex items-center justify-center bg-gray-900">
+     <div class="max-w-3xl mx-auto px-8 text-center z-10 animate-up">
+      <div class="inline-block px-3 py-1 border border-teal-800 text-teal-400 text-xs rounded-full mb-6">
+       v3.0 just shipped 🎉
+      </div>
+      <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">The toolkit you<br><span class="text-teal-400">actually need</span></h1>
+      <p class="text-gray-500 text-sm max-w-lg mx-auto mb-8">Zero-config. TypeScript-first. Lightning fast builds. Stop configuring, start building.</p>
+      <div class="bg-gray-950 rounded-lg p-4 text-left text-sm mb-8 border border-gray-800 hover:border-teal-900 transition">
+       <span class="text-gray-500">$</span> <span class="text-teal-400">npx</span> <span class="text-white">create-devkit@latest my-app</span>
+      </div><button class="px-6 py-3 bg-teal-500 text-black font-bold rounded hover:bg-teal-400 transition">Get Started →</button>
+     </div>
+    </div>
+    <footer class="bg-gray-950 px-8 py-6 flex justify-between items-center text-gray-700 text-xs border-t border-gray-800">
+     <span>devkit © 2025</span>
+     <div class="flex gap-4"><a class="hover:text-teal-400 transition" href="#">npm</a><a class="hover:text-teal-400 transition" href="#">GitHub</a>
+     </div>
+    </footer>
+   </section>
+   <div class="section-divider"></div><!-- Design 18: Health/Wellness Tech -->
+   <section class="w-full" style="font-family:'DM Sans',sans-serif">
+    <nav class="bg-emerald-50 px-8 py-5 flex items-center justify-between animate-fade">
+     <div class="text-xl font-bold text-emerald-900">
+      ●○ viva
+     </div>
+     <div class="hidden md:flex gap-8 text-emerald-700/50 text-sm"><a class="hover:text-emerald-600 transition" href="#">Science</a><a class="hover:text-emerald-600 transition" href="#">App</a><a class="hover:text-emerald-600 transition" href="#">Plans</a>
+     </div><button class="px-5 py-2 bg-emerald-600 text-white rounded-full text-sm hover:bg-emerald-500 transition">Download</button>
+    </nav>
+    <div class="relative min-h-[500px] flex items-center" style="background:linear-gradient(160deg,#ecfdf5,#d1fae5,#a7f3d0)">
+     <div class="absolute right-10 top-10 w-64 h-64 bg-emerald-300 rounded-full opacity-20 blur-3xl"></div>
+     <div class="max-w-5xl mx-auto px-8 grid md:grid-cols-2 gap-12 items-center z-10">
+      <div class="animate-up">
+       <h1 class="text-5xl font-bold text-emerald-900 leading-tight mb-6">Your health,<br><span class="text-emerald-500">reimagined</span></h1>
+       <p class="text-emerald-700/60 text-lg mb-8">AI-powered wellness tracking that adapts to your lifestyle. Sleep, nutrition, and fitness — all in one.</p>
+       <div class="flex gap-4"><button class="px-6 py-3 bg-emerald-700 text-white rounded-xl hover:bg-emerald-600 transition">Start Free Trial</button>
+       </div>
+      </div>
+      <div class="animate-left delay-2 flex justify-center">
+       <div class="bg-white rounded-3xl p-6 shadow-xl shadow-emerald-200/50 hover-lift w-56">
+        <div class="text-4xl mb-2">
+         🧘
+        </div>
+        <div class="text-emerald-900 font-bold text-lg">
+         Wellness Score
+        </div>
+        <div class="text-4xl font-bold text-emerald-500 mt-2">
+         94<span class="text-lg text-emerald-400">/100</span>
+        </div>
+        <div class="mt-4 h-2 bg-emerald-100 rounded-full">
+         <div class="h-2 bg-emerald-500 rounded-full" style="width:94%"></div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+    <footer class="bg-emerald-50 px-8 py-8 flex justify-between items-center text-emerald-400 text-sm border-t border-emerald-100">
+     <span>© 2025 Viva Health</span><span>🌿 Built with care</span>
+    </footer>
+   </section>
+   <div class="section-divider"></div><!-- Design 19: Synthwave/Vaporwave -->
+   <section class="w-full" style="font-family:'Outfit',sans-serif">
+    <nav class="bg-[#1a0033] px-8 py-5 flex items-center justify-between border-b border-pink-900/30 animate-fade">
+     <div class="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-blue-400">
+      SYNTHWAVE
+     </div>
+     <div class="hidden md:flex gap-8 text-purple-400/60 text-sm"><a class="hover:text-pink-400 transition" href="#">Listen</a><a class="hover:text-pink-400 transition" href="#">Create</a><a class="hover:text-pink-400 transition" href="#">Share</a>
+     </div><button class="px-5 py-2 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded text-sm hover:from-pink-400 hover:to-purple-500 transition">Enter</button>
+    </nav>
+    <div class="relative min-h-[520px] flex items-center justify-center overflow-hidden" style="background:linear-gradient(180deg,#1a0033,#0d001a)">
+     <div class="absolute bottom-0 w-full h-1/2" style="background:linear-gradient(180deg,transparent,rgba(236,72,153,0.05))"></div>
+     <div class="absolute bottom-0 w-full h-px bg-gradient-to-r from-transparent via-pink-500 to-transparent"></div>
+     <div class="absolute bottom-10 left-0 right-0" style="background:repeating-linear-gradient(90deg,rgba(168,85,247,0.1),rgba(168,85,247,0.1) 1px,transparent 1px,transparent 60px);height:200px;transform:perspective(300px) rotateX(60deg);transform-origin:bottom"></div>
+     <div class="text-center z-10 px-6 animate-up">
+      <h1 class="text-6xl md:text-8xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-pink-300 to-purple-600 mb-4">RETRO</h1>
+      <h1 class="text-6xl md:text-8xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-blue-300 to-purple-600 mb-6">FUTURE</h1>
+      <p class="text-purple-300/50 max-w-md mx-auto mb-8">AI-powered music creation inspired by the sounds of tomorrow's yesterday.</p><button class="px-8 py-4 border-2 border-pink-500 text-pink-400 font-bold hover:bg-pink-500 hover:text-white transition-all duration-500 animate-border">▶ PLAY NOW</button>
+     </div>
+    </div>
+    <footer class="bg-[#0d001a] px-8 py-6 flex justify-between items-center text-purple-900 text-sm border-t border-purple-900/20">
+     <span>SYNTHWAVE © 2025</span><span class="text-pink-800">♫ RIDE THE WAVE</span>
+    </footer>
+   </section>
+   <div class="section-divider"></div><!-- Design 20: Minimal Japanese -->
+   <section class="w-full" style="font-family:'Outfit',sans-serif">
+    <nav class="bg-stone-50 px-8 py-6 flex items-center justify-between animate-fade">
+     <div class="text-xl text-stone-800 font-light tracking-[0.2em]">
+      枠 WAKU
+     </div>
+     <div class="hidden md:flex gap-8 text-stone-400 text-sm"><a class="hover:text-stone-800 transition" href="#">Philosophy</a><a class="hover:text-stone-800 transition" href="#">Work</a><a class="hover:text-stone-800 transition" href="#">Contact</a>
+     </div><button class="px-5 py-2 text-stone-600 text-sm border-b border-stone-300 hover:border-stone-800 hover:text-stone-900 transition">Enter ↗</button>
+    </nav>
+    <div class="relative min-h-[500px] flex items-center justify-center bg-stone-50 overflow-hidden">
+     <div class="absolute top-1/4 right-1/4 w-px h-40 bg-stone-200"></div>
+     <div class="absolute bottom-1/4 left-1/3 w-40 h-px bg-stone-200"></div>
+     <div class="absolute top-20 left-20 text-[120px] text-stone-100 font-light select-none">
+      間
+     </div>
+     <div class="text-center z-10 px-6 animate-up">
+      <h1 class="text-5xl md:text-6xl font-light text-stone-800 leading-tight mb-6">Less noise.<br><span class="text-stone-400">More meaning.</span></h1>
+      <p class="text-stone-400 max-w-md mx-auto mb-10">Thoughtful technology that respects your attention and amplifies your focus.</p><button class="px-8 py-4 bg-stone-800 text-stone-50 font-light tracking-wider hover:bg-stone-700 transition">Begin →</button>
+     </div>
+    </div>
+    <footer class="bg-stone-50 px-8 py-10 flex justify-between items-center text-stone-300 text-xs tracking-wider border-t border-stone-200">
+     <span>WAKU 2025</span><span>TOKYO • KYOTO</span>
+    </footer>
+   </section>
+   <div class="section-divider"></div><!-- Design 11: Playful Rounded -->
+   <section class="w-full" style="font-family:'Outfit',sans-serif">
+    <nav class="bg-violet-50 px-8 py-5 flex items-center justify-between animate-fade">
+     <div class="text-xl font-bold text-violet-900">
+      bubble<span class="text-violet-400">♦</span>
+     </div>
+     <div class="hidden md:flex gap-8 text-violet-600/60 text-sm font-medium"><a class="hover:text-violet-600 transition" href="#">Features</a><a class="hover:text-violet-600 transition" href="#">Community</a><a class="hover:text-violet-600 transition" href="#">Pricing</a>
+     </div><button class="px-5 py-2 bg-violet-600 text-white rounded-full text-sm hover:bg-violet-500 transition hover:scale-105">Get App</button>
+    </nav>
+    <div class="relative min-h-[500px] flex items-center justify-center overflow-hidden" style="background:linear-gradient(160deg,#f5f3ff,#ede9fe,#e0e7ff)">
+     <div class="absolute top-10 left-10 w-20 h-20 bg-violet-300 rounded-full opacity-40 animate-float"></div>
+     <div class="absolute top-32 right-20 w-14 h-14 bg-pink-300 rounded-full opacity-40 animate-float delay-2"></div>
+     <div class="absolute bottom-20 left-1/3 w-10 h-10 bg-blue-300 rounded-full opacity-40 animate-float delay-4"></div>
+     <div class="text-center z-10 px-6 animate-up">
+      <div class="text-6xl mb-6">
+       💬
+      </div>
+      <h1 class="text-5xl md:text-6xl font-bold text-violet-900 mb-6">Chat with your<br><span class="text-violet-500">whole team</span></h1>
+      <p class="text-violet-600/60 text-lg max-w-lg mx-auto mb-8">Beautiful, fast, and fun communication. Say goodbye to boring work chats.</p><button class="px-8 py-4 bg-violet-600 text-white rounded-2xl font-medium text-lg hover:bg-violet-500 transition hover:shadow-2xl hover:shadow-violet-300 hover:-translate-y-1">Download Free ↓</button>
+     </div>
+    </div>
+    <footer class="bg-violet-50 px-8 py-8 flex justify-between items-center text-violet-300 text-sm">
+     <span>© 2025 Bubble</span>
+     <div class="flex gap-6"><a class="hover:text-violet-600 transition" href="#">App Store</a><a class="hover:text-violet-600 transition" href="#">Play Store</a>
+     </div>
+    </footer>
+   </section>
+   <div class="section-divider"></div><!-- Design 12: Startup Energetic -->
+   <section class="w-full" style="font-family:'Syne',sans-serif">
+    <nav class="bg-white px-8 py-5 flex items-center justify-between shadow-sm animate-fade">
+     <div class="text-xl font-extrabold text-gray-900">
+      ⚡ zap
+     </div>
+     <div class="hidden md:flex gap-8 text-gray-500 text-sm font-medium"><a class="hover:text-orange-500 transition" href="#">How it works</a><a class="hover:text-orange-500 transition" href="#">Pricing</a><a class="hover:text-orange-500 transition" href="#">Blog</a>
+     </div><button class="px-5 py-2 bg-orange-500 text-white rounded-lg text-sm font-bold hover:bg-orange-400 transition hover:scale-105">Sign Up Free</button>
+    </nav>
+    <div class="relative min-h-[500px] flex items-center" style="background:linear-gradient(135deg,#fff7ed,#ffedd5)">
+     <div class="absolute top-20 right-20 text-[200px] opacity-5">
+      ⚡
+     </div>
+     <div class="max-w-5xl mx-auto px-8 z-10 animate-up">
+      <div class="inline-block px-3 py-1 bg-orange-100 text-orange-700 text-xs font-bold rounded mb-6">
+       🔥 #1 ON PRODUCT HUNT
+      </div>
+      <h1 class="text-5xl md:text-6xl font-extrabold text-gray-900 leading-tight mb-6">Ship features<br>
+        10x faster</h1>
+      <p class="text-gray-500 text-lg max-w-lg mb-8">The all-in-one toolkit for indie hackers and startup teams. From idea to launch in hours, not months.</p>
+      <div class="flex gap-4"><button class="px-6 py-3 bg-gray-900 text-white rounded-lg font-bold hover:bg-orange-500 transition">Try for Free →</button><span class="text-gray-400 text-sm self-center">No credit card required</span>
+      </div>
+     </div>
+    </div>
+    <footer class="bg-white px-8 py-6 flex justify-between items-center text-gray-400 text-sm border-t">
+     <span>© 2025 Zap</span>
+     <div class="flex gap-6"><a class="hover:text-orange-500 transition" href="#">Twitter</a><a class="hover:text-orange-500 transition" href="#">GitHub</a>
+     </div>
+    </footer>
+   </section>
+   <div class="section-divider"></div><!-- Design 13: Deep Space -->
+   <section class="w-full" style="font-family:'Outfit',sans-serif">
+    <nav class="glass-dark px-8 py-5 flex items-center justify-between animate-fade">
+     <div class="text-xl font-bold text-white">
+      ✦ stellar
+     </div>
+     <div class="hidden md:flex gap-8 text-white/50 text-sm"><a class="nav-link hover:text-white" href="#">Mission</a><a class="nav-link hover:text-white" href="#">Fleet</a><a class="nav-link hover:text-white" href="#">Research</a>
+     </div><button class="px-5 py-2 bg-white/10 text-white rounded-full text-sm hover:bg-white/20 transition border border-white/10">Launch →</button>
+    </nav>
+    <div class="relative min-h-[520px] flex items-center justify-center overflow-hidden" style="background:radial-gradient(ellipse at 50% 50%,#1a1a3e,#0a0a1a)">
+     <div class="absolute top-1/4 left-1/2 w-4 h-4 bg-white rounded-full opacity-60 animate-float"></div>
+     <div class="absolute top-1/3 left-1/4 w-2 h-2 bg-blue-300 rounded-full opacity-40 animate-float delay-2"></div>
+     <div class="absolute bottom-1/3 right-1/4 w-3 h-3 bg-purple-300 rounded-full opacity-30 animate-float delay-4"></div>
+     <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full border border-white/5 animate-rotate"></div>
+     <div class="text-center z-10 px-6 animate-up">
+      <h1 class="text-5xl md:text-7xl font-bold text-white mb-6">Beyond the<br><span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">atmosphere</span></h1>
+      <p class="text-white/40 text-lg max-w-xl mx-auto mb-10">Satellite infrastructure for the next generation of connected devices.</p><button class="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full font-medium hover:from-blue-500 hover:to-purple-500 transition btn-glow">Explore Orbits</button>
+     </div>
+    </div>
+    <footer class="bg-[#0a0a1a] px-8 py-8 flex justify-between items-center text-white/20 text-sm border-t border-white/5">
+     <span>© 2025 Stellar</span><span>☆ 12,000 satellites deployed</span>
+    </footer>
+   </section>
+   <div class="section-divider"></div><!-- Design 14: Neo-Memphis -->
+   <section class="w-full" style="font-family:'Syne',sans-serif">
+    <nav class="bg-[#ffe600] px-8 py-5 flex items-center justify-between animate-fade">
+     <div class="text-2xl font-extrabold text-black">
+      POP●
+     </div>
+     <div class="hidden md:flex gap-8 text-black/60 font-bold text-sm"><a class="hover:text-purple-700 transition" href="#">Create</a><a class="hover:text-purple-700 transition" href="#">Gallery</a><a class="hover:text-purple-700 transition" href="#">About</a>
+     </div><button class="px-5 py-2 bg-purple-700 text-white font-bold text-sm rounded-none hover:bg-black transition">JOIN</button>
+    </nav>
+    <div class="relative min-h-[500px] flex items-center justify-center bg-[#ffe600] overflow-hidden">
+     <div class="absolute top-10 left-10 w-24 h-24 border-4 border-black rounded-full"></div>
+     <div class="absolute bottom-10 right-10 w-16 h-16 bg-purple-700"></div>
+     <div class="absolute top-1/2 right-1/4 w-0 h-0 border-l-[20px] border-l-transparent border-r-[20px] border-r-transparent border-b-[35px] border-b-black"></div>
+     <div class="text-center z-10 px-6 animate-up">
+      <h1 class="text-6xl md:text-8xl font-black text-black leading-none mb-4">CREATE</h1>
+      <h1 class="text-6xl md:text-8xl font-black text-purple-700 leading-none mb-6">BOLDLY.</h1>
+      <p class="text-black/60 text-lg max-w-md mx-auto mb-8">The creative platform for designers who refuse to blend in.</p><button class="px-8 py-4 bg-black text-[#ffe600] font-bold text-lg hover:bg-purple-700 hover:text-white transition-all duration-300">Get Started Free</button>
+     </div>
+    </div>
+    <footer class="bg-black px-8 py-6 flex justify-between items-center text-[#ffe600]/50 text-sm">
+     <span>POP● 2025</span><span>BE BOLD OR BE BORING</span>
+    </footer>
+   </section>
+   <div class="section-divider"></div><!-- Design 15: DevTool Minimal -->
+   <section class="w-full" style="font-family:'Space Mono',monospace">
+    <nav class="bg-gray-900 px-8 py-4 flex items-center justify-between border-b border-gray-800 animate-fade">
+     <div class="text-lg text-white font-bold">
+      &lt;/&gt; devkit
+     </div>
+     <div class="hidden md:flex gap-6 text-gray-500 text-xs uppercase"><a class="hover:text-teal-400 transition" href="#">Docs</a><a class="hover:text-teal-400 transition" href="#">Playground</a><a class="hover:text-teal-400 transition" href="#">Changelog</a>
+     </div>
+     <div class="flex gap-3"><button class="px-4 py-1 text-gray-400 text-xs border border-gray-700 hover:border-teal-500 hover:text-teal-400 transition rounded">Log In</button><button class="px-4 py-1 bg-teal-500 text-black text-xs font-bold rounded hover:bg-teal-400 transition">Sign Up</button>
+     </div>
+    </nav>
+    <div class="relative min-h-[500px] flex items-center justify-center bg-gray-900">
+     <div class="max-w-3xl mx-auto px-8 text-center z-10 animate-up">
+      <div class="inline-block px-3 py-1 border border-teal-800 text-teal-400 text-xs rounded-full mb-6">
+       v3.0 just shipped 🎉
+      </div>
+      <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">The toolkit you<br><span class="text-teal-400">actually need</span></h1>
+      <p class="text-gray-500 text-sm max-w-lg mx-auto mb-8">Zero-config. TypeScript-first. Lightning fast builds. Stop configuring, start building.</p>
+      <div class="bg-gray-950 rounded-lg p-4 text-left text-sm mb-8 border border-gray-800 hover:border-teal-900 transition">
+       <span class="text-gray-500">$</span> <span class="text-teal-400">npx</span> <span class="text-white">create-devkit@latest my-app</span>
+      </div><button class="px-6 py-3 bg-teal-500 text-black font-bold rounded hover:bg-teal-400 transition">Get Started →</button>
+     </div>
+    </div>
+    <footer class="bg-gray-950 px-8 py-6 flex justify-between items-center text-gray-700 text-xs border-t border-gray-800">
+     <span>devkit © 2025</span>
+     <div class="flex gap-4"><a class="hover:text-teal-400 transition" href="#">npm</a><a class="hover:text-teal-400 transition" href="#">GitHub</a>
+     </div>
+    </footer>
+   </section>
+   <div class="section-divider"></div><!-- Design 16: Synthwave/Vaporwave -->
+   <section class="w-full" style="font-family:'Outfit',sans-serif">
+    <nav class="bg-[#1a0033] px-8 py-5 flex items-center justify-between border-b border-pink-900/30 animate-fade">
+     <div class="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-blue-400">
+      SYNTHWAVE
+     </div>
+     <div class="hidden md:flex gap-8 text-purple-400/60 text-sm"><a class="hover:text-pink-400 transition" href="#">Listen</a><a class="hover:text-pink-400 transition" href="#">Create</a><a class="hover:text-pink-400 transition" href="#">Share</a>
+     </div><button class="px-5 py-2 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded text-sm hover:from-pink-400 hover:to-purple-500 transition">Enter</button>
+    </nav>
+    <div class="relative min-h-[520px] flex items-center justify-center overflow-hidden" style="background:linear-gradient(180deg,#1a0033,#0d001a)">
+     <div class="absolute bottom-0 w-full h-1/2" style="background:linear-gradient(180deg,transparent,rgba(236,72,153,0.05))"></div>
+     <div class="absolute bottom-0 w-full h-px bg-gradient-to-r from-transparent via-pink-500 to-transparent"></div>
+     <div class="absolute bottom-10 left-0 right-0" style="background:repeating-linear-gradient(90deg,rgba(168,85,247,0.1),rgba(168,85,247,0.1) 1px,transparent 1px,transparent 60px);height:200px;transform:perspective(300px) rotateX(60deg);transform-origin:bottom"></div>
+     <div class="text-center z-10 px-6 animate-up">
+      <h1 class="text-6xl md:text-8xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-pink-300 to-purple-600 mb-4">RETRO</h1>
+      <h1 class="text-6xl md:text-8xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-blue-300 to-purple-600 mb-6">FUTURE</h1>
+      <p class="text-purple-300/50 max-w-md mx-auto mb-8">AI-powered music creation inspired by the sounds of tomorrow's yesterday.</p><button class="px-8 py-4 border-2 border-pink-500 text-pink-400 font-bold hover:bg-pink-500 hover:text-white transition-all duration-500 animate-border">▶ PLAY NOW</button>
+     </div>
+    </div>
+    <footer class="bg-[#0d001a] px-8 py-6 flex justify-between items-center text-purple-900 text-sm border-t border-purple-900/20">
+     <span>SYNTHWAVE © 2025</span><span class="text-pink-800">♫ RIDE THE WAVE</span>
+    </footer>
+   </section>
+   <div class="section-divider"></div><!-- Design 17: Health/Wellness -->
+   <section class="w-full" style="font-family:'DM Sans',sans-serif">
+    <nav class="bg-emerald-50 px-8 py-5 flex items-center justify-between animate-fade">
+     <div class="text-xl font-bold text-emerald-900">
+      ●○ viva
+     </div>
+     <div class="hidden md:flex gap-8 text-emerald-700/50 text-sm"><a class="hover:text-emerald-600 transition" href="#">Science</a><a class="hover:text-emerald-600 transition" href="#">App</a><a class="hover:text-emerald-600 transition" href="#">Plans</a>
+     </div><button class="px-5 py-2 bg-emerald-600 text-white rounded-full text-sm hover:bg-emerald-500 transition">Download</button>
+    </nav>
+    <div class="relative min-h-[500px] flex items-center" style="background:linear-gradient(160deg,#ecfdf5,#d1fae5,#a7f3d0)">
+     <div class="absolute right-10 top-10 w-64 h-64 bg-emerald-300 rounded-full opacity-20 blur-3xl"></div>
+     <div class="max-w-5xl mx-auto px-8 grid md:grid-cols-2 gap-12 items-center z-10">
+      <div class="animate-up">
+       <h1 class="text-5xl font-bold text-emerald-900 leading-tight mb-6">Your health,<br><span class="text-emerald-500">reimagined</span></h1>
+       <p class="text-emerald-700/60 text-lg mb-8">AI-powered wellness tracking that adapts to your lifestyle. Sleep, nutrition, and fitness — all in one.</p>
+       <div class="flex gap-4"><button class="px-6 py-3 bg-emerald-700 text-white rounded-xl hover:bg-emerald-600 transition">Start Free Trial</button>
+       </div>
+      </div>
+      <div class="animate-left delay-2 flex justify-center">
+       <div class="bg-white rounded-3xl p-6 shadow-xl shadow-emerald-200/50 hover-lift w-56">
+        <div class="text-4xl mb-2">
+         🧘
+        </div>
+        <div class="text-emerald-900 font-bold text-lg">
+         Wellness Score
+        </div>
+        <div class="text-4xl font-bold text-emerald-500 mt-2">
+         94<span class="text-lg text-emerald-400">/100</span>
+        </div>
+        <div class="mt-4 h-2 bg-emerald-100 rounded-full">
+         <div class="h-2 bg-emerald-500 rounded-full" style="width:94%"></div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+    <footer class="bg-emerald-50 px-8 py-8 flex justify-between items-center text-emerald-400 text-sm border-t border-emerald-100">
+     <span>© 2025 Viva Health</span><span>🌿 Built with care</span>
+    </footer>
+   </section>
+   <div class="section-divider"></div><!-- Design 18: AI Assistant Brand -->
+   <section class="w-full" style="font-family:'DM Sans',sans-serif">
+    <nav class="bg-indigo-950 px-8 py-5 flex items-center justify-between border-b border-indigo-800 animate-fade">
+     <div class="text-xl font-bold text-white flex items-center gap-2">
+      ✨ Muse <span class="text-cyan-400">AI</span>
+     </div>
+     <div class="hidden md:flex gap-8 text-indigo-300/60 text-sm"><a class="hover:text-cyan-400 transition" href="#">Features</a><a class="hover:text-cyan-400 transition" href="#">Pricing</a><a class="hover:text-cyan-400 transition" href="#">API</a>
+     </div><button class="px-5 py-2 bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 rounded-lg text-sm hover:bg-cyan-500/20 transition">Get Started</button>
+    </nav>
+    <div class="relative min-h-[500px] flex items-center justify-center overflow-hidden" style="background:linear-gradient(135deg,#0f0f2e,#1a0f3e,#0f1a2e)">
+     <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-500 rounded-full opacity-15 blur-3xl animate-float"></div>
+     <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-indigo-600 rounded-full opacity-15 blur-3xl animate-float delay-2"></div>
+     <div class="text-center z-10 px-6 animate-up">
+      <div class="text-4xl mb-4">
+       🤖
+      </div>
+      <h1 class="text-5xl md:text-6xl font-bold text-white mb-6">Meet Muse<br><span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-400">Your Creative AI</span></h1>
+      <p class="text-indigo-300/70 text-lg max-w-xl mx-auto mb-10">Generate stunning visuals, write like a pro, and automate your workflow with AI that actually understands you.</p>
+      <div class="flex gap-4 justify-center"><button class="px-8 py-3 bg-gradient-to-r from-cyan-500 to-purple-600 text-white rounded-lg font-medium hover:from-cyan-400 hover:to-purple-500 transition btn-glow">Try for Free</button><button class="px-8 py-3 border border-indigo-600/50 text-indigo-300 rounded-lg hover:border-cyan-400 hover:text-cyan-400 transition">Watch Demo</button>
+      </div>
+     </div>
+    </div>
+    <footer class="bg-indigo-950 px-8 py-8 flex justify-between items-center text-indigo-600/50 text-sm border-t border-indigo-800">
+     <span>© 2025 Muse AI</span>
+     <div class="flex gap-6"><a class="hover:text-cyan-400 transition" href="#">Twitter</a><a class="hover:text-cyan-400 transition" href="#">Discord</a>
+     </div>
+    </footer>
+   </section>
+   <div class="section-divider"></div><!-- Design 19: E-Commerce Premium -->
+   <section class="w-full" style="font-family:'Outfit',sans-serif">
+    <nav class="bg-white px-8 py-5 flex items-center justify-between border-b border-gray-100 animate-fade">
+     <div class="text-2xl font-black text-black">
+      LUXÉ
+     </div>
+     <div class="hidden md:flex gap-8 text-gray-600 text-sm font-medium"><a class="hover:text-black transition" href="#">Collections</a><a class="hover:text-black transition" href="#">New</a><a class="hover:text-black transition" href="#">Sale</a>
+     </div><button class="px-5 py-2 bg-black text-white rounded-none text-sm font-bold hover:bg-gray-800 transition">SHOP</button>
+    </nav>
+    <div class="relative min-h-[520px] flex items-center overflow-hidden bg-white">
+     <div class="absolute right-0 top-0 w-1/2 h-full" style="background:linear-gradient(135deg,#fef3c7,#fde68a)"></div>
+     <div class="max-w-5xl mx-auto px-8 grid md:grid-cols-2 gap-12 items-center z-10">
+      <div class="animate-up">
+       <p class="text-xs tracking-[0.3em] text-gray-500 mb-4 uppercase">Limited Edition</p>
+       <h1 class="text-6xl md:text-7xl font-black text-black leading-tight mb-6">Timeless<br>
+        Elegance</h1>
+       <p class="text-gray-600 text-lg mb-8">Handcrafted luxury pieces for the discerning eye. Only 50 pieces worldwide.</p>
+       <div class="flex gap-4"><button class="px-8 py-4 bg-black text-white font-bold hover:bg-gray-800 transition">Explore Collection</button>
+       </div>
+      </div>
+      <div class="animate-left delay-2 text-center">
+       <div class="text-8xl mb-4">
+        💎
+       </div>
+       <p class="text-gray-500">Starting at $2,499</p>
+      </div>
+     </div>
+    </div>
+    <footer class="bg-gray-50 px-8 py-8 flex justify-between items-center text-gray-500 text-sm border-t">
+     <span>© 2025 LUXÉ Exclusive</span>
+     <div class="flex gap-6"><a class="hover:text-black transition" href="#">Contact</a><a class="hover:text-black transition" href="#">Shipping Info</a>
+     </div>
+    </footer>
+   </section>
+   <div class="section-divider"></div><!-- Design 20: Community Platform -->
+   <section class="w-full" style="font-family:'Outfit',sans-serif">
+    <nav class="glass px-8 py-5 flex items-center justify-between animate-fade" style="background:rgba(30,27,75,0.8)">
+     <div class="text-xl font-bold text-white">
+      🌍 Connect
+     </div>
+     <div class="hidden md:flex gap-8 text-white/60 text-sm"><a class="hover:text-white transition" href="#">Explore</a><a class="hover:text-white transition" href="#">Communities</a><a class="hover:text-white transition" href="#">Events</a>
+     </div><button class="px-5 py-2 bg-white/10 border border-white/20 text-white rounded-lg text-sm hover:bg-white/20 transition">Join</button>
+    </nav>
+    <div class="relative min-h-[520px] flex items-center justify-center overflow-hidden" style="background:linear-gradient(135deg,#1a0f3e,#2d0f4e,#1a1a3e)">
+     <div class="absolute inset-0 opacity-30" style="background:radial-gradient(circle at 50% 50%,rgba(139,92,246,0.2),transparent 60%)"></div>
+     <div class="text-center z-10 px-6 animate-up max-w-3xl">
+      <h1 class="text-5xl md:text-7xl font-bold text-white mb-6">Find your<br><span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">people</span></h1>
+      <p class="text-white/60 text-lg mb-10">Join 500K+ creators, builders, and dreamers. Connect, collaborate, and create together.</p>
+      <div class="flex gap-4 justify-center"><button class="px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-lg font-medium hover:from-purple-500 hover:to-pink-500 transition btn-glow">Start Exploring</button><button class="px-8 py-4 border border-purple-400/50 text-purple-300 rounded-lg hover:border-purple-300 transition">How it Works</button>
+      </div>
+     </div>
+    </div>
+    <footer class="bg-gray-950 px-8 py-8 flex justify-between items-center text-gray-600 text-sm">
+     <span>© 2025 Connect</span>
+     <div class="flex gap-6"><a class="hover:text-purple-400 transition" href="#">Status</a><a class="hover:text-purple-400 transition" href="#">Community Guidelines</a>
+     </div>
+    </footer>
+   </section>
+   <div class="py-12 text-center text-gray-600 text-sm">
+    — End of 20 Premium Designs —
+   </div>
+  </div>
+  <script>
+const defaultConfig = {
+  page_title: '20 Tech Landing Designs',
+  background_color: '#030712',
+  text_color: '#e5e7eb',
+  accent_color: '#6366f1',
+  surface_color: '#1f2937',
+  secondary_action_color: '#9ca3af',
+  font_family: 'Outfit',
+  font_size: 16
+};
+
+window.elementSdk.init({
+  defaultConfig,
+  onConfigChange: async (config) => {
+    const app = document.getElementById('app');
+    app.style.fontFamily = `${config.font_family || defaultConfig.font_family}, sans-serif`;
+  },
+  mapToCapabilities: (config) => ({
+    recolorables: [
+      { get: () => config.background_color || defaultConfig.background_color, set: (v) => { config.background_color = v; window.elementSdk.setConfig({ background_color: v }); } },
+      { get: () => config.surface_color || defaultConfig.surface_color, set: (v) => { config.surface_color = v; window.elementSdk.setConfig({ surface_color: v }); } },
+      { get: () => config.text_color || defaultConfig.text_color, set: (v) => { config.text_color = v; window.elementSdk.setConfig({ text_color: v }); } },
+      { get: () => config.accent_color || defaultConfig.accent_color, set: (v) => { config.accent_color = v; window.elementSdk.setConfig({ accent_color: v }); } },
+      { get: () => config.secondary_action_color || defaultConfig.secondary_action_color, set: (v) => { config.secondary_action_color = v; window.elementSdk.setConfig({ secondary_action_color: v }); } }
+    ],
+    borderables: [],
+    fontEditable: { get: () => config.font_family || defaultConfig.font_family, set: (v) => { config.font_family = v; window.elementSdk.setConfig({ font_family: v }); } },
+    fontSizeable: { get: () => config.font_size || defaultConfig.font_size, set: (v) => { config.font_size = v; window.elementSdk.setConfig({ font_size: v }); } }
+  }),
+  mapToEditPanelValues: (config) => new Map([
+    ['page_title', config.page_title || defaultConfig.page_title]
+  ])
+});
+
+lucide.createIcons();
+</script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9f8b2cbdc738d05f',t:'MTc3ODI3MTcyOC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

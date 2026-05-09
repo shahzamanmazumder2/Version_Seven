@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vendor Section</title>
+
+<style>
+
+/* ===== SECTION BACKGROUND ===== */
+.section-vendors {
+  padding: 80px 20px;
+  position: relative;
+  overflow: hidden;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.section-vendors::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg,
+    rgba(59,130,246,0.25),
+    rgba(147,51,234,0.25),
+    rgba(236,72,153,0.25));
+  animation: pulse 6s infinite alternate;
+  transition: opacity 0.3s ease;
+}
+
+/* Light mode: fade out the overlay so it doesn't muddy the light bg */
+html.light-mode .section-vendors::before {
+  opacity: 0.3;
+}
+
+@keyframes pulse {
+  0%  { opacity: .5; }
+  100%{ opacity: 1; }
+}
+
+/* ===== CONTAINER ===== */
+.container {
+  max-width: 1200px;
+  margin: auto;
+  position: relative;
+}
+
+/* ===== LAYOUT ===== */
+.vendor-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+@media (min-width: 1024px) {
+  .vendor-layout {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+}
+
+/* ===== LEFT TEXT - Fade Left ===== */
+.vendor-text {
+  flex: 1;
+  opacity: 0;
+  transform: translateX(-100px);
+  transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.vendor-text.in-view {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.vendor-text h2 {
+  color: white;
+  font-size: 32px;
+  line-height: 1.3;
+  margin-bottom: 20px;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.vendor-text p {
+  color: rgba(255,255,255,0.8);
+  transition: color 0.3s ease;
+}
+
+/* Light mode: text becomes dark */
+html.light-mode .vendor-text h2 {
+  color: #0f172a;
+}
+
+html.light-mode .vendor-text p {
+  color: #475569;
+}
+
+/* ===== GRID - Fade Right (ORIGINAL - unchanged) ===== */
+.vendor-grid {
+  flex: 1.4;
+  opacity: 0;
+  transform: translateX(100px);
+  transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition-delay: 0.15s;
+  display: grid;
+  grid-template-columns: 1fr;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.652);
+}
+
+.vendor-grid.in-view {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+@media (min-width: 640px) {
+  .vendor-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* ===== CARD (ORIGINAL - unchanged) ===== */
+.vendor-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px;
+  cursor: pointer;
+  border-bottom: 1px solid #e5e7eb;
+  opacity: 0;
+  transform: scale(0.88);
+  transition: all 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.vendor-card.in-view {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.vendor-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.vendor-left img {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #f3f4f6;
+  padding: 5px;
+}
+
+.vendor-left span {
+  font-weight: 500;
+  font-size: 16px;
+  color: #111827;
+  transition: .3s;
+}
+
+/* ===== ARROW (ORIGINAL - unchanged) ===== */
+.arrow {
+  width: 18px;
+  height: 18px;
+  opacity: 0;
+  transition: .3s;
+}
+
+.vendor-card:hover .arrow {
+  opacity: 1;
+  color: white;
+}
+
+.vendor-card:hover span {
+  color: white;
+}
+
+/* ===== HOVER COLORS (ORIGINAL - unchanged) ===== */
+.blue:hover   { background: #2563eb; }
+.purple:hover { background: #9333ea; }
+.orange:hover { background: #ea580c; }
+.green:hover  { background: #16a34a; }
+.red:hover    { background: #dc2626; }
+.indigo:hover { background: #4f46e5; }
+
+/* ===== STAGGER DELAYS (ORIGINAL - unchanged) ===== */
+.vendor-card[data-delay="100"] { transition-delay: 100ms; }
+.vendor-card[data-delay="150"] { transition-delay: 150ms; }
+.vendor-card[data-delay="200"] { transition-delay: 200ms; }
+.vendor-card[data-delay="250"] { transition-delay: 250ms; }
+.vendor-card[data-delay="300"] { transition-delay: 300ms; }
+.vendor-card[data-delay="350"] { transition-delay: 350ms; }
+
+</style>
+</head>
+<body>
+
+<section class="section-vendors">
+
+<div class="container">
+
+<div class="vendor-layout">
+
+<!-- LEFT TEXT -->
+<div class="vendor-text">
+
+<h2>
+Role-Based Solutions That Support Enterprise Transformation
+</h2>
+
+<p>
+Cloud Connect AI delivers role-based training solutions that translate complex
+technology ecosystems into practical, job-aligned capabilities.
+</p>
+
+</div>
+
+
+<!-- RIGHT GRID -->
+<div class="vendor-grid">
+
+<div class="vendor-card blue" data-delay="100">
+<div class="vendor-left">
+<img src="https://images.netcomlearning.com/cms/icons/microsoft-icon.webp">
+<span>Microsoft</span>
+</div>
+
+<svg class="arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+d="M7 17l9.2-9.2M17 17V7H7"></path>
+</svg>
+</div>
+
+
+<div class="vendor-card purple" data-delay="150">
+<div class="vendor-left">
+<img src="https://images.netcomlearning.com/cms/icons/ai-certs-icon.webp">
+<span>AI CERTs™</span>
+</div>
+
+<svg class="arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+d="M7 17l9.2-9.2M17 17V7H7"></path>
+</svg>
+</div>
+
+
+<div class="vendor-card orange" data-delay="200">
+<div class="vendor-left">
+<img src="https://images.netcomlearning.com/cms/icons/google-cloud-icon.webp">
+<span>Google Cloud</span>
+</div>
+
+<svg class="arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+d="M7 17l9.2-9.2M17 17V7H7"></path>
+</svg>
+</div>
+
+
+<div class="vendor-card green" data-delay="250">
+<div class="vendor-left">
+<img src="https://images.netcomlearning.com/cms/icons/cisco-icon.webp">
+<span>Cisco</span>
+</div>
+
+<svg class="arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+d="M7 17l9.2-9.2M17 17V7H7"></path>
+</svg>
+</div>
+
+
+<div class="vendor-card red" data-delay="300">
+<div class="vendor-left">
+<img src="https://images.netcomlearning.com/cms/icons/aws-icon.webp">
+<span>AWS</span>
+</div>
+
+<svg class="arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+d="M7 17l9.2-9.2M17 17V7H7"></path>
+</svg>
+</div>
+
+
+<div class="vendor-card indigo" data-delay="350">
+<div class="vendor-left">
+<img src="https://images.netcomlearning.com/cms/icons/pmi-icon.webp">
+<span>PMI</span>
+</div>
+
+<svg class="arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+d="M7 17l9.2-9.2M17 17V7H7"></path>
+</svg>
+</div>
+
+</div>
+
+</div>
+</div>
+</section>
+
+<script>
+
+/* Sync light-mode class from parent document (index.html) */
+function syncTheme() {
+  try {
+    const parentHtml = window.parent.document.documentElement;
+    const isLight = parentHtml.classList.contains('light-mode');
+    document.documentElement.classList.toggle('light-mode', isLight);
+  } catch(e) {
+    // Standalone: read own localStorage
+    if (localStorage.getItem('theme') === 'light') {
+      document.documentElement.classList.add('light-mode');
+    }
+  }
+}
+
+// Sync on load and whenever parent theme changes
+syncTheme();
+
+// Watch for theme changes in the parent document
+try {
+  const observer = new MutationObserver(syncTheme);
+  observer.observe(window.parent.document.documentElement, {
+    attributes: true, attributeFilter: ['class']
+  });
+} catch(e) {}
+
+/* Click action */
+document.querySelectorAll(".vendor-card").forEach(card => {
+  card.addEventListener("click", () => {
+    const name = card.querySelector("span").textContent;
+    alert("Vendor selected: " + name);
+  });
+});
+
+</script>
+
+</body>
+</html>

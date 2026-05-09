@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<style>
+  * {
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+  }
+
+  /* ===== SECTION BACKGROUND ===== */
+  .section-technologies {
+    padding: 100px 20px;
+    position: relative;
+    overflow: hidden;
+    background: rgba(94, 60, 126, 0.148);
+  }
+
+  /* Background Pattern */
+  .section-technologies::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    opacity: 0.04;
+    
+    background-size: 60px 60px;
+    z-index: 1;
+  }
+
+  /* Container */
+  .container {
+    max-width: 1200px;
+    margin: auto;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Layout */
+  .tech-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+  }
+
+  @media (min-width: 1024px) {
+    .tech-layout {
+      flex-direction: row;
+      align-items: flex-start;
+    }
+  }
+
+  /* LEFT TEXT - Fade from Left */
+  .tech-text {
+    flex: 1;
+    opacity: 0;
+    transform: translateX(-100px);
+    transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .tech-text h2 {
+    color: white;
+    font-size: 42px;
+    line-height: 1.2;
+    font-weight: 700;
+    margin-bottom: 24px;
+    text-shadow: 0 0 60px rgba(59, 130, 246, 0.6);
+  }
+
+  .tech-text p {
+    color: rgba(255,255,255,0.85);
+    font-size: 18px;
+    line-height: 1.6;
+  }
+
+  /* RIGHT GRID - Fade from Right */
+  .tech-grid {
+    flex: 1.4;
+    opacity: 0;
+    transform: translateX(100px);
+    transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition-delay: 0.15s;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  @media (min-width: 640px) {
+    .tech-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  /* CARD - Zoom Fade */
+  .tech-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 22px;
+    cursor: pointer;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.08);
+    opacity: 0;
+    transform: scale(0.85);
+    transition: all 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .tech-card.in-view {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .tech-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .tech-left .emoji {
+    font-size: 38px;
+    line-height: 1;
+  }
+
+  .tech-left span {
+    font-weight: 600;
+    font-size: 17px;
+    color: white;
+  }
+
+  /* Arrow */
+  .arrow {
+    width: 22px;
+    height: 22px;
+    opacity: 0.6;
+    transition: 0.4s;
+  }
+
+  .tech-card:hover .arrow {
+    opacity: 1;
+    transform: translateX(4px);
+  }
+
+  /* Hover Colors */
+  .blue:hover   { background: #1e40af; }
+  .orange:hover { background: #c2410c; }
+  .indigo:hover { background: #4338ca; }
+  .red:hover    { background: #b91c1c; }
+  .purple:hover { background: #6b21a8; }
+
+  /* Visible State for Left & Right */
+  .section-technologies .tech-text.in-view,
+  .section-technologies .tech-grid.in-view {
+    opacity: 1;
+    transform: translateX(0);
+  }
+</style>
+</head>
+<body>
+
+<section class="section-technologies">
+
+<div class="container">
+
+<div class="tech-layout">
+
+  <!-- LEFT TEXT -->
+  <div class="tech-text" id="left-text">
+    <h2>Technologies We Work On</h2>
+    <p>
+      We deliver solutions using the most relevant and powerful technologies across web, mobile, AI, cloud, blockchain, and emerging fields — tailored to your business needs and future growth.
+    </p>
+  </div>
+
+  <!-- RIGHT GRID -->
+  <div class="tech-grid" id="right-grid">
+
+    <div class="tech-card blue" data-delay="100">
+      <div class="tech-left">
+        <span class="emoji">🌐</span>
+        <span>Web Development</span>
+      </div>
+      <svg class="arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17l9.2-9.2M17 17V7H7"></path>
+      </svg>
+    </div>
+
+    <div class="tech-card orange" data-delay="150">
+      <div class="tech-left">
+        <span class="emoji">📱</span>
+        <span>Mobile App Development</span>
+      </div>
+      <svg class="arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17l9.2-9.2M17 17V7H7"></path>
+      </svg>
+    </div>
+
+    <div class="tech-card indigo" data-delay="200">
+      <div class="tech-left">
+        <span class="emoji">🤖</span>
+        <span>AI / Machine Learning / Automation</span>
+      </div>
+      <svg class="arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17l9.2-9.2M17 17V7H7"></path>
+      </svg>
+    </div>
+
+    <div class="tech-card red" data-delay="250">
+      <div class="tech-left">
+        <span class="emoji">📊</span>
+        <span>Data Science & Data Engineering</span>
+      </div>
+      <svg class="arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17l9.2-9.2M17 17V7H7"></path>
+      </svg>
+    </div>
+
+    <div class="tech-card blue" data-delay="300">
+      <div class="tech-left">
+        <span class="emoji">☁️</span>
+        <span>Cloud Development</span>
+      </div>
+      <svg class="arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17l9.2-9.2M17 17V7H7"></path>
+      </svg>
+    </div>
+
+    <div class="tech-card indigo" data-delay="350">
+      <div class="tech-left">
+        <span class="emoji">🔐</span>
+        <span>Cybersecurity Development</span>
+      </div>
+      <svg class="arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17l9.2-9.2M17 17V7H7"></path>
+      </svg>
+    </div>
+
+    <div class="tech-card red" data-delay="400">
+      <div class="tech-left">
+        <span class="emoji">🔗</span>
+        <span>API Development</span>
+      </div>
+      <svg class="arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17l9.2-9.2M17 17V7H7"></path>
+      </svg>
+    </div>
+
+    <div class="tech-card purple" data-delay="450">
+      <div class="tech-left">
+        <span class="emoji">🔄</span>
+        <span>DevOps Engineering</span>
+      </div>
+      <svg class="arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17l9.2-9.2M17 17V7H7"></path>
+      </svg>
+    </div>
+
+  </div>
+
+</div>
+</div>
+</section>
+
+<script>
+// Click alert (kept from original)
+document.querySelectorAll(".tech-card").forEach(card => {
+  card.addEventListener("click", () => {
+    const text = card.querySelector("span").textContent.trim();
+    alert("Technology selected: " + text);
+  });
+});
+
+// Scroll Animations - Fade Left, Fade Right & Zoom
+document.addEventListener('DOMContentLoaded', () => {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        // Animate Left Text
+        const leftText = document.querySelector('.tech-text');
+        if (leftText) leftText.classList.add('in-view');
+
+        // Animate Right Grid
+        const rightGrid = document.querySelector('.tech-grid');
+        if (rightGrid) rightGrid.classList.add('in-view');
+
+        // Animate each card with stagger
+        document.querySelectorAll('.tech-card').forEach((card, index) => {
+          setTimeout(() => {
+            card.classList.add('in-view');
+          }, 80 * index);   // stagger effect
+        });
+
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.2,
+    rootMargin: "0px 0px -80px 0px"
+  });
+
+  observer.observe(document.querySelector('.section-technologies'));
+});
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+<!-- Technologies Section 
+      <div id="role-section" class="my-16">
+        <p style="color: #888; text-align: center; padding: 40px;">Loading Technologies We Work On...</p>
+      </div>
+
+-->
+
+  <!-- <script>
+    // Modern & Clean Loader for role2.html with animations
+    async function loadRoleSection() {
+      try {
+        const response = await fetch('role2.html');
+        
+        if (!response.ok) {
+          throw new Error(`Failed to load role2.html – status ${response.status}`);
+        }
+
+        let htmlContent = await response.text();
+        htmlContent = htmlContent.replace(/<\/?(html|head|body|title|meta)[^>]*>/gi, '');
+
+        document.getElementById('role-section').innerHTML = htmlContent;
+
+        setTimeout(() => {
+          const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                const section = entry.target;
+                
+                const leftText = section.querySelector('.tech-text');
+                if (leftText) leftText.classList.add('in-view');
+
+                const rightGrid = section.querySelector('.tech-grid');
+                if (rightGrid) rightGrid.classList.add('in-view');
+
+                const cards = section.querySelectorAll('.tech-card');
+                cards.forEach((card, index) => {
+                  setTimeout(() => {
+                    card.classList.add('in-view');
+                  }, 80 * index);
+                });
+
+                observer.unobserve(section);
+              }
+            });
+          }, {
+            threshold: 0.15,
+            rootMargin: "0px 0px -100px 0px"
+          });
+
+          const techSection = document.querySelector('.section-technologies');
+          if (techSection) observer.observe(techSection);
+        }, 200);
+
+      } catch (error) {
+        console.error('Error loading Technologies section:', error);
+        document.getElementById('role-section').innerHTML = 
+          `<p style="color: red; font-weight: bold; text-align: center; padding: 60px;">
+            Could not load Technologies section. Please try again later.
+           </p>`;
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', loadRoleSection);
+  </script> -->

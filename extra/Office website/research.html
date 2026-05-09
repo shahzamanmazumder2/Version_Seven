@@ -1,0 +1,729 @@
+<!doctype html>
+<html lang="en" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Research - Cloud Connect AI</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="image/logo.png">
+  <style>
+    * { font-family: 'Space Grotesk', sans-serif; }
+    
+    .gradient-bg {
+      background: linear-gradient(135deg, #0a0e27 0%, #1a1a3e 50%, #0d0d1f 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .tech-pattern {
+      position: absolute;
+      inset: 0;
+      opacity: 0.03;
+      background-image: 
+        linear-gradient(0deg, transparent 24%, rgba(59, 130, 246, 0.05) 25%, rgba(59, 130, 246, 0.05) 26%, transparent 27%, transparent 74%, rgba(59, 130, 246, 0.05) 75%, rgba(59, 130, 246, 0.05) 76%, transparent 77%, transparent),
+        linear-gradient(90deg, transparent 24%, rgba(59, 130, 246, 0.05) 25%, rgba(59, 130, 246, 0.05) 26%, transparent 27%, transparent 74%, rgba(59, 130, 246, 0.05) 75%, rgba(59, 130, 246, 0.05) 76%, transparent 77%, transparent);
+      background-size: 50px 50px;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .glass {
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .orb {
+      position: fixed;
+      border-radius: 5%;
+      filter: blur(2px);
+      opacity: 0.05;
+      z-index: 3;
+      will-change: transform;
+      pointer-events: none;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0); }
+      25% { transform: translate(30px, -40px); }
+      50% { transform: translate(-20px, -60px); }
+      75% { transform: translate(40px, -30px); }
+    }
+    
+    @keyframes floatReverse {
+      0%, 100% { transform: translate(0, 0); }
+      25% { transform: translate(-35px, 45px); }
+      50% { transform: translate(25px, 55px); }
+      75% { transform: translate(-40px, 35px); }
+    }
+
+    @keyframes floatSlow {
+      0%, 100% { transform: translate(0, 0); }
+      25% { transform: translate(20px, -30px); }
+      50% { transform: translate(-15px, -50px); }
+      75% { transform: translate(25px, -20px); }
+    }
+
+    @keyframes floatFast {
+      0%, 100% { transform: translate(0, 0); }
+      25% { transform: translate(-25px, 35px); }
+      50% { transform: translate(30px, -25px); }
+      75% { transform: translate(-20px, 40px); }
+    }
+
+    .scroll-animate {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .scroll-animate.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .case-card {
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .case-card:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 25px 50px rgba(59, 130, 246, 0.25);
+    }
+
+    .filter-btn {
+      color: #9ca3af;
+      transition: all 0.3s ease;
+    }
+    .filter-btn.active {
+      background: linear-gradient(90deg, #3b82f6, #6366f1);
+      color: white !important;
+      box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+    }
+
+    .nav-link { position: relative; }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+      transition: width 0.3s ease;
+    }
+    .nav-link.active::after, .nav-link:hover::after { width: 100%; }
+
+    .hero-bg {
+      background-image: url('image/home_hero2.png');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      position: relative;
+    }
+
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: #0a0e27;
+      opacity: 0.78;
+      z-index: 1;
+    }
+
+    /* Modal Fixes */
+    #modal {
+      z-index: 9999;
+    }
+  </style>
+
+  <style>body { box-sizing: border-box; scroll-behavior: smooth; }</style>
+</head>
+<body class="bg-[#0a0e27]">
+
+  <div id="app-wrapper" class="min-h-screen w-full gradient-bg relative">
+    <div class="tech-pattern"></div>
+
+    <!-- FLOATING ORBS (Unchanged) -->
+    <!-- Desktop Orbs -->
+    <div class="orb w-96 h-96 bg-blue-600 top-0 left-0 hidden md:block" style="animation: float 15s ease-in-out infinite;"></div>
+    <div class="orb w-72 h-72 bg-purple-600 top-1/4 right-0 hidden md:block" style="animation: floatReverse 18s ease-in-out infinite; animation-delay: -2s;"></div>
+    <div class="orb w-56 h-56 bg-indigo-600 bottom-0 left-1/3 hidden md:block" style="animation: floatSlow 20s ease-in-out infinite; animation-delay: -4s;"></div>
+    <div class="orb w-48 h-48 bg-cyan-500 top-1/2 right-1/4 hidden md:block" style="animation: floatFast 12s ease-in-out infinite; animation-delay: -1s;"></div>
+    <div class="orb w-64 h-64 bg-blue-500 bottom-1/4 left-0 hidden md:block" style="animation: float 16s ease-in-out infinite; animation-delay: -3s;"></div>
+    <div class="orb w-40 h-40 bg-purple-500 top-1/3 left-1/2 hidden md:block" style="animation: floatReverse 14s ease-in-out infinite; animation-delay: -5s;"></div>
+    <div class="orb w-32 h-32 bg-indigo-500 top-0 right-1/3 hidden md:block" style="animation: floatFast 13s ease-in-out infinite; animation-delay: -2.5s;"></div>
+    <div class="orb w-52 h-52 bg-cyan-600 bottom-1/3 right-0 hidden md:block" style="animation: floatSlow 19s ease-in-out infinite; animation-delay: -6s;"></div>
+    <div class="orb w-44 h-44 bg-blue-400 bottom-0 right-1/4 hidden md:block" style="animation: float 17s ease-in-out infinite; animation-delay: -3.5s;"></div>
+    <div class="orb w-36 h-36 bg-purple-400 top-1/4 left-1/4 hidden md:block" style="animation: floatFast 11s ease-in-out infinite; animation-delay: -4.5s;"></div>
+
+    <!-- Mobile Orbs -->
+    <div class="orb w-48 h-48 bg-blue-600 top-0 left-0 md:hidden" style="animation: float 15s ease-in-out infinite; opacity: 0.07;"></div>
+    <div class="orb w-32 h-32 bg-purple-600 bottom-1/4 right-0 md:hidden" style="animation: floatReverse 18s ease-in-out infinite; animation-delay: -2s; opacity: 0.07;"></div>
+    <div class="orb w-44 h-44 bg-cyan-500 top-1/2 left-1/5 md:hidden" style="animation: floatFast 13s ease-in-out infinite; opacity: 0.1; animation-delay: -5s;"></div>
+    <div class="orb w-20 h-20 bg-yellow-600 bottom-1/2 right-1/4 md:hidden" style="animation: floatSlow 17s ease-in-out infinite; opacity: 0.09; animation-delay: -8s;"></div>
+
+    <div class="relative z-10">
+
+      <!-- HERO SECTION -->
+      <div class="relative min-h-screen hero-bg overflow-hidden">
+        <nav class="relative z-50">
+          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+<!-- Logo - Clickable -->
+<a href="index.html" class="flex items-center gap-2 group">
+  <div class="w-10 h-8 rounded-xl flex items-center justify-center shadow-lg overflow-hidden">
+    <img src="image/logo.png" alt="CCAI Logo" class="h-8 w-auto transition-transform group-hover:scale-105">
+  </div>
+  <span id="brand-name" class="text-white font-bold text-xl tracking-tight">CCAI</span>
+</a>
+
+              <div class="hidden md:flex items-center gap-8">
+                <a href="./index.html" class="nav-link nav-item text-gray-300 hover:text-white transition-colors text-sm font-medium" data-page="home">Home</a>
+                <a href="./services.html" class="nav-link nav-item text-gray-300 hover:text-white transition-colors text-sm font-medium" data-page="solutions">Solutions</a>
+                <a href="./aboutus.html" class="nav-link nav-item text-gray-300 hover:text-white transition-colors text-sm font-medium" data-page="about">About</a>
+                <a href="./research.html" class="nav-link nav-item text-white font-medium" data-page="research">Research</a>
+              </div>
+
+              <div class="hidden md:flex items-center gap-4">
+                <a href="./contact.html">
+                  <button class="px-6 py-2.5 bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-sm font-semibold rounded-xl hover:from-blue-500 hover:to-indigo-500 transition-all duration-300 shadow-lg shadow-blue-900/20">
+                    Contact Us
+                  </button>
+                </a>
+              </div>
+
+              <button id="mobile-menu-btn" class="md:hidden text-gray-300 hover:text-white p-2 focus:outline-none">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                  <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+              </button>
+            </div>
+
+            <div id="mobile-menu" class="hidden md:hidden glass rounded-2xl mt-3 p-5 border border-white/5">
+              <div class="flex flex-col gap-3">
+                <a href="./index.html" class="text-gray-200 hover:text-white py-2.5 px-4 rounded-lg hover:bg-white/5">Home</a>
+                <a href="./aboutus.html" class="text-gray-200 hover:text-white py-2.5 px-4 rounded-lg hover:bg-white/5">About</a>
+                <a href="./services.html" class="text-gray-200 hover:text-white py-2.5 px-4 rounded-lg hover:bg-white/5">Solutions</a>
+                <a href="./research.html" class="text-white font-medium py-2.5 px-4 rounded-lg">Research</a>
+                <a href="./contact.html" class="mt-3 px-6 py-3.5 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold rounded-xl text-center">Contact Us</a>
+              </div>
+            </div>
+          </div>
+        </nav>
+
+        <!-- Hero Content -->
+        <div class="relative z-20 min-h-[calc(100vh-80px)] flex items-center px-6 lg:px-32">
+          <div class="grid md:grid-cols-2 gap-8 items-center w-full">
+            <div class="space-y-8">
+              <div class="inline-flex items-center gap-2 px-5 py-2 glass rounded-full">
+                <span class="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></span>
+                <span class="text-gray-300 text-sm font-medium">Research & Innovation</span>
+              </div>
+              <h1 class="text-5xl sm:text-6xl lg:text-7xl font-black text-white leading-none tracking-tighter">
+                Research at<br>Cloud Connect AI
+              </h1>
+              <p class="text-xl text-gray-300 max-w-lg leading-relaxed">
+                Advancing the frontiers of artificial intelligence, cloud infrastructure, and intelligent systems through groundbreaking research.
+              </p>
+
+              <button onclick="window.location.href='contact.html'" 
+                      class="w-full sm:w-auto px-8 py-4 glass text-white font-bold rounded-xl hover:bg-white/10 transition-all duration-300 flex items-center justify-center gap-2 text-lg">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                <span>Collaborate With Us</span>
+              </button>
+            </div>
+
+            <div class="hidden md:flex justify-end scroll-animate">
+              <div class="w-10/12 h-80 bg-gradient-to-br from-blue-500/10 to-cyan-500/10 rounded-3xl border border-white/10 p-8 flex items-center justify-center">
+                <div class="text-center">
+                  <div class="w-32 h-32 mx-auto mb-6 bg-white/5 backdrop-blur-xl rounded-2xl flex items-center justify-center border border-white/10">
+                    <img src="image/logo.png" alt="Research" class="w-20 h-20 object-contain">
+                  </div>
+                  <p class="text-2xl text-gray-300 font-semibold mb-4">RESEARCH</p>
+                  <p class="text-blue-300 text-sm tracking-widest">INNOVATION IN ACTION</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+
+      
+      <!-- MAIN RESEARCH CONTENT -->
+      <main class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+        <div class="text-center mb-16 scroll-animate">
+          <h1 class="text-4xl md:text-5xl font-bold text-white mb-6">
+            Our Research Initiatives
+          </h1>
+          <p class="text-gray-400 text-lg max-w-2xl mx-auto">
+            Real-world AI and cloud solutions that deliver measurable business impact.
+          </p>
+        </div>
+
+        <!-- Filter Tabs -->
+        <div class="flex justify-center mb-16 gap-3 flex-wrap">
+          <button onclick="filterProjects('all')" class="filter-btn active px-8 py-3 rounded-full glass text-sm font-medium transition-all" data-filter="all">All Projects</button>
+          <button onclick="filterProjects('ai')" class="filter-btn px-8 py-3 rounded-full glass text-sm font-medium transition-all" data-filter="ai">AI & Automation</button>
+          <button onclick="filterProjects('cloud')" class="filter-btn px-8 py-3 rounded-full glass text-sm font-medium transition-all" data-filter="cloud">Cloud Solutions</button>
+          <button onclick="filterProjects('security')" class="filter-btn px-8 py-3 rounded-full glass text-sm font-medium transition-all" data-filter="security">Cyber Security</button>
+        </div>
+
+        <!-- Case Studies Grid -->
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="case-grid">
+          <div class="case-card glass rounded-3xl overflow-hidden scroll-animate" data-category="ai">
+            <img src="image/research_img2.png" class="w-full h-56 object-cover" alt="AI Automation">
+            <div class="p-8">
+              <h3 class="text-2xl font-semibold mb-3 text-white">AI-Powered Telecom Automation</h3>
+              <p class="text-gray-400 mb-6">Reduced operational costs by 40% using intelligent automation and predictive maintenance.</p>
+              <button onclick="openModal(0)" class="text-blue-400 hover:text-blue-300 font-medium">Read Case Study →</button>
+            </div>
+          </div>
+
+          <div class="case-card glass rounded-3xl overflow-hidden scroll-animate" data-category="cloud">
+            <img src="image/research_img1.png" class="w-full h-56 object-cover" alt="Cloud Migration">
+            <div class="p-8">
+              <h3 class="text-2xl font-semibold mb-3 text-white">Enterprise Cloud Migration</h3>
+              <p class="text-gray-400 mb-6">Successfully migrated 12 legacy systems to AWS with zero downtime.</p>
+              <button onclick="openModal(1)" class="text-blue-400 hover:text-blue-300 font-medium">Read Case Study →</button>
+            </div>
+          </div>
+
+          <div class="case-card glass rounded-3xl overflow-hidden scroll-animate" data-category="security">
+            <img src="image/privacy.png" class="w-full h-56 object-cover" alt="Zero Trust Security">
+            <div class="p-8">
+              <h3 class="text-2xl font-semibold mb-3 text-white">Zero-Trust Security Framework</h3>
+              <p class="text-gray-400 mb-6">Implemented enterprise-grade security reducing breach risk by 85%.</p>
+              <button onclick="openModal(2)" class="text-blue-400 hover:text-blue-300 font-medium">Read Case Study →</button>
+            </div>
+          </div>
+        </div>
+
+
+
+
+<!-- NEW CAROUSEL SECTION - Below Hero -->
+      <!-- FULL-WIDTH CAROUSEL INSIDE MAIN (Above Services) -->
+<!-- FULL-WIDTH CAROUSEL INSIDE MAIN (Above Services) -->
+<section class="relative max-w-7xl mx-auto  pt-16 scroll-animate">
+  <div class="relative w-full">
+    <div id="autoCarousel" class="relative w-full h-[60vh] md:h-[70vh] lg:h-[75vh] overflow-hidden shadow-2xl rounded-3xl">
+
+      <!-- Slide 1 -->
+      <div class="carousel-slide absolute inset-0 bg-cover bg-center transition-opacity duration-1000 opacity-100"
+           style="background-image: url('image/home_hero3.png');">
+        <div class="absolute inset-0 bg-black/55"></div>
+        <div class="relative z-10 flex items-center justify-center h-full text-center text-white px-6">
+          <div class="carousel-content max-w-4xl mx-auto">
+            <p class="text-2xl md:text-3xl font-medium mb-6 opacity-100">🔶 Research & Innovation</p>
+            <h1 class="font-heading font-bold text-4xl md:text-6xl mb-6">Driving Intelligent Solutions</h1>
+            <p class="text-lg md:text-xl opacity-90 leading-relaxed">
+              Exploring advanced technologies, AI-driven systems, and next-generation architectures to solve complex real-world challenges.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="carousel-slide absolute inset-0 bg-cover bg-center transition-opacity duration-1000 opacity-0"
+           style="background-image: url('image/home_feature5.png');">
+        <div class="absolute inset-0 bg-black/55"></div>
+        <div class="relative z-10 flex items-center justify-center h-full text-center text-white px-6">
+          <div class="carousel-content max-w-4xl mx-auto">
+            <p class="text-2xl md:text-3xl font-medium mb-6 opacity-100">🔶 Research & Innovation</p>
+            <h1 class="font-heading font-bold text-4xl md:text-6xl mb-6">AI, Cloud & Security Research</h1>
+            <p class="text-lg md:text-xl opacity-90 leading-relaxed">
+              Focused on artificial intelligence, cloud computing, and cybersecurity to build scalable and secure enterprise systems.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="carousel-slide absolute inset-0 bg-cover bg-center transition-opacity duration-1000 opacity-0"
+           style="background-image: url('image/home_feature2.png');">
+        <div class="absolute inset-0 bg-black/50"></div>
+        <div class="relative z-10 flex items-center justify-center h-full text-center text-white px-6">
+          <div class="carousel-content max-w-4xl mx-auto">
+            <p class="text-2xl md:text-3xl font-medium mb-6 opacity-100">🔶 Research & Innovation</p>
+            <h1 class="font-heading font-bold text-4xl md:text-6xl mb-6">Transforming Ideas into Impact</h1>
+            <p class="text-lg md:text-xl opacity-90 leading-relaxed">
+              Turning research insights into practical, high-impact solutions that drive innovation across industries.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const slides = document.querySelectorAll("#autoCarousel .carousel-slide");
+  let current = 0;
+
+  function showSlide(index) {
+    slides.forEach((slide, i) => {
+      slide.style.opacity = i === index ? "1" : "0";
+    });
+  }
+
+  function nextSlide() {
+    current = (current + 1) % slides.length;
+    showSlide(current);
+  }
+
+  setInterval(nextSlide, 4000);
+});
+</script>
+
+
+
+
+<!-- OUR CORE SERVICES - Entire Card Clickable -->
+<section id="services-section" class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 scroll-animate">
+  
+  <div class="text-center mb-16">
+    <h2 class="text-4xl md:text-5xl font-bold text-white mb-4 scroll-animate">Our Core Services</h2>
+    <p class="text-xl text-gray-400 max-w-2xl mx-auto scroll-animate">
+      Enterprise-grade technology solutions across digital transformation, cybersecurity, AI, and intelligence
+    </p>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+    <!-- Service Card 1: Digital Transformation -->
+    <a href="services.html#dt-section" class="service-card glass rounded-2xl p-8 scroll-animate-left block group hover:scale-[1.02] transition-all duration-300">
+      <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+        </svg>
+      </div>
+      <h3 class="text-xl font-bold text-white mb-3">Digital Transformation</h3>
+      <p class="text-gray-400 mb-8">Modernizing legacy systems with AI, cloud, and intelligent automation for future-ready enterprises.</p>
+      <div class="text-blue-400 font-semibold flex items-center gap-2 group-hover:gap-3 transition-all">
+        Learn More 
+        <span class="transition-transform group-hover:translate-x-1">→</span>
+      </div>
+    </a>
+
+    <!-- Service Card 2: Cybersecurity Solutions -->
+    <a href="services.html#cs-section" class="service-card glass rounded-2xl p-8 scroll-animate block group hover:scale-[1.02] transition-all duration-300">
+      <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+        </svg>
+      </div>
+      <h3 class="text-xl font-bold text-white mb-3">Cybersecurity Solutions</h3>
+      <p class="text-gray-400 mb-8">Comprehensive protection including VAPT, threat monitoring, and proactive defense for critical assets.</p>
+      <div class="text-blue-400 font-semibold flex items-center gap-2 group-hover:gap-3 transition-all">
+        Learn More 
+        <span class="transition-transform group-hover:translate-x-1">→</span>
+      </div>
+    </a>
+
+    <!-- Service Card 3: Big Data Analytics -->
+    <a href="services.html#bd-section" class="service-card glass rounded-2xl p-8 scroll-animate-right block group hover:scale-[1.02] transition-all duration-300">
+      <div class="w-16 h-16 bg-gradient-to-br from-cyan-500 to-cyan-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+        </svg>
+      </div>
+      <h3 class="text-xl font-bold text-white mb-3">Big Data Analytics</h3>
+      <p class="text-gray-400 mb-8">Actionable insights from complex data using advanced OSINT and business intelligence.</p>
+      <div class="text-blue-400 font-semibold flex items-center gap-2 group-hover:gap-3 transition-all">
+        Learn More 
+        <span class="transition-transform group-hover:translate-x-1">→</span>
+      </div>
+    </a>
+
+    <!-- Service Card 4: Artificial Intelligence -->
+    <a href="services.html#ai-section" class="service-card glass rounded-2xl p-8 scroll-animate-left block group hover:scale-[1.02] transition-all duration-300">
+      <div class="w-16 h-16 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+        </svg>
+      </div>
+      <h3 class="text-xl font-bold text-white mb-3">Artificial Intelligence</h3>
+      <p class="text-gray-400 mb-8">Next-generation AI for misinformation detection, conversational systems, and intelligent OSINT.</p>
+      <div class="text-blue-400 font-semibold flex items-center gap-2 group-hover:gap-3 transition-all">
+        Learn More 
+        <span class="transition-transform group-hover:translate-x-1">→</span>
+      </div>
+    </a>
+
+    <!-- Service Card 5: Software Development -->
+    <a href="services.html#sd-section" class="service-card glass rounded-2xl p-8 scroll-animate block group hover:scale-[1.02] transition-all duration-300">
+      <div class="w-16 h-16 bg-gradient-to-br from-pink-500 to-pink-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+        </svg>
+      </div>
+      <h3 class="text-xl font-bold text-white mb-3">Software Development</h3>
+      <p class="text-gray-400 mb-8">Intelligence-driven custom software for defense, security, and enterprise platforms.</p>
+      <div class="text-blue-400 font-semibold flex items-center gap-2 group-hover:gap-3 transition-all">
+        Learn More 
+        <span class="transition-transform group-hover:translate-x-1">→</span>
+      </div>
+    </a>
+
+    <!-- Service Card 6: Human Resource Development -->
+    <a href="services.html#hr-section" class="service-card glass rounded-2xl p-8 scroll-animate-right block group hover:scale-[1.02] transition-all duration-300">
+      <div class="w-16 h-16 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C6.5 6.253 2 10.998 2 17s4.5 10.747 10 10.747c5.5 0 10-4.998 10-10.747S17.5 6.253 12 6.253z" />
+        </svg>
+      </div>
+      <h3 class="text-xl font-bold text-white mb-3">Human Resource Development</h3>
+      <p class="text-gray-400 mb-8">Specialized training in cybersecurity, AI, and digital transformation for your workforce.</p>
+      <div class="text-blue-400 font-semibold flex items-center gap-2 group-hover:gap-3 transition-all">
+        Learn More 
+        <span class="transition-transform group-hover:translate-x-1">→</span>
+      </div>
+    </a>
+
+  </div>
+</section>
+    
+    
+    
+
+
+
+
+        <!-- Final CTA -->
+        <div class="mt-24 text-center glass rounded-3xl p-16 scroll-animate">
+          <h2 class="text-4xl font-bold text-white mb-4">Ready to Transform Your Business?</h2>
+          <p class="text-gray-300 mb-8 max-w-lg mx-auto">Let's discuss how our research and solutions can drive your next growth phase.</p>
+          <a href="./contact.html" class="inline-block px-10 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-2xl hover:scale-105 transition-all">
+            Start a Project
+          </a>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- MODAL -->
+  <div id="modal" class="fixed inset-0 bg-black/90 hidden items-center justify-center p-4">
+    <div class="glass max-w-2xl w-full rounded-3xl p-10 relative">
+      <button onclick="closeModal()" class="absolute top-6 right-6 text-5xl text-gray-400 hover:text-white transition-colors leading-none">×</button>
+      <h2 id="modal-title" class="text-3xl font-bold mb-6 text-white"></h2>
+      <p id="modal-content" class="text-gray-300 leading-relaxed text-lg"></p>
+    </div>
+  </div>
+
+
+
+        <!-- Footer -->
+<!-- FOOTER - Same for ALL pages -->
+<footer class="relative border-t border-white/10 mt-auto z-[1010] pointer-events-auto">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 pointer-events-auto">
+    
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+      
+      <!-- Company Info -->
+      <div class="col-span-2 md:col-span-2 lg:mr-20">
+        <div class="flex items-center gap-3 mb-4">
+          <img src="image/logo101.png" alt="CCAI Logo" class="h-12 md:h-14 w-auto">
+        </div>
+        <p class="text-gray-400 text-sm leading-relaxed mb-4">
+          Cloud Connect AI (CCAI) is a technology company focused on AI-driven cloud 
+          infrastructure, enterprise automation, and intelligent digital transformation 
+          solutions for modern organizations worldwide.
+        </p>
+      </div>
+
+      <!-- Navigation -->
+      <div>
+        <h4 class="text-white font-bold mb-4 text-sm">Navigation</h4>
+        <ul class="space-y-3">
+          <li><a href="index.html" class="text-gray-400 hover:text-white transition-colors text-sm">Home</a></li>
+          <li><a href="aboutus.html" class="text-gray-400 hover:text-white transition-colors text-sm">About</a></li>
+          <li><a href="services.html" class="text-gray-400 hover:text-white transition-colors text-sm">Solutions</a></li>
+          <li><a href="research.html" class="text-gray-400 hover:text-white transition-colors text-sm">Research</a></li>
+        </ul>
+      </div>
+
+      <!-- Company Links -->
+      <div>
+        <h4 class="text-white font-bold mb-4 text-sm">Company</h4>
+        <ul class="space-y-3">
+          <li><a href="contact.html" class="text-gray-400 hover:text-white transition-colors text-sm">Contact Us</a></li>
+          <li><a href="terms_and_conditions.html" class="text-gray-400 hover:text-white transition-colors text-sm">Terms and Conditions</a></li>
+          <li><a href="privacy_policy.html" class="text-gray-400 hover:text-white transition-colors text-sm">Privacy Policy</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="flex flex-col md:flex-row items-center justify-between pt-8 border-t border-white/10 gap-4">
+      <p class="text-gray-500 text-sm">
+        © <span id="current-year"></span> Cloud Connect AI. All rights reserved.
+      </p>
+      
+      <!-- Social Links -->
+      <div class="flex items-center gap-4">
+        <a href="#" class="w-10 h-10 glass rounded-full flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition-all">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" /></svg>
+        </a>
+        <a href="#" class="w-10 h-10 glass rounded-full flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition-all">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" /></svg>
+        </a>
+        <a href="#" class="w-10 h-10 glass rounded-full flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition-all">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" /></svg>
+        </a>
+        <a href="#" class="w-10 h-10 glass rounded-full flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition-all">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" /></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Automatic Year + Force Clickable Script -->
+  <script>
+    // Automatic Copyright Year
+    document.addEventListener("DOMContentLoaded", function() {
+      const yearElement = document.getElementById("current-year");
+      if (yearElement) {
+        yearElement.textContent = new Date().getFullYear();
+      }
+    });
+
+    // Force Footer to be Clickable
+    document.addEventListener('DOMContentLoaded', function() {
+      const footer = document.querySelector('footer');
+      if (footer) {
+        footer.style.zIndex = '1010';
+        footer.style.position = 'relative';
+        footer.style.pointerEvents = 'auto';
+        footer.style.isolation = 'isolate';
+
+        // Force all links inside footer
+        const links = footer.querySelectorAll('a');
+        links.forEach(link => {
+          link.style.pointerEvents = 'auto';
+          link.style.position = 'relative';
+          link.style.zIndex = '1011';
+        });
+      }
+    });
+  </script>
+</footer>
+
+  <script>
+    const modalData = [
+      {
+        title: "AI-Powered Telecom Automation",
+        content: "We implemented advanced AI workflows that automated 70% of routine network operations, resulting in a 40% reduction in operational costs and significantly improved service reliability."
+      },
+      {
+        title: "Enterprise Cloud Migration",
+        content: "Successfully migrated 12 critical legacy systems to a modern AWS cloud infrastructure with zero downtime. The project improved scalability and reduced infrastructure costs by 35%."
+      },
+      {
+        title: "Zero-Trust Security Framework",
+        content: "Designed and deployed a comprehensive zero-trust security architecture that reduced potential breach risk by 85%. The solution included advanced threat detection and identity-based access control."
+      }
+    ];
+
+    function openModal(index) {
+      document.getElementById('modal-title').textContent = modalData[index].title;
+      document.getElementById('modal-content').textContent = modalData[index].content;
+      
+      const modal = document.getElementById('modal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function filterProjects(category) {
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.getAttribute('data-filter') === category);
+      });
+
+      document.querySelectorAll('.case-card').forEach(card => {
+        if (category === 'all' || card.getAttribute('data-category') === category) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      // Mobile Menu
+      const mobileBtn = document.getElementById('mobile-menu-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const menuIcon = document.getElementById('menu-icon');
+      let isOpen = false;
+
+      mobileBtn.addEventListener('click', () => {
+        isOpen = !isOpen;
+        mobileMenu.classList.toggle('hidden');
+        menuIcon.setAttribute('d', isOpen ? 
+          'M6 18L18 6M6 6l12 12' : 
+          'M4 6h16M4 12h16M4 18h16');
+      });
+
+      function highlightActivePage() {
+        const currentPath = window.location.pathname.toLowerCase();
+        const navItems = document.querySelectorAll('.nav-item');
+
+        navItems.forEach(item => {
+          const page = item.getAttribute('data-page');
+          item.classList.remove('active', 'text-white');
+
+          if (
+            (page === 'home' && (currentPath.includes('index.html') || currentPath === '/' || currentPath.endsWith('/'))) ||
+            (page === 'solutions' && currentPath.includes('services.html')) ||
+            (page === 'about' && currentPath.includes('aboutus.html')) ||
+            (page === 'research' && currentPath.includes('research.html'))
+          ) {
+            item.classList.add('active', 'text-white');
+          }
+        });
+      }
+
+      highlightActivePage();
+
+      // Scroll Animations
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) entry.target.classList.add('in-view');
+        });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll('.scroll-animate').forEach(el => observer.observe(el));
+
+      // Modal Click Outside & Escape
+      const modalEl = document.getElementById('modal');
+      modalEl.addEventListener('click', (e) => {
+        if (e.target === modalEl) closeModal();
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === "Escape") closeModal();
+      });
+    });
+  </script>
+
+
+s
+</body>
+</html>

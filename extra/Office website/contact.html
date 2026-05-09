@@ -1,0 +1,749 @@
+<!doctype html>
+<html lang="en" class="h-full scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us - Cloud Connect AI</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="image/logo.png">
+  <style>
+    * { font-family: 'Space Grotesk', sans-serif; }
+    
+    .gradient-bg {
+      background: linear-gradient(135deg, #0a0e27 0%, #1a1a3e 50%, #0d0d1f 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .tech-pattern {
+      position: absolute;
+      inset: 0;
+      opacity: 0.03;
+      background-image: 
+        linear-gradient(0deg, transparent 24%, rgba(59, 130, 246, 0.05) 25%, rgba(59, 130, 246, 0.05) 26%, transparent 27%, transparent 74%, rgba(59, 130, 246, 0.05) 75%, rgba(59, 130, 246, 0.05) 76%, transparent 77%, transparent),
+        linear-gradient(90deg, transparent 24%, rgba(59, 130, 246, 0.05) 25%, rgba(59, 130, 246, 0.05) 26%, transparent 27%, transparent 74%, rgba(59, 130, 246, 0.05) 75%, rgba(59, 130, 246, 0.05) 76%, transparent 77%, transparent);
+      background-size: 50px 50px;
+      z-index: 2;
+    }
+
+    .glow-text { text-shadow: 0 0 80px rgba(59, 130, 246, 0.6); }
+
+    .btn-glow {
+      box-shadow: 0 0 30px rgba(59, 130, 246, 0.4), inset 0 1px 0 rgba(255,255,255,0.1);
+    }
+    .btn-glow:hover {
+      box-shadow: 0 0 50px rgba(59, 130, 246, 0.6), inset 0 1px 0 rgba(255,255,255,0.2);
+    }
+
+    .glass {
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    /* === ORIGINAL ORB STYLES RESTORED === */
+    .orb {
+      position: fixed;
+      border-radius: 5%;           /* Your original style */
+      filter: blur(2px);
+      opacity: 0.05;
+      z-index: 3;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0); }
+      25% { transform: translate(30px, -40px); }
+      50% { transform: translate(-20px, -60px); }
+      75% { transform: translate(40px, -30px); }
+    }
+    
+    @keyframes floatReverse {
+      0%, 100% { transform: translate(0, 0); }
+      25% { transform: translate(-35px, 45px); }
+      50% { transform: translate(25px, 55px); }
+      75% { transform: translate(-40px, 35px); }
+    }
+    
+    @keyframes floatSlow {
+      0%, 100% { transform: translate(0, 0); }
+      33% { transform: translate(50px, -50px); }
+      66% { transform: translate(-40px, 40px); }
+    }
+    
+    @keyframes floatFast {
+      0%, 100% { transform: translate(0, 0); }
+      20% { transform: translate(-30px, -35px); }
+      40% { transform: translate(35px, -25px); }
+      60% { transform: translate(-35px, 30px); }
+      80% { transform: translate(30px, 35px); }
+    }
+
+    .hero-bg {
+      background-image: url('image/get_bg.png');
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      min-height: 100vh;           /* Full height restored */
+    }
+
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: #0a0e27;
+      opacity: 0.82;
+      z-index: 1;
+    }
+
+
+
+    
+
+
+    .fade-in {
+      animation: fadeIn 0.8s ease-out forwards;
+      opacity: 0;
+    }
+    
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+    
+    .slide-up {
+      animation: slideUp 0.8s ease-out forwards;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    
+    @keyframes slideUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .delay-100 { animation-delay: 0.1s; }
+    .delay-200 { animation-delay: 0.2s; }
+    .delay-300 { animation-delay: 0.3s; }
+    .delay-400 { animation-delay: 0.4s; }
+    .delay-500 { animation-delay: 0.5s; }
+    
+
+    .scroll-animate {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .scroll-animate.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .card-hover {
+      transition: all 0.4s ease;
+      border: 2px solid transparent;
+    }
+
+    .card-hover:hover {
+      transform: translateY(-8px);
+      border-color: #3b82f6;
+      box-shadow: 0 20px 40px rgba(59, 130, 246, 0.2);
+    }
+
+
+    .card-hover2:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(59, 130, 246, 0.2);
+    }
+
+
+
+  </style>
+</head>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<body class="h-full">
+  <div id="app-wrapper" class="h-full w-full gradient-bg overflow-auto">
+    <div class="tech-pattern"></div>
+
+    <!-- ==================== FULL ORIGINAL ORBS RESTORED ==================== -->
+    <!-- Desktop Orbs -->
+    <div class="orb w-96 h-96 bg-blue-600 top-0 left-0 hidden md:block" style="animation: float 15s ease-in-out infinite;"></div>
+    <div class="orb w-72 h-72 bg-purple-600 top-1/4 right-0 hidden md:block" style="animation: floatReverse 18s ease-in-out infinite; animation-delay: -2s;"></div>
+    <div class="orb w-56 h-56 bg-indigo-600 bottom-0 left-1/3 hidden md:block" style="animation: floatSlow 20s ease-in-out infinite; animation-delay: -4s;"></div>
+    <div class="orb w-48 h-48 bg-cyan-500 top-1/2 right-1/4 hidden md:block" style="animation: floatFast 12s ease-in-out infinite; animation-delay: -1s;"></div>
+    <div class="orb w-64 h-64 bg-blue-500 bottom-1/4 left-0 hidden md:block" style="animation: float 16s ease-in-out infinite; animation-delay: -3s;"></div>
+    <div class="orb w-40 h-40 bg-purple-500 top-1/3 left-1/2 hidden md:block" style="animation: floatReverse 14s ease-in-out infinite; animation-delay: -5s;"></div>
+    <div class="orb w-32 h-32 bg-indigo-500 top-0 right-1/3 hidden md:block" style="animation: floatFast 13s ease-in-out infinite; animation-delay: -2.5s;"></div>
+    <div class="orb w-52 h-52 bg-cyan-600 bottom-1/3 right-0 hidden md:block" style="animation: floatSlow 19s ease-in-out infinite; animation-delay: -6s;"></div>
+
+    <!-- Mobile Orbs -->
+    <div class="orb w-48 h-48 bg-blue-600 top-0 left-0 md:hidden" style="animation: float 15s ease-in-out infinite; opacity: 0.07;"></div>
+    <div class="orb w-32 h-32 bg-purple-600 bottom-1/4 right-0 md:hidden" style="animation: floatReverse 18s ease-in-out infinite; animation-delay: -2s; opacity: 0.07;"></div>
+    <div class="orb w-44 h-44 bg-cyan-500 top-1/2 left-1/5 md:hidden" style="animation: floatFast 13s ease-in-out infinite; opacity: 0.1; animation-delay: -5s;"></div>
+
+    <div class="content-wrapper">
+
+      <!-- ==================== HERO SECTION ==================== -->
+<!-- ==================== HERO SECTION WITH INTEGRATED FORM ==================== -->
+<div class="relative hero-bg overflow-hidden min-h-screen flex flex-col">
+
+  <!-- Transparent Navbar (unchanged) -->
+        <nav class="relative fade-in z-50">
+          <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+
+<!-- Logo - Clickable -->
+<a href="index.html" class="flex items-center gap-2 group">
+  <div class="w-10 h-8 rounded-xl flex items-center justify-center shadow-lg overflow-hidden">
+    <img src="image/logo.png" alt="CCAI Logo" class="h-8 w-auto transition-transform group-hover:scale-105">
+  </div>
+  <span id="brand-name" class="text-white font-bold text-xl tracking-tight">CCAI</span>
+</a>
+
+              <!-- Desktop Navigation -->
+              <div class="hidden md:flex items-center gap-8">
+                <a href="./index.html" class="nav-link nav-item text-gray-300 hover:text-white transition-colors text-sm font-medium" data-page="home">Home</a>
+                <a href="./services.html" class="nav-link nav-item text-white font-medium" data-page="solutions">Solutions</a>
+                <a href="./aboutus.html" class="nav-link nav-item text-gray-300 hover:text-white transition-colors text-sm font-medium" data-page="about">About</a>
+                <a href="./research.html" class="nav-link nav-item text-gray-300 hover:text-white transition-colors text-sm font-medium" data-page="research">Research</a>
+              </div>
+
+              <!-- Contact Button -->
+              <div class="hidden md:flex items-center gap-4">
+                <a href="./contact.html">
+                  <button class="px-6 py-2.5 bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-sm font-semibold rounded-xl hover:from-blue-500 hover:to-indigo-500 transition-all duration-300 shadow-lg shadow-blue-900/20 hover:shadow-blue-700/30 btn-glow">
+                    Contact Us
+                  </button>
+                </a>
+              </div>
+
+              <!-- Mobile Menu Button -->
+              <button id="mobile-menu-btn" class="md:hidden text-gray-300 hover:text-white p-2 focus:outline-none">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                  <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+              </button>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden glass rounded-2xl mt-3 p-5 border border-white/5">
+              <div class="flex flex-col gap-3">
+                <a href="./index.html" class="text-gray-200 hover:text-white transition-colors text-base font-medium py-2.5 px-4 rounded-lg hover:bg-white/5">Home</a>
+                <a href="./aboutus.html" class="text-gray-200 hover:text-white transition-colors text-base font-medium py-2.5 px-4 rounded-lg hover:bg-white/5">About</a>
+                <a href="./services.html" class="text-white font-medium py-2.5 px-4 rounded-lg">Solutions</a>
+                <a href="./research.html" class="text-gray-200 hover:text-white transition-colors text-base font-medium py-2.5 px-4 rounded-lg hover:bg-white/5">Research</a>
+                <a href="./contact.html" class="mt-3 px-6 py-3.5 bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-base font-semibold rounded-xl hover:from-blue-500 hover:to-indigo-500 transition-all duration-300 text-center shadow-md">
+                  Contact Us
+                </a>
+              </div>
+            </div>
+          </div>
+        </nav>
+
+  <!-- Hero Content + Form -->
+  <main class="relative z-20 flex-1 flex items-center py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        
+        <!-- Left Side - Text -->
+        <div class="text-center lg:text-left lg:mb-60" >
+          <div class="inline-flex items-center gap-2 px-5 py-2 glass rounded-full mb-6">
+            <span class="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></span>
+            <span class="text-blue-300 text-sm font-medium">Let's Connect</span>
+          </div>
+          
+          <h1 class="text-5xl sm:text-6xl lg:text-7xl font-black text-white leading-[1.05] glow-text mb-6">
+            Get In Touch
+          </h1>
+          <p class="text-xl text-gray-400 max-w-lg mx-auto lg:mx-0 leading-relaxed">
+            Ready to bring your AI and cloud vision to life? Our team is here to help.
+          </p>
+        </div>
+
+        <!-- Right Side - Contact Form (on the image background) -->
+        <div class="scroll-animate card-hover2">
+          <div class="glass rounded-3xl p-8 md:p-10 border border-blue-500/30 shadow-2xl">
+            <h2 class="text-3xl font-bold text-white mb-2">Send us a Message</h2>
+            <p class="text-gray-400 mb-8">We'll get back to you within 24 hours.</p>
+            
+<!-- ==================== UPDATED FORM ==================== -->
+            <form id="contactForm" action="send_email.php" method="POST" class="space-y-6">
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label for="name" class="block text-sm font-medium text-gray-300 mb-2">Your Name</label>
+                  <input 
+                    type="text" 
+                    id="name" 
+                    name="name" 
+                    required
+                    class="w-full px-6 py-4 bg-white/5 border border-white/10 rounded-2xl text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/30 transition-all duration-300"
+                    placeholder="John Doe">
+                </div>
+
+                <div>
+                  <label for="email" class="block text-sm font-medium text-gray-300 mb-2">Email Address</label>
+                  <input 
+                    type="email" 
+                    id="email" 
+                    name="email" 
+                    required
+                    class="w-full px-6 py-4 bg-white/5 border border-white/10 rounded-2xl text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/30 transition-all duration-300"
+                    placeholder="you@example.com">
+                </div>
+              </div>
+
+              <div>
+                <label for="subject" class="block text-sm font-medium text-gray-300 mb-2">Subject</label>
+                <input 
+                  type="text" 
+                  id="subject" 
+                  name="subject" 
+                  required
+                  class="w-full px-6 py-4 bg-white/5 border border-white/10 rounded-2xl text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/30 transition-all duration-300"
+                  placeholder="Project Inquiry / Partnership / Support">
+              </div>
+
+              <div>
+                <label for="message" class="block text-sm font-medium text-gray-300 mb-2">Your Message</label>
+                <textarea 
+                  id="message" 
+                  name="message" 
+                  rows="6" 
+                  required
+                  class="w-full px-6 py-4 bg-white/5 border border-white/10 rounded-2xl text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/30 transition-all duration-300 resize-none"
+                  placeholder="Tell us about your project, requirements, or how we can help you..."></textarea>
+              </div>
+
+              <!-- Honeypot Anti-Spam -->
+              <div style="display: none;">
+                <label for="website">Website (Leave this field blank)</label>
+                <input type="text" id="website" name="website">
+              </div>
+
+              <!-- Form Status Message -->
+              <div id="form-message" class="min-h-[28px] text-sm"></div>
+
+              <!-- Submit Button -->
+              <button 
+                type="submit" 
+                id="submit-button"
+                class="w-full px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white font-bold rounded-2xl transition-all duration-300 btn-glow text-lg shadow-lg shadow-blue-900/30 flex items-center justify-center gap-3">
+                
+                <span id="button-text">Send Message</span>
+                
+                <!-- Loading Spinner -->
+                <span id="loading-spinner" class="hidden">
+                  <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
+                  </svg>
+                </span>
+              </button>
+
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+      <!-- Contact Information -->
+      <section class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+
+        <!-- Office -->
+        <div class="scroll-animate glass rounded-2xl p-8 card-hover">
+          <div class="w-14 h-14 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 21s7-4.35 7-10a7 7 0 10-14 0c0 5.65 7 10 7 10z" />
+              <circle cx="12" cy="11" r="3" />
+            </svg>
+          </div>
+          <h3 class="text-2xl font-bold text-white mb-2">Visit Our Office</h3>
+          <p class="text-gray-400 leading-relaxed">
+            B1, House No. 268 <br>
+            Road No. 19, Mohakhali DOHS, Dhaka-1206 <br>
+            Bangladesh.
+          </p>
+        </div>
+ 
+        <!-- Phone -->
+        <div class="scroll-animate glass rounded-2xl p-8 card-hover">
+          <div class="w-14 h-14 bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl flex items-center justify-center mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M22 16.92V19a2 2 0 01-2.18 2A19.72 19.72 0 013 5.18 2 2 0 015 3h2.09a2 2 0 012 1.72c.12.89.37 1.76.72 2.58a2 2 0 01-.45 2.11L8.09 10.91a16 16 0 006 6l1.5-1.27a2 2 0 012.11-.45c.82.35 1.69.6 2.58.72A2 2 0 0122 16.92z"/>
+            </svg>
+          </div>
+          <h3 class="text-2xl font-bold text-white mb-2">Call Us</h3>
+          <p class="text-gray-400 text-lg font-semibold mb-2">
+            <a href="tel:0176905688688" class="text-blue-400 hover:text-blue-300 transition-colors">
+              +8801769056868
+            </a>
+            <br>
+                        <a href="tel:01713091635" class="text-blue-400 hover:text-blue-300 transition-colors">
+              +8801713091635
+            </a>
+
+          </p>
+          <p class="text-gray-500 text-sm">Available Sat-Fri, 9:00 AM - 5:00 PM</p>
+        </div>
+
+        <!-- Email -->
+        <div class="scroll-animate glass rounded-2xl p-8 card-hover">
+          <div class="w-14 h-14 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-xl flex items-center justify-center mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 6l8 7 8-7M4 6v12h16V6"/>
+            </svg>
+          </div>
+          <h3 class="text-2xl font-bold text-white mb-2">Email Us</h3>
+          <p class="text-gray-400 mb-2">
+            <a href="mailto:hello@cloudconnectai.com" class="text-blue-400 hover:text-blue-300 transition-colors break-all">
+              contact@cloudconnect-ai.com
+            </a>
+          </p>
+          <p class="text-gray-500 text-sm">We'll respond within 24 hours</p>
+        </div>
+
+        <!-- Hours -->
+        <div class="scroll-animate glass rounded-2xl p-8 card-hover">
+          <div class="w-14 h-14 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl flex items-center justify-center mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <circle cx="12" cy="12" r="9" stroke-width="2"/>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 7v5l3 3"/>
+            </svg>
+          </div>
+          <h3 class="text-2xl font-bold text-white mb-2">Business Hours</h3>
+          <p class="text-gray-400 text-sm leading-relaxed">
+            Saturday - Thursday: 9:00 AM - 5:00 PM<br>
+            Friday: Closed
+          </p>
+        </div>
+      </section>
+
+
+
+
+
+      <!-- Footer -->
+<!-- FOOTER - Same for ALL pages -->
+<footer class="relative border-t border-white/10 mt-auto z-[1010] pointer-events-auto">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 pointer-events-auto">
+    
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+      
+      <!-- Company Info -->
+      <div class="col-span-2 md:col-span-2 lg:mr-20">
+        <div class="flex items-center gap-3 mb-4">
+          <img src="image/logo101.png" alt="CCAI Logo" class="h-12 md:h-14 w-auto">
+        </div>
+        <p class="text-gray-400 text-sm leading-relaxed mb-4">
+          Cloud Connect AI (CCAI) is a technology company focused on AI-driven cloud 
+          infrastructure, enterprise automation, and intelligent digital transformation 
+          solutions for modern organizations worldwide.
+        </p>
+      </div>
+
+      <!-- Navigation -->
+      <div>
+        <h4 class="text-white font-bold mb-4 text-sm">Navigation</h4>
+        <ul class="space-y-3">
+          <li><a href="index.html" class="text-gray-400 hover:text-white transition-colors text-sm">Home</a></li>
+          <li><a href="aboutus.html" class="text-gray-400 hover:text-white transition-colors text-sm">About</a></li>
+          <li><a href="services.html" class="text-gray-400 hover:text-white transition-colors text-sm">Solutions</a></li>
+          <li><a href="research.html" class="text-gray-400 hover:text-white transition-colors text-sm">Research</a></li>
+        </ul>
+      </div>
+
+      <!-- Company Links -->
+      <div>
+        <h4 class="text-white font-bold mb-4 text-sm">Company</h4>
+        <ul class="space-y-3">
+          <li><a href="contact.html" class="text-gray-400 hover:text-white transition-colors text-sm">Contact Us</a></li>
+          <li><a href="terms_and_conditions.html" class="text-gray-400 hover:text-white transition-colors text-sm">Terms and Conditions</a></li>
+          <li><a href="privacy_policy.html" class="text-gray-400 hover:text-white transition-colors text-sm">Privacy Policy</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="flex flex-col md:flex-row items-center justify-between pt-8 border-t border-white/10 gap-4">
+      <p class="text-gray-500 text-sm">
+        © <span id="current-year"></span> Cloud Connect AI. All rights reserved.
+      </p>
+      
+      <!-- Social Links -->
+      <div class="flex items-center gap-4">
+        <a href="#" class="w-10 h-10 glass rounded-full flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition-all">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" /></svg>
+        </a>
+        <a href="#" class="w-10 h-10 glass rounded-full flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition-all">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" /></svg>
+        </a>
+        <a href="#" class="w-10 h-10 glass rounded-full flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition-all">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" /></svg>
+        </a>
+        <a href="#" class="w-10 h-10 glass rounded-full flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition-all">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" /></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Automatic Year + Force Clickable Script -->
+  <script>
+    // Automatic Copyright Year
+    document.addEventListener("DOMContentLoaded", function() {
+      const yearElement = document.getElementById("current-year");
+      if (yearElement) {
+        yearElement.textContent = new Date().getFullYear();
+      }
+    });
+
+    // Force Footer to be Clickable
+    document.addEventListener('DOMContentLoaded', function() {
+      const footer = document.querySelector('footer');
+      if (footer) {
+        footer.style.zIndex = '1010';
+        footer.style.position = 'relative';
+        footer.style.pointerEvents = 'auto';
+        footer.style.isolation = 'isolate';
+
+        // Force all links inside footer
+        const links = footer.querySelectorAll('a');
+        links.forEach(link => {
+          link.style.pointerEvents = 'auto';
+          link.style.position = 'relative';
+          link.style.zIndex = '1011';
+        });
+      }
+    });
+  </script>
+</footer>
+      <!-- ==================== FOOTER END ==================== -->
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+  </div>
+
+  <!-- ==================== FIXED NAVBAR JAVASCRIPT ==================== -->
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    
+    const mobileBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuIcon = document.getElementById('menu-icon');
+    let isOpen = false;
+
+    if (mobileBtn && mobileMenu) {
+      mobileBtn.addEventListener('click', () => {
+        isOpen = !isOpen;
+        
+        if (isOpen) {
+          mobileMenu.classList.remove('hidden');
+          menuIcon.setAttribute('d', 'M6 18L18 6M6 6l12 12');
+        } else {
+          mobileMenu.classList.add('hidden');
+          menuIcon.setAttribute('d', 'M4 6h16M4 12h16M4 18h16');
+        }
+      });
+    }
+
+    // Close menu when clicking any link
+    document.querySelectorAll('.mobile-link').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        isOpen = false;
+        menuIcon.setAttribute('d', 'M4 6h16M4 12h16M4 18h16');
+      });
+    });
+  });
+</script>
+
+
+
+<script>
+    const defaultConfig = {
+      'hero_title': 'Get In Touch',
+      'hero_subtitle': 'We\'d love to hear from you. Reach out today to discuss your project or any questions you may have.',
+      'office_title': 'Visit Our Office',
+      'office_address': 'B1, House No. 268\nRoad No. 19, Mohakhali DOHS, Dhaka-1206\nBangladesh',
+      'phone_title': 'Call Us',
+      'phone_number': '+8801769056868',
+      'email_title': 'Email Us',
+      'email_address': 'contact@cloudconnect-ai.com',
+      'hours_title': 'Business Hours',
+      'hours_text': 'Saturday - Thursday: 9:00 AM - 5:00 PM\nFriday: Closed',
+      'form_title': 'Send us a Message',
+      'form_subtitle': 'We\'ll get back to you within 24 hours.',
+      'name_placeholder': 'Your Name',
+      'email_placeholder': 'your@email.com',
+      'subject_placeholder': 'Subject',
+      'message_placeholder': 'Tell us about your project...',
+      'submit_button': 'Send Message',
+      'success_message': 'Thank you! We\'ll be in touch soon.',
+      'footer_text': '© 2026 Cloud Connect AI. All rights reserved.',
+      'font_family': 'Space Grotesk',
+      'font_size': 16
+    };
+
+    async function onConfigChange(config) {
+      // Update text elements (only those that exist)
+      if (document.getElementById('hero-title')) document.getElementById('hero-title').textContent = config.hero_title || defaultConfig.hero_title;
+      if (document.getElementById('hero-subtitle')) document.getElementById('hero-subtitle').textContent = config.hero_subtitle || defaultConfig.hero_subtitle;
+      if (document.getElementById('form-title')) document.getElementById('form-title').textContent = config.form_title || defaultConfig.form_title;
+      if (document.getElementById('form-subtitle')) document.getElementById('form-subtitle').textContent = config.form_subtitle || defaultConfig.form_subtitle;
+
+      document.body.style.fontFamily = `${config.font_family || defaultConfig.font_family}, sans-serif`;
+    }
+
+    function mapToCapabilities(config) {
+      return {
+        recolorables: [],
+        borderables: [],
+        fontEditable: {
+          get: () => config.font_family || defaultConfig.font_family,
+          set: (value) => {
+            config.font_family = value;
+            window.elementSdk.setConfig({ font_family: value });
+          }
+        },
+        fontSizeable: {
+          get: () => config.font_size || defaultConfig.font_size,
+          set: (value) => {
+            config.font_size = value;
+            window.elementSdk.setConfig({ font_size: value });
+          }
+        }
+      };
+    }
+
+    function mapToEditPanelValues(config) {
+      return new Map([
+        ['hero_title', config.hero_title || defaultConfig.hero_title],
+        ['hero_subtitle', config.hero_subtitle || defaultConfig.hero_subtitle],
+        ['form_title', config.form_title || defaultConfig.form_title],
+        ['form_subtitle', config.form_subtitle || defaultConfig.form_subtitle],
+        ['submit_button', config.submit_button || defaultConfig.submit_button]
+      ]);
+    }
+
+    // Scroll animations
+    const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+    const scrollObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          scrollObserver.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.scroll-animate').forEach(el => {
+      scrollObserver.observe(el);
+    });
+
+    // ==================== NEW FORM SUBMISSION HANDLER ====================
+    document.getElementById('contactForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      const formMessage = document.getElementById('form-message');
+      const submitButton = document.getElementById('submit-button');
+      const buttonText = document.getElementById('button-text');
+      const loadingSpinner = document.getElementById('loading-spinner');
+
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const subject = document.getElementById('subject').value.trim();
+      const message = document.getElementById('message').value.trim();
+      const website = document.getElementById('website').value.trim();
+
+      // Honeypot spam protection
+      if (website !== '') {
+        formMessage.innerHTML = '<p class="text-red-400">Spam detected.</p>';
+        return;
+      }
+
+      if (!name || !email || !subject || !message) {
+        formMessage.innerHTML = '<p class="text-red-400">Please fill in all required fields.</p>';
+        return;
+      }
+
+      // Loading state
+      submitButton.disabled = true;
+      buttonText.textContent = 'Sending...';
+      loadingSpinner.classList.remove('hidden');
+
+      try {
+        const formData = new FormData(this);
+
+        const response = await fetch('send_email.php', {
+          method: 'POST',
+          body: formData
+        });
+
+        const result = await response.text();
+
+        if (response.ok && result.toLowerCase().includes('success')) {
+          formMessage.innerHTML = `<p class="text-green-400 font-medium">Thank you! Your message has been sent successfully.<br>We'll get back to you within 24 hours.</p>`;
+          this.reset();
+        } else {
+          formMessage.innerHTML = `<p class="text-red-400">Failed to send your message. Please try again.</p>`;
+        }
+
+      } catch (error) {
+        formMessage.innerHTML = `<p class="text-red-400">Connection error. Please check your internet and try again.</p>`;
+      } finally {
+        setTimeout(() => {
+          submitButton.disabled = false;
+          buttonText.textContent = 'Send Message';
+          loadingSpinner.classList.add('hidden');
+        }, 2500);
+      }
+    });
+
+    // Element SDK initialization
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange,
+        mapToCapabilities,
+        mapToEditPanelValues
+      });
+    }
+</script>
+
+
+
+</body>
+</html>

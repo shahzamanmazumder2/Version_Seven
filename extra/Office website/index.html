@@ -1,0 +1,2159 @@
+<!doctype html>
+<html lang="en" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cloud Connect AI</title>
+
+
+  <!-- 2. Tailwind CDN as fallback (only loads if needed) -->
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+
+    <!-- Favicon -->
+  <link rel="icon" type="image/png" href="image/logo.png">
+
+  
+  <style>
+    * { font-family: 'Space Grotesk', sans-serif; }
+    
+    .gradient-bg {
+      background: linear-gradient(135deg, #0a0e27 0%, #1a1a3e 50%, #0d0d1f 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    /* Auto-rotating tech backgrounds */
+    .hero-gradient {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      z-index: 1;
+      transition: opacity 8s ease-in-out;
+    }
+    
+    @keyframes bgFadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    /* Tech pattern overlay */
+    .tech-pattern {
+      position: absolute;
+      inset: 0;
+      opacity: 0.03;
+      background-image: 
+        linear-gradient(0deg, transparent 24%, rgba(59, 130, 246, 0.05) 25%, rgba(59, 130, 246, 0.05) 26%, transparent 27%, transparent 74%, rgba(59, 130, 246, 0.05) 75%, rgba(59, 130, 246, 0.05) 76%, transparent 77%, transparent),
+        linear-gradient(90deg, transparent 24%, rgba(59, 130, 246, 0.05) 25%, rgba(59, 130, 246, 0.05) 26%, transparent 27%, transparent 74%, rgba(59, 130, 246, 0.05) 75%, rgba(59, 130, 246, 0.05) 76%, transparent 77%, transparent);
+      background-size: 50px 50px;
+      z-index: 2;
+    }
+    
+    .glow-text {
+      text-shadow: 0 0 80px rgba(59, 130, 246, 0.6);
+    }
+    
+    .btn-glow {
+      box-shadow: 0 0 30px rgba(59, 130, 246, 0.4), inset 0 1px 0 rgba(255,255,255,0.1);
+    }
+    
+    .btn-glow:hover {
+      box-shadow: 0 0 50px rgba(59, 130, 246, 0.6), inset 0 1px 0 rgba(255,255,255,0.2);
+    }
+    
+    .glass {
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    
+    .float-animation {
+      animation: float 6s ease-in-out infinite;
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0); }
+      25% { transform: translate(30px, -40px); }
+      50% { transform: translate(-20px, -60px); }
+      75% { transform: translate(40px, -30px); }
+    }
+    
+    @keyframes floatReverse {
+      0%, 100% { transform: translate(0, 0); }
+      25% { transform: translate(-35px, 45px); }
+      50% { transform: translate(25px, 55px); }
+      75% { transform: translate(-40px, 35px); }
+    }
+    
+    @keyframes floatSlow {
+      0%, 100% { transform: translate(0, 0); }
+      33% { transform: translate(50px, -50px); }
+      66% { transform: translate(-40px, 40px); }
+    }
+    
+    @keyframes floatFast {
+      0%, 100% { transform: translate(0, 0); }
+      20% { transform: translate(-30px, -35px); }
+      40% { transform: translate(35px, -25px); }
+      60% { transform: translate(-35px, 30px); }
+      80% { transform: translate(30px, 35px); }
+    }
+    zz
+    .fade-in {
+      animation: fadeIn 0.8s ease-out forwards;
+      opacity: 0;
+    }
+    
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+    
+    .slide-up {
+      animation: slideUp 0.8s ease-out forwards;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    
+    @keyframes slideUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .delay-100 { animation-delay: 0.1s; }
+    .delay-200 { animation-delay: 0.2s; }
+    .delay-300 { animation-delay: 0.3s; }
+    .delay-400 { animation-delay: 0.4s; }
+    .delay-500 { animation-delay: 0.5s; }
+    
+    .orb {
+      position: absolute;
+      border-radius: 5%;
+      filter: blur(0px);
+      opacity: 0.05;
+      z-index: 3;
+    }
+    
+    .nav-link {
+      position: relative;
+    }
+
+    
+    
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+      transition: width 0.3s ease;
+    }
+    
+    .nav-link.active::after {
+      width: 100%;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    
+    .content-wrapper {
+      position: relative;
+      z-index: 10;
+    }
+
+    /* Scroll Animation Utilities */
+    .scroll-animate {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .scroll-animate.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .scroll-animate-left {
+      opacity: 0;
+      transform: translateX(-60px);
+      transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .scroll-animate-left.in-view {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .scroll-animate-right {
+      opacity: 0;
+      transform: translateX(60px);
+      transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .scroll-animate-right.in-view {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .service-card {
+      transition: all 0.4s ease;
+      border: 2px solid transparent;
+    }
+
+    .service-card:hover {
+      transform: translateY(-8px);
+      border-color: #3b82f6;
+      box-shadow: 0 20px 40px rgba(59, 130, 246, 0.2);
+    }
+
+    .case-study-card {
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s ease;
+    }
+
+    .case-study-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 50px rgba(59, 130, 246, 0.3);
+    }
+
+    .case-study-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 0%, rgba(10, 14, 39, 0.9) 100%);
+    }
+
+    .counter {
+      font-size: 2.5rem;
+      font-weight: bold;
+      background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .insight-card {
+      transition: all 0.4s ease;
+      border-left: 4px solid #3b82f6;
+    }
+
+    .insight-card:hover {
+      border-left-color: #8b5cf6;
+      transform: translateX(8px);
+      box-shadow: 0 10px 30px rgba(59, 130, 246, 0.15);
+    }
+
+    .testimonial-card {
+      position: relative;
+    }
+
+    .testimonial-quote {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      font-style: italic;
+    }
+
+    .star-rating {
+      color: #fbbf24;
+      font-size: 1.2rem;
+      letter-spacing: 2px;
+    }
+
+    @keyframes slideInCarousel {
+      from {
+        opacity: 0;
+        transform: translateX(100%);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .carousel-item {
+      animation: slideInCarousel 0.6s ease-out;
+    }
+
+    .differentiator-icon {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .differentiator-block:hover .differentiator-icon {
+      transform: scale(1.1) rotate(5deg);
+    }
+
+    .cta-section {
+      background: linear-gradient(135deg, rgba(10, 14, 39, 0.8), rgba(30, 20, 60, 0.8));
+      border: 1px solid rgba(59, 130, 246, 0.3);
+    }
+  </style>
+  <style>body { box-sizing: border-box; }</style>
+
+
+
+ </head>
+ <body class="h-full">
+  <div id="app-wrapper" class="h-full w-full gradient-bg overflow-auto">
+   <!-- Dynamic gradient background -->
+   <div class="hero-gradient"></div><!-- Tech grid pattern -->
+   <div class="tech-pattern"></div>
+   
+   
+   
+   <!-- Floating Orbs - Dynamic Background -->
+   <div class="orb w-96 h-96 bg-blue-600 top-0 left-0 hidden md:block" style="position: fixed; animation: float 15s ease-in-out infinite;"></div>
+   <div class="orb w-72 h-72 bg-purple-600 top-1/4 right-0 hidden md:block" style="position: fixed; animation: floatReverse 18s ease-in-out infinite; animation-delay: -2s;"></div>
+   <div class="orb w-56 h-56 bg-indigo-600 bottom-0 left-1/3 hidden md:block" style="position: fixed; animation: floatSlow 20s ease-in-out infinite; animation-delay: -4s;"></div>
+   <div class="orb w-48 h-48 bg-cyan-500 top-1/2 right-1/4 hidden md:block" style="position: fixed; animation: floatFast 12s ease-in-out infinite; animation-delay: -1s;"></div>
+   <div class="orb w-64 h-64 bg-blue-500 bottom-1/4 left-0 hidden md:block" style="position: fixed; animation: float 16s ease-in-out infinite; animation-delay: -3s;"></div>
+   <div class="orb w-40 h-40 bg-purple-500 top-1/3 left-1/2 hidden md:block" style="position: fixed; animation: floatReverse 14s ease-in-out infinite; animation-delay: -5s;"></div>
+   <div class="orb w-32 h-32 bg-indigo-500 top-0 right-1/3 hidden md:block" style="position: fixed; animation: floatFast 13s ease-in-out infinite; animation-delay: -2.5s;"></div>
+   <div class="orb w-52 h-52 bg-cyan-600 bottom-1/3 right-0 hidden md:block" style="position: fixed; animation: floatSlow 19s ease-in-out infinite; animation-delay: -6s;"></div>
+   <div class="orb w-44 h-44 bg-blue-400 bottom-0 right-1/4 hidden md:block" style="position: fixed; animation: float 17s ease-in-out infinite; animation-delay: -3.5s;"></div>
+   <div class="orb w-36 h-36 bg-purple-400 top-1/4 left-1/4 hidden md:block" style="animation: floatFast 11s ease-in-out infinite; animation-delay: -4.5s;"></div>
+   
+   
+   <!-- Mobile orbs - subtle -->
+   <div class="orb w-48 h-48 bg-blue-600 top-0 left-0 md:hidden" style="position: fixed; animation: float 15s ease-in-out infinite; opacity: 0.07;"></div>
+   <div class="orb w-32 h-32 bg-purple-600 bottom-1/4 right-0 md:hidden" style="position: fixed; animation: floatReverse 18s ease-in-out infinite; animation-delay: -2s; opacity: 0.07;"></div>
+   
+   <!-- NEW: Extra Orb 1 for Mobile -->
+   <div class="orb w-44 h-44 bg-cyan-500 top-1/2 left-1/5 md:hidden" 
+        style="position: fixed; animation: floatFast 13s ease-in-out infinite; opacity: 0.1; animation-delay: -5s;"></div>
+   
+   <!-- NEW: Extra Orb 2 for Mobile -->
+   <div class="orb w-20 h-20 bg-yellow-600 bottom-1/2 right-1/4 md:hidden" 
+        style="position: fixed; animation: floatSlow 17s ease-in-out infinite; opacity: 0.09; animation-delay: -8s;"></div>
+   
+   
+   
+   
+   <!-- Content Wrapper -->
+   <div class="content-wrapper">
+
+
+
+
+<!-- Navbar -->
+    <!-- Navbar -->
+<nav class="relative fade-in">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-20">
+
+<!-- Logo - Clickable -->
+<a href="index.html" class="flex items-center gap-2 group">
+  <div class="w-10 h-8 rounded-xl flex items-center justify-center shadow-lg overflow-hidden">
+    <img src="image/logo.png" alt="CCAI Logo" class="h-8 w-auto transition-transform group-hover:scale-105">
+  </div>
+  <span id="brand-name" class="text-white font-bold text-xl tracking-tight">CCAI</span>
+</a>
+
+
+      <!-- Desktop Navigation -->
+      <div class="hidden md:flex items-center gap-8">
+        <a href="./index.html"      class="nav-link nav-item text-gray-300 hover:text-white transition-colors text-sm font-medium" data-page="home">Home</a>
+        <a href="./services.html"  class="nav-link nav-item text-gray-300 hover:text-white transition-colors text-sm font-medium" data-page="solutions">Solutions</a>
+        <a href="./aboutus.html"    class="nav-link nav-item text-gray-300 hover:text-white transition-colors text-sm font-medium" data-page="about">About</a>
+        <a href="./research.html"   class="nav-link nav-item text-gray-300 hover:text-white transition-colors text-sm font-medium" data-page="research">Research</a>
+      </div>
+
+      <!-- Contact Button (Desktop) -->
+      <div class="hidden md:flex items-center gap-4">
+        <a href="./contact.html">
+          <button class="px-6 py-2.5 bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-sm font-semibold rounded-xl hover:from-blue-500 hover:to-indigo-500 transition-all duration-300 shadow-lg shadow-blue-900/20 hover:shadow-blue-700/30 btn-glow">
+            Contact Us
+          </button>
+        </a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button id="mobile-menu-btn" class="md:hidden text-gray-300 hover:text-white p-2 focus:outline-none">
+        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+          <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden glass rounded-2xl mt-3 p-5 border border-white/5">
+      <div class="flex flex-col gap-3">
+        <a href="./index.html"     class="text-gray-200 hover:text-white transition-colors text-base font-medium py-2.5 px-4 rounded-lg hover:bg-white/5">Home</a>
+        <a href="./aboutus.html"   class="text-gray-200 hover:text-white transition-colors text-base font-medium py-2.5 px-4 rounded-lg hover:bg-white/5">About</a>
+        <a href="./services.html" class="text-gray-200 hover:text-white transition-colors text-base font-medium py-2.5 px-4 rounded-lg hover:bg-white/5">Solutions</a>
+        <a href="./research.html"  class="text-gray-200 hover:text-white transition-colors text-base font-medium py-2.5 px-4 rounded-lg hover:bg-white/5">Research</a>
+        <a href="./contact.html"   class="mt-3 px-6 py-3.5 bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-base font-semibold rounded-xl hover:from-blue-500 hover:to-indigo-500 transition-all duration-300 text-center shadow-md">
+          Contact Us
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+
+
+
+
+
+
+
+
+<!-- Hero Section -->
+<!-- Hero Section -->
+<!-- HERO SECTION -->
+<main class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 sm:pt-24 lg:pt-10 pb-20">
+
+  <!-- TOP PART -->
+  <div class="grid lg:grid-cols-2 items-center gap-12">
+
+    <!-- LEFT: TEXT -->
+    <div class="text-left lg:text-left max-w-4xl mx-auto lg:mx-0">
+
+      <div class="inline-flex items-center gap-2 px-4 py-2 glass rounded-full mb-8">
+        <span class="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></span>
+        <span class="text-gray-300 text-sm">Connecting enterprises globally</span>
+      </div>
+
+      <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white leading-tight mb-6">
+        Born to<br>
+        <span class="bg-gradient-to-r from-blue-400 via-cyan-400 to-purple-400 bg-clip-text text-transparent">
+          Connect
+        </span>
+      </h1>
+
+      <p class="text-lg sm:text-xl text-gray-400 max-w-2xl mx-auto lg:mx-0 mb-10">
+       Cloud Connect AI brings together intelligent automation, AI-driven solutions and secure digital systems into one seamless platform.
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 mb-20">
+        <button onclick="window.location.href='contact.html'" 
+                class="px-8 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold rounded-xl transition-all duration-300 shadow-lg shadow-blue-500/30">
+          Get Started Free
+        </button>
+        
+        <button onclick="window.location.href='services.html'" 
+                class="px-8 py-4 glass hover:bg-white/10 text-white font-bold rounded-xl transition-all duration-300">
+          Explore More
+        </button>
+      </div>
+
+    </div>
+
+    <!-- RIGHT: IMAGE SLIDER -->
+    <div class="relative flex justify-center lg:justify-end">
+
+      <div class="relative w-full max-w-md h-[320px] rounded-3xl overflow-hidden shadow-2xl border border-white/10">
+
+        <!-- IMAGE 1 -->
+        <div id="img1"
+             class="absolute inset-0 bg-cover bg-center bg-no-repeat rounded-3xl transition-opacity duration-1000 ease-in-out opacity-100"
+             style="background-image: url('image/car_01.png')">
+
+          <!-- Dark Overlay -->
+          <div class="absolute inset-0 bg-gradient-to-b from-black/30 via-black/50 to-black/70 rounded-3xl"></div>
+
+          <!-- Center Title -->
+          <div class="absolute inset-0 flex items-center justify-center text-center text-white px-6 z-10">
+            <h3 id="title1" class="text-3xl font-bold tracking-tight">Cloud Infrastructure</h3>
+          </div>
+
+          <!-- Bottom Glass Card -->
+          <div class="absolute bottom-6 left-1/2 -translate-x-1/2 backdrop-blur-xl bg-white/10 border border-white/20 rounded-2xl px-6 py-4 text-white text-center w-[88%] z-10">
+            <p id="desc1" class="text-sm opacity-90">Unified, secure, and infinitely scalable enterprise systems.</p>
+          </div>
+        </div>
+
+        <!-- IMAGE 2 -->
+        <div id="img2"
+             class="absolute inset-0 bg-cover bg-center bg-no-repeat rounded-3xl transition-opacity duration-1000 ease-in-out opacity-0"
+             style="background-image: url('image/car_02.png')">
+
+          <!-- Dark Overlay -->
+          <div class="absolute inset-0 bg-gradient-to-b from-black/30 via-black/50 to-black/70 rounded-3xl"></div>
+
+          <!-- Center Title -->
+          <div class="absolute inset-0 flex items-center justify-center text-center text-white px-6 z-10">
+            <h3 id="title2" class="text-3xl font-bold tracking-tight">AI Automation</h3>
+          </div>
+
+          <!-- Bottom Glass Card -->
+          <div class="absolute bottom-6 left-1/2 -translate-x-1/2 backdrop-blur-xl bg-white/10 border border-white/20 rounded-2xl px-6 py-4 text-white text-center w-[88%] z-10">
+            <p id="desc2" class="text-sm opacity-90">Intelligent automation that scales with your business.</p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- STATS - Suitable for New Bangladeshi Startup -->
+<!-- STATS / FOUNDATION -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-5xl mx-auto mt-16">
+
+  <!-- Built in Bangladesh -->
+  <div class="glass rounded-2xl p-6 text-center hover:scale-105 transition-transform duration-300">
+    <div class="text-lg font-bold text-blue-400 mb-1">Built in Bangladesh</div>
+    <div class="text-gray-400 text-sm">Local roots with global ambition</div>
+  </div>
+
+  <!-- AI-First -->
+  <div class="glass rounded-2xl p-6 text-center hover:scale-105 transition-transform duration-300">
+    <div class="text-lg font-bold text-purple-400 mb-1">AI-First</div>
+    <div class="text-gray-400 text-sm">Intelligent solutions from day one</div>
+  </div>
+
+  <!-- Security First -->
+  <div class="glass rounded-2xl p-6 text-center hover:scale-105 transition-transform duration-300">
+    <div class="text-lg font-bold text-cyan-400 mb-1">Security First</div>
+    <div class="text-gray-400 text-sm">Enterprise-grade protection</div>
+  </div>
+
+  <!-- Global Ready -->
+  <div class="glass rounded-2xl p-6 text-center hover:scale-105 transition-transform duration-300">
+    <div class="text-lg font-bold text-blue-300 mb-1">Global Ready</div>
+    <div class="text-gray-400 text-sm">International quality</div>
+  </div>
+
+</div>
+
+</main>
+
+<style>
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+
+#img1, #img2 {
+  animation: float 7s ease-in-out infinite;
+}
+</style>
+
+<script>
+window.onload = function () {
+
+  const slides = [
+    { 
+      img: "image/car_01.png", 
+      title: "Cloud Infrastructure",
+      desc: "Enterprise-grade cloud solutions with unmatched reliability"
+    },
+    { 
+      img: "image/car_02.png", 
+      title: "AI Automation",
+      desc: "Intelligent workflows that scale with your business"
+    },
+    { 
+      img: "image/car_03.png", 
+      title: "Modern Development",
+      desc: "Lightning-fast deployment and DevOps excellence"
+    },
+    { 
+      img: "image/car_04.png", 
+      title: "Enterprise Security",
+      desc: "Zero-trust architecture protecting your most valuable assets"
+    },
+    { 
+      img: "image/car_05.png", 
+      title: "Global Connectivity",
+      desc: "Seamless connection across continents and time zones"
+    },
+    { 
+      img: "image/car_06.png", 
+      title: "Data Intelligence",
+      desc: "Real-time insights powered by advanced analytics"
+    },
+    { 
+      img: "image/car_07.png", 
+      title: "Scalable Architecture",
+      desc: "Built to grow from startup to global enterprise"
+    }
+  ];
+
+  let index = 0;
+  let showingFirst = true;
+
+  const img1 = document.getElementById("img1");
+  const img2 = document.getElementById("img2");
+
+  const title1 = document.getElementById("title1");
+  const title2 = document.getElementById("title2");
+  const desc1 = document.getElementById("desc1");
+  const desc2 = document.getElementById("desc2");
+
+  // Change slide every 5.5 seconds
+  setInterval(() => {
+    index = (index + 1) % slides.length;
+    const slide = slides[index];
+
+    if (showingFirst) {
+      // Update img2 and show it
+      img2.style.backgroundImage = `url('${slide.img}')`;
+      title2.textContent = slide.title;
+      desc2.textContent = slide.desc;
+      
+      img2.style.opacity = "1";
+      img1.style.opacity = "0";
+    } else {
+      // Update img1 and show it
+      img1.style.backgroundImage = `url('${slide.img}')`;
+      title1.textContent = slide.title;
+      desc1.textContent = slide.desc;
+      
+      img1.style.opacity = "1";
+      img2.style.opacity = "0";
+    }
+
+    showingFirst = !showingFirst;
+
+  }, 5500);
+
+};
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+
+
+    
+    
+    
+    <!-- Core Services Overview -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    <!-- Core Services Overview (for index.html) -->
+    <section class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 scroll-animate">
+     <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-bold text-white mb-4 scroll-animate">Our Core Services</h2>
+      <p class="text-xl text-gray-400 max-w-2xl mx-auto scroll-animate">Enterprise-grade technology solutions across digital transformation, cybersecurity, AI, and intelligence</p>
+     </div>
+     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Service Card 1: Digital Transformation -->
+      <div class="service-card glass rounded-2xl p-8 scroll-animate-left">
+       <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center mb-6">
+        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+        </svg>
+       </div>
+       <h3 class="text-xl font-bold text-white mb-3">Digital Transformation</h3>
+       <p class="text-gray-400 mb-6">Modernizing legacy systems with AI, cloud, and intelligent automation for future-ready enterprises.</p>
+       <a href="services.html#dt-section" class="text-blue-400 hover:text-blue-300 font-semibold transition-colors">Learn More →</a>
+      </div>
+
+      <!-- Service Card 2: Cybersecurity Solutions -->
+      <div class="service-card glass rounded-2xl p-8 scroll-animate">
+       <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center mb-6">
+        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+        </svg>
+       </div>
+       <h3 class="text-xl font-bold text-white mb-3">Cybersecurity Solutions</h3>
+       <p class="text-gray-400 mb-6">Comprehensive protection including VAPT, threat monitoring, and proactive defense for critical assets.</p>
+       <a href="services.html#cs-section" class="text-blue-400 hover:text-blue-300 font-semibold transition-colors">Learn More →</a>
+      </div>
+
+      <!-- Service Card 3: Big Data Analytics -->
+      <div class="service-card glass rounded-2xl p-8 scroll-animate-right">
+       <div class="w-16 h-16 bg-gradient-to-br from-cyan-500 to-cyan-600 rounded-xl flex items-center justify-center mb-6">
+        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+        </svg>
+       </div>
+       <h3 class="text-xl font-bold text-white mb-3">Big Data Analytics</h3>
+       <p class="text-gray-400 mb-6">Actionable insights from complex data using advanced OSINT and business intelligence.</p>
+       <a href="services.html#bd-section" class="text-blue-400 hover:text-blue-300 font-semibold transition-colors">Learn More →</a>
+      </div>
+
+      <!-- Service Card 4: Artificial Intelligence -->
+      <div class="service-card glass rounded-2xl p-8 scroll-animate-left">
+       <div class="w-16 h-16 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-xl flex items-center justify-center mb-6">
+        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+        </svg>
+       </div>
+       <h3 class="text-xl font-bold text-white mb-3">Artificial Intelligence</h3>
+       <p class="text-gray-400 mb-6">Next-generation AI for misinformation detection, conversational systems, and intelligent OSINT.</p>
+       <a href="services.html#ai-section" class="text-blue-400 hover:text-blue-300 font-semibold transition-colors">Learn More →</a>
+      </div>
+
+      <!-- Service Card 5: Software Development -->
+      <div class="service-card glass rounded-2xl p-8 scroll-animate">
+       <div class="w-16 h-16 bg-gradient-to-br from-pink-500 to-pink-600 rounded-xl flex items-center justify-center mb-6">
+        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+        </svg>
+       </div>
+       <h3 class="text-xl font-bold text-white mb-3">Software Development</h3>
+       <p class="text-gray-400 mb-6">Intelligence-driven custom software for defense, security, and enterprise platforms.</p>
+       <a href="services.html#sd-section" class="text-blue-400 hover:text-blue-300 font-semibold transition-colors">Learn More →</a>
+      </div>
+
+      <!-- Service Card 6: Human Resource Development -->
+      <div class="service-card glass rounded-2xl p-8 scroll-animate-right">
+       <div class="w-16 h-16 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center mb-6">
+        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C6.5 6.253 2 10.998 2 17s4.5 10.747 10 10.747c5.5 0 10-4.998 10-10.747S17.5 6.253 12 6.253z" />
+        </svg>
+       </div>
+       <h3 class="text-xl font-bold text-white mb-3">Human Resource Management</h3>
+       <p class="text-gray-400 mb-6">Specialized training in cybersecurity, AI, and digital transformation for your workforce.</p>
+       <a href="services.html#hr-section" class="text-blue-400 hover:text-blue-300 font-semibold transition-colors">Learn More →</a>
+      </div>
+     </div>
+    </section>
+    
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section>
+
+
+
+<!-- Technologies We Work On Section -->
+<div id="tech-we-work-section">
+  <p style="color:#888; text-align:center; padding:60px;">Loading technologies section...</p>
+</div>
+
+<script>
+async function loadTechWeWork() {
+  try {
+    const res = await fetch('tech_we_work.html');
+    const html = await res.text();
+    document.getElementById('tech-we-work-section').innerHTML = html;
+
+    // Trigger animations after loading
+    setTimeout(() => {
+      const observer = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+          document.querySelector('.tech-text').classList.add('in-view');
+          document.querySelector('.tech-grid').classList.add('in-view');
+
+          document.querySelectorAll('.tech-card').forEach((card, index) => {
+            setTimeout(() => {
+              card.classList.add('in-view');
+            }, 100 + (index * 80));
+          });
+        }
+      }, { threshold: 0.2 });
+
+      const section = document.querySelector('.section-technologies');
+      if (section) observer.observe(section);
+    }, 150);
+
+  } catch (e) {
+    console.error('Failed to load Technologies We Work section', e);
+    document.getElementById('tech-we-work-section').innerHTML = 
+      `<p style="color:red; text-align:center; padding:60px;">Failed to load technologies section.</p>`;
+  }
+}
+
+// Load when page is ready
+document.addEventListener('DOMContentLoaded', loadTechWeWork);
+</script>
+
+
+
+
+
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    <!-- Featured Case Studies -->
+<!-- Featured Case Studies with Improved Modal -->
+<section class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+  <div class="text-center mb-16 scroll-animate">
+    <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">Featured Case Studies</h2>
+    <p class="text-xl text-gray-400 max-w-2xl mx-auto">Real-world impact from our security interventions</p>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+    
+    <!-- Case Study 1 -->
+    <div onclick="showCaseModal(1)" class="case-study-card glass rounded-2xl overflow-hidden h-96 scroll-animate-left cursor-pointer hover:scale-[1.02] transition-all duration-300">
+      <div class="absolute inset-0 bg-gradient-to-br from-blue-600 to-purple-600 opacity-80"></div>
+      <div class="case-study-overlay"></div>
+      <div class="relative h-full p-8 flex flex-col justify-end text-white">
+        <div class="inline-block bg-blue-500 text-white px-3 py-1 rounded-full text-sm font-semibold mb-4 w-fit">
+          Financial Services
+        </div>
+        <h3 class="text-2xl font-bold mb-3">Paramilitary VAPT Deployment</h3>
+        <p class="text-gray-200 mb-6">Neutralized 47 critical vulnerabilities before they could be exploited.</p>
+        <span class="text-blue-300 hover:text-blue-200 font-semibold transition-colors inline-flex items-center">
+          Read Full Story →
+        </span>
+      </div>
+    </div>
+
+    <!-- Case Study 2 -->
+    <div onclick="showCaseModal(2)" class="case-study-card glass rounded-2xl overflow-hidden h-96 scroll-animate cursor-pointer hover:scale-[1.02] transition-all duration-300">
+      <div class="absolute inset-0 bg-gradient-to-br from-indigo-600 to-cyan-600 opacity-80"></div>
+      <div class="case-study-overlay"></div>
+      <div class="relative h-full p-8 flex flex-col justify-end text-white">
+        <div class="inline-block bg-purple-500 text-white px-3 py-1 rounded-full text-sm font-semibold mb-4 w-fit">
+          Healthcare
+        </div>
+        <h3 class="text-2xl font-bold mb-3">Enterprise Threat Neutralization</h3>
+        <p class="text-gray-200 mb-6">Prevented 12 advanced persistent threat campaigns in 6 months.</p>
+        <span class="text-blue-300 hover:text-blue-200 font-semibold transition-colors inline-flex items-center">
+          Read Full Story →
+        </span>
+      </div>
+    </div>
+
+    <!-- Case Study 3 -->
+    <div onclick="showCaseModal(3)" class="case-study-card glass rounded-2xl overflow-hidden h-96 scroll-animate-right cursor-pointer hover:scale-[1.02] transition-all duration-300">
+      <div class="absolute inset-0 bg-gradient-to-br from-cyan-600 to-blue-600 opacity-80"></div>
+      <div class="case-study-overlay"></div>
+      <div class="relative h-full p-8 flex flex-col justify-end text-white">
+        <div class="inline-block bg-cyan-500 text-white px-3 py-1 rounded-full text-sm font-semibold mb-4 w-fit">
+          Technology
+        </div>
+        <h3 class="text-2xl font-bold mb-3">Digital Resilience Transformation</h3>
+        <p class="text-gray-200 mb-6">Improved security posture by 340%, achieving industry-leading compliance.</p>
+        <span class="text-blue-300 hover:text-blue-200 font-semibold transition-colors inline-flex items-center">
+          Read Full Story →
+        </span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Improved Case Study Modal -->
+<div id="caseModal" class="fixed inset-0 bg-black/80 hidden flex items-center justify-center z-[1000] p-4">
+  <div class="bg-[#0f172a] rounded-3xl max-w-3xl w-full max-h-[92vh] overflow-hidden shadow-2xl border border-white/10">
+
+    <!-- Modal Header -->
+    <div class="flex justify-between items-center border-b border-white/10 px-8 py-6">
+      <h2 id="modalTitle" class="text-2xl font-bold text-white">Case Study</h2>
+      <button onclick="closeCaseModal()" 
+              class="text-4xl leading-none text-gray-400 hover:text-white transition-colors w-10 h-10 flex items-center justify-center">
+        ×
+      </button>
+    </div>
+
+    <!-- Modal Body -->
+    <div id="modalContent" class="p-8 md:p-10 overflow-y-auto max-h-[calc(92vh-180px)] text-gray-300 leading-relaxed custom-scroll">
+      <!-- Dynamic content injected here -->
+    </div>
+
+    <!-- Modal Footer - Fixed & Clear -->
+    <div class="border-t border-white/10 px-8 py-8 bg-[#0a0e1f]">
+      <div class="flex flex-col sm:flex-row gap-4 justify-end">
+        <button onclick="closeCaseModal()" 
+                class="px-8 py-3.5 text-gray-300 hover:text-white transition-colors font-medium">
+          Close
+        </button>
+        <a href="contact.html" 
+           class="px-10 py-3.5 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold rounded-2xl transition-all duration-300 text-center shadow-lg shadow-blue-500/30">
+          Get Similar Solution for Your Business
+        </a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+// Case Studies Data
+const caseStudies = {
+  1: {
+    title: "Paramilitary VAPT Deployment",
+    content: `
+      <div class="prose prose-invert max-w-none text-base">
+        <p class="text-lg leading-relaxed">We were engaged by a leading financial institution to conduct comprehensive Vulnerability Assessment and Penetration Testing across their critical infrastructure.</p>
+        
+        <h4 class="text-white text-xl font-semibold mt-10 mb-4">The Challenge</h4>
+        <p>The client was facing increasing sophisticated threats targeting their core banking systems and customer data.</p>
+        
+        <h4 class="text-white text-xl font-semibold mt-10 mb-4">Our Approach</h4>
+        <ul class="list-disc pl-6 space-y-3">
+          <li>Multi-phase network and application penetration testing</li>
+          <li>API security evaluation</li>
+          <li>Social engineering simulation</li>
+          <li>Zero-trust architecture review</li>
+        </ul>
+        
+        <h4 class="text-white text-xl font-semibold mt-10 mb-4">Results</h4>
+        <p class="text-green-400 font-medium text-lg">• 47 critical & high vulnerabilities neutralized<br>
+           • Security posture improved by 280%<br>
+           • Zero successful exploits post-deployment</p>
+      </div>
+    `
+  },
+  2: {
+    title: "Enterprise Threat Neutralization",
+    content: `
+      <div class="prose prose-invert max-w-none text-base">
+        <p class="text-lg leading-relaxed">A major healthcare provider was under sustained attack from multiple Advanced Persistent Threats (APTs).</p>
+        
+        <h4 class="text-white text-xl font-semibold mt-10 mb-4">Challenge</h4>
+        <p>12 different APT campaigns attempting to exfiltrate sensitive patient and research data.</p>
+        
+        <h4 class="text-white text-xl font-semibold mt-10 mb-4">Outcome</h4>
+        <p class="text-green-400 font-medium text-lg">All threats neutralized within 6 months<br>
+           No patient data compromised<br>
+           Full recovery achieved with zero downtime</p>
+      </div>
+    `
+  },
+  3: {
+    title: "Digital Resilience Transformation",
+    content: `
+      <div class="prose prose-invert max-w-none text-base">
+        <p class="text-lg leading-relaxed">A large technology company wanted to move from reactive to proactive security posture.</p>
+        
+        <h4 class="text-white text-xl font-semibold mt-10 mb-4">Key Achievements</h4>
+        <ul class="list-disc pl-6 space-y-3">
+          <li>Security posture improved by 340%</li>
+          <li>Achieved industry-leading compliance</li>
+          <li>Implemented full Zero Trust Architecture</li>
+          <li>Reduced threat detection time by 87%</li>
+        </ul>
+      </div>
+    `
+  }
+};
+
+function showCaseModal(id) {
+  const modal = document.getElementById('caseModal');
+  const titleEl = document.getElementById('modalTitle');
+  const contentEl = document.getElementById('modalContent');
+
+  const study = caseStudies[id];
+  titleEl.textContent = study.title;
+  contentEl.innerHTML = study.content;
+
+  modal.classList.remove('hidden');
+  modal.classList.add('flex');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeCaseModal() {
+  const modal = document.getElementById('caseModal');
+  modal.classList.add('hidden');
+  modal.classList.remove('flex');
+  document.body.style.overflow = 'visible';
+}
+
+// Close modal when clicking outside content
+document.getElementById('caseModal').addEventListener('click', function(e) {
+  if (e.target === this) closeCaseModal();
+});
+
+// Close with Escape key
+document.addEventListener('keydown', (e) => {
+  if (e.key === "Escape") {
+    const modal = document.getElementById('caseModal');
+    if (!modal.classList.contains('hidden')) closeCaseModal();
+  }
+});
+</script>
+    
+    
+    
+    <!-- Why Choose Us / Differentiators -->
+    <section class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 scroll-animate">
+     <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-bold text-white mb-4 scroll-animate">Why Choose Us</h2>
+      <p class="text-xl text-gray-400 max-w-2xl mx-auto scroll-animate">Unmatched expertise and proven track record in enterprise security</p>
+     </div>
+     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Differentiator 1 -->
+      <div class="differentiator-block glass rounded-2xl p-8 scroll-animate-left hover:border-blue-500 border border-transparent transition-all">
+       <div class="differentiator-icon">
+        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m7 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+       </div>
+       <h3 class="text-lg font-bold text-white mb-2">Defense-Grade Expertise</h3>
+       <p class="text-gray-400 text-sm">Team of certified security architects with decades of military-grade cybersecurity experience.</p>
+      </div><!-- Differentiator 2 -->
+      <div class="differentiator-block glass rounded-2xl p-8 scroll-animate hover:border-purple-500 border border-transparent transition-all">
+       <div class="differentiator-icon">
+        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+        </svg>
+       </div>
+       <h3 class="text-lg font-bold text-white mb-2">Proven in High-Stakes Environments</h3>
+       <p class="text-gray-400 text-sm">Battle-tested strategies deployed in mission-critical environments across Fortune 500 enterprises.</p>
+      </div><!-- Differentiator 3 -->
+      <div class="differentiator-block glass rounded-2xl p-8 scroll-animate-right hover:border-cyan-500 border border-transparent transition-all">
+       <div class="differentiator-icon">
+        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+        </svg>
+       </div>
+       <h3 class="text-lg font-bold text-white mb-2">End-to-End Delivery</h3>
+       <p class="text-gray-400 text-sm">Comprehensive solutions from assessment through implementation to 24/7 managed security operations.</p>
+      </div><!-- Differentiator 4 -->
+      <div class="differentiator-block glass rounded-2xl p-8 scroll-animate-left hover:border-blue-500 border border-transparent transition-all">
+       <div class="differentiator-icon">
+        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+        </svg>
+       </div>
+       <h3 class="text-lg font-bold text-white mb-2">OSINT + Premium Data Access</h3>
+       <p class="text-gray-400 text-sm">Exclusive access to classified threat intelligence and advanced reconnaissance capabilities.</p>
+      </div><!-- Differentiator 5 -->
+      <div class="differentiator-block glass rounded-2xl p-8 scroll-animate hover:border-purple-500 border border-transparent transition-all">
+       <div class="differentiator-icon">
+        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+       </div>
+       <h3 class="text-lg font-bold text-white mb-2">24/7 Global Support</h3>
+       <p class="text-gray-400 text-sm">Round-the-clock monitoring and response across all time zones with dedicated account teams.</p>
+      </div><!-- Differentiator 6 -->
+      <div class="differentiator-block glass rounded-2xl p-8 scroll-animate-right hover:border-cyan-500 border border-transparent transition-all">
+       <div class="differentiator-icon">
+        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+       </div>
+       <h3 class="text-lg font-bold text-white mb-2">Continuous Innovation</h3>
+       <p class="text-gray-400 text-sm">Constantly evolving threat detection powered by AI and machine learning advancements.</p>
+      </div>
+     </div>
+    </section>
+    
+    
+    
+    
+    
+    <!-- Impact Metrics Bar -->
+
+    <!-- Latest Insights / News Teaser -->
+    <section class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+     <div class="text-center mb-16 scroll-animate">
+      <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">Latest Insights</h2>
+      <p class="text-xl text-gray-400 max-w-2xl mx-auto">Stay informed on cyber threats and digital transformation</p>
+     </div>
+     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <!-- Insight 1 -->
+      <div class="insight-card glass rounded-2xl p-8 scroll-animate-left">
+       <div class="inline-block bg-blue-500/20 text-blue-300 px-3 py-1 rounded-full text-xs font-semibold mb-4">
+        AI Threats
+       </div>
+       <h3 class="text-xl font-bold text-white mb-3">The Rising Tide of AI-Powered Cyber Attacks</h3>
+       <p class="text-gray-400 text-sm mb-6">How adversaries are leveraging machine learning to evade traditional security measures.</p>
+       <p class="text-gray-500 text-xs">5 days ago</p>
+      </div><!-- Insight 2 -->
+      <div class="insight-card glass rounded-2xl p-8 scroll-animate">
+       <div class="inline-block bg-purple-500/20 text-purple-300 px-3 py-1 rounded-full text-xs font-semibold mb-4">
+        Compliance
+       </div>
+       <h3 class="text-xl font-bold text-white mb-3">2024 Regulatory Compliance Landscape</h3>
+       <p class="text-gray-400 text-sm mb-6">Navigate the evolving requirements across GDPR, CCPA, and emerging security frameworks.</p>
+       <p class="text-gray-500 text-xs">12 days ago</p>
+      </div><!-- Insight 3 -->
+      <div class="insight-card glass rounded-2xl p-8 scroll-animate-right">
+       <div class="inline-block bg-cyan-500/20 text-cyan-300 px-3 py-1 rounded-full text-xs font-semibold mb-4">
+        Digital Transformation
+       </div>
+       <h3 class="text-xl font-bold text-white mb-3">Building Security-First Enterprise Architecture</h3>
+       <p class="text-gray-400 text-sm mb-6">Strategic approaches to embedding security into every layer of digital infrastructure.</p>
+       <p class="text-gray-500 text-xs">18 days ago</p>
+      </div>
+     </div>
+    </section>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <!-- Testimonials / Client Quotes -->
+    <section class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+     <div class="text-center mb-16 scroll-animate">
+      <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">Client Testimonials</h2>
+      <p class="text-xl text-gray-400 max-w-2xl mx-auto">Trusted by security leaders across the globe</p>
+     </div>
+     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <!-- Testimonial 1 -->
+      <div class="testimonial-card glass rounded-2xl p-8 scroll-animate-left">
+       <div class="star-rating mb-4">
+        ★★★★★
+       </div>
+       <p class="testimonial-quote text-gray-300 mb-6">"Their rapid response to our security incident was instrumental in minimizing damage. Truly world-class expertise."</p>
+       <div class="flex items-center gap-4">
+        <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full"></div>
+        <div>
+         <p class="font-semibold text-white">Sarah Chen</p>
+         <p class="text-gray-400 text-sm">CTO, Financial Services</p>
+        </div>
+       </div>
+      </div><!-- Testimonial 2 -->
+      <div class="testimonial-card glass rounded-2xl p-8 scroll-animate">
+       <div class="star-rating mb-4">
+        ★★★★★
+       </div>
+       <p class="testimonial-quote text-gray-300 mb-6">"They transformed our security posture from reactive to proactive. The impact on our risk profile has been extraordinary."</p>
+       <div class="flex items-center gap-4">
+        <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-cyan-600 rounded-full"></div>
+        <div>
+         <p class="font-semibold text-white">Marcus Thompson</p>
+         <p class="text-gray-400 text-sm">CISO, Healthcare Corp</p>
+        </div>
+       </div>
+      </div><!-- Testimonial 3 -->
+      <div class="testimonial-card glass rounded-2xl p-8 scroll-animate-right">
+       <div class="star-rating mb-4">
+        ★★★★★
+       </div>
+       <p class="testimonial-quote text-gray-300 mb-6">"Best investment in security we've made. Their team understands our environment and threats like no one else."</p>
+       <div class="flex items-center gap-4">
+        <div class="w-12 h-12 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-full"></div>
+        <div>
+         <p class="font-semibold text-white">Elena Rodriguez</p>
+         <p class="text-gray-400 text-sm">Security Lead, Tech Innovation</p>
+        </div>
+       </div>
+      </div>
+     </div>
+    </section>
+    
+
+    
+    <!-- Features Section with Rotating Images -->
+    <!-- Platform Capabilities Section - Updated with Local Images -->
+    <section class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+     <div class="text-center mb-16 scroll-animate">
+      <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">Platform Capabilities</h2>
+      <p class="text-xl text-gray-400 max-w-2xl mx-auto">Advanced features built for modern enterprises</p>
+     </div>
+     
+     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      
+      <!-- Features List -->
+      <div class="space-y-6">
+        <!-- Feature 1 -->
+        <div class="feature-card glass rounded-2xl p-8 scroll-animate-left cursor-pointer group hover:border-blue-500 border border-transparent transition-all" data-feature="0">
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+            </div>
+            <div class="flex-1">
+              <h3 class="text-lg font-bold text-white mb-2">Real-Time Threat Detection</h3>
+              <p class="text-gray-400 text-sm">AI-powered monitoring that identifies and neutralizes threats in milliseconds.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="feature-card glass rounded-2xl p-8 scroll-animate cursor-pointer group hover:border-purple-500 border border-transparent transition-all" data-feature="1">
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+              </svg>
+            </div>
+            <div class="flex-1">
+              <h3 class="text-lg font-bold text-white mb-2">End-to-End Encryption</h3>
+              <p class="text-gray-400 text-sm">Military-grade encryption protecting all data in transit and at rest.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="feature-card glass rounded-2xl p-8 scroll-animate-right cursor-pointer group hover:border-cyan-500 border border-transparent transition-all" data-feature="2">
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 bg-gradient-to-br from-cyan-500 to-cyan-600 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+              </svg>
+            </div>
+            <div class="flex-1">
+              <h3 class="text-lg font-bold text-white mb-2">Advanced Analytics</h3>
+              <p class="text-gray-400 text-sm">Comprehensive dashboards with actionable intelligence and predictive insights.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature Images - Local Only -->
+      <div class="relative">
+        <!-- Desktop -->
+        <div class="hidden md:block">
+          <div class="relative w-full h-96 rounded-2xl overflow-hidden glass border border-blue-500/30">
+            <img id="feature-image-main" 
+                 src="image/home_feature1.png" 
+                 alt="Advanced Security Platform" 
+                 class="w-full h-full object-cover transition-all duration-500 hover:scale-105">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+            <div class="absolute bottom-0 left-0 right-0 p-4">
+              <p class="text-white text-sm font-semibold">Advanced Security Platform</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mobile -->
+        <div class="md:hidden">
+          <div class="relative w-full h-64 rounded-2xl overflow-hidden glass border border-blue-500/30">
+            <img id="feature-image-mobile" 
+                 src="image/home_feature1.png" 
+                 alt="Advanced Security Platform" 
+                 class="w-full h-full object-cover transition-all duration-500">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+          </div>
+        </div>
+      </div>
+
+     </div>
+    </section>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <!-- FAQ Section -->
+    <section class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+     <div class="text-center mb-16 scroll-animate">
+      <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">Frequently Asked Questions</h2>
+      <p class="text-xl text-gray-400">Quick answers to common security concerns</p>
+     </div>
+     <div class="space-y-4"><!-- FAQ Item 1 -->
+      <div class="faq-item glass rounded-2xl p-6 scroll-animate-left cursor-pointer group hover:border-blue-500 border border-transparent transition-all"><button class="w-full flex items-center justify-between text-left faq-toggle"> <span class="text-lg font-bold text-white group-hover:text-blue-400 transition-colors">How is my data secured?</span>
+        <svg class="w-6 h-6 text-blue-400 transition-transform duration-300" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+        </svg></button>
+       <p class="faq-content text-gray-400 mt-4 hidden max-h-0 overflow-hidden transition-all duration-300">We employ military-grade AES-256 encryption for all data at rest and TLS 1.3 for data in transit. Regular security audits and penetration testing ensure continuous protection.</p>
+      </div><!-- FAQ Item 2 -->
+      <div class="faq-item glass rounded-2xl p-6 scroll-animate cursor-pointer group hover:border-purple-500 border border-transparent transition-all"><button class="w-full flex items-center justify-between text-left faq-toggle"> <span class="text-lg font-bold text-white group-hover:text-purple-400 transition-colors">What's your uptime SLA?</span>
+        <svg class="w-6 h-6 text-purple-400 transition-transform duration-300" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+        </svg></button>
+       <p class="faq-content text-gray-400 mt-4 hidden max-h-0 overflow-hidden transition-all duration-300">We guarantee 99.99% uptime with 24/7 monitoring. In the rare event of an outage, we provide automatic failover to redundant systems across multiple geographic locations.</p>
+      </div><!-- FAQ Item 3 -->
+      <div class="faq-item glass rounded-2xl p-6 scroll-animate-right cursor-pointer group hover:border-cyan-500 border border-transparent transition-all"><button class="w-full flex items-center justify-between text-left faq-toggle"> <span class="text-lg font-bold text-white group-hover:text-cyan-400 transition-colors">Can you integrate with existing systems?</span>
+        <svg class="w-6 h-6 text-cyan-400 transition-transform duration-300" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+        </svg></button>
+       <p class="faq-content text-gray-400 mt-4 hidden max-h-0 overflow-hidden transition-all duration-300">Absolutely. Our platform supports 500+ integrations via REST APIs, webhooks, and native connectors for popular enterprise tools. Our technical team ensures seamless deployment.</p>
+      </div><!-- FAQ Item 4 -->
+      <div class="faq-item glass rounded-2xl p-6 scroll-animate-left cursor-pointer group hover:border-indigo-500 border border-transparent transition-all"><button class="w-full flex items-center justify-between text-left faq-toggle"> <span class="text-lg font-bold text-white group-hover:text-indigo-400 transition-colors">What compliance frameworks do you support?</span>
+        <svg class="w-6 h-6 text-indigo-400 transition-transform duration-300" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+        </svg></button>
+       <p class="faq-content text-gray-400 mt-4 hidden max-h-0 overflow-hidden transition-all duration-300">We maintain compliance with GDPR, HIPAA, SOC 2 Type II, ISO 27001, and NIST Cybersecurity Framework. Detailed compliance reports are available on demand.</p>
+      </div>
+     </div>
+    </section>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <!-- News & Feed Section -->
+<!-- News & Feed Section with Modal + Fallback Images -->
+<section class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 mb-0">
+  <div class="text-center mb-16 scroll-animate">
+    <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">News & Updates</h2>
+    <p class="text-xl text-gray-400 max-w-2xl mx-auto">Latest security trends, company news, and industry insights from Bangladesh</p>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+    <!-- News Card 1 -->
+    <div onclick="showNewsModal(1)" class="news-card glass rounded-2xl overflow-hidden scroll-animate-left group hover:border-blue-500 border border-transparent transition-all cursor-pointer">
+      <div class="relative w-full h-48 overflow-hidden bg-gradient-to-br from-blue-600 to-blue-800">
+        <img src="image/privacy3.png" 
+             alt="Ransomware Attack" loading="lazy" 
+             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+             onerror="this.src='https://images.unsplash.com/photo-1557821552-17105176677c?w=600&h=400&fit=crop'">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+      </div>
+      <div class="p-6">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-xs font-semibold">Security</span> 
+          <span class="text-gray-500 text-xs">3 days ago</span>
+        </div>
+        <h3 class="text-lg font-bold text-white mb-3">Ransomware Attack Hits Major Bangladeshi Logistics Company</h3>
+        <p class="text-gray-400 text-sm mb-6 line-clamp-3">A major logistics firm in Chattogram was hit by a sophisticated ransomware attack last week. Our team shares key lessons for Bangladeshi businesses.</p>
+        <span class="text-blue-400 hover:text-blue-300 text-sm font-semibold transition-colors">Read Full Article →</span>
+      </div>
+    </div>
+
+    <!-- News Card 2 -->
+    <div onclick="showNewsModal(2)" class="news-card glass rounded-2xl overflow-hidden scroll-animate group hover:border-purple-500 border border-transparent transition-all cursor-pointer">
+      <div class="relative w-full h-48 overflow-hidden bg-gradient-to-br from-purple-600 to-purple-800">
+        <img src="image/logo1.png" 
+             alt="Company Expansion" loading="lazy" 
+             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+             onerror="this.src='https://images.unsplash.com/photo-1526374965328-7f5ae4e8a83f?w=600&h=400&fit=crop'">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+      </div>
+      <div class="p-6">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-xs font-semibold">Company</span> 
+          <span class="text-gray-500 text-xs">1 week ago</span>
+        </div>
+        <h3 class="text-lg font-bold text-white mb-3">Cloud Connect AI Opens New Office in Dhaka</h3>
+        <p class="text-gray-400 text-sm mb-6 line-clamp-3">We are excited to announce the opening of our new headquarters in Banani, Dhaka to better serve Bangladeshi enterprises.</p>
+        <span class="text-purple-400 hover:text-purple-300 text-sm font-semibold transition-colors">Read Full Article →</span>
+      </div>
+    </div>
+
+    <!-- News Card 3 -->
+    <div onclick="showNewsModal(3)" class="news-card glass rounded-2xl overflow-hidden scroll-animate-right group hover:border-cyan-500 border border-transparent transition-all cursor-pointer">
+      <div class="relative w-full h-48 overflow-hidden bg-gradient-to-br from-cyan-600 to-cyan-800">
+        <img src="image/home_hero6.png" 
+             alt="Cybersecurity Report" loading="lazy" 
+             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+             onerror="this.src='https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=400&fit=crop'">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+      </div>
+      <div class="p-6">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="px-3 py-1 bg-cyan-500/20 text-cyan-300 rounded-full text-xs font-semibold">Report</span> 
+          <span class="text-gray-500 text-xs">2 weeks ago</span>
+        </div>
+        <h3 class="text-lg font-bold text-white mb-3">Bangladesh Cybersecurity Threat Landscape 2025</h3>
+        <p class="text-gray-400 text-sm mb-6 line-clamp-3">Our latest report highlights rising ransomware attacks and recommends practical steps for Bangladeshi SMEs and banks.</p>
+        <span class="text-cyan-400 hover:text-cyan-300 text-sm font-semibold transition-colors">Read Full Article →</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+
+
+
+
+<!-- News Modal -->
+<div id="newsModal" class="fixed inset-0 bg-black/80 hidden flex items-center justify-center z-[1000] p-4">
+  <div class="bg-[#0f172a] rounded-3xl max-w-3xl w-full max-h-[92vh] overflow-hidden shadow-2xl border border-white/10">
+
+    <!-- Modal Header -->
+    <div class="flex justify-between items-center border-b border-white/10 px-8 py-6">
+      <div>
+        <span id="modalCategory" class="px-3 py-1 text-xs font-semibold rounded-full"></span>
+        <span id="modalDate" class="text-gray-500 text-sm ml-3"></span>
+      </div>
+      <button onclick="closeNewsModal()" 
+              class="text-4xl leading-none text-gray-400 hover:text-white transition-colors w-10 h-10 flex items-center justify-center">
+        ×
+      </button>
+    </div>
+
+    <!-- Modal Content -->
+    <div id="newsModalContent" class="p-8 md:p-10 overflow-y-auto max-h-[calc(92vh-140px)] text-gray-300 leading-relaxed">
+      <!-- Content injected by JS -->
+    </div>
+
+    <!-- Modal Footer -->
+    <div class="border-t border-white/10 px-8 py-6 bg-[#0a0e1f] flex justify-end">
+      <button onclick="closeNewsModal()" 
+              class="px-8 py-3 text-gray-300 hover:text-white font-medium transition-colors">
+        Close
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+// News Data
+const newsData = {
+  1: {
+    category: "Security",
+    date: "3 days ago",
+    title: "Ransomware Attack Hits Major Bangladeshi Logistics Company",
+    content: `
+      <h3 class="text-2xl font-bold text-white mb-6">Ransomware Attack on Chattogram Logistics Firm</h3>
+      <p class="mb-6">Last week, a prominent logistics company based in Chattogram suffered a severe ransomware attack that disrupted operations for over 48 hours.</p>
+      
+      <h4 class="text-white font-semibold mt-8 mb-4">What Happened:</h4>
+      <ul class="list-disc pl-6 space-y-3 mb-8">
+        <li>Attackers encrypted critical operational databases</li>
+        <li>Demanded significant ransom in cryptocurrency</li>
+        <li>Operations were partially restored after 48 hours</li>
+      </ul>
+      <p class="text-amber-400 font-medium">Key Lesson: Regular offline backups and incident response plans are essential for Bangladeshi businesses.</p>
+    `
+  },
+  2: {
+    category: "Company",
+    date: "1 week ago",
+    title: "Cloud Connect AI Opens New Office in Dhaka",
+    content: `
+      <h3 class="text-2xl font-bold text-white mb-6">Expanding Our Presence in Bangladesh</h3>
+      <p class="mb-6">We are proud to announce the opening of our new headquarters in Banani, Dhaka. This strategic move will allow us to serve our growing client base more effectively across the country.</p>
+      <p class="mb-6">The new facility includes a 24/7 Security Operations Center (SOC) and training rooms for local talent development.</p>
+    `
+  },
+  3: {
+    category: "Report",
+    date: "2 weeks ago",
+    title: "Bangladesh Cybersecurity Threat Landscape 2025",
+    content: `
+      <h3 class="text-2xl font-bold text-white mb-6">Key Insights from Our Latest Report</h3>
+      <p class="mb-6">Ransomware attacks in Bangladesh increased significantly in the past year. SMEs and logistics companies remain the most targeted sectors.</p>
+      
+      <h4 class="text-white font-semibold mt-8 mb-4">Our Recommendations:</h4>
+      <ul class="list-disc pl-6 space-y-3">
+        <li>Implement strong multi-factor authentication</li>
+        <li>Maintain regular offline backups</li>
+        <li>Develop and test incident response plans</li>
+      </ul>
+    `
+  }
+};
+
+function showNewsModal(id) {
+  const modal = document.getElementById('newsModal');
+  const contentEl = document.getElementById('newsModalContent');
+  const categoryEl = document.getElementById('modalCategory');
+  const dateEl = document.getElementById('modalDate');
+
+  const news = newsData[id];
+
+  categoryEl.textContent = news.category;
+  categoryEl.className = `px-3 py-1 text-xs font-semibold rounded-full ${
+    news.category === 'Security' ? 'bg-blue-500/20 text-blue-300' : 
+    news.category === 'Company' ? 'bg-purple-500/20 text-purple-300' : 
+    'bg-cyan-500/20 text-cyan-300'
+  }`;
+  
+  dateEl.textContent = news.date;
+  contentEl.innerHTML = news.content;
+
+  modal.classList.remove('hidden');
+  modal.classList.add('flex');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeNewsModal() {
+  const modal = document.getElementById('newsModal');
+  modal.classList.add('hidden');
+  modal.classList.remove('flex');
+  document.body.style.overflow = 'visible';
+}
+
+// Close modal when clicking outside
+document.getElementById('newsModal').addEventListener('click', function(e) {
+  if (e.target === this) closeNewsModal();
+});
+
+// Close with Escape key
+document.addEventListener('keydown', function(e) {
+  if (e.key === "Escape") {
+    const modal = document.getElementById('newsModal');
+    if (!modal.classList.contains('hidden')) closeNewsModal();
+  }
+});
+</script>
+
+
+
+
+<section>
+
+
+  <div id="role-section">
+  <p style="color:#888; text-align:center; padding:60px;">Loading vendor section...</p>
+</div>
+
+<script>
+async function loadRoleSection() {
+  try {
+    const res = await fetch('role.html');
+    let html = await res.text();
+    document.getElementById('role-section').innerHTML = html;
+
+    // Trigger one-by-one animations
+    setTimeout(() => {
+      const observer = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+          // Left text + Grid
+          document.querySelector('.vendor-text').classList.add('in-view');
+          document.querySelector('.vendor-grid').classList.add('in-view');
+
+          // Cards one by one
+          document.querySelectorAll('.vendor-card').forEach((card, index) => {
+            setTimeout(() => {
+              card.classList.add('in-view');
+            }, 100 + (index * 80));   // one by one with nice delay
+          });
+        }
+      }, { threshold: 0.2 });
+
+      const section = document.querySelector('.section-vendors');
+      if (section) observer.observe(section);
+    }, 100);
+  } catch(e) {
+    console.error('Load error', e);
+  }
+}
+
+document.addEventListener('DOMContentLoaded', loadRoleSection);
+</script>
+
+
+
+</section>
+
+
+
+
+
+
+        <!-- Final CTA Block -->
+<!-- Final CTA Block -->
+<section class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+  <div class="cta-section rounded-3xl p-12 md:p-16 text-center scroll-animate">
+    <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">Ready to Strengthen Your Digital Resilience?</h2>
+    <p class="text-xl text-gray-300 mb-10 max-w-2xl mx-auto">Let our security experts develop a customized defense strategy for your enterprise.</p>
+    
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+      <!-- Primary Button: Schedule Consultation -->
+      <a href="contact.html">
+        <button class="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold rounded-xl hover:from-blue-700 hover:to-indigo-700 transition-all duration-300 btn-glow text-lg shadow-lg shadow-blue-500/30">
+          Schedule Security Consultation
+        </button>
+      </a>
+      
+      <!-- Secondary Button: Explore More -->
+      <a href="services.html">
+        <button class="w-full sm:w-auto px-8 py-4 glass text-white font-bold rounded-xl hover:bg-white/20 transition-all duration-300 text-lg">
+          Explore More Services
+        </button>
+      </a>
+    </div>
+
+    <p class="text-gray-400 text-sm mt-8">Typically respond within 2 business days • Free initial assessment</p>
+  </div>
+</section>
+    
+
+    
+
+<!-- FOOTER - Same for ALL pages -->
+<!-- FOOTER - Same for ALL pages -->
+<footer class="relative border-t border-white/10 mt-auto z-[1010] pointer-events-auto">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 pointer-events-auto">
+    
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+      
+      <!-- Company Info -->
+      <div class="col-span-2 md:col-span-2 lg:mr-20">
+        <div class="flex items-center gap-3 mb-4">
+          <img src="image/logo101.png" alt="CCAI Logo" class="h-12 md:h-14 w-auto">
+        </div>
+        <p class="text-gray-400 text-sm leading-relaxed mb-4">
+          Cloud Connect AI (CCAI) is a technology company focused on AI-driven cloud 
+          infrastructure, enterprise automation, and intelligent digital transformation 
+          solutions for modern organizations worldwide.
+        </p>
+      </div>
+
+      <!-- Navigation -->
+      <div>
+        <h4 class="text-white font-bold mb-4 text-sm">Navigation</h4>
+        <ul class="space-y-3">
+          <li><a href="index.html" class="text-gray-400 hover:text-white transition-colors text-sm">Home</a></li>
+          <li><a href="aboutus.html" class="text-gray-400 hover:text-white transition-colors text-sm">About</a></li>
+          <li><a href="services.html" class="text-gray-400 hover:text-white transition-colors text-sm">Solutions</a></li>
+          <li><a href="research.html" class="text-gray-400 hover:text-white transition-colors text-sm">Research</a></li>
+        </ul>
+      </div>
+
+      <!-- Company Links -->
+      <div>
+        <h4 class="text-white font-bold mb-4 text-sm">Company</h4>
+        <ul class="space-y-3">
+          <li><a href="contact.html" class="text-gray-400 hover:text-white transition-colors text-sm">Contact Us</a></li>
+          <li><a href="terms_and_conditions.html" class="text-gray-400 hover:text-white transition-colors text-sm">Terms and Conditions</a></li>
+          <li><a href="privacy_policy.html" class="text-gray-400 hover:text-white transition-colors text-sm">Privacy Policy</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="flex flex-col md:flex-row items-center justify-between pt-8 border-t border-white/10 gap-4">
+      <p class="text-gray-500 text-sm">
+        © <span id="current-year"></span> Cloud Connect AI. All rights reserved.
+      </p>
+      
+      <!-- Social Links -->
+      <div class="flex items-center gap-4">
+        <a href="#" class="w-10 h-10 glass rounded-full flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition-all">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" /></svg>
+        </a>
+        <a href="#" class="w-10 h-10 glass rounded-full flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition-all">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" /></svg>
+        </a>
+        <a href="#" class="w-10 h-10 glass rounded-full flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition-all">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" /></svg>
+        </a>
+        <a href="#" class="w-10 h-10 glass rounded-full flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition-all">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" /></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Automatic Year + Force Clickable Script -->
+  <script>
+    // Automatic Copyright Year
+    document.addEventListener("DOMContentLoaded", function() {
+      const yearElement = document.getElementById("current-year");
+      if (yearElement) {
+        yearElement.textContent = new Date().getFullYear();
+      }
+    });
+
+    // Force Footer to be Clickable
+    document.addEventListener('DOMContentLoaded', function() {
+      const footer = document.querySelector('footer');
+      if (footer) {
+        footer.style.zIndex = '1010';
+        footer.style.position = 'relative';
+        footer.style.pointerEvents = 'auto';
+        footer.style.isolation = 'isolate';
+
+        // Force all links inside footer
+        const links = footer.querySelectorAll('a');
+        links.forEach(link => {
+          link.style.pointerEvents = 'auto';
+          link.style.position = 'relative';
+          link.style.zIndex = '1011';
+        });
+      }
+    });
+  </script>
+</footer>
+
+   </div>
+  </div>
+  <script>
+    // Tech background images that rotate automatically
+// === Background Rotation - Local Images Only ===
+// Easy to customize timing
+
+const techBackgrounds = [
+  'linear-gradient(135deg, rgba(10, 14, 39, 0.85) 0%, rgba(26, 26, 62, 0.85) 50%, rgba(13, 13, 31, 0.85) 100%), url("image/home_hero1.png")',
+  'linear-gradient(135deg, rgba(10, 14, 39, 0.85) 0%, rgba(26, 26, 62, 0.85) 50%, rgba(13, 13, 31, 0.85) 100%), url("image/home_hero2.png")',
+  'linear-gradient(135deg, rgba(10, 14, 39, 0.85) 0%, rgba(26, 26, 62, 0.85) 50%, rgba(13, 13, 31, 0.85) 100%), url("image/home_hero3.png")',
+  'linear-gradient(135deg, rgba(10, 14, 39, 0.85) 0%, rgba(26, 26, 62, 0.85) 50%, rgba(13, 13, 31, 0.85) 100%), url("image/home_hero4.png")',
+  'linear-gradient(135deg, rgba(10, 14, 39, 0.85) 0%, rgba(26, 26, 62, 0.85) 50%, rgba(13, 13, 31, 0.85) 100%), url("image/home_hero5.png")',
+  'linear-gradient(135deg, rgba(10, 14, 39, 0.85) 0%, rgba(26, 26, 62, 0.85) 50%, rgba(13, 13, 31, 0.85) 100%), url("image/home_hero6.png")'
+];
+
+let currentBgIndex = 0;
+
+// === CUSTOMIZE THESE TWO VALUES ===
+const displayTime = 8000;     // How long each image stays fully visible (in milliseconds)
+const transitionTime = 3000;  // How long the fade between images takes
+
+const bgLayer1 = document.createElement('div');
+const bgLayer2 = document.createElement('div');
+
+bgLayer1.className = bgLayer2.className = 'hero-gradient';
+bgLayer1.style.position = bgLayer2.style.position = 'absolute';
+bgLayer1.style.inset = bgLayer2.style.inset = '0';
+bgLayer1.style.backgroundSize = bgLayer2.style.backgroundSize = 'cover';
+bgLayer1.style.backgroundPosition = bgLayer2.style.backgroundPosition = 'center';
+bgLayer1.style.zIndex = bgLayer2.style.zIndex = '1';
+bgLayer1.style.transition = `opacity ${transitionTime}ms ease-in-out`;
+bgLayer2.style.transition = `opacity ${transitionTime}ms ease-in-out`;
+
+const heroContainer = document.querySelector('.gradient-bg');
+
+if (heroContainer) {
+  heroContainer.appendChild(bgLayer1);
+  heroContainer.appendChild(bgLayer2);
+
+  bgLayer1.style.backgroundImage = techBackgrounds[0];
+  bgLayer2.style.backgroundImage = techBackgrounds[1];
+  bgLayer1.style.opacity = '1';
+  bgLayer2.style.opacity = '0';
+
+  setInterval(() => {
+    currentBgIndex = (currentBgIndex + 1) % techBackgrounds.length;
+
+    const activeLayer = parseFloat(bgLayer1.style.opacity) > 0.5 ? bgLayer1 : bgLayer2;
+    const nextLayer = activeLayer === bgLayer1 ? bgLayer2 : bgLayer1;
+
+    nextLayer.style.backgroundImage = techBackgrounds[currentBgIndex];
+    nextLayer.style.opacity = '1';
+    activeLayer.style.opacity = '0';
+  }, displayTime + transitionTime);
+  
+  
+  
+  // Total time before next change
+}
+
+
+
+
+
+
+
+
+
+    const defaultConfig = {
+      company_name: 'Cloud Connect AI',
+      hero_title: 'Born to<br><span class="bg-gradient-to-r from-blue-400 via-cyan-400 to-purple-400 bg-clip-text text-transparent">Connect</span>',
+      hero_subtitle: 'Cloud Connect AI integrates your enterprise infrastructure with intelligent connectivity solutions. Unified, secure, and infinitely scalable.',
+      cta_primary: 'Get Started Free',
+      cta_secondary: 'Watch Demo',
+      footer_text: '© 2024 Cloud Connect AI. All rights reserved.',
+      background_color: '#0a0e27',
+      surface_color: 'rgba(255, 255, 255, 0.03)',
+      text_color: '#ffffff',
+      primary_action_color: '#2563eb',
+      secondary_action_color: '#9ca3af',
+      font_family: 'Space Grotesk',
+      font_size: 16
+    };
+
+    async function onConfigChange(config) {
+      const heroTitle = document.getElementById('hero-title');
+      const heroSubtitle = document.getElementById('hero-subtitle');
+      const ctaPrimaryBtn = document.getElementById('cta-primary-btn');
+      const ctaSecondaryBtn = document.getElementById('cta-secondary-btn');
+      const footerText = document.getElementById('footer-text');
+      const brandName = document.getElementById('brand-name');
+
+      if (brandName) {
+        brandName.textContent = config.company_name || defaultConfig.company_name;
+      }
+      if (heroTitle) {
+        heroTitle.innerHTML = config.hero_title || defaultConfig.hero_title;
+      }
+      if (heroSubtitle) {
+        heroSubtitle.textContent = config.hero_subtitle || defaultConfig.hero_subtitle;
+      }
+      if (ctaPrimaryBtn) {
+        const span = ctaPrimaryBtn.querySelector('span:first-of-type');
+        if (span) span.textContent = config.cta_primary || defaultConfig.cta_primary;
+      }
+      if (ctaSecondaryBtn) {
+        const span = ctaSecondaryBtn.querySelector('span');
+        if (span) span.textContent = config.cta_secondary || defaultConfig.cta_secondary;
+      }
+      if (footerText) {
+        footerText.textContent = config.footer_text || defaultConfig.footer_text;
+      }
+
+      // Apply font
+      const fontFamily = config.font_family || defaultConfig.font_family;
+      document.body.style.fontFamily = `${fontFamily}, sans-serif`;
+
+      // Apply font size scaling
+      const baseSize = config.font_size || defaultConfig.font_size;
+      if (heroSubtitle) heroSubtitle.style.fontSize = `${baseSize * 1.25}px`;
+    }
+
+    function mapToCapabilities(config) {
+      return {
+        recolorables: [
+          {
+            get: () => config.background_color || defaultConfig.background_color,
+            set: (value) => {
+              config.background_color = value;
+              window.elementSdk.setConfig({ background_color: value });
+            }
+          },
+          {
+            get: () => config.text_color || defaultConfig.text_color,
+            set: (value) => {
+              config.text_color = value;
+              window.elementSdk.setConfig({ text_color: value });
+            }
+          },
+          {
+            get: () => config.primary_action_color || defaultConfig.primary_action_color,
+            set: (value) => {
+              config.primary_action_color = value;
+              window.elementSdk.setConfig({ primary_action_color: value });
+            }
+          }
+        ],
+        borderables: [],
+        fontEditable: {
+          get: () => config.font_family || defaultConfig.font_family,
+          set: (value) => {
+            config.font_family = value;
+            window.elementSdk.setConfig({ font_family: value });
+          }
+        },
+        fontSizeable: {
+          get: () => config.font_size || defaultConfig.font_size,
+          set: (value) => {
+            config.font_size = value;
+            window.elementSdk.setConfig({ font_size: value });
+          }
+        }
+      };
+    }
+
+    function mapToEditPanelValues(config) {
+      return new Map([
+        ['company_name', config.company_name || defaultConfig.company_name],
+        ['hero_title', config.hero_title || defaultConfig.hero_title],
+        ['hero_subtitle', config.hero_subtitle || defaultConfig.hero_subtitle],
+        ['cta_primary', config.cta_primary || defaultConfig.cta_primary],
+        ['cta_secondary', config.cta_secondary || defaultConfig.cta_secondary],
+        ['footer_text', config.footer_text || defaultConfig.footer_text]
+      ]);
+    }
+
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuIcon = document.getElementById('menu-icon');
+    let isMenuOpen = false;
+
+    mobileMenuBtn.addEventListener('click', () => {
+      isMenuOpen = !isMenuOpen;
+      mobileMenu.classList.toggle('hidden');
+      menuIcon.setAttribute('d', isMenuOpen 
+        ? 'M6 18L18 6M6 6l12 12' 
+        : 'M4 6h16M4 12h16M4 18h16'
+      );
+    });
+
+    // Navigation active state handler
+    const navItems = document.querySelectorAll('.nav-item');
+    
+    function setActivePage(page) {
+      navItems.forEach(item => {
+        if (item.dataset.page === page) {
+          item.classList.add('active', 'text-white');
+          item.classList.remove('text-gray-300');
+        } else {
+          item.classList.remove('active', 'text-white');
+          item.classList.add('text-gray-300');
+        }
+      });
+    }
+
+    // Handle hash navigation
+    window.addEventListener('hashchange', () => {
+      const page = window.location.hash.slice(1) || 'home';
+      setActivePage(page);
+    });
+
+    // Set initial active page
+    const initialPage = window.location.hash.slice(1) || 'home';
+    setActivePage(initialPage);
+
+    // Handle nav link clicks
+    navItems.forEach(item => {
+      item.addEventListener('click', (e) => {
+        const page = item.dataset.page;
+        setActivePage(page);
+        if (isMenuOpen) {
+          isMenuOpen = false;
+          mobileMenu.classList.add('hidden');
+          menuIcon.setAttribute('d', 'M4 6h16M4 12h16M4 18h16');
+        }
+      });
+    });
+
+    // Scroll Animation Observer
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const scrollObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          scrollObserver.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    // Observe all scroll-animate elements
+    document.querySelectorAll('.scroll-animate, .scroll-animate-left, .scroll-animate-right').forEach(el => {
+      scrollObserver.observe(el);
+    });
+
+    // Animated Counter for metrics
+    function animateCounter(elementId, finalValue, duration = 2000) {
+      const element = document.getElementById(elementId);
+      if (!element) return;
+
+      const startValue = 0;
+      const startTime = performance.now();
+      const valueText = element.textContent;
+      const isPercentage = valueText.includes('%');
+      const suffix = isPercentage ? '%' : valueText.replace(/[0-9]/g, '');
+
+      const animate = (currentTime) => {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        
+        let displayValue;
+        if (isPercentage) {
+          displayValue = Math.floor(finalValue * progress);
+        } else {
+          displayValue = Math.floor(finalValue * progress);
+        }
+
+        element.textContent = displayValue + suffix;
+
+        if (progress < 1) {
+          requestAnimationFrame(animate);
+        }
+      };
+
+      requestAnimationFrame(animate);
+    }
+
+    // Trigger counter animation when metrics section is in view
+    const metricsObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+      animateCounter('projects-counter', 28);
+      animateCounter('accuracy-counter', 96);
+      animateCounter('enterprises-counter', 12);
+      animateCounter('threats-counter', 1.4);   // special handling for 1.4K
+          metricsObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    const metricsSection = document.querySelector('.grid.grid-cols-1.md\\:grid-cols-4');
+    if (metricsSection) {
+      metricsObserver.observe(metricsSection);
+    }
+
+    // Initialize SDK
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange,
+        mapToCapabilities,
+        mapToEditPanelValues
+      });
+    }
+
+    // Feature images - each feature has 3 rotating images
+// Feature Image Rotation Script - Using local home_feature1.png to home_feature6.png
+const featureImages = [
+  "image/home_feature1.png",
+  "image/home_feature2.png",
+  "image/home_feature3.png",
+  "image/home_feature4.png",
+  "image/home_feature5.png",
+  "image/home_feature6.png"
+];
+
+let currentFeatureIndex = 0;
+
+const featureMain = document.getElementById('feature-image-main');
+const featureMobile = document.getElementById('feature-image-mobile');
+
+function updateFeatureImage() {
+  if (featureMain) featureMain.src = featureImages[currentFeatureIndex];
+  if (featureMobile) featureMobile.src = featureImages[currentFeatureIndex];
+}
+
+// Auto-rotate every 5 seconds
+setInterval(() => {
+  currentFeatureIndex = (currentFeatureIndex + 1) % featureImages.length;
+  updateFeatureImage();
+}, 5000);
+
+// Click on feature cards to change image
+document.querySelectorAll('.feature-card').forEach((card, index) => {
+  card.addEventListener('click', () => {
+    currentFeatureIndex = index % featureImages.length; // Cycle through available images
+    updateFeatureImage();
+  });
+});
+
+// Initialize first image
+updateFeatureImage();
+
+    // FAQ Accordion functionality
+    document.querySelectorAll('.faq-toggle').forEach(button => {
+      button.addEventListener('click', function() {
+        const faqItem = this.closest('.faq-item');
+        const content = faqItem.querySelector('.faq-content');
+        const svg = faqItem.querySelector('svg');
+        const isOpen = !content.classList.contains('hidden');
+
+        // Close all other FAQs
+        document.querySelectorAll('.faq-item').forEach(item => {
+          if (item !== faqItem) {
+            const otherContent = item.querySelector('.faq-content');
+            const otherSvg = item.querySelector('svg');
+            otherContent.classList.add('hidden');
+            otherContent.style.maxHeight = '0';
+            otherSvg.style.transform = 'rotate(0deg)';
+          }
+        });
+
+        // Toggle current FAQ
+        if (isOpen) {
+          content.classList.add('hidden');
+          content.style.maxHeight = '0';
+          svg.style.transform = 'rotate(0deg)';
+        } else {
+          content.classList.remove('hidden');
+          content.style.maxHeight = content.scrollHeight + 'px';
+          svg.style.transform = 'rotate(180deg)';
+        }
+      });
+    });
+  </script>
+
+
+
+ </body>
+
+
+
+
+ </html>

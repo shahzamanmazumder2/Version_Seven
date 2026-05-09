@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Database Technologies</title>
+
+<style>
+/* ===== DATABASE TECH SECTION ===== */
+.section-database {
+  padding: 80px 20px;
+  position: relative;
+  overflow: hidden;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.section-database::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg,
+    rgba(139, 92, 246, 0.15),
+    rgba(236, 72, 153, 0.15),
+    rgba(16, 185, 129, 0.15));
+  animation: pulse 6s infinite alternate;
+  transition: opacity 0.3s ease;
+}
+
+/* Light mode: fade overlay */
+html.light-mode .section-database::before {
+  opacity: 0.3;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.5; }
+  100% { opacity: 1; }
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+  position: relative;
+}
+
+/* ===== REVERSED LAYOUT ===== */
+.database-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+@media (min-width: 1024px) {
+  .database-layout {
+    flex-direction: row-reverse;
+    align-items: flex-start;
+  }
+}
+
+/* ===== TEXT (Right side on large screens) ===== */
+.database-text {
+  flex: 1;
+  opacity: 0;
+  transform: translateX(100px);
+  transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.database-text.in-view {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.database-text h2 {
+  color: white;
+  font-size: 32px;
+  line-height: 1.3;
+  margin-bottom: 20px;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.database-text p {
+  color: rgba(255,255,255,0.8);
+  transition: color 0.3s ease;
+}
+
+/* Light mode: text becomes dark */
+html.light-mode .database-text h2 {
+  color: #0f172a;
+}
+
+html.light-mode .database-text p {
+  color: #475569;
+}
+
+/* ===== GRID ===== */
+.database-grid {
+  flex: 1.4;
+  opacity: 0;
+  transform: translateX(-100px);
+  transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition-delay: 0.15s;
+  display: grid;
+  grid-template-columns: 1fr;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.652);
+}
+
+.database-grid.in-view {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+@media (min-width: 640px) {
+  .database-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* ===== CARD ===== */
+.database-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px;
+  cursor: pointer;
+  border-bottom: 1px solid #e5e7eb;
+  opacity: 0;
+  transform: scale(0.88);
+  transition: all 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.database-card.in-view {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.database-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.database-left img {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #f3f4f6;
+  padding: 5px;
+  object-fit: contain;
+}
+
+.database-left span {
+  font-weight: 500;
+  font-size: 16px;
+  color: #111827;
+  transition: .3s;
+}
+
+/* ===== ARROW ===== */
+.arrow {
+  width: 18px;
+  height: 18px;
+  opacity: 0;
+  transition: .3s;
+}
+
+.database-card:hover .arrow {
+  opacity: 1;
+}
+
+.database-card:hover span {
+  color: white;
+}
+
+/* ===== HOVER COLORS ===== */
+.mysql:hover      { background: #00758f; }
+.postgres:hover   { background: #336791; }
+.mongodb:hover    { background: #4db33d; }
+.redis:hover      { background: #dc382d; }
+.oracle:hover     { background: #f80000; }
+.sqlserver:hover  { background: #00a1f1; }
+.firebase:hover   { background: #ffa000; }
+.cassandra:hover  { background: #1287b1; }
+
+/* ===== STAGGER DELAYS ===== */
+.database-card[data-delay="100"] { transition-delay: 100ms; }
+.database-card[data-delay="150"] { transition-delay: 150ms; }
+.database-card[data-delay="200"] { transition-delay: 200ms; }
+.database-card[data-delay="250"] { transition-delay: 250ms; }
+.database-card[data-delay="300"] { transition-delay: 300ms; }
+.database-card[data-delay="350"] { transition-delay: 350ms; }
+.database-card[data-delay="400"] { transition-delay: 400ms; }
+.database-card[data-delay="450"] { transition-delay: 450ms; }
+
+/* ===== HOVER: Fast transition, no delay (same as front-end) ===== */
+.database-card:hover {
+  transition: background 200ms ease !important;
+  transition-delay: 0ms !important;
+}
+</style>
+</head>
+<body>
+
+<section class="section-database">
+
+<div class="container">
+
+<div class="database-layout">
+
+  <!-- Text on RIGHT -->
+  <div class="database-text">
+    <h2>Modern Database & Data Technologies That Power Intelligent Applications</h2>
+    <p>
+      We deliver expert training and solutions in enterprise-grade databases and data technologies 
+      that ensure high performance, scalability, security, and real-time data processing.
+    </p>
+  </div>
+
+  <!-- Grid on LEFT -->
+  <div class="database-grid">
+
+    <div class="database-card mysql" data-delay="100">
+      <div class="database-left">
+        <img src="image/mysql.png" alt="MySQL">
+        <span>MySQL</span>
+      </div>
+      <svg class="arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17l9.2-9.2M17 17V7H7"></path>
+      </svg>
+    </div>
+
+    <div class="database-card postgres" data-delay="150">
+      <div class="database-left">
+        <img src="image/postgres.png" alt="PostgreSQL">
+        <span>PostgreSQL</span>
+      </div>
+      <svg class="arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17l9.2-9.2M17 17V7H7"></path>
+      </svg>
+    </div>
+
+    <div class="database-card mongodb" data-delay="200">
+      <div class="database-left">
+        <img src="image/mongo.png" alt="MongoDB">
+        <span>MongoDB</span>
+      </div>
+      <svg class="arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17l9.2-9.2M17 17V7H7"></path>
+      </svg>
+    </div>
+
+    <div class="database-card redis" data-delay="250">
+      <div class="database-left">
+        <img src="image/redis.png" alt="Redis">
+        <span>Redis</span>
+      </div>
+      <svg class="arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17l9.2-9.2M17 17V7H7"></path>
+      </svg>
+    </div>
+
+    <div class="database-card oracle" data-delay="300">
+      <div class="database-left">
+        <img src="image/oracle.png" alt="Oracle">
+        <span>Oracle Database</span>
+      </div>
+      <svg class="arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17l9.2-9.2M17 17V7H7"></path>
+      </svg>
+    </div>
+
+    <div class="database-card sqlserver" data-delay="350">
+      <div class="database-left">
+        <img src="image/sqlserver.png" alt="SQL Server">
+        <span>Microsoft SQL Server</span>
+      </div>
+      <svg class="arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17l9.2-9.2M17 17V7H7"></path>
+      </svg>
+    </div>
+
+    <div class="database-card firebase" data-delay="400">
+      <div class="database-left">
+        <img src="image/firebase.png" alt="Firebase">
+        <span>Firebase</span>
+      </div>
+      <svg class="arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17l9.2-9.2M17 17V7H7"></path>
+      </svg>
+    </div>
+
+    <div class="database-card cassandra" data-delay="450">
+      <div class="database-left">
+        <img src="image/casssandra.png" alt="Cassandra">
+        <span>Apache Cassandra</span>
+      </div>
+      <svg class="arrow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 17l9.2-9.2M17 17V7H7"></path>
+      </svg>
+    </div>
+
+  </div>
+
+</div>
+</div>
+</section>
+
+<script>
+/* Sync light-mode class from parent document (same as front-end) */
+function syncTheme() {
+  try {
+    const parentHtml = window.parent.document.documentElement;
+    const isLight = parentHtml.classList.contains('light-mode');
+    document.documentElement.classList.toggle('light-mode', isLight);
+  } catch(e) {
+    if (localStorage.getItem('theme') === 'light') {
+      document.documentElement.classList.add('light-mode');
+    }
+  }
+}
+
+syncTheme();
+
+try {
+  const themeObserver = new MutationObserver(syncTheme);
+  themeObserver.observe(window.parent.document.documentElement, {
+    attributes: true, attributeFilter: ['class']
+  });
+} catch(e) {}
+
+/* Click handler */
+document.querySelectorAll(".database-card").forEach(card => {
+  card.addEventListener("click", () => {
+    const name = card.querySelector("span").textContent;
+    alert("Database Technology Selected: " + name);
+  });
+});
+</script>
+
+</body>
+</html>
+
+
+<!-- Database Technologies Section 
+<section>
+  <div id="database-tech-section">
+    <p style="color:#888; text-align:center; padding:60px;">Loading database technologies section...</p>
+  </div>
+
+  <script>
+  async function loadDatabaseTech() {
+    try {
+      const res = await fetch('database_tech.html');
+      const html = await res.text();
+      document.getElementById('database-tech-section').innerHTML = html;
+
+      setTimeout(() => {
+        const observer = new IntersectionObserver((entries) => {
+          if (entries[0].isIntersecting) {
+            document.querySelector('.database-text').classList.add('in-view');
+            document.querySelector('.database-grid').classList.add('in-view');
+
+            document.querySelectorAll('.database-card').forEach((card, index) => {
+              setTimeout(() => {
+                card.classList.add('in-view');
+              }, 100 + (index * 100));
+            });
+          }
+        }, { threshold: 0.2 });
+
+        const section = document.querySelector('.section-database');
+        if (section) observer.observe(section);
+      }, 150);
+
+    } catch(e) {
+      console.error('Failed to load database tech section', e);
+      document.getElementById('database-tech-section').innerHTML =
+        `<p style="color:red; text-align:center; padding:60px;">Failed to load section.</p>`;
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', loadDatabaseTech);
+  </script>
+</section>
+
+-->

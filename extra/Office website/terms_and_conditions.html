@@ -1,0 +1,500 @@
+<!doctype html>
+<html lang="en" class="h-full scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terms & Conditions - Cloud Connect AI</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="image/logo.png">
+  <style>
+    * { font-family: 'Space Grotesk', sans-serif; }
+    
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    .gradient-bg {
+      background: linear-gradient(135deg, #0a0e27 0%, #1a1a3e 50%, #0d0d1f 100%);
+      min-height: 100vh;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .tech-pattern {
+      position: absolute;
+      inset: 0;
+      opacity: 0.03;
+      background-image: 
+        linear-gradient(0deg, transparent 24%, rgba(59, 130, 246, 0.05) 25%, rgba(59, 130, 246, 0.05) 26%, transparent 27%, transparent 74%, rgba(59, 130, 246, 0.05) 75%, rgba(59, 130, 246, 0.05) 76%, transparent 77%, transparent),
+        linear-gradient(90deg, transparent 24%, rgba(59, 130, 246, 0.05) 25%, rgba(59, 130, 246, 0.05) 26%, transparent 27%, transparent 74%, rgba(59, 130, 246, 0.05) 75%, rgba(59, 130, 246, 0.05) 76%, transparent 77%, transparent);
+      background-size: 50px 50px;
+      z-index: 2;
+    }
+
+    .glow-text {
+      text-shadow: 0 0 80px rgba(59, 130, 246, 0.6);
+    }
+
+    .glass {
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    /* Original Orb Styles - Unchanged */
+    .orb {
+      position: absolute;
+      border-radius: 5%;
+      filter: blur(0px);
+      opacity: 0.05;
+      z-index: 3;
+    }
+
+    .nav-link {
+      position: relative;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+      transition: width 0.3s ease;
+    }
+    .nav-link.active::after,
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    nav { z-index: 50; }
+
+    .term-section {
+      transition: all 0.3s ease;
+    }
+    .term-section:hover {
+      transform: translateX(8px);
+    }
+
+    .content-wrapper {
+      position: relative;
+      z-index: 10;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    main {
+      flex: 1;
+    }
+  </style>
+</head>
+<body class="h-full">
+
+  <div id="app-wrapper" class="gradient-bg overflow-hidden min-h-screen">
+
+    <!-- Tech Pattern -->
+    <div class="tech-pattern"></div>
+
+    <!-- Floating Orbs - EXACTLY as in your original code -->
+    <div class="orb w-96 h-96 bg-blue-600 top-0 left-0 hidden md:block" style="position: fixed; animation: float 15s ease-in-out infinite;"></div>
+    <div class="orb w-72 h-72 bg-purple-600 top-1/4 right-0 hidden md:block" style="position: fixed; animation: floatReverse 18s ease-in-out infinite; animation-delay: -2s;"></div>
+    <div class="orb w-56 h-56 bg-indigo-600 bottom-0 left-1/3 hidden md:block" style="position: fixed; animation: floatSlow 20s ease-in-out infinite; animation-delay: -4s;"></div>
+    <div class="orb w-48 h-48 bg-cyan-500 top-1/2 right-1/4 hidden md:block" style="position: fixed; animation: floatFast 12s ease-in-out infinite; animation-delay: -1s;"></div>
+    <div class="orb w-64 h-64 bg-blue-500 bottom-1/4 left-0 hidden md:block" style="position: fixed; animation: float 16s ease-in-out infinite; animation-delay: -3s;"></div>
+    <div class="orb w-40 h-40 bg-purple-500 top-1/3 left-1/2 hidden md:block" style="position: fixed; animation: floatReverse 14s ease-in-out infinite; animation-delay: -5s;"></div>
+    <div class="orb w-32 h-32 bg-indigo-500 top-0 right-1/3 hidden md:block" style="position: fixed; animation: floatFast 13s ease-in-out infinite; animation-delay: -2.5s;"></div>
+    <div class="orb w-52 h-52 bg-cyan-600 bottom-1/3 right-0 hidden md:block" style="position: fixed; animation: floatSlow 19s ease-in-out infinite; animation-delay: -6s;"></div>
+    <div class="orb w-44 h-44 bg-blue-400 bottom-0 right-1/4 hidden md:block" style="position: fixed; animation: float 17s ease-in-out infinite; animation-delay: -3.5s;"></div>
+    <div class="orb w-36 h-36 bg-purple-400 top-1/4 left-1/4 hidden md:block" style="animation: floatFast 11s ease-in-out infinite; animation-delay: -4.5s;"></div>
+   
+    <!-- Mobile orbs - Original -->
+    <div class="orb w-48 h-48 bg-blue-600 top-0 left-0 md:hidden" style="position: fixed; animation: float 15s ease-in-out infinite; opacity: 0.07;"></div>
+    <div class="orb w-32 h-32 bg-purple-600 bottom-1/4 right-0 md:hidden" style="position: fixed; animation: floatReverse 18s ease-in-out infinite; animation-delay: -2s; opacity: 0.07;"></div>
+    <div class="orb w-44 h-44 bg-cyan-500 top-1/2 left-1/5 md:hidden" 
+         style="position: fixed; animation: floatFast 13s ease-in-out infinite; opacity: 0.1; animation-delay: -5s;"></div>
+    <div class="orb w-20 h-20 bg-yellow-600 bottom-1/2 right-1/4 md:hidden" 
+         style="position: fixed; animation: floatSlow 17s ease-in-out infinite; opacity: 0.09; animation-delay: -8s;"></div>
+
+    <div class="content-wrapper">
+
+      <!-- Navbar -->
+      <nav class="relative border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="flex items-center justify-between h-20">
+
+<!-- Logo - Clickable -->
+<a href="index.html" class="flex items-center gap-2 group">
+  <div class="w-10 h-8 rounded-xl flex items-center justify-center shadow-lg overflow-hidden">
+    <img src="image/logo.png" alt="CCAI Logo" class="h-8 w-auto transition-transform group-hover:scale-105">
+  </div>
+  <span id="brand-name" class="text-white font-bold text-xl tracking-tight">CCAI</span>
+</a>
+
+            <!-- Desktop Navigation -->
+            <div class="hidden md:flex items-center gap-8">
+              <a href="./index.html"      class="nav-link nav-item text-gray-300 hover:text-white transition-colors text-sm font-medium" data-page="home">Home</a>
+              <a href="./services.html"   class="nav-link nav-item text-gray-300 hover:text-white transition-colors text-sm font-medium" data-page="solutions">Solutions</a>
+              <a href="./aboutus.html"    class="nav-link nav-item text-gray-300 hover:text-white transition-colors text-sm font-medium" data-page="about">About</a>
+              <a href="./research.html"   class="nav-link nav-item text-gray-300 hover:text-white transition-colors text-sm font-medium" data-page="research">Research</a>
+
+            </div>
+
+            <!-- Contact Button -->
+            <div class="hidden md:flex items-center gap-4">
+              <a href="./contact.html">
+                <button class="px-6 py-2.5 bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-sm font-semibold rounded-xl hover:from-blue-500 hover:to-indigo-500 transition-all duration-300 shadow-lg">
+                  Contact Us
+                </button>
+              </a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-gray-300 hover:text-white p-2 focus:outline-none">
+              <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+              </svg>
+            </button>
+          </div>
+
+          <!-- Mobile Menu -->
+          <div id="mobile-menu" class="hidden md:hidden glass rounded-2xl mt-3 p-5 border border-white/5">
+            <div class="flex flex-col gap-3">
+              <a href="./index.html"     class="text-gray-200 hover:text-white transition-colors text-base font-medium py-2.5 px-4 rounded-lg hover:bg-white/5">Home</a>
+              <a href="./aboutus.html"   class="text-gray-200 hover:text-white transition-colors text-base font-medium py-2.5 px-4 rounded-lg hover:bg-white/5">About</a>
+              <a href="./services.html"  class="text-gray-200 hover:text-white transition-colors text-base font-medium py-2.5 px-4 rounded-lg hover:bg-white/5">Solutions</a>
+              <a href="./research.html"  class="text-gray-200 hover:text-white transition-colors text-base font-medium py-2.5 px-4 rounded-lg hover:bg-white/5">Research</a>
+              <a href="./contact.html"   class="mt-4 px-6 py-3.5 bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-base font-semibold rounded-xl text-center">
+                Contact Us
+              </a>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Hero Section -->
+      <section class="relative h-[420px] flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 bg-cover bg-center" 
+             style="background-image: url(image/terms_and_condition.png);">
+          <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/80 to-black/90"></div>
+        </div>
+
+        <div class="relative z-10 text-center px-6 max-w-4xl mx-auto">
+          <h1 class="text-5xl md:text-6xl font-black text-white glow-text mb-6 leading-tight">
+            Terms & Conditions
+          </h1>
+          <p class="text-xl text-gray-300">Your Agreement with Cloud Connect AI</p>
+          <p class="text-sm text-gray-500 mt-4">Last Updated: March 29, 2026</p>
+        </div>
+      </section>
+
+      <!-- Main Terms Content -->
+      <main class="flex-1 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-24">
+
+        <div class="space-y-16">
+
+          <div class="term-section glass rounded-3xl p-10">
+            <h2 class="text-2xl font-semibold mb-6 flex items-center gap-4 text-white">
+              <span class="inline-flex items-center justify-center w-9 h-9 bg-blue-500/20 text-blue-400 rounded-2xl text-xl font-bold">1</span>
+              Acceptance of Terms
+            </h2>
+            <p class="text-gray-300 leading-relaxed">
+              By accessing or using the website and services of Cloud Connect AI ("we," "us," or "our"), you agree to be bound by these Terms and Conditions ("Terms"). 
+              If you do not agree to all the terms and conditions of this agreement, then you may not access the website or use any services.
+            </p>
+          </div>
+
+          <div class="term-section glass rounded-3xl p-10">
+            <h2 class="text-2xl font-semibold mb-6 flex items-center gap-4 text-white">
+              <span class="inline-flex items-center justify-center w-9 h-9 bg-blue-500/20 text-blue-400 rounded-2xl text-xl font-bold">2</span>
+              Services Provided
+            </h2>
+            <p class="text-gray-300 leading-relaxed">
+              Cloud Connect AI provides advanced connectivity solutions, robust cybersecurity services, and intelligent software development. 
+              Specific details of these services, including features, pricing, and limitations, are outlined on our website or in separate service agreements.
+            </p>
+          </div>
+
+          <div class="term-section glass rounded-3xl p-10">
+            <h2 class="text-2xl font-semibold mb-6 flex items-center gap-4 text-white">
+              <span class="inline-flex items-center justify-center w-9 h-9 bg-blue-500/20 text-blue-400 rounded-2xl text-xl font-bold">3</span>
+              User Obligations
+            </h2>
+            <ul class="text-gray-300 leading-relaxed space-y-4 list-disc pl-6">
+              <li>Provide accurate and complete information when registering or using our Services.</li>
+              <li>Use the Services only for lawful purposes and in accordance with these Terms.</li>
+              <li>Maintain the confidentiality of your account credentials and be responsible for all activities under your account.</li>
+              <li>Not engage in any activity that interferes with or disrupts the Services or the servers and networks connected to the Services.</li>
+              <li>Not attempt to gain unauthorized access to any portion or feature of the Services, or any other systems or networks connected to the Services.</li>
+            </ul>
+          </div>
+
+          <div class="term-section glass rounded-3xl p-10">
+            <h2 class="text-2xl font-semibold mb-6 flex items-center gap-4 text-white">
+              <span class="inline-flex items-center justify-center w-9 h-9 bg-blue-500/20 text-blue-400 rounded-2xl text-xl font-bold">4</span>
+              Intellectual Property
+            </h2>
+            <p class="text-gray-300 leading-relaxed">
+              All content, features, and functionality on the Cloud Connect AI website and Services, including but not limited to text, graphics, logos, images, and software, 
+              are the exclusive property of Cloud Connect AI and its licensors and are protected by international copyright, trademark, patent, trade secret, and other intellectual property or proprietary rights laws.
+            </p>
+          </div>
+
+          <div class="term-section glass rounded-3xl p-10">
+            <h2 class="text-2xl font-semibold mb-6 flex items-center gap-4 text-white">
+              <span class="inline-flex items-center justify-center w-9 h-9 bg-blue-500/20 text-blue-400 rounded-2xl text-xl font-bold">5</span>
+              Disclaimer of Warranties
+            </h2>
+            <p class="text-gray-300 leading-relaxed">
+              The Services are provided on an "as is" and "as available" basis. Cloud Connect AI makes no warranties, expressed or implied, and hereby disclaims and negates 
+              all other warranties, including without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property or other violation of rights.
+            </p>
+          </div>
+
+          <div class="term-section glass rounded-3xl p-10">
+            <h2 class="text-2xl font-semibold mb-6 flex items-center gap-4 text-white">
+              <span class="inline-flex items-center justify-center w-9 h-9 bg-blue-500/20 text-blue-400 rounded-2xl text-xl font-bold">6</span>
+              Limitation of Liability
+            </h2>
+            <p class="text-gray-300 leading-relaxed">
+              In no event shall Cloud Connect AI or its suppliers be liable for any damages (including, without limitation, damages for loss of data or profit, or due to business interruption) 
+              arising out of the use or inability to use the Services, even if Cloud Connect AI or a Cloud Connect AI authorized representative has been notified orally or in writing of the possibility of such damage. 
+              Because some jurisdictions do not allow limitations on implied warranties, or limitations of liability for consequential or incidental damages, these limitations may not apply to you.
+            </p>
+          </div>
+
+          <div class="term-section glass rounded-3xl p-10">
+            <h2 class="text-2xl font-semibold mb-6 flex items-center gap-4 text-white">
+              <span class="inline-flex items-center justify-center w-9 h-9 bg-blue-500/20 text-blue-400 rounded-2xl text-xl font-bold">7</span>
+              Governing Law
+            </h2>
+            <p class="text-gray-300 leading-relaxed">
+              These Terms shall be governed and construed in accordance with the laws of Bangladesh, without regard to its conflict of law provisions.
+            </p>
+          </div>
+
+          <div class="term-section glass rounded-3xl p-10">
+            <h2 class="text-2xl font-semibold mb-6 flex items-center gap-4 text-white">
+              <span class="inline-flex items-center justify-center w-9 h-9 bg-blue-500/20 text-blue-400 rounded-2xl text-xl font-bold">8</span>
+              Changes to Terms
+            </h2>
+            <p class="text-gray-300 leading-relaxed">
+              We reserve the right, at our sole discretion, to modify or replace these Terms at any time. If a revision is material, we will provide at least 30 days' notice prior to any new terms taking effect. 
+              What constitutes a material change will be determined at our sole discretion.
+            </p>
+          </div>
+
+          <div class="term-section glass rounded-3xl p-10">
+            <h2 class="text-2xl font-semibold mb-6 flex items-center gap-4 text-white">
+              <span class="inline-flex items-center justify-center w-9 h-9 bg-blue-500/20 text-blue-400 rounded-2xl text-xl font-bold">9</span>
+              Contact Information
+            </h2>
+            <p class="text-gray-300 leading-relaxed">
+              If you have any questions about these Terms and Conditions, please contact us at:
+              <br><br>
+              <strong class="text-blue-400">Email:</strong> contact@cloudconnect-ai.com <br>
+              <strong class="text-blue-400">Address:</strong> B1, Road No.19 , Mohakhali DOHS <br>
+               Dhaka, Bangladesh
+            </p>
+          </div>
+
+        </div>
+
+        <!-- Final CTA -->
+        <div class="mt-20 text-center glass rounded-3xl p-12">
+          <h2 class="text-3xl font-bold mb-4 text-white">Ready to Transform Your Operations?</h2>
+          <p class="text-gray-300 mb-8">Let’s talk about your next big idea.</p>
+          <a href="./contact.html" 
+             class="inline-block px-10 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white hover:text-white text-lg font-semibold rounded-2xl transition-all">
+            Contact Us
+          </a>
+        </div>
+
+      </main>
+
+      <!-- Footer -->
+<!-- FOOTER - Same for ALL pages -->
+<footer class="relative border-t border-white/10 mt-auto z-[1010] pointer-events-auto">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 pointer-events-auto">
+    
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+      
+      <!-- Company Info -->
+      <div class="col-span-2 md:col-span-2 lg:mr-20">
+        <div class="flex items-center gap-3 mb-4">
+          <img src="image/logo101.png" alt="CCAI Logo" class="h-12 md:h-14 w-auto">
+        </div>
+        <p class="text-gray-400 text-sm leading-relaxed mb-4">
+          Cloud Connect AI (CCAI) is a technology company focused on AI-driven cloud 
+          infrastructure, enterprise automation, and intelligent digital transformation 
+          solutions for modern organizations worldwide.
+        </p>
+      </div>
+
+      <!-- Navigation -->
+      <div>
+        <h4 class="text-white font-bold mb-4 text-sm">Navigation</h4>
+        <ul class="space-y-3">
+          <li><a href="index.html" class="text-gray-400 hover:text-white transition-colors text-sm">Home</a></li>
+          <li><a href="aboutus.html" class="text-gray-400 hover:text-white transition-colors text-sm">About</a></li>
+          <li><a href="services.html" class="text-gray-400 hover:text-white transition-colors text-sm">Solutions</a></li>
+          <li><a href="research.html" class="text-gray-400 hover:text-white transition-colors text-sm">Research</a></li>
+        </ul>
+      </div>
+
+      <!-- Company Links -->
+      <div>
+        <h4 class="text-white font-bold mb-4 text-sm">Company</h4>
+        <ul class="space-y-3">
+          <li><a href="contact.html" class="text-gray-400 hover:text-white transition-colors text-sm">Contact Us</a></li>
+          <li><a href="terms_and_conditions.html" class="text-gray-400 hover:text-white transition-colors text-sm">Terms and Conditions</a></li>
+          <li><a href="privacy_policy.html" class="text-gray-400 hover:text-white transition-colors text-sm">Privacy Policy</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="flex flex-col md:flex-row items-center justify-between pt-8 border-t border-white/10 gap-4">
+      <p class="text-gray-500 text-sm">
+        © <span id="current-year"></span> Cloud Connect AI. All rights reserved.
+      </p>
+      
+      <!-- Social Links -->
+      <div class="flex items-center gap-4">
+        <a href="#" class="w-10 h-10 glass rounded-full flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition-all">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" /></svg>
+        </a>
+        <a href="#" class="w-10 h-10 glass rounded-full flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition-all">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" /></svg>
+        </a>
+        <a href="#" class="w-10 h-10 glass rounded-full flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition-all">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" /></svg>
+        </a>
+        <a href="#" class="w-10 h-10 glass rounded-full flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition-all">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" /></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Automatic Year + Force Clickable Script -->
+  <script>
+    // Automatic Copyright Year
+    document.addEventListener("DOMContentLoaded", function() {
+      const yearElement = document.getElementById("current-year");
+      if (yearElement) {
+        yearElement.textContent = new Date().getFullYear();
+      }
+    });
+
+    // Force Footer to be Clickable
+    document.addEventListener('DOMContentLoaded', function() {
+      const footer = document.querySelector('footer');
+      if (footer) {
+        footer.style.zIndex = '1010';
+        footer.style.position = 'relative';
+        footer.style.pointerEvents = 'auto';
+        footer.style.isolation = 'isolate';
+
+        // Force all links inside footer
+        const links = footer.querySelectorAll('a');
+        links.forEach(link => {
+          link.style.pointerEvents = 'auto';
+          link.style.position = 'relative';
+          link.style.zIndex = '1011';
+        });
+      }
+    });
+  </script>
+</footer>
+
+    </div>
+  </div>
+
+  <!-- Navbar JavaScript -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+      // Mobile Menu Toggle
+      const mobileBtn = document.getElementById('mobile-menu-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const menuIcon = document.getElementById('menu-icon');
+      let isOpen = false;
+
+      if (mobileBtn) {
+        mobileBtn.addEventListener('click', () => {
+          isOpen = !isOpen;
+          mobileMenu.classList.toggle('hidden');
+          
+          if (menuIcon) {
+            menuIcon.setAttribute('d', isOpen 
+              ? 'M6 18L18 6M6 6l12 12' 
+              : 'M4 6h16M4 12h16M4 18h16'
+            );
+          }
+        });
+      }
+
+      // Close mobile menu when clicking a link
+      document.querySelectorAll('#mobile-menu a').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.add('hidden');
+          isOpen = false;
+          if (menuIcon) menuIcon.setAttribute('d', 'M4 6h16M4 12h16M4 18h16');
+        });
+      });
+
+      // Active Page Highlight
+      function highlightActivePage() {
+        const currentPath = window.location.pathname.toLowerCase();
+        const navItems = document.querySelectorAll('.nav-item');
+
+        navItems.forEach(item => {
+          const page = item.getAttribute('data-page');
+          item.classList.remove('active', 'text-white');
+
+          if (
+            (page === 'home' && (currentPath.includes('index.html') || currentPath === '/' || currentPath.endsWith('/'))) ||
+            (page === 'solutions' && currentPath.includes('services.html')) ||
+            (page === 'about' && currentPath.includes('aboutus.html')) ||
+            (page === 'research' && currentPath.includes('research.html')) ||
+            (page === 'news' && currentPath.includes('news.html'))
+          ) {
+            item.classList.add('active', 'text-white');
+          }
+        });
+      }
+
+      highlightActivePage();
+    });
+  </script>
+
+  <!-- Original Orb Animations -->
+  <style>
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-30px); }
+    }
+    @keyframes floatReverse {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(30px); }
+    }
+    @keyframes floatSlow {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(20px, -20px); }
+    }
+    @keyframes floatFast {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(-25px, 25px); }
+    }
+  </style>
+</body>
+</html>

@@ -1,0 +1,1057 @@
+<!doctype html>
+<html lang="en" class="h-full scroll-smooth">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seven Tech Ventures - Digital Innovation</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
+            width: 100%;
+            font-family: 'Sora', sans-serif;
+        }
+
+        .app-wrapper {
+            width: 100%;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        @keyframes scroll-left {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+
+        @keyframes scroll-right {
+            from { transform: translateX(-50%); }
+            to { transform: translateX(0); }
+        }
+
+        @keyframes float-up {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes fade-in-up {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-scroll-left {
+            animation: scroll-left 30s linear infinite;
+        }
+
+        .animate-scroll-right {
+            animation: scroll-right 30s linear infinite;
+        }
+
+        .animate-float {
+            animation: float-up 3s ease-in-out infinite;
+        }
+
+        .fade-up {
+            opacity: 0;
+            animation: fade-in-up 0.6s ease forwards;
+        }
+
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+
+        .nav-blur {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .news-container {
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .news-card {
+            scroll-snap-align: start;
+        }
+
+        .faq-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .faq-content.open {
+            max-height: 500px;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, rgba(242, 107, 29, 0.05) 0%, rgba(242, 107, 29, 0.02) 100%);
+            border: 1px solid rgba(242, 107, 29, 0.1);
+            border-radius: 16px;
+            padding: 24px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            border-color: rgba(242, 107, 29, 0.3);
+            box-shadow: 0 10px 30px rgba(242, 107, 29, 0.1);
+            transform: translateY(-5px);
+        }
+
+        .dark .stat-card {
+            background: linear-gradient(135deg, rgba(242, 107, 29, 0.1) 0%, rgba(242, 107, 29, 0.05) 100%);
+            border-color: rgba(242, 107, 29, 0.15);
+        }
+
+        .service-card {
+            border-radius: 16px;
+            padding: 32px 24px;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.320, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #F26B1D, #FF8A3D);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(242, 107, 29, 0.15);
+        }
+
+        .partner-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 120px;
+            height: 80px;
+            background: rgba(242, 107, 29, 0.05);
+            border-radius: 12px;
+            font-weight: 600;
+            color: #666;
+            transition: all 0.3s ease;
+        }
+
+        .dark .partner-logo {
+            background: rgba(242, 107, 29, 0.1);
+            color: #999;
+        }
+
+        .partner-logo:hover {
+            background: rgba(242, 107, 29, 0.15);
+            color: #F26B1D;
+            transform: scale(1.05);
+        }
+
+        .testimonial-card {
+            border-radius: 16px;
+            padding: 32px;
+            background: white;
+            border: 1px solid #e5e7eb;
+            transition: all 0.3s ease;
+        }
+
+        .dark .testimonial-card {
+            background: #1a1a1a;
+            border-color: #333;
+        }
+
+        .testimonial-card:hover {
+            box-shadow: 0 15px 40px rgba(242, 107, 29, 0.1);
+            transform: translateY(-5px);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 40px;
+            margin-bottom: 30px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            background: #F26B1D;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 0 0 2px #F26B1D;
+        }
+
+        .dark .timeline-item::before {
+            border-color: #0d0d0d;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: 4.5px;
+            top: 24px;
+            width: 2px;
+            height: 30px;
+            background: #e5e7eb;
+        }
+
+        .dark .timeline-item::after {
+            background: #333;
+        }
+
+        .timeline-item:last-child::after {
+            display: none;
+        }
+
+        .cta-button {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: left 0.5s ease;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #F26B1D, #FF8A3D);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+    </style>
+  <style>body { box-sizing: border-box; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="bg-white dark:bg-black text-gray-900 dark:text-gray-50 transition-colors duration-300">
+  <div class="app-wrapper"><!-- NAVIGATION -->
+   <nav class="fixed top-0 left-0 right-0 z-50 nav-blur bg-white/70 dark:bg-black/70 border-b border-gray-200/30 dark:border-gray-700/30">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+     <div class="flex items-center justify-between h-16 md:h-20"><a href="#home" class="flex items-center gap-3 group">
+       <div class="w-10 h-10 bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg flex items-center justify-center shadow-lg"><span class="text-white font-bold text-lg font-space">7</span>
+       </div><span id="nav-company" class="text-xl font-bold font-space text-gray-900 dark:text-white">Seven Tech</span> </a>
+      <div class="hidden md:flex items-center gap-1"><a href="#home" class="nav-link px-4 py-2 rounded-full text-sm font-medium bg-orange-500 text-white transition" data-page="home">Home</a> <a href="#about" class="nav-link px-4 py-2 rounded-full text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-orange-500 transition" data-page="about">About</a> <a href="#services" class="nav-link px-4 py-2 rounded-full text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-orange-500 transition" data-page="ventures">Services</a> <a href="#careers" class="nav-link px-4 py-2 rounded-full text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-orange-500 transition" data-page="career">Careers</a> <a href="#contact" class="nav-link px-4 py-2 rounded-full text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-orange-500 transition" data-page="contact">Contact</a>
+      </div>
+      <div class="flex items-center gap-3"><button id="theme-toggle" class="p-2 rounded-full bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition"> <i data-lucide="sun" class="w-5 h-5 text-orange-500 dark:hidden"></i> <i data-lucide="moon" class="w-5 h-5 text-orange-400 hidden dark:block"></i> </button> <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition"> <i data-lucide="menu" class="w-6 h-6"></i> </button>
+      </div>
+     </div>
+    </div><!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white/95 dark:bg-black/95 nav-blur border-t border-gray-200/30 dark:border-gray-700/30">
+     <div class="px-4 py-4 space-y-2"><a href="#home" class="block px-4 py-2 rounded-lg text-sm font-medium bg-orange-500/10 text-orange-600 dark:text-orange-400" data-page="home">Home</a> <a href="#about" class="block px-4 py-2 rounded-lg text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-orange-600" data-page="about">About</a> <a href="#services" class="block px-4 py-2 rounded-lg text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-orange-600" data-page="ventures">Services</a> <a href="#careers" class="block px-4 py-2 rounded-lg text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-orange-600" data-page="career">Careers</a> <a href="#contact" class="block px-4 py-2 rounded-lg text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-orange-600" data-page="contact">Contact</a>
+     </div>
+    </div>
+   </nav><!-- HERO SECTION -->
+   <section id="home" class="relative pt-32 md:pt-40 pb-20 md:pb-32 overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-orange-50 via-white to-orange-100/30 dark:from-gray-900 dark:via-black dark:to-orange-950/20"></div>
+    <div class="absolute top-32 right-0 w-96 h-96 bg-orange-500/5 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-0 left-0 w-72 h-72 bg-orange-500/5 rounded-full blur-3xl"></div>
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+     <div class="grid md:grid-cols-2 gap-12 items-center">
+      <div class="fade-up">
+       <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-500/10 text-orange-600 dark:text-orange-400 text-xs font-semibold mb-6"><i data-lucide="zap" class="w-4 h-4"></i> Pioneering Digital Transformation
+       </div>
+       <h1 id="hero-title" class="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-8 font-space">Building the <span class="gradient-text">Future</span></h1>
+       <p id="hero-subtitle" class="text-lg md:text-xl text-gray-600 dark:text-gray-400 mb-10 max-w-lg leading-relaxed">Seven Tech Ventures: Where visionary ideas meet cutting-edge technology. We partner with ambitious companies to scale beyond limits.</p>
+       <div class="flex flex-wrap gap-4"><a href="#services" class="px-8 py-4 bg-orange-500 hover:bg-orange-600 text-white rounded-full font-semibold transition shadow-lg shadow-orange-500/30 cta-button inline-flex items-center gap-2"> Explore Services <i data-lucide="arrow-right" class="w-5 h-5"></i> </a> <a href="#contact" class="px-8 py-4 border-2 border-gray-300 dark:border-gray-600 hover:border-orange-500 dark:hover:border-orange-500 rounded-full font-semibold transition inline-flex items-center gap-2"> Get in Touch <i data-lucide="phone" class="w-5 h-5"></i> </a>
+       </div>
+      </div>
+      <div class="fade-up delay-200 relative">
+       <div class="relative w-full">
+        <div class="absolute inset-0 bg-gradient-to-br from-orange-500 to-orange-600 rounded-3xl rotate-3 opacity-10 blur-2xl"></div>
+        <div class="relative bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 rounded-3xl p-8 border border-gray-200 dark:border-gray-700 overflow-hidden">
+         <div class="absolute top-4 right-4 flex gap-1.5">
+          <div class="w-3 h-3 rounded-full bg-red-400"></div>
+          <div class="w-3 h-3 rounded-full bg-yellow-400"></div>
+          <div class="w-3 h-3 rounded-full bg-green-400"></div>
+         </div>
+         <div class="space-y-4 pt-6">
+          <div class="flex items-center gap-3">
+           <div class="w-12 h-12 rounded-lg bg-orange-500/20 flex items-center justify-center"><i data-lucide="brain" class="w-6 h-6 text-orange-500"></i>
+           </div>
+           <div class="flex-1">
+            <div class="h-3 bg-gray-200 dark:bg-gray-700 rounded-full w-32"></div>
+            <div class="h-2 bg-gray-100 dark:bg-gray-600 rounded-full w-24 mt-2"></div>
+           </div>
+          </div>
+          <div class="grid grid-cols-3 gap-3 mt-6">
+           <div class="h-24 rounded-lg bg-orange-500/10 border border-orange-500/20"></div>
+           <div class="h-24 rounded-lg bg-gray-200 dark:bg-gray-700 border border-gray-200 dark:border-gray-600"></div>
+           <div class="h-24 rounded-lg bg-orange-50 dark:bg-orange-900/20 border border-orange-200 dark:border-orange-800/30"></div>
+          </div>
+          <div class="h-28 rounded-lg bg-gradient-to-r from-orange-500/5 to-orange-500/20 border border-orange-500/10 mt-4 flex items-center justify-center">
+           <svg class="w-full h-20 px-4" viewbox="0 0 200 60"><polyline points="0,50 30,35 60,40 90,20 120,25 150,10 180,15 200,5" fill="none" stroke="#F26B1D" stroke-width="2" /> <polyline points="0,50 30,35 60,40 90,20 120,25 150,10 180,15 200,5" fill="url(#grad)" stroke="none" /> <defs>
+             <lineargradient id="grad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#F26B1D" stop-opacity="0.3" />
+              <stop offset="100%" stop-color="#F26B1D" stop-opacity="0" />
+             </lineargradient>
+            </defs>
+           </svg>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- INTELLIGENCE AT SCALE -->
+   <section id="about" class="py-24 md:py-32 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-black">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+     <div class="text-center mb-20 fade-up"><span class="text-orange-600 dark:text-orange-400 font-semibold text-sm uppercase tracking-widest">Our Impact</span>
+      <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold mt-4 font-space">Intelligence at Scale</h2>
+      <p class="text-gray-600 dark:text-gray-400 mt-6 max-w-2xl mx-auto text-lg">We empower enterprises with AI-driven solutions that scale exponentially and drive measurable results.</p>
+     </div>
+     <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 fade-up delay-100">
+      <div class="stat-card">
+       <div class="text-5xl font-bold text-orange-600 font-space mb-2">
+        200+
+       </div>
+       <p class="text-gray-600 dark:text-gray-400 font-medium">Projects Delivered</p>
+       <p class="text-xs text-gray-500 dark:text-gray-500 mt-2">Across 25+ countries</p>
+      </div>
+      <div class="stat-card">
+       <div class="text-5xl font-bold text-orange-600 font-space mb-2">
+        99.99%
+       </div>
+       <p class="text-gray-600 dark:text-gray-400 font-medium">Uptime Guaranteed</p>
+       <p class="text-xs text-gray-500 dark:text-gray-500 mt-2">Enterprise-grade reliability</p>
+      </div>
+      <div class="stat-card">
+       <div class="text-5xl font-bold text-orange-600 font-space mb-2">
+        150+
+       </div>
+       <p class="text-gray-600 dark:text-gray-400 font-medium">Enterprise Clients</p>
+       <p class="text-xs text-gray-500 dark:text-gray-500 mt-2">Including Fortune 500</p>
+      </div>
+      <div class="stat-card">
+       <div class="text-5xl font-bold text-orange-600 font-space mb-2">
+        24/7
+       </div>
+       <p class="text-gray-600 dark:text-gray-400 font-medium">Expert Support</p>
+       <p class="text-xs text-gray-500 dark:text-gray-500 mt-2">Round-the-clock assistance</p>
+      </div>
+     </div>
+    </div>
+   </section><!-- CORE SERVICES -->
+   <section id="services" class="py-24 md:py-32">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+     <div class="text-center mb-20 fade-up"><span class="text-orange-600 dark:text-orange-400 font-semibold text-sm uppercase tracking-widest">Expertise</span>
+      <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold mt-4 font-space">Our Core Services</h2>
+     </div>
+     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 fade-up delay-100">
+      <div class="service-card bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
+       <div class="w-14 h-14 rounded-xl bg-orange-500/10 flex items-center justify-center mb-6"><i data-lucide="cloud" class="w-8 h-8 text-orange-600"></i>
+       </div>
+       <h3 class="text-2xl font-bold mb-3">Cloud Architecture</h3>
+       <p class="text-gray-600 dark:text-gray-400 leading-relaxed">Scalable multi-cloud environments engineered for performance, security, and cost efficiency across hybrid infrastructures.</p>
+      </div>
+      <div class="service-card bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
+       <div class="w-14 h-14 rounded-xl bg-orange-500/10 flex items-center justify-center mb-6"><i data-lucide="brain" class="w-8 h-8 text-orange-600"></i>
+       </div>
+       <h3 class="text-2xl font-bold mb-3">AI &amp; Machine Learning</h3>
+       <p class="text-gray-600 dark:text-gray-400 leading-relaxed">Custom ML models and intelligent automation that turn raw data into actionable insights and competitive advantages.</p>
+      </div>
+      <div class="service-card bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
+       <div class="w-14 h-14 rounded-xl bg-orange-500/10 flex items-center justify-center mb-6"><i data-lucide="shield" class="w-8 h-8 text-orange-600"></i>
+       </div>
+       <h3 class="text-2xl font-bold mb-3">Cybersecurity</h3>
+       <p class="text-gray-600 dark:text-gray-400 leading-relaxed">End-to-end security frameworks that protect your digital assets against evolving threats and compliance requirements.</p>
+      </div>
+      <div class="service-card bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
+       <div class="w-14 h-14 rounded-xl bg-orange-500/10 flex items-center justify-center mb-6"><i data-lucide="code-2" class="w-8 h-8 text-orange-600"></i>
+       </div>
+       <h3 class="text-2xl font-bold mb-3">Custom Development</h3>
+       <p class="text-gray-600 dark:text-gray-400 leading-relaxed">Bespoke web and mobile applications built with modern stacks and agile methodology for rapid market delivery.</p>
+      </div>
+      <div class="service-card bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
+       <div class="w-14 h-14 rounded-xl bg-orange-500/10 flex items-center justify-center mb-6"><i data-lucide="database" class="w-8 h-8 text-orange-600"></i>
+       </div>
+       <h3 class="text-2xl font-bold mb-3">Data Engineering</h3>
+       <p class="text-gray-600 dark:text-gray-400 leading-relaxed">Robust data pipelines and warehousing solutions for real-time analytics at any scale with petabyte processing.</p>
+      </div>
+      <div class="service-card bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
+       <div class="w-14 h-14 rounded-xl bg-orange-500/10 flex items-center justify-center mb-6"><i data-lucide="settings" class="w-8 h-8 text-orange-600"></i>
+       </div>
+       <h3 class="text-2xl font-bold mb-3">DevOps &amp; Automation</h3>
+       <p class="text-gray-600 dark:text-gray-400 leading-relaxed">CI/CD pipelines and infrastructure-as-code to ship faster with zero downtime and automated scaling.</p>
+      </div>
+     </div>
+    </div>
+   </section><!-- TOOLS OF TRANSFORMATION -->
+   <section class="py-24 md:py-32 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-black overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
+     <div class="text-center fade-up"><span class="text-orange-600 dark:text-orange-400 font-semibold text-sm uppercase tracking-widest">Tech Stack</span>
+      <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold mt-4 font-space">The Tools of Transformation</h2>
+      <p class="text-gray-600 dark:text-gray-400 mt-6 max-w-2xl mx-auto">Leveraging industry-leading technologies and frameworks for optimal performance</p>
+     </div>
+    </div>
+    <div class="space-y-8 fade-up delay-100"><!-- Row 1 -->
+     <div class="flex overflow-hidden">
+      <div class="flex gap-4 animate-scroll-left">
+       <div class="flex-shrink-0 px-6 py-3 rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 font-medium text-sm whitespace-nowrap hover:border-orange-500 transition">
+        AWS
+       </div>
+       <div class="flex-shrink-0 px-6 py-3 rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 font-medium text-sm whitespace-nowrap hover:border-orange-500 transition">
+        Google Cloud
+       </div>
+       <div class="flex-shrink-0 px-6 py-3 rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 font-medium text-sm whitespace-nowrap hover:border-orange-500 transition">
+        Azure
+       </div>
+       <div class="flex-shrink-0 px-6 py-3 rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 font-medium text-sm whitespace-nowrap hover:border-orange-500 transition">
+        Kubernetes
+       </div>
+       <div class="flex-shrink-0 px-6 py-3 rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 font-medium text-sm whitespace-nowrap hover:border-orange-500 transition">
+        Docker
+       </div>
+       <div class="flex-shrink-0 px-6 py-3 rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 font-medium text-sm whitespace-nowrap hover:border-orange-500 transition">
+        Terraform
+       </div>
+       <div class="flex-shrink-0 px-6 py-3 rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 font-medium text-sm whitespace-nowrap hover:border-orange-500 transition">
+        React
+       </div>
+       <div class="flex-shrink-0 px-6 py-3 rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 font-medium text-sm whitespace-nowrap hover:border-orange-500 transition">
+        Next.js
+       </div>
+       <div class="flex-shrink-0 px-6 py-3 rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 font-medium text-sm whitespace-nowrap hover:border-orange-500 transition">
+        Python
+       </div>
+       <div class="flex-shrink-0 px-6 py-3 rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 font-medium text-sm whitespace-nowrap hover:border-orange-500 transition">
+        TensorFlow
+       </div><!-- Duplicate for seamless loop -->
+       <div class="flex-shrink-0 px-6 py-3 rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 font-medium text-sm whitespace-nowrap hover:border-orange-500 transition">
+        AWS
+       </div>
+       <div class="flex-shrink-0 px-6 py-3 rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 font-medium text-sm whitespace-nowrap hover:border-orange-500 transition">
+        Google Cloud
+       </div>
+       <div class="flex-shrink-0 px-6 py-3 rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 font-medium text-sm whitespace-nowrap hover:border-orange-500 transition">
+        Azure
+       </div>
+       <div class="flex-shrink-0 px-6 py-3 rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 font-medium text-sm whitespace-nowrap hover:border-orange-500 transition">
+        Kubernetes
+       </div>
+       <div class="flex-shrink-0 px-6 py-3 rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 font-medium text-sm whitespace-nowrap hover:border-orange-500 transition">
+        Docker
+       </div>
+       <div class="flex-shrink-0 px-6 py-3 rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 font-medium text-sm whitespace-nowrap hover:border-orange-500 transition">
+        Terraform
+       </div>
+       <div class="flex-shrink-0 px-6 py-3 rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 font-medium text-sm whitespace-nowrap hover:border-orange-500 transition">
+        React
+       </div>
+       <div class="flex-shrink-0 px-6 py-3 rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 font-medium text-sm whitespace-nowrap hover:border-orange-500 transition">
+        Next.js
+       </div>
+       <div class="flex-shrink-0 px-6 py-3 rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 font-medium text-sm whitespace-nowrap hover:border-orange-500 transition">
+        Python
+       </div>
+       <div class="flex-shrink-0 px-6 py-3 rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 font-medium text-sm whitespace-nowrap hover:border-orange-500 transition">
+        TensorFlow
+       </div>
+      </div>
+     </div><!-- Row 2 -->
+     <div class="flex overflow-hidden">
+      <div class="flex gap-4 animate-scroll-right">
+       <div class="flex-shrink-0 px-6 py-3 rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 font-medium text-sm whitespace-nowrap hover:border-orange-500 transition">
+        PostgreSQL
+       </div>
+       <div class="flex-shrink-0 px-6 py-3 rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 font-medium text-sm whitespace-nowrap hover:border-orange-500 transition">
+        MongoDB
+       </div>
+       <div class="flex-shrink-0 px-6 py-3 rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 font-medium text-sm whitespace-nowrap hover:border-orange-500 transition">
+        Redis
+       </div>
+       <div class="flex-shrink-0 px-6 py-3 rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 font-medium text-sm whitespace-nowrap hover:border-orange-500 transition">
+        GraphQL
+       </div>
+       <div class="flex-shrink-0 px-6 py-3 rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 font-medium text-sm whitespace-nowrap hover:border-orange-500 transition">
+        Node.js
+       </div>
+       <div class="flex-shrink-0 px-6 py-3 rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 font-medium text-sm whitespace-nowrap hover:border-orange-500 transition">
+        Go
+       </div>
+       <div class="flex-shrink-0 px-6 py-3 rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 font-medium text-sm whitespace-nowrap hover:border-orange-500 transition">
+        Rust
+       </div>
+       <div class="flex-shrink-0 px-6 py-3 rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 font-medium text-sm whitespace-nowrap hover:border-orange-500 transition">
+        Kafka
+       </div>
+       <div class="flex-shrink-0 px-6 py-3 rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 font-medium text-sm whitespace-nowrap hover:border-orange-500 transition">
+        Elasticsearch
+       </div>
+       <div class="flex-shrink-0 px-6 py-3 rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 font-medium text-sm whitespace-nowrap hover:border-orange-500 transition">
+        Prometheus
+       </div><!-- Duplicate for seamless loop -->
+       <div class="flex-shrink-0 px-6 py-3 rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 font-medium text-sm whitespace-nowrap hover:border-orange-500 transition">
+        PostgreSQL
+       </div>
+       <div class="flex-shrink-0 px-6 py-3 rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 font-medium text-sm whitespace-nowrap hover:border-orange-500 transition">
+        MongoDB
+       </div>
+       <div class="flex-shrink-0 px-6 py-3 rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 font-medium text-sm whitespace-nowrap hover:border-orange-500 transition">
+        Redis
+       </div>
+       <div class="flex-shrink-0 px-6 py-3 rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 font-medium text-sm whitespace-nowrap hover:border-orange-500 transition">
+        GraphQL
+       </div>
+       <div class="flex-shrink-0 px-6 py-3 rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 font-medium text-sm whitespace-nowrap hover:border-orange-500 transition">
+        Node.js
+       </div>
+       <div class="flex-shrink-0 px-6 py-3 rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 font-medium text-sm whitespace-nowrap hover:border-orange-500 transition">
+        Go
+       </div>
+       <div class="flex-shrink-0 px-6 py-3 rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 font-medium text-sm whitespace-nowrap hover:border-orange-500 transition">
+        Rust
+       </div>
+       <div class="flex-shrink-0 px-6 py-3 rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 font-medium text-sm whitespace-nowrap hover:border-orange-500 transition">
+        Kafka
+       </div>
+       <div class="flex-shrink-0 px-6 py-3 rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 font-medium text-sm whitespace-nowrap hover:border-orange-500 transition">
+        Elasticsearch
+       </div>
+       <div class="flex-shrink-0 px-6 py-3 rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 font-medium text-sm whitespace-nowrap hover:border-orange-500 transition">
+        Prometheus
+       </div>
+      </div>
+     </div>
+    </div>
+   </section>
+   
+   
+   
+   
+   
+   
+   
+   <section>
+  <div id="portfolio-section">
+    <p style="color:#888; text-align:center; padding:80px;">Loading portfolio section...</p>
+  </div>
+
+  <script>
+  async function loadPortfolioSection() {
+    try {
+      const res = await fetch('portfolio_section.html');
+      const html = await res.text();
+      document.getElementById('portfolio-section').innerHTML = html;
+
+      setTimeout(() => {
+        const observer = new IntersectionObserver((entries) => {
+          if (entries[0].isIntersecting) {
+            document.querySelector('.section-header').classList.add('in-view');
+          }
+        }, { threshold: 0.2 });
+
+        const section = document.querySelector('.section-portfolio');
+        if (section) observer.observe(section);
+      }, 150);
+
+    } catch(e) {
+      console.error('Failed to load portfolio section', e);
+      document.getElementById('portfolio-section').innerHTML =
+        `<p style="color:red; text-align:center; padding:80px;">Failed to load portfolio section.</p>`;
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', loadPortfolioSection);
+  </script>
+</section>
+   
+   
+   
+   
+   
+   
+   <!-- NEWS & INSIGHTS -->
+   <section class="py-24 md:py-32">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+     <div class="flex items-end justify-between mb-16 fade-up">
+      <div><span class="text-orange-600 dark:text-orange-400 font-semibold text-sm uppercase tracking-widest">Latest Updates</span>
+       <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold mt-4 font-space">News &amp; Insights</h2>
+      </div><button id="news-next" class="md:hidden p-3 rounded-full bg-orange-500 text-white shadow-lg hover:bg-orange-600 transition"> <i data-lucide="chevron-right" class="w-5 h-5"></i> </button>
+     </div>
+     <div id="news-container" class="flex gap-6 overflow-x-auto md:overflow-visible md:grid md:grid-cols-3 news-container pb-4 -mx-4 px-4 md:mx-0 md:px-0 fade-up delay-100">
+      <article class="news-card flex-shrink-0 w-[85%] md:w-auto rounded-2xl overflow-hidden bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-orange-500 transition group">
+       <div class="h-48 bg-gradient-to-br from-orange-500/20 to-orange-600/20 flex items-center justify-center"><i data-lucide="cpu" class="w-16 h-16 text-orange-500 opacity-50"></i>
+       </div>
+       <div class="p-6"><span class="text-xs text-orange-600 dark:text-orange-400 font-semibold uppercase">AI &amp; Innovation</span>
+        <h3 class="font-bold mt-3 mb-2 group-hover:text-orange-600 transition text-lg">How Edge AI Is Redefining Real-Time Processing</h3>
+        <p class="text-sm text-gray-500 dark:text-gray-400">Dec 15, 2024</p>
+        <div class="mt-4 flex items-center gap-2 text-orange-600 opacity-0 group-hover:opacity-100 transition">
+         Read More <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </div>
+       </div>
+      </article>
+      <article class="news-card flex-shrink-0 w-[85%] md:w-auto rounded-2xl overflow-hidden bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-orange-500 transition group">
+       <div class="h-48 bg-gradient-to-br from-blue-500/20 to-blue-600/20 flex items-center justify-center"><i data-lucide="lock" class="w-16 h-16 text-blue-500 opacity-50"></i>
+       </div>
+       <div class="p-6"><span class="text-xs text-orange-600 dark:text-orange-400 font-semibold uppercase">Security</span>
+        <h3 class="font-bold mt-3 mb-2 group-hover:text-orange-600 transition text-lg">Zero Trust Architecture: A 2025 Imperative</h3>
+        <p class="text-sm text-gray-500 dark:text-gray-400">Dec 8, 2024</p>
+        <div class="mt-4 flex items-center gap-2 text-orange-600 opacity-0 group-hover:opacity-100 transition">
+         Read More <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </div>
+       </div>
+      </article>
+      <article class="news-card flex-shrink-0 w-[85%] md:w-auto rounded-2xl overflow-hidden bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-orange-500 transition group">
+       <div class="h-48 bg-gradient-to-br from-green-500/20 to-green-600/20 flex items-center justify-center"><i data-lucide="trending-up" class="w-16 h-16 text-green-500 opacity-50"></i>
+       </div>
+       <div class="p-6"><span class="text-xs text-orange-600 dark:text-orange-400 font-semibold uppercase">Growth</span>
+        <h3 class="font-bold mt-3 mb-2 group-hover:text-orange-600 transition text-lg">Seven Tech Ventures Expands Global Footprint</h3>
+        <p class="text-sm text-gray-500 dark:text-gray-400">Dec 1, 2024</p>
+        <div class="mt-4 flex items-center gap-2 text-orange-600 opacity-0 group-hover:opacity-100 transition">
+         Read More <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </div>
+       </div>
+      </article>
+     </div>
+    </div>
+   </section><!-- PARTNERS & INTEGRATIONS -->
+   <section class="py-24 md:py-32 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-black">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+     <div class="text-center mb-20 fade-up"><span class="text-orange-600 dark:text-orange-400 font-semibold text-sm uppercase tracking-widest">Partnerships</span>
+      <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold mt-4 font-space">Trusted by Industry Leaders</h2>
+     </div>
+     <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6 fade-up delay-100">
+      <div class="partner-logo">
+       Amazon
+      </div>
+      <div class="partner-logo">
+       Google
+      </div>
+      <div class="partner-logo">
+       Microsoft
+      </div>
+      <div class="partner-logo">
+       IBM
+      </div>
+      <div class="partner-logo">
+       Meta
+      </div>
+      <div class="partner-logo">
+       Apple
+      </div>
+     </div>
+    </div>
+   </section><!-- WHY CHOOSE US -->
+   <section class="py-24 md:py-32">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+     <div class="text-center mb-20 fade-up"><span class="text-orange-600 dark:text-orange-400 font-semibold text-sm uppercase tracking-widest">Advantage</span>
+      <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold mt-4 font-space">Why Choose Seven Tech?</h2>
+     </div>
+     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 fade-up delay-100">
+      <div class="flex gap-4">
+       <div class="w-12 h-12 flex-shrink-0 rounded-xl bg-orange-500/10 flex items-center justify-center"><i data-lucide="rocket" class="w-6 h-6 text-orange-600"></i>
+       </div>
+       <div>
+        <h3 class="font-bold mb-2 text-lg">Rapid Delivery</h3>
+        <p class="text-sm text-gray-600 dark:text-gray-400">Agile sprints and CI/CD pipelines ensure solutions ship faster without compromising quality.</p>
+       </div>
+      </div>
+      <div class="flex gap-4">
+       <div class="w-12 h-12 flex-shrink-0 rounded-xl bg-orange-500/10 flex items-center justify-center"><i data-lucide="users" class="w-6 h-6 text-orange-600"></i>
+       </div>
+       <div>
+        <h3 class="font-bold mb-2 text-lg">Expert Teams</h3>
+        <p class="text-sm text-gray-600 dark:text-gray-400">Certified engineers across cloud, AI, and security domains hand-picked for your project.</p>
+       </div>
+      </div>
+      <div class="flex gap-4">
+       <div class="w-12 h-12 flex-shrink-0 rounded-xl bg-orange-500/10 flex items-center justify-center"><i data-lucide="bar-chart-3" class="w-6 h-6 text-orange-600"></i>
+       </div>
+       <div>
+        <h3 class="font-bold mb-2 text-lg">Measurable ROI</h3>
+        <p class="text-sm text-gray-600 dark:text-gray-400">Every engagement is tied to KPIs for tangible business impact from day one.</p>
+       </div>
+      </div>
+      <div class="flex gap-4">
+       <div class="w-12 h-12 flex-shrink-0 rounded-xl bg-orange-500/10 flex items-center justify-center"><i data-lucide="refresh-cw" class="w-6 h-6 text-orange-600"></i>
+       </div>
+       <div>
+        <h3 class="font-bold mb-2 text-lg">Continuous Innovation</h3>
+        <p class="text-sm text-gray-600 dark:text-gray-400">We stay ahead of tech trends so your solutions never become legacy systems.</p>
+       </div>
+      </div>
+      <div class="flex gap-4">
+       <div class="w-12 h-12 flex-shrink-0 rounded-xl bg-orange-500/10 flex items-center justify-center"><i data-lucide="headphones" class="w-6 h-6 text-orange-600"></i>
+       </div>
+       <div>
+        <h3 class="font-bold mb-2 text-lg">Dedicated Support</h3>
+        <p class="text-sm text-gray-600 dark:text-gray-400">Round-the-clock monitoring and a dedicated account manager for every client.</p>
+       </div>
+      </div>
+      <div class="flex gap-4">
+       <div class="w-12 h-12 flex-shrink-0 rounded-xl bg-orange-500/10 flex items-center justify-center"><i data-lucide="globe" class="w-6 h-6 text-orange-600"></i>
+       </div>
+       <div>
+        <h3 class="font-bold mb-2 text-lg">Global Reach</h3>
+        <p class="text-sm text-gray-600 dark:text-gray-400">Offices across 5 continents with local expertise and global delivery capabilities.</p>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- TESTIMONIALS -->
+   <section class="py-24 md:py-32 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-black">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+     <div class="text-center mb-20 fade-up"><span class="text-orange-600 dark:text-orange-400 font-semibold text-sm uppercase tracking-widest">Success Stories</span>
+      <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold mt-4 font-space">What Our Clients Say</h2>
+     </div>
+     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 fade-up delay-100">
+      <div class="testimonial-card">
+       <div class="flex items-center gap-1 mb-4"><i data-lucide="star" class="w-5 h-5 text-orange-500 fill-orange-500"></i> <i data-lucide="star" class="w-5 h-5 text-orange-500 fill-orange-500"></i> <i data-lucide="star" class="w-5 h-5 text-orange-500 fill-orange-500"></i> <i data-lucide="star" class="w-5 h-5 text-orange-500 fill-orange-500"></i> <i data-lucide="star" class="w-5 h-5 text-orange-500 fill-orange-500"></i>
+       </div>
+       <p class="text-gray-700 dark:text-gray-300 mb-6">"Seven Tech transformed our entire infrastructure. Their team understood our vision and delivered beyond expectations in record time."</p>
+       <div class="flex items-center gap-3">
+        <div class="w-12 h-12 rounded-full bg-orange-500/20 flex items-center justify-center"><span class="font-bold text-orange-600">JD</span>
+        </div>
+        <div>
+         <p class="font-semibold">John Davis</p>
+         <p class="text-sm text-gray-500">CEO, TechCorp Solutions</p>
+        </div>
+       </div>
+      </div>
+      <div class="testimonial-card">
+       <div class="flex items-center gap-1 mb-4"><i data-lucide="star" class="w-5 h-5 text-orange-500 fill-orange-500"></i> <i data-lucide="star" class="w-5 h-5 text-orange-500 fill-orange-500"></i> <i data-lucide="star" class="w-5 h-5 text-orange-500 fill-orange-500"></i> <i data-lucide="star" class="w-5 h-5 text-orange-500 fill-orange-500"></i> <i data-lucide="star" class="w-5 h-5 text-orange-500 fill-orange-500"></i>
+       </div>
+       <p class="text-gray-700 dark:text-gray-300 mb-6">"The AI implementation increased our operational efficiency by 300%. Their expertise and support are unmatched in the industry."</p>
+       <div class="flex items-center gap-3">
+        <div class="w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="font-bold text-blue-600">SM</span>
+        </div>
+        <div>
+         <p class="font-semibold">Sarah Mitchell</p>
+         <p class="text-sm text-gray-500">COO, FinanceHub Inc</p>
+        </div>
+       </div>
+      </div>
+      <div class="testimonial-card">
+       <div class="flex items-center gap-1 mb-4"><i data-lucide="star" class="w-5 h-5 text-orange-500 fill-orange-500"></i> <i data-lucide="star" class="w-5 h-5 text-orange-500 fill-orange-500"></i> <i data-lucide="star" class="w-5 h-5 text-orange-500 fill-orange-500"></i> <i data-lucide="star" class="w-5 h-5 text-orange-500 fill-orange-500"></i> <i data-lucide="star" class="w-5 h-5 text-orange-500 fill-orange-500"></i>
+       </div>
+       <p class="text-gray-700 dark:text-gray-300 mb-6">"Outstanding team! They guided us through cloud migration seamlessly. Zero downtime, maximum reliability. Highly recommended!"</p>
+       <div class="flex items-center gap-3">
+        <div class="w-12 h-12 rounded-full bg-green-500/20 flex items-center justify-center"><span class="font-bold text-green-600">RK</span>
+        </div>
+        <div>
+         <p class="font-semibold">Rajesh Kumar</p>
+         <p class="text-sm text-gray-500">Founder, DataStream</p>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- ROADMAP / TIMELINE -->
+   <section class="py-24 md:py-32">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+     <div class="text-center mb-20 fade-up"><span class="text-orange-600 dark:text-orange-400 font-semibold text-sm uppercase tracking-widest">Our Journey</span>
+      <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold mt-4 font-space">Growth Timeline</h2>
+     </div>
+     <div class="fade-up delay-100">
+      <div class="timeline-item">
+       <h3 class="font-bold text-lg mb-1">2018: Founded</h3>
+       <p class="text-gray-600 dark:text-gray-400">Seven Tech Ventures launched with a mission to revolutionize enterprise technology.</p>
+      </div>
+      <div class="timeline-item">
+       <h3 class="font-bold text-lg mb-1">2019: First 50 Clients</h3>
+       <p class="text-gray-600 dark:text-gray-400">Rapid growth and successful deployment of cloud solutions across diverse industries.</p>
+      </div>
+      <div class="timeline-item">
+       <h3 class="font-bold text-lg mb-1">2021: Global Expansion</h3>
+       <p class="text-gray-600 dark:text-gray-400">Opened offices in Europe, Asia, and Americas. Reached 100+ enterprise clients.</p>
+      </div>
+      <div class="timeline-item">
+       <h3 class="font-bold text-lg mb-1">2023: AI Leadership</h3>
+       <p class="text-gray-600 dark:text-gray-400">Launched proprietary AI platform. Recognized as industry leader in machine learning solutions.</p>
+      </div>
+      <div class="timeline-item">
+       <h3 class="font-bold text-lg mb-1">2024: 150+ Clients</h3>
+       <p class="text-gray-600 dark:text-gray-400">Delivering solutions to Fortune 500 companies. Expanding into emerging markets.</p>
+      </div>
+      <div class="timeline-item">
+       <h3 class="font-bold text-lg mb-1">2025: Vision</h3>
+       <p class="text-gray-600 dark:text-gray-400">Scaling to 300+ clients with next-gen quantum-ready infrastructure and autonomous AI systems.</p>
+      </div>
+     </div>
+    </div>
+   </section><!-- FAQ -->
+   <section class="py-24 md:py-32 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-black">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+     <div class="text-center mb-16 fade-up"><span class="text-orange-600 dark:text-orange-400 font-semibold text-sm uppercase tracking-widest">FAQ</span>
+      <h2 class="text-4xl md:text-5xl font-bold mt-4 font-space">Frequently Asked Questions</h2>
+     </div>
+     <div class="space-y-3 fade-up delay-100" id="faq-list">
+      <div class="faq-item border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden"><button class="faq-btn w-full flex items-center justify-between p-5 text-left font-semibold hover:text-orange-600 transition"> <span>What industries do you serve?</span> <i data-lucide="chevron-down" class="w-5 h-5 transition-transform"></i> </button>
+       <div class="faq-content px-5 pb-5">
+        <p class="text-sm text-gray-600 dark:text-gray-400">We serve fintech, healthcare, e-commerce, logistics, manufacturing, and SaaS companies of all sizes — from ambitious startups to Fortune 500 enterprises across 50+ countries.</p>
+       </div>
+      </div>
+      <div class="faq-item border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden"><button class="faq-btn w-full flex items-center justify-between p-5 text-left font-semibold hover:text-orange-600 transition"> <span>How long does a typical project take?</span> <i data-lucide="chevron-down" class="w-5 h-5 transition-transform"></i> </button>
+       <div class="faq-content px-5 pb-5">
+        <p class="text-sm text-gray-600 dark:text-gray-400">Most projects range from 4–16 weeks depending on scope and complexity. We begin with a detailed discovery sprint to define milestones and deliver incrementally with weekly updates.</p>
+       </div>
+      </div>
+      <div class="faq-item border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden"><button class="faq-btn w-full flex items-center justify-between p-5 text-left font-semibold hover:text-orange-600 transition"> <span>Do you offer ongoing maintenance and support?</span> <i data-lucide="chevron-down" class="w-5 h-5 transition-transform"></i> </button>
+       <div class="faq-content px-5 pb-5">
+        <p class="text-sm text-gray-600 dark:text-gray-400">Yes! We provide comprehensive 24/7 SLA-backed support, proactive monitoring, performance optimization, security patches, and quarterly technology reviews included in our retainer packages.</p>
+       </div>
+      </div>
+      <div class="faq-item border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden"><button class="faq-btn w-full flex items-center justify-between p-5 text-left font-semibold hover:text-orange-600 transition"> <span>Can you integrate with our existing systems?</span> <i data-lucide="chevron-down" class="w-5 h-5 transition-transform"></i> </button>
+       <div class="faq-content px-5 pb-5">
+        <p class="text-sm text-gray-600 dark:text-gray-400">Absolutely! We're stack-agnostic and specialize in seamless integration with legacy systems while modernizing them incrementally. Our team has deep expertise with enterprise platforms.</p>
+       </div>
+      </div>
+      <div class="faq-item border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden"><button class="faq-btn w-full flex items-center justify-between p-5 text-left font-semibold hover:text-orange-600 transition"> <span>What's your pricing model?</span> <i data-lucide="chevron-down" class="w-5 h-5 transition-transform"></i> </button>
+       <div class="faq-content px-5 pb-5">
+        <p class="text-sm text-gray-600 dark:text-gray-400">We offer flexible pricing: fixed-price projects, time &amp; materials, retainer-based support, or performance-based models. Our consultants work with you to choose the best fit for your budget and goals.</p>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- CTA SECTION -->
+   <section id="contact" class="py-24 md:py-32">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+     <div class="relative rounded-3xl overflow-hidden p-12 md:p-20 text-center fade-up">
+      <div class="absolute inset-0 bg-gradient-to-br from-orange-500 via-orange-600 to-orange-700"></div>
+      <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.2),transparent_60%)]"></div>
+      <div class="relative z-10">
+       <h2 id="cta-title" class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 font-space">Ready to Transform?</h2>
+       <p class="text-white/90 mb-12 max-w-xl mx-auto text-lg leading-relaxed">Let's discuss how we can accelerate your digital journey and unlock exponential growth. No commitments — just a strategic conversation about possibilities.</p>
+       <div class="flex flex-wrap gap-4 justify-center"><a href="#" class="px-10 py-4 bg-white text-orange-600 font-bold rounded-full hover:bg-gray-100 transition shadow-xl cta-button inline-flex items-center gap-2"> Schedule a Consultation <i data-lucide="calendar" class="w-5 h-5"></i> </a> <a href="#" class="px-10 py-4 border-2 border-white/40 text-white rounded-full hover:bg-white/10 transition font-bold inline-flex items-center gap-2"> View Case Studies <i data-lucide="briefcase" class="w-5 h-5"></i> </a>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- CAREERS SECTION -->
+   <section id="careers" class="py-24 md:py-32 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-black">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+     <div class="text-center mb-20 fade-up"><span class="text-orange-600 dark:text-orange-400 font-semibold text-sm uppercase tracking-widest">Join Our Team</span>
+      <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold mt-4 font-space">We're Hiring Talented People</h2>
+      <p class="text-gray-600 dark:text-gray-400 mt-6 max-w-2xl mx-auto text-lg">Be part of a team that's reshaping the future of technology. Great benefits, learning opportunities, and the chance to work on world-class projects.</p>
+     </div>
+     <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 fade-up delay-100">
+      <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 border border-gray-200 dark:border-gray-700 hover:border-orange-500 transition group">
+       <div class="flex items-center justify-between mb-4">
+        <h3 class="text-xl font-bold">Senior Cloud Architect</h3><span class="text-xs bg-orange-500/10 text-orange-600 px-3 py-1 rounded-full font-semibold">Full-Time</span>
+       </div>
+       <p class="text-gray-600 dark:text-gray-400 mb-4">Design and implement scalable cloud infrastructure for enterprise clients.</p>
+       <div class="flex gap-2 mb-6 flex-wrap"><span class="text-xs bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded">AWS</span> <span class="text-xs bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded">Kubernetes</span> <span class="text-xs bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded">DevOps</span>
+       </div><a href="#" class="text-orange-600 font-semibold group-hover:gap-2 transition inline-flex items-center gap-1"> Apply Now <i data-lucide="arrow-right" class="w-4 h-4"></i> </a>
+      </div>
+      <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 border border-gray-200 dark:border-gray-700 hover:border-orange-500 transition group">
+       <div class="flex items-center justify-between mb-4">
+        <h3 class="text-xl font-bold">ML Engineer</h3><span class="text-xs bg-orange-500/10 text-orange-600 px-3 py-1 rounded-full font-semibold">Full-Time</span>
+       </div>
+       <p class="text-gray-600 dark:text-gray-400 mb-4">Build and deploy machine learning models at scale for diverse industries.</p>
+       <div class="flex gap-2 mb-6 flex-wrap"><span class="text-xs bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded">Python</span> <span class="text-xs bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded">TensorFlow</span> <span class="text-xs bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded">PyTorch</span>
+       </div><a href="#" class="text-orange-600 font-semibold group-hover:gap-2 transition inline-flex items-center gap-1"> Apply Now <i data-lucide="arrow-right" class="w-4 h-4"></i> </a>
+      </div>
+      <div class="bg-white dark:bg-gray-800 rounded-2xl p-8 border border-gray-200 dark:border-gray-700 hover:border-orange-500 transition group">
+       <div class="flex items-center justify-between mb-4">
+        <h3 class="text-xl font-bold">Security Specialist</h3><span class="text-xs bg-orange-500/10 text-orange-600 px-3 py-1 rounded-full font-semibold">Full-Time</span>
+       </div>
+       <p class="text-gray-600 dark:text-gray-400 mb-4">Lead cybersecurity initiatives and protect enterprise digital assets.</p>
+       <div class="flex gap-2 mb-6 flex-wrap"><span class="text-xs bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded">Cybersecurity</span> <span class="text-xs bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded">Compliance</span> <span class="text-xs bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded">Penetration Testing</span>
+       </div><a href="#" class="text-orange-600 font-semibold group-hover:gap-2 transition inline-flex items-center gap-1"> Apply Now <i data-lucide="arrow-right" class="w-4 h-4"></i> </a>
+      </div>
+     </div>
+     <div class="text-center mt-16 fade-up delay-200">
+      <p class="text-gray-600 dark:text-gray-400 mb-6">More opportunities available</p><a href="#" class="px-8 py-3 bg-orange-500 hover:bg-orange-600 text-white rounded-full font-semibold transition inline-flex items-center gap-2"> View All Positions <i data-lucide="arrow-right" class="w-5 h-5"></i> </a>
+     </div>
+    </div>
+   </section><!-- FOOTER -->
+   <footer class="bg-black text-gray-400 pt-20 pb-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+     <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-10 mb-16">
+      <div>
+       <div class="flex items-center gap-3 mb-6">
+        <div class="w-10 h-10 bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg flex items-center justify-center"><span class="text-white font-bold font-space text-lg">7</span>
+        </div><span class="text-white font-bold text-lg font-space">Seven Tech Ventures</span>
+       </div>
+       <p class="text-sm leading-relaxed">Engineering the digital infrastructure of tomorrow, today. Partnering with visionary companies to scale beyond limits.</p>
+       <div class="flex gap-4 mt-6"><a href="#" class="p-2 hover:bg-gray-900 rounded-lg transition"> <i data-lucide="linkedin" class="w-5 h-5"></i> </a> <a href="#" class="p-2 hover:bg-gray-900 rounded-lg transition"> <i data-lucide="twitter" class="w-5 h-5"></i> </a> <a href="#" class="p-2 hover:bg-gray-900 rounded-lg transition"> <i data-lucide="github" class="w-5 h-5"></i> </a>
+       </div>
+      </div>
+      <div>
+       <h4 class="text-white font-semibold mb-6">Company</h4>
+       <ul class="space-y-3 text-sm">
+        <li><a href="#" class="hover:text-orange-500 transition">About Us</a></li>
+        <li><a href="#" class="hover:text-orange-500 transition">Careers</a></li>
+        <li><a href="#" class="hover:text-orange-500 transition">Blog</a></li>
+        <li><a href="#" class="hover:text-orange-500 transition">Press</a></li>
+       </ul>
+      </div>
+      <div>
+       <h4 class="text-white font-semibold mb-6">Services</h4>
+       <ul class="space-y-3 text-sm">
+        <li><a href="#" class="hover:text-orange-500 transition">Cloud Solutions</a></li>
+        <li><a href="#" class="hover:text-orange-500 transition">AI &amp; ML</a></li>
+        <li><a href="#" class="hover:text-orange-500 transition">Cybersecurity</a></li>
+        <li><a href="#" class="hover:text-orange-500 transition">Custom Development</a></li>
+       </ul>
+      </div>
+      <div>
+       <h4 class="text-white font-semibold mb-6">Resources</h4>
+       <ul class="space-y-3 text-sm">
+        <li><a href="#" class="hover:text-orange-500 transition">Documentation</a></li>
+        <li><a href="#" class="hover:text-orange-500 transition">Case Studies</a></li>
+        <li><a href="#" class="hover:text-orange-500 transition">Whitepapers</a></li>
+        <li><a href="#" class="hover:text-orange-500 transition">API Reference</a></li>
+       </ul>
+      </div>
+      <div>
+       <h4 class="text-white font-semibold mb-6">Legal</h4>
+       <ul class="space-y-3 text-sm">
+        <li><a href="#" class="hover:text-orange-500 transition">Privacy Policy</a></li>
+        <li><a href="#" class="hover:text-orange-500 transition">Terms of Service</a></li>
+        <li><a href="#" class="hover:text-orange-500 transition">Contact</a></li>
+        <li><a href="#" class="hover:text-orange-500 transition">Sitemap</a></li>
+       </ul>
+      </div>
+     </div>
+     <div class="border-t border-gray-800 pt-10 flex flex-col md:flex-row items-center justify-between gap-4">
+      <p class="text-sm">© 2024 Seven Tech Ventures. All rights reserved.</p>
+      <div class="flex gap-6 text-sm"><a href="#" class="hover:text-orange-500 transition">Privacy</a> <a href="#" class="hover:text-orange-500 transition">Terms</a> <a href="#" class="hover:text-orange-500 transition">Cookies</a>
+      </div>
+     </div>
+    </div>
+   </footer>
+  </div>
+  <script>
+        // Default config
+        const defaultConfig = {
+            company_name: 'Seven Tech Ventures',
+            hero_title: 'Building the <span class="gradient-text">Future</span>',
+            hero_subtitle: 'Seven Tech Ventures: Where visionary ideas meet cutting-edge technology. We partner with ambitious companies to scale beyond limits.',
+            cta_title: 'Ready to Transform?'
+        };
+
+        // Element SDK initialization
+        if (window.elementSdk) {
+            window.elementSdk.init({
+                defaultConfig,
+                onConfigChange: async (config) => {
+                    const c = { ...defaultConfig, ...config };
+                    const navCompany = document.getElementById('nav-company');
+                    const heroTitle = document.getElementById('hero-title');
+                    const heroSubtitle = document.getElementById('hero-subtitle');
+                    const ctaTitle = document.getElementById('cta-title');
+
+                    if (navCompany) navCompany.textContent = c.company_name;
+                    if (heroTitle) heroTitle.innerHTML = c.hero_title;
+                    if (heroSubtitle) heroSubtitle.textContent = c.hero_subtitle;
+                    if (ctaTitle) ctaTitle.textContent = c.cta_title;
+                },
+                mapToCapabilities: () => ({
+                    recolorables: [],
+                    borderables: [],
+                    fontEditable: undefined,
+                    fontSizeable: undefined
+                }),
+                mapToEditPanelValues: (config) => {
+                    const c = { ...defaultConfig, ...config };
+                    return new Map([
+                        ['company_name', c.company_name],
+                        ['hero_title', c.hero_title],
+                        ['hero_subtitle', c.hero_subtitle],
+                        ['cta_title', c.cta_title]
+                    ]);
+                }
+            });
+        }
+
+        // Theme toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        if (themeToggle) {
+            themeToggle.addEventListener('click', () => {
+                document.documentElement.classList.toggle('dark');
+                lucide.createIcons();
+            });
+        }
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (mobileMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // Close mobile menu when link is clicked
+            document.querySelectorAll('#mobile-menu a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+        }
+
+        // FAQ accordion
+        document.querySelectorAll('.faq-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const content = btn.nextElementSibling;
+                const icon = btn.querySelector('[data-lucide]');
+                const isOpen = content.classList.contains('open');
+
+                // Close all other FAQs
+                document.querySelectorAll('.faq-content').forEach(c => c.classList.remove('open'));
+                document.querySelectorAll('.faq-btn [data-lucide]').forEach(i => i.style.transform = '');
+
+                // Toggle current
+                if (!isOpen) {
+                    content.classList.add('open');
+                    icon.style.transform = 'rotate(180deg)';
+                }
+            });
+        });
+
+        // News scroll button
+        const newsNext = document.getElementById('news-next');
+        const newsContainer = document.getElementById('news-container');
+        if (newsNext && newsContainer) {
+            newsNext.addEventListener('click', () => {
+                newsContainer.scrollBy({ left: 300, behavior: 'smooth' });
+            });
+        }
+
+        // Initialize Lucide icons
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
+        }
+    </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9f7ea1ec079794e9',t:'MTc3ODE0MDIxMy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

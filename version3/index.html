@@ -1,0 +1,1425 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seventechventures — Engineering Tomorrow</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #060608;
+      --white: #f4f2ee;
+      --cream: #ede9e0;
+      --gold: #c9a84c;
+      --gold-light: #e8c96a;
+      --gold-dim: rgba(201,168,76,0.15);
+      --gray: #3a3a40;
+      --gray-light: #7a7a85;
+      --surface: #0f0f14;
+      --surface2: #16161e;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--white);
+      font-family: 'Manrope', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ─── Noise Overlay ─── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+      opacity: 0.03;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* ─── Typography ─── */
+    .display { font-family: 'Bebas Neue', sans-serif; letter-spacing: 0.04em; line-height: 0.95; }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+
+    /* ─── Utilities ─── */
+    .gold { color: var(--gold); }
+    .section-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border-left: 2px solid var(--gold);
+      padding-left: 10px;
+      margin-bottom: 24px;
+      display: inline-block;
+    }
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 48px; }
+    @media(max-width:768px) { .container { padding: 0 24px; } }
+
+    section { padding: 120px 0; }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 20px 48px;
+      display: flex; align-items: center; justify-content: space-between;
+      border-bottom: 1px solid rgba(201,168,76,0.1);
+      background: rgba(6,6,8,0.85);
+      backdrop-filter: blur(20px);
+      transition: all 0.4s;
+    }
+    nav.scrolled { padding: 14px 48px; }
+
+    .nav-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.5rem;
+      letter-spacing: 0.06em;
+      color: var(--white);
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--gold); }
+
+    .nav-links { display: flex; gap: 36px; list-style: none; }
+    .nav-links a {
+      color: rgba(244,242,238,0.6);
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: color 0.25s;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute; bottom: -4px; left: 0;
+      width: 0; height: 1px;
+      background: var(--gold);
+      transition: width 0.3s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-links a:hover::after { width: 100%; }
+
+    .nav-cta {
+      padding: 10px 24px;
+      background: transparent;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      font-family: 'Manrope', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+    .nav-cta:hover { background: var(--gold); color: var(--black); }
+
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger span { width: 24px; height: 1.5px; background: var(--white); transition: all 0.3s; }
+
+    @media(max-width: 900px) {
+      .nav-links, .nav-cta { display: none; }
+      .hamburger { display: flex; }
+    }
+
+    /* ─── HERO ─── */
+    #hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding: 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-grid-bg {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+
+    .hero-glow {
+      position: absolute;
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+
+    .hero-content { position: relative; z-index: 2; padding-top: 80px; }
+    .hero-inner { max-width: 1280px; margin: 0 auto; padding: 0 48px; }
+
+    .hero-tag {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 6px 14px;
+      border: 1px solid rgba(201,168,76,0.3);
+      background: rgba(201,168,76,0.05);
+      border-radius: 2px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 40px;
+      animation: fadeUp 0.8s ease both;
+    }
+    .hero-tag-dot { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; animation: pulse 2s ease infinite; }
+
+    .hero-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(72px, 10vw, 150px);
+      line-height: 0.92;
+      letter-spacing: 0.02em;
+      margin-bottom: 40px;
+      animation: fadeUp 0.8s ease 0.15s both;
+    }
+    .hero-title .line2 { color: var(--gold); display: block; }
+    .hero-title .line3 { color: rgba(244,242,238,0.2); display: block; }
+
+    .hero-sub-row {
+      display: flex; align-items: flex-start; gap: 80px;
+      animation: fadeUp 0.8s ease 0.3s both;
+    }
+    .hero-desc {
+      flex: 1; max-width: 500px;
+      color: rgba(244,242,238,0.55);
+      font-size: 1.05rem;
+      font-weight: 300;
+      line-height: 1.75;
+    }
+    .hero-actions { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; margin-top: 4px; }
+    .btn-primary {
+      padding: 16px 36px;
+      background: var(--gold);
+      color: var(--black);
+      font-family: 'Manrope', sans-serif;
+      font-weight: 700;
+      font-size: 0.82rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border: none;
+      text-decoration: none;
+      display: inline-block;
+      transition: all 0.3s;
+    }
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 20px 40px rgba(201,168,76,0.25); }
+    .btn-ghost {
+      padding: 16px 36px;
+      background: transparent;
+      color: var(--white);
+      font-family: 'Manrope', sans-serif;
+      font-weight: 600;
+      font-size: 0.82rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border: 1px solid rgba(244,242,238,0.2);
+      text-decoration: none;
+      display: inline-block;
+      transition: all 0.3s;
+    }
+    .btn-ghost:hover { border-color: var(--white); }
+
+    .hero-scroll-hint {
+      position: absolute; bottom: 40px; left: 50%;
+      transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+      animation: fadeUp 1s ease 1s both;
+    }
+    .hero-scroll-hint span { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; color: rgba(244,242,238,0.3); text-transform: uppercase; }
+    .scroll-line { width: 1px; height: 50px; background: linear-gradient(to bottom, var(--gold), transparent); animation: scrollDown 2s ease-in-out infinite; }
+
+    @media(max-width:768px) {
+      .hero-sub-row { flex-direction: column; gap: 32px; }
+      .hero-inner { padding: 0 24px; }
+    }
+
+    /* ─── TRUSTED BY ─── */
+    #trusted { padding: 60px 0; border-top: 1px solid rgba(255,255,255,0.06); border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .trusted-inner { max-width: 1280px; margin: 0 auto; padding: 0 48px; }
+    .trusted-label { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; color: rgba(244,242,238,0.3); text-transform: uppercase; margin-bottom: 32px; text-align: center; }
+    .trusted-logos {
+      display: flex; align-items: center; justify-content: center;
+      gap: 64px; flex-wrap: wrap;
+    }
+    .trusted-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.3rem;
+      letter-spacing: 0.1em;
+      color: rgba(244,242,238,0.15);
+      transition: color 0.3s;
+      cursor: default;
+    }
+    .trusted-logo:hover { color: rgba(244,242,238,0.5); }
+
+    /* ─── WHY CHOOSE US ─── */
+    #why { background: var(--surface); }
+    .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .why-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(48px, 5vw, 80px); line-height: 0.95; margin-bottom: 24px; }
+    .why-desc { color: rgba(244,242,238,0.5); font-size: 0.95rem; line-height: 1.8; font-weight: 300; margin-bottom: 40px; }
+
+    .why-features { display: flex; flex-direction: column; gap: 0; }
+    .why-feature {
+      padding: 24px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      display: flex; gap: 20px;
+      align-items: flex-start;
+    }
+    .why-feature-num { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--gold); padding-top: 4px; flex-shrink: 0; }
+    .why-feature-text h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 6px; }
+    .why-feature-text p { font-size: 0.85rem; color: rgba(244,242,238,0.45); line-height: 1.7; }
+
+    .why-visual {
+      position: relative; display: flex; justify-content: center; align-items: center;
+    }
+    .why-box {
+      width: 100%; max-width: 420px;
+      background: var(--black);
+      border: 1px solid rgba(201,168,76,0.2);
+      padding: 48px;
+    }
+    .why-stat { margin-bottom: 32px; }
+    .why-stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 64px; color: var(--gold); line-height: 1; }
+    .why-stat-label { font-size: 0.8rem; color: rgba(244,242,238,0.4); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 4px; }
+    .why-bar { height: 2px; background: rgba(201,168,76,0.15); margin-top: 8px; }
+    .why-bar-fill { height: 100%; background: var(--gold); transition: width 1.5s ease; }
+
+    @media(max-width:900px) { .why-grid { grid-template-columns: 1fr; gap: 48px; } }
+
+    /* ─── SERVICES ─── */
+    .services-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 64px; gap: 32px; }
+    .services-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(48px, 5vw, 72px); line-height: 0.95; }
+    .services-sub { max-width: 380px; color: rgba(244,242,238,0.45); font-size: 0.9rem; line-height: 1.75; }
+
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,0.06); }
+    .service-card {
+      background: var(--black);
+      padding: 48px 36px;
+      position: relative; overflow: hidden;
+      transition: background 0.4s;
+      cursor: default;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: var(--gold);
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.4s;
+    }
+    .service-card:hover { background: var(--surface2); }
+    .service-card:hover::before { transform: scaleX(1); }
+
+    .service-icon {
+      width: 48px; height: 48px;
+      border: 1px solid rgba(201,168,76,0.3);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 28px;
+      font-size: 1.2rem;
+      transition: all 0.3s;
+    }
+    .service-card:hover .service-icon { border-color: var(--gold); background: var(--gold-dim); }
+
+    .service-num { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: rgba(201,168,76,0.4); letter-spacing: 0.15em; margin-bottom: 16px; }
+    .service-name { font-size: 1.05rem; font-weight: 700; margin-bottom: 14px; }
+    .service-desc { font-size: 0.82rem; color: rgba(244,242,238,0.45); line-height: 1.75; }
+    .service-arrow { margin-top: 28px; font-size: 1.2rem; color: var(--gold); opacity: 0; transition: opacity 0.3s, transform 0.3s; }
+    .service-card:hover .service-arrow { opacity: 1; transform: translateX(4px); }
+
+    @media(max-width:900px) { .services-grid { grid-template-columns: 1fr 1fr; } }
+    @media(max-width:580px) { .services-grid { grid-template-columns: 1fr; } .services-header { flex-direction: column; align-items: flex-start; } }
+
+    /* ─── STATS ─── */
+    #stats { background: var(--gold); padding: 80px 0; }
+    .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; }
+    .stat-item {
+      padding: 40px;
+      border-right: 1px solid rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-num { font-family: 'Bebas Neue', sans-serif; font-size: 72px; color: var(--black); line-height: 1; }
+    .stat-label { font-size: 0.8rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(0,0,0,0.55); margin-top: 8px; }
+    @media(max-width:768px) { .stats-grid { grid-template-columns: 1fr 1fr; } .stat-item { border-right: none; border-bottom: 1px solid rgba(0,0,0,0.1); } }
+    @media(max-width:480px) { .stats-grid { grid-template-columns: 1fr; } }
+
+    /* ─── CLIENT SUCCESS ─── */
+    #success { background: var(--surface); }
+    .success-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 64px; }
+    .success-card {
+      background: var(--black);
+      padding: 48px;
+      border: 1px solid rgba(255,255,255,0.06);
+      position: relative;
+      transition: border-color 0.3s;
+    }
+    .success-card:hover { border-color: rgba(201,168,76,0.3); }
+    .success-card.featured { border-color: rgba(201,168,76,0.2); grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+    .success-tag { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; color: var(--gold); text-transform: uppercase; margin-bottom: 16px; }
+    .success-title { font-size: 1.3rem; font-weight: 700; margin-bottom: 12px; }
+    .success-desc { font-size: 0.88rem; color: rgba(244,242,238,0.5); line-height: 1.75; }
+    .success-metric { font-family: 'Bebas Neue', sans-serif; font-size: 56px; color: var(--gold); line-height: 1; }
+    .success-metric-label { font-size: 0.8rem; color: rgba(244,242,238,0.4); letter-spacing: 0.1em; }
+    @media(max-width:768px) { .success-grid { grid-template-columns: 1fr; } .success-card.featured { grid-template-columns: 1fr; } }
+
+    /* ─── PROJECTS ─── */
+    .projects-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(48px, 5vw, 72px); margin-bottom: 64px; }
+    .projects-list { display: flex; flex-direction: column; }
+    .project-row {
+      display: grid; grid-template-columns: 80px 1fr 200px 120px;
+      align-items: center; gap: 32px;
+      padding: 28px 0;
+      border-top: 1px solid rgba(255,255,255,0.07);
+      cursor: pointer; transition: all 0.3s;
+    }
+    .project-row:last-child { border-bottom: 1px solid rgba(255,255,255,0.07); }
+    .project-row:hover { background: rgba(201,168,76,0.03); padding-left: 16px; }
+    .project-num { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: rgba(244,242,238,0.25); }
+    .project-name { font-size: 1.1rem; font-weight: 600; }
+    .project-cat { font-size: 0.78rem; color: rgba(244,242,238,0.4); font-weight: 400; margin-top: 2px; }
+    .project-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+    .project-tag { font-size: 0.68rem; padding: 4px 10px; border: 1px solid rgba(255,255,255,0.1); color: rgba(244,242,238,0.5); letter-spacing: 0.08em; }
+    .project-arrow { color: var(--gold); font-size: 1.2rem; text-align: right; opacity: 0; transition: all 0.3s; }
+    .project-row:hover .project-arrow { opacity: 1; transform: translateX(4px); }
+    @media(max-width:768px) { .project-row { grid-template-columns: 1fr; gap: 8px; } .project-tags { display: none; } .project-arrow { display: none; } }
+
+    /* ─── INNOVATION ─── */
+    #innovation { background: var(--surface); }
+    .innov-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; margin-top: 64px; }
+    .innov-card {
+      padding: 48px 36px;
+      background: var(--black);
+      border: 1px solid rgba(255,255,255,0.06);
+      position: relative; overflow: hidden;
+    }
+    .innov-card::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      opacity: 0; transition: opacity 0.4s;
+    }
+    .innov-card:hover::after { opacity: 1; }
+    .innov-number { font-family: 'Bebas Neue', sans-serif; font-size: 120px; color: rgba(201,168,76,0.05); position: absolute; top: -20px; right: -10px; line-height: 1; pointer-events: none; }
+    .innov-icon { font-size: 2rem; margin-bottom: 24px; }
+    .innov-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 14px; }
+    .innov-desc { font-size: 0.85rem; color: rgba(244,242,238,0.45); line-height: 1.75; }
+    @media(max-width:900px) { .innov-grid { grid-template-columns: 1fr 1fr; } }
+    @media(max-width:580px) { .innov-grid { grid-template-columns: 1fr; } }
+
+    /* ─── HOW WE WORK ─── */
+    .process-header { text-align: center; margin-bottom: 80px; }
+    .process-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(48px, 5vw, 72px); margin-top: 16px; }
+    .process-steps {
+      display: grid; grid-template-columns: repeat(5, 1fr);
+      position: relative;
+    }
+    .process-steps::before {
+      content: '';
+      position: absolute; top: 32px; left: 10%; right: 10%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(201,168,76,0.3), transparent);
+      pointer-events: none;
+    }
+    .process-step { text-align: center; padding: 0 20px; }
+    .process-step-num {
+      width: 64px; height: 64px;
+      border: 1px solid rgba(201,168,76,0.3);
+      background: var(--black);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.5rem;
+      color: var(--gold);
+      margin: 0 auto 24px;
+      position: relative; z-index: 1;
+      transition: all 0.3s;
+    }
+    .process-step:hover .process-step-num { background: var(--gold); color: var(--black); }
+    .process-step-name { font-size: 0.92rem; font-weight: 700; margin-bottom: 10px; }
+    .process-step-desc { font-size: 0.78rem; color: rgba(244,242,238,0.4); line-height: 1.7; }
+    @media(max-width:900px) { .process-steps { grid-template-columns: 1fr 1fr; gap: 32px; } .process-steps::before { display: none; } }
+    @media(max-width:480px) { .process-steps { grid-template-columns: 1fr; } }
+
+    /* ─── TESTIMONIALS ─── */
+    #testimonials { background: var(--surface); }
+    .testimonials-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 64px; }
+    .testi-card {
+      padding: 48px;
+      background: var(--black);
+      border: 1px solid rgba(255,255,255,0.06);
+      position: relative;
+    }
+    .testi-quote { font-size: 3rem; color: var(--gold); line-height: 1; margin-bottom: 20px; font-family: 'Bebas Neue', sans-serif; }
+    .testi-text { font-size: 0.95rem; color: rgba(244,242,238,0.65); line-height: 1.8; font-weight: 300; font-style: italic; margin-bottom: 32px; }
+    .testi-author { display: flex; align-items: center; gap: 14px; }
+    .testi-avatar { width: 44px; height: 44px; background: var(--gold-dim); border: 1px solid rgba(201,168,76,0.3); display: flex; align-items: center; justify-content: center; font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; color: var(--gold); flex-shrink: 0; }
+    .testi-name { font-size: 0.88rem; font-weight: 700; }
+    .testi-role { font-size: 0.75rem; color: rgba(244,242,238,0.4); margin-top: 2px; }
+    @media(max-width:768px) { .testimonials-grid { grid-template-columns: 1fr; } }
+
+    /* ─── TECH PARTNERS ─── */
+    .partners-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 1px; background: rgba(255,255,255,0.06); margin-top: 64px; }
+    .partner {
+      background: var(--black);
+      padding: 36px 24px;
+      text-align: center;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.08em;
+      color: rgba(244,242,238,0.2);
+      transition: all 0.3s;
+      cursor: default;
+    }
+    .partner:hover { background: var(--surface); color: var(--gold); }
+    @media(max-width:900px) { .partners-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media(max-width:480px) { .partners-grid { grid-template-columns: repeat(2, 1fr); } }
+
+    /* ─── GLOBAL PRESENCE ─── */
+    #global { background: var(--surface); }
+    .global-inner { display: grid; grid-template-columns: 1fr 1.5fr; gap: 80px; align-items: center; }
+    .global-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(48px, 5vw, 72px); line-height: 0.95; margin-bottom: 24px; }
+    .global-desc { color: rgba(244,242,238,0.5); font-size: 0.92rem; line-height: 1.8; margin-bottom: 40px; }
+    .office-list { display: flex; flex-direction: column; gap: 0; }
+    .office {
+      display: flex; align-items: center; gap: 20px;
+      padding: 20px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .office-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
+    .office-city { font-weight: 700; font-size: 0.92rem; }
+    .office-country { font-size: 0.78rem; color: rgba(244,242,238,0.4); margin-top: 2px; }
+
+    .world-visual {
+      background: var(--black);
+      border: 1px solid rgba(201,168,76,0.15);
+      padding: 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    .world-map-placeholder {
+      width: 100%; aspect-ratio: 2/1;
+      background:
+        radial-gradient(circle at 22% 45%, rgba(201,168,76,0.4) 0%, rgba(201,168,76,0.15) 3%, transparent 6%),
+        radial-gradient(circle at 48% 38%, rgba(201,168,76,0.4) 0%, rgba(201,168,76,0.15) 3%, transparent 6%),
+        radial-gradient(circle at 52% 40%, rgba(201,168,76,0.4) 0%, rgba(201,168,76,0.15) 3%, transparent 6%),
+        radial-gradient(circle at 73% 35%, rgba(201,168,76,0.4) 0%, rgba(201,168,76,0.15) 3%, transparent 6%),
+        radial-gradient(circle at 85% 30%, rgba(201,168,76,0.4) 0%, rgba(201,168,76,0.15) 3%, transparent 6%);
+      border: 1px solid rgba(201,168,76,0.1);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .world-map-label { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; color: rgba(244,242,238,0.15); text-transform: uppercase; }
+    @media(max-width:900px) { .global-inner { grid-template-columns: 1fr; gap: 48px; } }
+
+    /* ─── TEAM ─── */
+    #team { }
+    .team-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(48px, 5vw, 72px); margin-bottom: 64px; }
+    .team-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+    .team-card { cursor: default; }
+    .team-photo {
+      aspect-ratio: 3/4;
+      background: var(--surface);
+      border: 1px solid rgba(255,255,255,0.06);
+      margin-bottom: 16px;
+      position: relative; overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .team-photo-inner {
+      width: 80px; height: 80px;
+      background: var(--gold-dim);
+      border: 1px solid rgba(201,168,76,0.3);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2rem; color: var(--gold);
+    }
+    .team-photo-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(6,6,8,0.9) 0%, transparent 50%);
+      opacity: 0; transition: opacity 0.4s;
+      display: flex; align-items: flex-end; padding: 20px;
+    }
+    .team-card:hover .team-photo-overlay { opacity: 1; }
+    .team-social { display: flex; gap: 12px; }
+    .team-social a { width: 32px; height: 32px; border: 1px solid rgba(201,168,76,0.4); display: flex; align-items: center; justify-content: center; font-size: 0.7rem; color: var(--gold); text-decoration: none; transition: all 0.2s; }
+    .team-social a:hover { background: var(--gold); color: var(--black); }
+    .team-name { font-size: 0.95rem; font-weight: 700; }
+    .team-role { font-size: 0.78rem; color: var(--gold); margin-top: 3px; }
+    .team-dept { font-size: 0.75rem; color: rgba(244,242,238,0.35); margin-top: 2px; }
+    @media(max-width:900px) { .team-grid { grid-template-columns: 1fr 1fr; } }
+    @media(max-width:480px) { .team-grid { grid-template-columns: 1fr 1fr; } }
+
+    /* ─── INSIGHTS ─── */
+    #insights { background: var(--surface); }
+    .insights-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 64px; }
+    .insights-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(48px, 5vw, 72px); }
+    .insights-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 24px; }
+    .insight-card {
+      background: var(--black);
+      border: 1px solid rgba(255,255,255,0.06);
+      cursor: pointer; transition: border-color 0.3s;
+    }
+    .insight-card:hover { border-color: rgba(201,168,76,0.3); }
+    .insight-img {
+      aspect-ratio: 16/9;
+      background: var(--surface);
+      position: relative; overflow: hidden;
+    }
+    .insight-img-inner {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2rem;
+      background: linear-gradient(135deg, var(--surface), var(--surface2));
+    }
+    .insight-body { padding: 28px; }
+    .insight-cat { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; color: var(--gold); text-transform: uppercase; margin-bottom: 10px; }
+    .insight-title-text { font-size: 1rem; font-weight: 700; line-height: 1.4; margin-bottom: 12px; }
+    .insight-desc { font-size: 0.82rem; color: rgba(244,242,238,0.45); line-height: 1.7; }
+    .insight-meta { margin-top: 20px; font-size: 0.72rem; color: rgba(244,242,238,0.3); display: flex; gap: 16px; }
+    @media(max-width:900px) { .insights-grid { grid-template-columns: 1fr; } .insights-header { flex-direction: column; align-items: flex-start; gap: 16px; } }
+
+    /* ─── FAQ ─── */
+    .faq-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(48px, 5vw, 72px); margin-bottom: 64px; text-align: center; }
+    .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 48px; max-width: 960px; margin: 0 auto; }
+    .faq-item { border-top: 1px solid rgba(255,255,255,0.07); }
+    .faq-question {
+      width: 100%; background: none; border: none;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 20px 0;
+      color: var(--white);
+      font-family: 'Manrope', sans-serif;
+      font-size: 0.9rem; font-weight: 600;
+      cursor: pointer; text-align: left;
+      gap: 16px;
+    }
+    .faq-icon { color: var(--gold); font-size: 1.2rem; flex-shrink: 0; transition: transform 0.3s; }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+    .faq-answer { font-size: 0.85rem; color: rgba(244,242,238,0.5); line-height: 1.8; max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding-bottom 0.3s; }
+    .faq-item.open .faq-answer { max-height: 200px; padding-bottom: 20px; }
+    @media(max-width:768px) { .faq-grid { grid-template-columns: 1fr; } }
+
+    /* ─── FINAL CTA ─── */
+    #cta {
+      padding: 160px 0;
+      text-align: center;
+      position: relative; overflow: hidden;
+      background: var(--black);
+    }
+    #cta::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse at 50% 0%, rgba(201,168,76,0.12) 0%, transparent 60%);
+    }
+    .cta-label { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.2em; color: var(--gold); text-transform: uppercase; margin-bottom: 24px; }
+    .cta-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(56px, 8vw, 120px); line-height: 0.92; margin-bottom: 32px; position: relative; }
+    .cta-title .line-alt { color: var(--gold); }
+    .cta-sub { font-size: 1rem; color: rgba(244,242,238,0.5); max-width: 480px; margin: 0 auto 48px; line-height: 1.75; }
+    .cta-actions { display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap; }
+    .cta-contact { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: rgba(244,242,238,0.4); margin-top: 24px; letter-spacing: 0.1em; }
+    .cta-contact a { color: var(--gold); text-decoration: none; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--surface);
+      border-top: 1px solid rgba(201,168,76,0.1);
+      padding: 80px 0 40px;
+    }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 64px; margin-bottom: 64px; }
+    .footer-brand-name { font-family: 'Bebas Neue', sans-serif; font-size: 1.8rem; letter-spacing: 0.06em; margin-bottom: 16px; }
+    .footer-brand-name span { color: var(--gold); }
+    .footer-brand-desc { font-size: 0.85rem; color: rgba(244,242,238,0.4); line-height: 1.75; max-width: 280px; margin-bottom: 28px; }
+    .footer-newsletter { display: flex; gap: 0; }
+    .footer-email {
+      flex: 1; padding: 12px 16px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-right: none;
+      color: var(--white);
+      font-family: 'Manrope', sans-serif;
+      font-size: 0.82rem;
+      outline: none;
+    }
+    .footer-email::placeholder { color: rgba(244,242,238,0.3); }
+    .footer-email:focus { border-color: rgba(201,168,76,0.4); }
+    .footer-sub-btn {
+      padding: 12px 20px;
+      background: var(--gold);
+      color: var(--black);
+      border: none;
+      font-family: 'Manrope', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .footer-sub-btn:hover { background: var(--gold-light); }
+    .footer-col-title { font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(244,242,238,0.35); margin-bottom: 20px; font-weight: 600; }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .footer-links a { font-size: 0.88rem; color: rgba(244,242,238,0.55); text-decoration: none; transition: color 0.25s; }
+    .footer-links a:hover { color: var(--gold); }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.06); padding-top: 32px; display: flex; justify-content: space-between; align-items: center; }
+    .footer-copy { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: rgba(244,242,238,0.25); }
+    .footer-socials { display: flex; gap: 12px; }
+    .footer-social { width: 36px; height: 36px; border: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; font-size: 0.75rem; color: rgba(244,242,238,0.4); text-decoration: none; transition: all 0.3s; }
+    .footer-social:hover { border-color: var(--gold); color: var(--gold); }
+    @media(max-width:900px) { .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; } }
+    @media(max-width:580px) { .footer-grid { grid-template-columns: 1fr; } .footer-bottom { flex-direction: column; gap: 20px; text-align: center; } }
+
+    /* ─── ANIMATIONS ─── */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.5; transform: scale(0.8); } }
+    @keyframes scrollDown { 0%, 100% { opacity: 1; transform: scaleY(1); transform-origin: top; } 50% { opacity: 0.3; } }
+
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+  </style>
+</head>
+<body>
+
+<!-- ─── NAV ─── -->
+<nav id="navbar">
+  <a class="nav-logo" href="#">Seven<span>tech</span>ventures</a>
+  <ul class="nav-links">
+    <li><a href="#about">About Us</a></li>
+    <li><a href="#team">Team</a></li>
+    <li><a href="#work">Case Studies</a></li>
+    <li><a href="#insights">Insights</a></li>
+    <li><a href="#careers">Careers</a></li>
+  </ul>
+  <a class="nav-cta" href="#contact">Contact</a>
+  <div class="hamburger" id="hamburger">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- ─── HERO ─── -->
+<section id="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-content" style="width:100%">
+    <div class="hero-inner">
+      <div class="hero-tag">
+        <div class="hero-tag-dot"></div>
+        Est. 2018 · Engineering Tomorrow
+      </div>
+      <h1 class="hero-title">
+        We Build<br>
+        <span class="line2">Digital</span>
+        <span class="line3">Ventures</span>
+      </h1>
+      <div class="hero-sub-row">
+        <p class="hero-desc">Seventechventures is a full-spectrum IT company transforming ambitious ideas into enterprise-grade software, platforms, and intelligent systems — built to scale globally.</p>
+        <div class="hero-actions">
+          <a href="#work" class="btn-primary">View Our Work</a>
+          <a href="#contact" class="btn-ghost">Start a Project</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll-hint">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- ─── TRUSTED BY ─── -->
+<section id="trusted">
+  <div class="trusted-inner">
+    <p class="trusted-label">Trusted by industry leaders worldwide</p>
+    <div class="trusted-logos">
+      <div class="trusted-logo">NexaCorp</div>
+      <div class="trusted-logo">DataBridge</div>
+      <div class="trusted-logo">Orion Labs</div>
+      <div class="trusted-logo">CloudAxis</div>
+      <div class="trusted-logo">FintechEdge</div>
+      <div class="trusted-logo">MedVault</div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── WHY CHOOSE US ─── -->
+<section id="about" style="background:var(--surface);">
+  <div class="container">
+    <div class="why-grid">
+      <div>
+        <span class="section-label reveal">Why Choose Us</span>
+        <h2 class="why-title reveal">Precision.<br>Scale.<br><span class="gold">Impact.</span></h2>
+        <p class="why-desc reveal">We combine deep technical expertise with strategic business thinking to deliver solutions that don't just work — they win. Seven years of building, twelve industries, one standard: excellence.</p>
+        <div class="why-features reveal">
+          <div class="why-feature">
+            <span class="why-feature-num">01</span>
+            <div class="why-feature-text">
+              <h4>Enterprise-Grade Architecture</h4>
+              <p>From microservices to monoliths, we architect systems built to withstand millions of users and unexpected demands.</p>
+            </div>
+          </div>
+          <div class="why-feature">
+            <span class="why-feature-num">02</span>
+            <div class="why-feature-text">
+              <h4>Dedicated Delivery Teams</h4>
+              <p>Cross-functional pods embedded in your workflow — designers, engineers, QA, and PMs aligned to your goals.</p>
+            </div>
+          </div>
+          <div class="why-feature">
+            <span class="why-feature-num">03</span>
+            <div class="why-feature-text">
+              <h4>Transparent Partnership</h4>
+              <p>No black boxes. Real-time dashboards, weekly syncs, and clear KPIs so you're always in the loop.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="why-visual reveal">
+        <div class="why-box">
+          <div class="why-stat">
+            <div class="why-stat-num" data-count="98">0</div>
+            <div class="why-stat-label">Client Retention Rate</div>
+            <div class="why-bar"><div class="why-bar-fill" style="width:0%" data-target="98"></div></div>
+          </div>
+          <div class="why-stat">
+            <div class="why-stat-num" data-count="340">0</div>
+            <div class="why-stat-label">Projects Delivered</div>
+            <div class="why-bar"><div class="why-bar-fill" style="width:0%" data-target="85"></div></div>
+          </div>
+          <div class="why-stat">
+            <div class="why-stat-num" data-count="7">0</div>
+            <div class="why-stat-label">Years of Excellence</div>
+            <div class="why-bar"><div class="why-bar-fill" style="width:0%" data-target="70"></div></div>
+          </div>
+          <div style="margin-top:32px;padding-top:24px;border-top:1px solid rgba(255,255,255,0.07)">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:0.65rem;color:rgba(244,242,238,0.3);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:8px">Current Status</div>
+            <div style="display:flex;align-items:center;gap:10px">
+              <div style="width:8px;height:8px;background:#4ade80;border-radius:50%;animation:pulse 2s infinite"></div>
+              <span style="font-size:0.85rem;font-weight:600">Accepting New Clients</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SERVICES ─── -->
+<section id="services">
+  <div class="container">
+    <div class="services-header reveal">
+      <div>
+        <span class="section-label">Services Overview</span>
+        <h2 class="services-title">What<br>We Do</h2>
+      </div>
+      <p class="services-sub">End-to-end technology services designed for companies that refuse to settle for average.</p>
+    </div>
+    <div class="services-grid reveal">
+      <div class="service-card">
+        <div class="service-num">— 01</div>
+        <div class="service-icon">⚙️</div>
+        <h3 class="service-name">Custom Software Development</h3>
+        <p class="service-desc">Bespoke applications engineered for your exact workflow. Web platforms, mobile apps, internal tools — built clean, built to last.</p>
+        <div class="service-arrow">→</div>
+      </div>
+      <div class="service-card">
+        <div class="service-num">— 02</div>
+        <div class="service-icon">☁️</div>
+        <h3 class="service-name">Cloud & DevOps Engineering</h3>
+        <p class="service-desc">AWS, GCP, Azure — multicloud infrastructure with CI/CD pipelines, IaC, and 99.99% uptime SLAs. We keep the lights on.</p>
+        <div class="service-arrow">→</div>
+      </div>
+      <div class="service-card">
+        <div class="service-num">— 03</div>
+        <div class="service-icon">🤖</div>
+        <h3 class="service-name">AI & Machine Learning</h3>
+        <p class="service-desc">LLM integrations, predictive analytics, computer vision, recommendation engines — AI that moves your business metrics.</p>
+        <div class="service-arrow">→</div>
+      </div>
+      <div class="service-card">
+        <div class="service-num">— 04</div>
+        <div class="service-icon">📱</div>
+        <h3 class="service-name">Mobile Development</h3>
+        <p class="service-desc">React Native and native iOS/Android experiences that users love. Performant, accessible, beautifully crafted.</p>
+        <div class="service-arrow">→</div>
+      </div>
+      <div class="service-card">
+        <div class="service-num">— 05</div>
+        <div class="service-icon">🔐</div>
+        <h3 class="service-name">Cybersecurity & Compliance</h3>
+        <p class="service-desc">Penetration testing, SOC 2, ISO 27001, GDPR readiness. We protect what matters most — your data and reputation.</p>
+        <div class="service-arrow">→</div>
+      </div>
+      <div class="service-card">
+        <div class="service-num">— 06</div>
+        <div class="service-icon">📊</div>
+        <h3 class="service-name">Data Engineering & BI</h3>
+        <p class="service-desc">Data pipelines, warehouses, and real-time dashboards that transform raw signals into decisions that matter.</p>
+        <div class="service-arrow">→</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── STATS ─── -->
+<section id="stats">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item reveal">
+        <div class="stat-num" data-count="340">0</div>
+        <div class="stat-label">Projects Shipped</div>
+      </div>
+      <div class="stat-item reveal reveal-delay-1">
+        <div class="stat-num" data-count="48">0</div>
+        <div class="stat-label">Enterprise Clients</div>
+      </div>
+      <div class="stat-item reveal reveal-delay-2">
+        <div class="stat-num" data-count="12">0</div>
+        <div class="stat-label">Countries Served</div>
+      </div>
+      <div class="stat-item reveal reveal-delay-3">
+        <div class="stat-num" data-count="120">0</div>
+        <div class="stat-label">Team Members</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CLIENT SUCCESS ─── -->
+<section id="success">
+  <div class="container">
+    <span class="section-label reveal">Client Success Highlights</span>
+    <div class="success-grid reveal">
+      <div class="success-card featured">
+        <div>
+          <div class="success-tag">Fintech · 2024</div>
+          <h3 class="success-title">NexaBank Digital Transformation</h3>
+          <p class="success-desc">We rebuilt NexaBank's entire core banking interface and mobile app from legacy systems — delivering a seamless omnichannel experience to 2.4 million customers without a single hour of downtime.</p>
+        </div>
+        <div>
+          <div style="margin-bottom:32px">
+            <div class="success-metric">2.4M</div>
+            <div class="success-metric-label">Customers Impacted</div>
+          </div>
+          <div>
+            <div class="success-metric" style="font-size:40px">0hr</div>
+            <div class="success-metric-label">Migration Downtime</div>
+          </div>
+        </div>
+      </div>
+      <div class="success-card">
+        <div class="success-tag">Healthcare · 2024</div>
+        <h3 class="success-title">MedVault AI Diagnostics</h3>
+        <p class="success-desc">Built an AI-assisted radiology platform that reduced diagnosis time by 67% across 18 partner hospitals.</p>
+        <div style="margin-top:24px">
+          <div class="success-metric" style="font-size:48px">67%</div>
+          <div class="success-metric-label">Faster Diagnosis</div>
+        </div>
+      </div>
+      <div class="success-card">
+        <div class="success-tag">E-Commerce · 2023</div>
+        <h3 class="success-title">Orion Commerce Scale-Up</h3>
+        <p class="success-desc">Re-architected a monolithic e-commerce platform into microservices, handling 10x peak traffic during sale events.</p>
+        <div style="margin-top:24px">
+          <div class="success-metric" style="font-size:48px">10×</div>
+          <div class="success-metric-label">Traffic Capacity</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PROJECTS ─── -->
+<section id="work">
+  <div class="container">
+    <h2 class="projects-title display reveal">Featured Projects</h2>
+    <div class="projects-list">
+      <div class="project-row reveal">
+        <div class="project-num">001</div>
+        <div><div class="project-name">CloudAxis Control Panel</div><div class="project-cat">Cloud Infrastructure Management</div></div>
+        <div class="project-tags"><span class="project-tag">React</span><span class="project-tag">Go</span><span class="project-tag">K8s</span></div>
+        <div class="project-arrow">→</div>
+      </div>
+      <div class="project-row reveal">
+        <div class="project-num">002</div>
+        <div><div class="project-name">DataBridge Analytics Suite</div><div class="project-cat">Real-time Business Intelligence</div></div>
+        <div class="project-tags"><span class="project-tag">Python</span><span class="project-tag">Spark</span><span class="project-tag">ClickHouse</span></div>
+        <div class="project-arrow">→</div>
+      </div>
+      <div class="project-row reveal">
+        <div class="project-num">003</div>
+        <div><div class="project-name">Sentinel Security Platform</div><div class="project-cat">Enterprise Cybersecurity</div></div>
+        <div class="project-tags"><span class="project-tag">Rust</span><span class="project-tag">Wasm</span><span class="project-tag">Zero Trust</span></div>
+        <div class="project-arrow">→</div>
+      </div>
+      <div class="project-row reveal">
+        <div class="project-num">004</div>
+        <div><div class="project-name">Nexus Mobile Banking</div><div class="project-cat">Financial Technology</div></div>
+        <div class="project-tags"><span class="project-tag">React Native</span><span class="project-tag">Node.js</span><span class="project-tag">PostgreSQL</span></div>
+        <div class="project-arrow">→</div>
+      </div>
+      <div class="project-row reveal">
+        <div class="project-num">005</div>
+        <div><div class="project-name">HealthOS Patient Portal</div><div class="project-cat">Healthcare Technology</div></div>
+        <div class="project-tags"><span class="project-tag">Vue.js</span><span class="project-tag">FastAPI</span><span class="project-tag">HIPAA</span></div>
+        <div class="project-arrow">→</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── INNOVATION ─── -->
+<section id="innovation">
+  <div class="container">
+    <span class="section-label reveal">Innovation & Emerging Tech</span>
+    <div class="innov-grid">
+      <div class="innov-card reveal">
+        <div class="innov-number">1</div>
+        <div class="innov-icon">🧠</div>
+        <h3 class="innov-title">Generative AI Integration</h3>
+        <p class="innov-desc">We embed large language models, vision models, and autonomous agents into enterprise products — with safety and governance built-in from day one.</p>
+      </div>
+      <div class="innov-card reveal reveal-delay-1">
+        <div class="innov-number">2</div>
+        <div class="innov-icon">⛓️</div>
+        <h3 class="innov-title">Web3 & Distributed Systems</h3>
+        <p class="innov-desc">Smart contracts, decentralized protocols, and blockchain integrations for supply chain, finance, and identity verification.</p>
+      </div>
+      <div class="innov-card reveal reveal-delay-2">
+        <div class="innov-number">3</div>
+        <div class="innov-icon">🌐</div>
+        <h3 class="innov-title">Edge Computing</h3>
+        <p class="innov-desc">Ultra-low latency architectures that push intelligence to the edge — IoT fleets, real-time processing, and 5G-native applications.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── HOW WE WORK ─── -->
+<section id="process" style="background:var(--surface)">
+  <div class="container">
+    <div class="process-header reveal">
+      <span class="section-label">How We Work</span>
+      <h2 class="process-title">Our Process</h2>
+    </div>
+    <div class="process-steps reveal">
+      <div class="process-step">
+        <div class="process-step-num">01</div>
+        <div class="process-step-name">Discovery</div>
+        <p class="process-step-desc">Deep-dive workshops to map your goals, constraints, and success metrics. No assumptions, only clarity.</p>
+      </div>
+      <div class="process-step">
+        <div class="process-step-num">02</div>
+        <div class="process-step-name">Architecture</div>
+        <p class="process-step-desc">System design, tech stack decisions, and sprint planning. Built to scale from the blueprint.</p>
+      </div>
+      <div class="process-step">
+        <div class="process-step-num">03</div>
+        <div class="process-step-name">Build</div>
+        <p class="process-step-desc">Agile 2-week sprints with continuous deployment. You ship real features, not presentations.</p>
+      </div>
+      <div class="process-step">
+        <div class="process-step-num">04</div>
+        <div class="process-step-name">QA & Security</div>
+        <p class="process-step-desc">Automated testing, load testing, and security audits before every release. Zero compromises.</p>
+      </div>
+      <div class="process-step">
+        <div class="process-step-num">05</div>
+        <div class="process-step-name">Launch & Scale</div>
+        <p class="process-step-desc">Monitored deployment, performance tuning, and ongoing support. We stay until it flies.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── TESTIMONIALS ─── -->
+<section id="testimonials">
+  <div class="container">
+    <span class="section-label reveal">Testimonials</span>
+    <div class="testimonials-grid">
+      <div class="testi-card reveal">
+        <div class="testi-quote">"</div>
+        <p class="testi-text">Seventechventures didn't just build our platform — they fundamentally changed how we think about engineering. Their team embedded with ours and elevated everyone around them.</p>
+        <div class="testi-author">
+          <div class="testi-avatar">RM</div>
+          <div>
+            <div class="testi-name">Rachel Monroe</div>
+            <div class="testi-role">CTO, NexaBank</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card reveal reveal-delay-1">
+        <div class="testi-quote">"</div>
+        <p class="testi-text">The AI diagnostic tool they built for us has already impacted thousands of patient outcomes. Technical brilliance matched with genuine care for the mission.</p>
+        <div class="testi-author">
+          <div class="testi-avatar">JL</div>
+          <div>
+            <div class="testi-name">Dr. James Liu</div>
+            <div class="testi-role">Director of Innovation, MedVault</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card reveal reveal-delay-2">
+        <div class="testi-quote">"</div>
+        <p class="testi-text">Three failed vendors before them. One successful delivery with Seventechventures. The difference was night and day — professional, communicative, and deeply skilled.</p>
+        <div class="testi-author">
+          <div class="testi-avatar">AK</div>
+          <div>
+            <div class="testi-name">Amara Kofi</div>
+            <div class="testi-role">VP Engineering, CloudAxis</div>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card reveal reveal-delay-3">
+        <div class="testi-quote">"</div>
+        <p class="testi-text">Our Black Friday traffic spike would have crashed any other system. They built us infrastructure we could actually trust, and it showed when it mattered most.</p>
+        <div class="testi-author">
+          <div class="testi-avatar">ST</div>
+          <div>
+            <div class="testi-name">Sarah Thornton</div>
+            <div class="testi-role">CEO, Orion Commerce</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── TECH PARTNERS ─── -->
+<section id="partners" style="background:var(--surface)">
+  <div class="container">
+    <span class="section-label reveal">Technology Partners</span>
+    <div class="partners-grid reveal">
+      <div class="partner">AWS</div>
+      <div class="partner">Google Cloud</div>
+      <div class="partner">Microsoft Azure</div>
+      <div class="partner">Stripe</div>
+      <div class="partner">Twilio</div>
+      <div class="partner">Vercel</div>
+      <div class="partner">MongoDB</div>
+      <div class="partner">PostgreSQL</div>
+      <div class="partner">Redis</div>
+      <div class="partner">Kubernetes</div>
+      <div class="partner">Terraform</div>
+      <div class="partner">Datadog</div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── GLOBAL PRESENCE ─── -->
+<section id="global">
+  <div class="container">
+    <div class="global-inner">
+      <div>
+        <span class="section-label reveal">Global Presence</span>
+        <h2 class="global-title reveal">Built Here.<br>Deployed<br><span class="gold">Everywhere.</span></h2>
+        <p class="global-desc reveal">With offices and distributed teams across 4 continents, we deliver round-the-clock engineering capacity and localized expertise for global-scale products.</p>
+        <div class="office-list reveal">
+          <div class="office"><div class="office-dot"></div><div><div class="office-city">Dhaka</div><div class="office-country">Bangladesh · HQ</div></div></div>
+          <div class="office"><div class="office-dot"></div><div><div class="office-city">Singapore</div><div class="office-country">Singapore · APAC Hub</div></div></div>
+          <div class="office"><div class="office-dot"></div><div><div class="office-city">London</div><div class="office-country">United Kingdom · Europe</div></div></div>
+          <div class="office"><div class="office-dot"></div><div><div class="office-city">New York</div><div class="office-country">United States · Americas</div></div></div>
+          <div class="office"><div class="office-dot"></div><div><div class="office-city">Dubai</div><div class="office-country">UAE · MENA</div></div></div>
+        </div>
+      </div>
+      <div class="world-visual reveal">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:0.65rem;letter-spacing:0.15em;color:rgba(201,168,76,0.5);text-transform:uppercase;margin-bottom:16px">Office Locations</div>
+        <div class="world-map-placeholder">
+          <div class="world-map-label">Global Network Map</div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:24px">
+          <div style="background:rgba(201,168,76,0.06);border:1px solid rgba(201,168,76,0.1);padding:16px">
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:32px;color:var(--gold)">12</div>
+            <div style="font-size:0.72rem;color:rgba(244,242,238,0.4);letter-spacing:0.1em;text-transform:uppercase">Countries</div>
+          </div>
+          <div style="background:rgba(201,168,76,0.06);border:1px solid rgba(201,168,76,0.1);padding:16px">
+            <div style="font-family:'Bebas Neue',sans-serif;font-size:32px;color:var(--gold)">24/7</div>
+            <div style="font-size:0.72rem;color:rgba(244,242,238,0.4);letter-spacing:0.1em;text-transform:uppercase">Support Coverage</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── TEAM ─── -->
+<section id="team" style="background:var(--surface)">
+  <div class="container">
+    <h2 class="team-title reveal">Team <span class="gold">Spotlight</span></h2>
+    <div class="team-grid">
+      <div class="team-card reveal">
+        <div class="team-photo">
+          <div class="team-photo-inner">AR</div>
+          <div class="team-photo-overlay">
+            <div class="team-social">
+              <a href="#">in</a><a href="#">tw</a>
+            </div>
+          </div>
+        </div>
+        <div class="team-name">Arman Rahman</div>
+        <div class="team-role">Founder & CEO</div>
+        <div class="team-dept">Strategy · Vision</div>
+      </div>
+      <div class="team-card reveal reveal-delay-1">
+        <div class="team-photo">
+          <div class="team-photo-inner">SN</div>
+          <div class="team-photo-overlay">
+            <div class="team-social"><a href="#">in</a><a href="#">gh</a></div>
+          </div>
+        </div>
+        <div class="team-name">Sophia Nguyen</div>
+        <div class="team-role">CTO</div>
+        <div class="team-dept">Engineering · Architecture</div>
+      </div>
+      <div class="team-card reveal reveal-delay-2">
+        <div class="team-photo">
+          <div class="team-photo-inner">MK</div>
+          <div class="team-photo-overlay">
+            <div class="team-social"><a href="#">in</a><a href="#">be</a></div>
+          </div>
+        </div>
+        <div class="team-name">Marcus Klein</div>
+        <div class="team-role">Head of Design</div>
+        <div class="team-dept">UX · Product Design</div>
+      </div>
+      <div class="team-card reveal reveal-delay-3">
+        <div class="team-photo">
+          <div class="team-photo-inner">PA</div>
+          <div class="team-photo-overlay">
+            <div class="team-social"><a href="#">in</a><a href="#">tw</a></div>
+          </div>
+        </div>
+        <div class="team-name">Priya Agarwal</div>
+        <div class="team-role">VP of Delivery</div>
+        <div class="team-dept">Operations · PMO</div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:48px">
+      <a href="#careers" class="btn-ghost" id="careers">View All Openings →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── INSIGHTS ─── -->
+<section id="insights">
+  <div class="container">
+    <div class="insights-header reveal">
+      <div>
+        <span class="section-label">Latest Insights</span>
+        <h2 class="insights-title">From the<br><span class="gold">Lab</span></h2>
+      </div>
+      <a href="#" class="btn-ghost" style="white-space:nowrap">View All Posts →</a>
+    </div>
+    <div class="insights-grid reveal">
+      <div class="insight-card">
+        <div class="insight-img"><div class="insight-img-inner">🤖</div></div>
+        <div class="insight-body">
+          <div class="insight-cat">AI / ML</div>
+          <h3 class="insight-title-text">Building Production-Grade RAG Pipelines That Actually Work</h3>
+          <p class="insight-desc">Most RAG implementations fail in production. Here's how we build retrieval systems that are fast, accurate, and cost-efficient at scale.</p>
+          <div class="insight-meta"><span>May 2, 2025</span><span>8 min read</span></div>
+        </div>
+      </div>
+      <div class="insight-card">
+        <div class="insight-img" style="aspect-ratio:16/9"><div class="insight-img-inner">☁️</div></div>
+        <div class="insight-body">
+          <div class="insight-cat">Cloud Architecture</div>
+          <h3 class="insight-title-text">The Case for Platform Engineering in 2025</h3>
+          <p class="insight-desc">Why platform teams are becoming the competitive edge for software companies globally.</p>
+          <div class="insight-meta"><span>Apr 18, 2025</span><span>5 min read</span></div>
+        </div>
+      </div>
+      <div class="insight-card">
+        <div class="insight-img" style="aspect-ratio:16/9"><div class="insight-img-inner">🔐</div></div>
+        <div class="insight-body">
+          <div class="insight-cat">Security</div>
+          <h3 class="insight-title-text">Zero Trust is Not a Product. It's a Posture.</h3>
+          <p class="insight-desc">A practitioner's guide to implementing zero trust architecture without the vendor hype.</p>
+          <div class="insight-meta"><span>Apr 5, 2025</span><span>6 min read</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FAQ ─── -->
+<section id="faq" style="background:var(--surface)">
+  <div class="container">
+    <h2 class="faq-title reveal">Frequently Asked</h2>
+    <div class="faq-grid reveal">
+      <div class="faq-item">
+        <button class="faq-question">How do we start a project?<span class="faq-icon">+</span></button>
+        <div class="faq-answer">Reach out via our contact form or email us. We'll schedule a 30-minute discovery call, no obligations. Within 5 business days you'll receive a scoped proposal.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">What is your typical engagement model?<span class="faq-icon">+</span></button>
+        <div class="faq-answer">We offer fixed-scope projects, time-and-material retainers, and dedicated team augmentation. We'll recommend what fits your situation best.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">Do you work with early-stage startups?<span class="faq-icon">+</span></button>
+        <div class="faq-answer">Yes, selectively. We love mission-driven startups with clear market hypotheses. We offer a startup package with flexible terms for pre-Series A companies.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">What is your minimum project size?<span class="faq-icon">+</span></button>
+        <div class="faq-answer">Our minimum engagement starts at $15,000 USD. This ensures we can assign a dedicated team and deliver work we're genuinely proud of.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">How do you handle NDAs and IP ownership?<span class="faq-icon">+</span></button>
+        <div class="faq-answer">All code and IP produced belongs to you. We sign NDAs before any discovery call. Our standard contracts are client-friendly and reviewed by independent legal counsel.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">Do you provide post-launch support?<span class="faq-icon">+</span></button>
+        <div class="faq-answer">Absolutely. We offer tiered maintenance packages with SLA guarantees, from basic monitoring to 24/7 on-call engineering support.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FINAL CTA ─── -->
+<section id="contact">
+  <div class="container">
+    <div id="cta" style="border-radius:0;background:transparent">
+      <p class="cta-label reveal">Ready to Build?</p>
+      <h2 class="cta-title reveal">Let's Make<br><span class="line-alt">Something</span><br>Remarkable</h2>
+      <p class="cta-sub reveal">Tell us about your challenge. We'll tell you how we can solve it — honestly, and without the fluff.</p>
+      <div class="cta-actions reveal">
+        <a href="mailto:hello@seventechventures.com" class="btn-primary">Start a Conversation</a>
+        <a href="#work" class="btn-ghost">See Our Work</a>
+      </div>
+      <p class="cta-contact reveal">Or reach us directly: <a href="mailto:hello@seventechventures.com">hello@seventechventures.com</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand-name">Seven<span>tech</span>ventures</div>
+        <p class="footer-brand-desc">Engineering ambitious ideas into world-class digital products. Trusted by startups and enterprises across 12 countries.</p>
+        <div class="footer-newsletter">
+          <input class="footer-email" type="email" placeholder="your@email.com">
+          <button class="footer-sub-btn">Subscribe</button>
+        </div>
+      </div>
+      <div>
+        <div class="footer-col-title">Company</div>
+        <ul class="footer-links">
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#team">Team</a></li>
+          <li><a href="#careers">Careers</a></li>
+          <li><a href="#insights">Blog</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Services</div>
+        <ul class="footer-links">
+          <li><a href="#services">Software Development</a></li>
+          <li><a href="#services">Cloud & DevOps</a></li>
+          <li><a href="#services">AI & Machine Learning</a></li>
+          <li><a href="#services">Mobile Development</a></li>
+          <li><a href="#services">Cybersecurity</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Legal</div>
+        <ul class="footer-links">
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+          <li><a href="#">Cookie Policy</a></li>
+          <li><a href="#">Security</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2025 Seventechventures Ltd. All rights reserved.</div>
+      <div class="footer-socials">
+        <a class="footer-social" href="#">in</a>
+        <a class="footer-social" href="#">tw</a>
+        <a class="footer-social" href="#">gh</a>
+        <a class="footer-social" href="#">be</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ─── Nav scroll effect
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // ─── Reveal on scroll
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+
+  // ─── Counter animation
+  function animateCount(el, target, suffix='') {
+    let start = 0;
+    const duration = 1800;
+    const step = target / (duration / 16);
+    const timer = setInterval(() => {
+      start = Math.min(start + step, target);
+      el.textContent = Math.floor(start) + suffix;
+      if (start >= target) clearInterval(timer);
+    }, 16);
+  }
+
+  const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const el = e.target;
+        const target = parseInt(el.dataset.count);
+        animateCount(el, target);
+        counterObserver.unobserve(el);
+      }
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('[data-count]').forEach(el => counterObserver.observe(el));
+
+  // ─── Bar fill animation
+  const barObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.width = e.target.dataset.target + '%';
+        barObserver.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('.why-bar-fill').forEach(el => barObserver.observe(el));
+
+  // ─── FAQ accordion
+  document.querySelectorAll('.faq-question').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.parentElement;
+      const wasOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!wasOpen) item.classList.add('open');
+    });
+  });
+
+  // ─── Hamburger (simple toggle for mobile)
+  const hamburger = document.getElementById('hamburger');
+  hamburger.addEventListener('click', () => {
+    // Simple visual toggle — could expand with mobile menu
+    hamburger.classList.toggle('open');
+  });
+</script>
+</body>
+</html>
