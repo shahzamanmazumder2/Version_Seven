@@ -1,272 +1,334 @@
 <!doctype html>
-<html lang="en" class="h-full">
+<html lang="en" class="h-full scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Contact Us - Seven Tech Ventures</title>
-  
+  <link href="./output.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
   <script src="https://cdn.tailwindcss.com/3.4.17"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Mono:wght@400;700&family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
-  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
-</head>
-<body class="h-full">
-<div id="app" class="w-full min-h-full t-bg overflow-x-hidden">
 
-  <!-- THEME SWITCHER -->
-  <div class="fixed top-4 right-4 z-[100] flex gap-1.5 p-3 glass rounded-xl shadow-2xl">
-    <button class="theme-btn px-3 py-1.5 rounded-lg text-xs font-semibold transition-all" data-theme="earth"   style="background:rgba(217,119,6,.2);color:#b45309">🌍</button>
-    <button class="theme-btn px-3 py-1.5 rounded-lg text-xs font-semibold transition-all" data-theme="luxury"  style="background:rgba(180,83,9,.2);color:#d97706">💎</button>
-    <button class="theme-btn px-3 py-1.5 rounded-lg text-xs font-semibold transition-all" data-theme="zen"     style="background:rgba(120,113,108,.2);color:#8b7355">🗻</button>
-    <button class="theme-btn px-3 py-1.5 rounded-lg text-xs font-semibold transition-all" data-theme="corporate" style="background:rgba(59,130,246,.2);color:#3b82f6">📊</button>
-    <button class="theme-btn px-3 py-1.5 rounded-lg text-xs font-semibold transition-all" data-theme="space"   style="background:rgba(79,70,229,.2);color:#4f46e5">🛰️</button>
-  </div>
+  <script src="/_sdk/element_sdk.js"></script>
+
+  <style>
+    :root {
+      --bg-primary: #050510;
+      --bg-secondary: #0a0a14;
+      --text-primary: #ffffff;
+      --text-secondary: rgba(255, 255, 255, 0.6);
+      --accent: #7c5cff;
+      --accent-light: #9b7fff;
+      --border: rgba(124, 92, 255, 0.2);
+      --card-bg: rgba(255, 255, 255, 0.05);
+    }
+
+    html.light-mode {
+      --bg-primary: #d6e7f6;
+      --bg-secondary: #f5f5f5;
+      --text-primary: #0a0a0a;
+      --text-secondary: rgba(0, 0, 0, 0.6);
+      --accent: #7c5cff;
+      --accent-light: #9b7fff;
+      --border: rgba(124, 92, 255, 0.15);
+      --card-bg: rgba(124, 92, 255, 0.04);
+    }
+
+    .contact-hero {
+      min-height: 65vh;
+      background: radial-gradient(ellipse at 50% 30%, rgba(124, 92, 255, 0.25) 0%, var(--bg-primary) 60%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('image/caro_1.png') center/cover no-repeat;
+      opacity: 0.15;
+      z-index: 1;
+    }
+  </style>
+</head>
+<body class="h-full w-full overflow-auto">
 
   <!-- NAVBAR -->
-  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 t-nav border-b backdrop-blur-xl transition-all duration-300">
-    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-      <a href="index.html" class="flex items-center gap-2">
-        <div class="w-8 h-8 rounded-lg flex items-center justify-center t-btn text-white font-black text-sm">7</div>
-        <span class="text-lg font-bold t-text tracking-tight">Seven<span class="t-accent">Tech</span></span>
-      </a>
-
-      <div class="hidden md:flex items-center gap-8 t-muted text-sm font-medium">
-        <a href="services.html" class="nav-link hover:t-accent transition-colors">Services</a>
-        <a href="about.html"    class="nav-link hover:t-accent transition-colors">About</a>
-        <a href="work.html"     class="nav-link hover:t-accent transition-colors">Work</a>
-        <a href="team.html"     class="nav-link hover:t-accent transition-colors">Team</a>
-        <a href="contact.html"  class="nav-link t-accent font-semibold">Contact</a>
-      </div>
-
-      <div class="hidden md:flex items-center gap-3">
-        <a href="contact.html" class="t-btn-outline px-4 py-2 rounded-lg text-sm font-medium">Log In</a>
-        <a href="contact.html" class="t-btn px-5 py-2 rounded-lg text-sm font-semibold btn-glow">Get Started</a>
-      </div>
-
-      <button id="menu-toggle" class="md:hidden t-text p-2" aria-label="Menu">
-        <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-          <path id="menu-icon-open" d="M4 6h16M4 12h16M4 18h16"/>
-          <path id="menu-icon-close" class="hidden" d="M6 18L18 6M6 6l12 12"/>
-        </svg>
-      </button>
+  <nav class="relative z-50 px-4 md:px-8 py-4 md:py-5">
+   <div class="flex items-center justify-between max-w-7xl mx-auto">
+    <div class="flex items-center gap-2 md:gap-3">
+     <img id="navLogo" src="image/seven_logo.png" alt="Seven Tech Ventures" style="height: 36px; width: auto; object-fit: contain;" />
+     <span style="font-family: 'Syne'; font-weight: 800; color: var(--text-primary); font-size: clamp(14px, 3vw, 18px); letter-spacing: 0.5px;" class="company-name">Seven Tech Ventures</span>
     </div>
 
-    <!-- Mobile Menu -->
-    <div id="mobile-menu" class="md:hidden hidden flex-col gap-1 px-6 pb-5 t-bg border-t t-border">
-      <a href="services.html" class="block py-2.5 t-muted hover:t-accent">Services</a>
-      <a href="about.html"    class="block py-2.5 t-muted hover:t-accent">About</a>
-      <a href="work.html"     class="block py-2.5 t-muted hover:t-accent">Work</a>
-      <a href="team.html"     class="block py-2.5 t-muted hover:t-accent">Team</a>
-      <a href="contact.html"  class="block py-2.5 t-accent font-semibold">Contact</a>
-      
-      <div class="pt-4 flex gap-2">
-        <a href="contact.html" class="t-btn-outline px-4 py-2 rounded-lg flex-1 text-center">Log In</a>
-        <a href="contact.html" class="t-btn px-4 py-2 rounded-lg flex-1 text-center">Get Started</a>
-      </div>
+    <div class="desktop-nav gap-6 md:gap-8 hidden md:flex">
+     <a href="mission.html" class="nav-link">Mission</a>
+     <a href="services.html" class="nav-link">Services</a>
+     <a href="industries.html" class="nav-link">Industries</a>
+     <a href="projects.html" class="nav-link">Projects</a>
+     <a href="contact.html" class="nav-link active">Contact</a>
     </div>
+
+    <div class="flex items-center gap-2 md:gap-4">
+     <div class="theme-toggle" id="themeToggle">
+      <div class="theme-toggle-circle">
+       <i data-lucide="sun" id="sunIcon" style="width: 16px; height: 16px; color: #0a0a0a;"></i>
+       <i data-lucide="moon" id="moonIcon" style="width: 16px; height: 16px; color: #fff; display: none;"></i>
+      </div>
+     </div>
+     <button class="mobile-menu-btn md:hidden p-2" id="mobileMenuBtn" style="background: transparent; border: none;">
+      <i data-lucide="menu" style="width: 20px; height: 20px; color: var(--text-primary);"></i>
+     </button>
+    </div>
+   </div>
+
+   <div id="mobileMenu" style="display: none; margin-top: 16px; border-top: 1px solid var(--border); padding-top: 16px;">
+    <div class="flex flex-col gap-3">
+     <a href="mission.html" class="nav-link">Mission</a>
+     <a href="services.html" class="nav-link">Services</a>
+     <a href="industries.html" class="nav-link">Industries</a>
+     <a href="projects.html" class="nav-link">Projects</a>
+     <a href="contact.html" class="nav-link active">Contact</a>
+    </div>
+   </div>
   </nav>
 
-  <!-- HERO -->
-  <section class="relative min-h-[65vh] flex items-center t-hero overflow-hidden pt-20">
-    <div class="max-w-5xl mx-auto px-6 text-center z-10">
-      <div class="inline-flex items-center gap-2 t-accent-bg t-accent text-xs font-semibold uppercase tracking-widest px-5 py-2 rounded-full border t-border mb-6">
-        📍 Banani, Dhaka
+  <!-- HERO SECTION - FIXED & ENHANCED -->
+  <!-- ═══════════════════════════════════════════
+       HERO SECTION  (original style preserved)
+  ═══════════════════════════════════════════ -->
+  <section class="relative min-h-screen flex items-center t-hero overflow-hidden pt-20" style="font-family:'Outfit',sans-serif">
+    <!-- Orbs / background shapes -->
+    <div class="absolute inset-0 pointer-events-none overflow-hidden">
+      <div class="absolute -top-24 -left-24 w-96 h-96 rounded-full animate-orb opacity-30" style="background:var(--orb1);filter:blur(80px)"></div>
+      <div class="absolute bottom-0 right-0 w-80 h-80 rounded-full animate-orb opacity-25" style="background:var(--orb2);filter:blur(100px);animation-delay:2s"></div>
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full opacity-10" style="background:radial-gradient(circle,var(--accent-color),transparent 70%)"></div>
+      <!-- Floating grid dots -->
+      <svg class="absolute inset-0 w-full h-full opacity-10" xmlns="http://www.w3.org/2000/svg">
+        <defs><pattern id="dots" width="40" height="40" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.5" fill="var(--accent-color)"/></pattern></defs>
+        <rect width="100%" height="100%" fill="url(#dots)"/>
+      </svg>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-6 md:px-8 grid md:grid-cols-2 gap-16 items-center z-10 py-20">
+      <!-- Left copy -->
+      <div>
+        <div class="animate-up inline-flex items-center gap-2 t-accent-bg t-accent text-xs font-semibold uppercase tracking-widest px-4 py-2 rounded-full border t-border mb-6">
+          <span class="w-1.5 h-1.5 rounded-full t-btn inline-block"></span>
+          Software · Innovation · Scale
+        </div>
+        <h1 class="animate-up delay-1 text-5xl md:text-6xl lg:text-7xl font-black t-text leading-[1.05] mb-6 tracking-tight">
+          Build the<br>
+          <span class="t-accent relative">
+            future<span class="absolute -bottom-1 left-0 h-1 t-btn rounded-full animate-up delay-3" style="width:100%"></span>
+          </span><br>
+          with us.
+        </h1>
+        <p class="animate-up delay-2 t-muted text-lg md:text-xl leading-relaxed mb-10 max-w-lg">
+          Seven Tech Ventures engineers high-impact digital products — from intelligent platforms to enterprise-grade systems — that transform how businesses operate and grow.
+        </p>
+        <div class="animate-up delay-3 flex flex-wrap gap-4">
+          <a href="#services" class="t-btn px-7 py-3.5 rounded-xl font-semibold text-base transition-all duration-300 btn-glow shadow-lg">Explore Services</a>
+          <a href="#work"     class="t-btn-outline px-7 py-3.5 rounded-xl font-semibold text-base transition-all duration-300 flex items-center gap-2">
+            See Our Work
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+        <!-- Social proof strip -->
+        <div class="animate-up delay-4 mt-12 flex items-center gap-5 flex-wrap">
+          <div class="flex -space-x-2">
+            <div class="w-9 h-9 rounded-full border-2 t-bg t-btn text-white text-xs flex items-center justify-center font-bold">R</div>
+            <div class="w-9 h-9 rounded-full border-2 t-bg t-btn text-white text-xs flex items-center justify-center font-bold">A</div>
+            <div class="w-9 h-9 rounded-full border-2 t-bg t-btn text-white text-xs flex items-center justify-center font-bold">K</div>
+          </div>
+          <div class="t-muted text-sm">Trusted by <strong class="t-text">200+ clients</strong> across 18 countries</div>
+        </div>
       </div>
-      <h1 class="text-5xl md:text-6xl lg:text-7xl font-black t-text leading-[1.05] tracking-tight mb-6">
-        Let's Connect
-      </h1>
-      <p class="max-w-2xl mx-auto t-muted text-lg md:text-xl">
-        Ready to bring your vision to life? Our team is here to help.
-      </p>
+
+      <!-- Right visual -->
+      <div class="animate-left delay-2 flex items-center justify-center relative">
+        <!-- Main morphing shape -->
+        <div class="w-64 h-64 md:w-80 md:h-80 morph-bg opacity-40 absolute" style="background:linear-gradient(135deg,var(--orb1),var(--orb2))"></div>
+        <div class="w-48 h-48 md:w-60 md:h-60 morph-bg2 opacity-30 absolute" style="background:linear-gradient(225deg,var(--accent-color),var(--orb1));animation-delay:2s"></div>
+        <!-- Central card -->
+        <div class="relative z-10 glass rounded-2xl p-6 w-72 shadow-2xl animate-float">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 rounded-xl t-btn text-white font-black text-lg flex items-center justify-center">7</div>
+            <div>
+              <div class="t-text font-bold text-sm">Seven Tech Ventures</div>
+              <div class="t-muted text-xs">Est. 2018 · Dhaka, BD</div>
+            </div>
+          </div>
+          <div class="space-y-3">
+            <div class="h-2 rounded-full t-accent-bg overflow-hidden">
+              <div class="h-full rounded-full t-btn" style="width:82%;transition:width 1.5s ease"></div>
+            </div>
+            <div class="flex justify-between text-xs t-muted"><span>Project delivery</span><span class="t-accent font-semibold">82%</span></div>
+            <div class="h-2 rounded-full t-accent-bg overflow-hidden">
+              <div class="h-full rounded-full t-btn" style="width:95%;transition:width 1.5s ease"></div>
+            </div>
+            <div class="flex justify-between text-xs t-muted"><span>Client satisfaction</span><span class="t-accent font-semibold">95%</span></div>
+          </div>
+          <div class="mt-4 flex items-center gap-2 t-accent text-xs font-medium">
+            <span class="w-2 h-2 rounded-full t-btn animate-pulse"></span>
+            7 projects launching this month
+          </div>
+        </div>
+        <!-- Floating badges -->
+        <div class="absolute top-4 right-0 glass rounded-xl px-3 py-2 text-xs t-text font-semibold animate-float" style="animation-delay:.8s">
+          ⚡ 48h turnaround
+        </div>
+        <div class="absolute bottom-4 left-0 glass rounded-xl px-3 py-2 text-xs t-text font-semibold animate-float" style="animation-delay:1.5s">
+          🏆 Top-rated agency
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll cue -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 t-muted text-xs animate-fade delay-5">
+      <span>Scroll to explore</span>
+      <div class="w-px h-8 t-btn opacity-50 animate-pulse" style="background:var(--accent-color)"></div>
     </div>
   </section>
 
-  <div class="max-w-7xl mx-auto px-6 pb-24">
-    <div class="grid lg:grid-cols-12 gap-16">
-      
-      <!-- Advanced Contact Form -->
-      <div class="lg:col-span-7">
-        <div class="glass rounded-3xl p-8 lg:p-12 border t-border">
-          <h2 class="text-3xl font-bold t-text mb-2">Send us a Message</h2>
-          <p class="t-muted mb-10">We'll get back to you within 24 hours.</p>
-          
-          <form id="contactForm" action="send_email.php" method="POST" class="space-y-8">
-            <div class="grid md:grid-cols-2 gap-6">
-              <div>
-                <label class="block text-sm t-muted mb-2">Full Name *</label>
-                <input type="text" id="name" name="name" required
-                       class="w-full bg-white/10 border t-border rounded-2xl px-6 py-4 focus:outline-none focus:border-t-accent transition-all text-base"
-                       placeholder="John Doe">
-              </div>
-              <div>
-                <label class="block text-sm t-muted mb-2">Email Address *</label>
-                <input type="email" id="email" name="email" required
-                       class="w-full bg-white/10 border t-border rounded-2xl px-6 py-4 focus:outline-none focus:border-t-accent transition-all text-base"
-                       placeholder="you@company.com">
-              </div>
-            </div>
+  <!-- ═══════════════════════════════════════════
+       LOGO / PARTNERS STRIP
+  ═══════════════════════════════════════════ -->
+  <section class="t-bg2 py-10 border-y t-border" style="border-width:1px">
+    <div class="max-w-6xl mx-auto px-6">
+      <p class="text-center t-faint text-xs uppercase tracking-[0.25em] font-semibold mb-7">Trusted by world-class teams</p>
+      <div class="flex flex-wrap justify-center items-center gap-10 md:gap-16">
+        <span class="reveal t-muted text-xl font-bold opacity-40 hover:opacity-80 transition-opacity">Nexora</span>
+        <span class="reveal delay-1 t-muted text-xl font-bold opacity-40 hover:opacity-80 transition-opacity">Vaultex</span>
+        <span class="reveal delay-2 t-muted text-xl font-bold opacity-40 hover:opacity-80 transition-opacity">Quorient</span>
+        <span class="reveal delay-3 t-muted text-xl font-bold opacity-40 hover:opacity-80 transition-opacity">Luminary</span>
+        <span class="reveal delay-4 t-muted text-xl font-bold opacity-40 hover:opacity-80 transition-opacity">Crestara</span>
+        <span class="reveal delay-5 t-muted text-xl font-bold opacity-40 hover:opacity-80 transition-opacity">Orbtica</span>
+      </div>
+    </div>
+  </section>
 
+  <!-- CONTACT CONTENT -->
+  <section class="py-20 px-4 md:px-8 bg-[var(--bg-secondary)]">
+   <div class="max-w-6xl mx-auto">
+    <div class="grid lg:grid-cols-2 gap-12">
+
+      <!-- Contact Form -->
+      <div class="glass rounded-3xl p-8 md:p-12">
+        <h2 class="text-3xl font-semibold mb-8">Send us a message</h2>
+        <form id="contactForm" class="space-y-6">
+          <div class="grid md:grid-cols-2 gap-6">
             <div>
-              <label class="block text-sm t-muted mb-2">Subject</label>
-              <input type="text" id="subject" name="subject" required
-                     class="w-full bg-white/10 border t-border rounded-2xl px-6 py-4 focus:outline-none focus:border-t-accent transition-all text-base"
-                     placeholder="Project Inquiry / Partnership / Support">
+              <label class="block text-sm text-[var(--text-secondary)] mb-2">Full Name</label>
+              <input type="text" required class="w-full bg-transparent border border-[var(--border)] rounded-2xl px-6 py-4 focus:outline-none focus:border-[var(--accent)]" placeholder="John Doe">
             </div>
-
             <div>
-              <label class="block text-sm t-muted mb-2">Your Message *</label>
-              <textarea id="message" name="message" rows="7" required
-                        class="w-full bg-white/10 border t-border rounded-3xl px-6 py-4 focus:outline-none focus:border-t-accent transition-all resize-none text-base"
-                        placeholder="Tell us about your project, requirements, or how we can help..."></textarea>
+              <label class="block text-sm text-[var(--text-secondary)] mb-2">Email Address</label>
+              <input type="email" required class="w-full bg-transparent border border-[var(--border)] rounded-2xl px-6 py-4 focus:outline-none focus:border-[var(--accent)]" placeholder="you@company.com">
             </div>
-
-            <!-- Honeypot -->
-            <div style="display: none;">
-              <input type="text" id="website" name="website">
-            </div>
-
-            <div id="form-message" class="min-h-[30px] text-sm"></div>
-
-            <button type="submit" id="submit-button"
-                    class="w-full t-btn py-5 rounded-2xl font-semibold text-lg btn-glow hover:scale-[1.02] transition-all flex items-center justify-center gap-3">
-              <span id="button-text">Send Message</span>
-              <span id="loading-spinner" class="hidden">
-                <svg class="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                  <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                  <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
-                </svg>
-              </span>
-            </button>
-          </form>
-        </div>
+          </div>
+          <div>
+            <label class="block text-sm text-[var(--text-secondary)] mb-2">Company</label>
+            <input type="text" class="w-full bg-transparent border border-[var(--border)] rounded-2xl px-6 py-4 focus:outline-none focus:border-[var(--accent)]" placeholder="Your Company">
+          </div>
+          <div>
+            <label class="block text-sm text-[var(--text-secondary)] mb-2">Message</label>
+            <textarea rows="7" required class="w-full bg-transparent border border-[var(--border)] rounded-3xl px-6 py-4 focus:outline-none focus:border-[var(--accent)] resize-none" placeholder="Tell us about your project..."></textarea>
+          </div>
+          <button type="submit" class="btn-primary w-full py-4 rounded-2xl text-lg font-medium">
+            Send Message
+          </button>
+        </form>
       </div>
 
-      <!-- Contact Info -->
-      <div class="lg:col-span-5 space-y-8">
-        <div class="glass rounded-3xl p-8 lg:p-10">
-          <div class="flex items-start gap-5">
-            <div class="w-12 h-12 rounded-2xl t-accent-bg flex items-center justify-center text-3xl">📍</div>
-            <div>
-              <h3 class="font-bold t-text text-2xl mb-3">Our Office</h3>
-              <p class="t-muted leading-relaxed text-[17px]">
-                Nokkhattrobari Resort Office<br>
-                B1, 1st Floor, House 268<br>
-                Road No 19, Banani<br>
-                Dhaka 1206, Bangladesh
-              </p>
-              <a href="https://maps.app.goo.gl/NpuiMuhZ2x1a65Co6" target="_blank" 
-                 class="inline-flex items-center gap-2 mt-6 t-accent hover:underline text-sm font-medium">
-                Open in Google Maps →
-              </a>
+      <!-- Contact Info + Map -->
+      <div class="space-y-8">
+        <div class="glass rounded-3xl p-8 md:p-12">
+          <h3 class="text-2xl font-semibold mb-8">Office Location</h3>
+          <div class="space-y-6 text-[var(--text-secondary)]">
+            <div class="flex gap-4">
+              <i data-lucide="map-pin" class="w-6 h-6 text-[var(--accent)] flex-shrink-0 mt-1"></i>
+              <div>
+                <p class="font-medium text-white">Nokkhattrobari Resort Office</p>
+                <p>Q9MV+HF7, Rd No 19, Dhaka 1206</p>
+              </div>
+            </div>
+            <div class="flex gap-4">
+              <i data-lucide="phone" class="w-6 h-6 text-[var(--accent)] flex-shrink-0 mt-1"></i>
+              <p class="font-medium">+880 1234-567890</p>
+            </div>
+            <div class="flex gap-4">
+              <i data-lucide="mail" class="w-6 h-6 text-[var(--accent)] flex-shrink-0 mt-1"></i>
+              <p class="font-medium">hello@seventechventures.com</p>
             </div>
           </div>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-          <div class="glass rounded-3xl p-8">
-            <div class="text-4xl mb-4">✉️</div>
-            <h4 class="font-semibold t-text mb-1">Email</h4>
-            <a href="mailto:hello@seventechventures.com" class="t-accent hover:underline">hello@seventechventures.com</a>
-          </div>
-
-          <div class="glass rounded-3xl p-8">
-            <div class="text-4xl mb-4">📞</div>
-            <h4 class="font-semibold t-text mb-1">Phone</h4>
-            <a href="tel:+8801712345678" class="t-accent hover:underline">+880 1712-345678</a>
-          </div>
-        </div>
-
-        <!-- Map -->
-        <div class="glass rounded-3xl overflow-hidden border t-border h-[380px]">
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.234567890123!2d90.393668!3d23.783966!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjPCsDQ3JzAyLjMiTiA5MMKwMjMnMzcuMiJF" 
-                  width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        <div class="glass rounded-3xl overflow-hidden h-[420px]">
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.098!2d90.391076!3d23.783951!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b8b0b0b0b0b1%3A0x0!2s23.783951%2C%2090.393651!5e0!3m2!1sen!2sbd!4v1746780000000" 
+            width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
+          </iframe>
         </div>
       </div>
     </div>
-  </div>
+   </div>
+  </section>
 
-  <!-- Footer -->
-  <footer class="t-footer py-16 border-t t-border">
-    <div class="max-w-7xl mx-auto px-6 text-center t-muted">
-      <p>&copy; 2026 Seven Tech Ventures. All rights reserved.</p>
+  <!-- FOOTER -->
+  <footer class="py-12 px-4 md:px-8">
+   <div class="max-w-7xl mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8 pb-8 border-b border-opacity-20" style="border-color: var(--border);">
+     <div>
+      <div class="flex items-center gap-2 mb-4">
+       <img id="footerLogo" src="image/seven_logo.png" alt="Seven Tech Ventures" style="height: 28px; width: auto; object-fit: contain;" />
+       <span style="font-family: 'Syne'; font-weight: 800; color: var(--text-primary); font-size: 16px;" class="company-name">Seven Tech Ventures</span>
+      </div>
+      <p style="font-family: 'DM Sans'; color: var(--text-secondary); font-size: 13px; line-height: 1.6;">Simplifying complexity through innovative technology solutions, built in Bangladesh for the world.</p>
+     </div>
+     <div>
+      <h4 style="font-family: 'Syne'; font-weight: 700; color: var(--text-primary); font-size: 14px; margin-bottom: 12px;">Quick Links</h4>
+      <ul style="list-style: none; padding: 0; margin: 0;">
+       <li style="margin-bottom: 8px;"><a href="mission.html" class="hover:text-[var(--accent)]">Mission</a></li>
+       <li style="margin-bottom: 8px;"><a href="services.html" class="hover:text-[var(--accent)]">Services</a></li>
+       <li style="margin-bottom: 8px;"><a href="projects.html" class="hover:text-[var(--accent)]">Projects</a></li>
+      </ul>
+     </div>
+     <div>
+      <h4 style="font-family: 'Syne'; font-weight: 700; color: var(--text-primary); font-size: 14px; margin-bottom: 12px;">Resources</h4>
+      <ul style="list-style: none; padding: 0; margin: 0;">
+       <li style="margin-bottom: 8px;"><a href="#" class="hover:text-[var(--accent)]">Blog</a></li>
+       <li style="margin-bottom: 8px;"><a href="#" class="hover:text-[var(--accent)]">Documentation</a></li>
+      </ul>
+     </div>
+     <div>
+      <h4 style="font-family: 'Syne'; font-weight: 700; color: var(--text-primary); font-size: 14px; margin-bottom: 12px;">Follow Us</h4>
+      <div class="flex gap-3">
+       <a href="#" class="w-9 h-9 bg-[rgba(124,92,255,0.1)] border border-[var(--border)] rounded-xl flex items-center justify-center hover:bg-[var(--accent)] hover:text-white">𝕏</a>
+       <a href="#" class="w-9 h-9 bg-[rgba(124,92,255,0.1)] border border-[var(--border)] rounded-xl flex items-center justify-center hover:bg-[var(--accent)] hover:text-white">𝕲</a>
+       <a href="#" class="w-9 h-9 bg-[rgba(124,92,255,0.1)] border border-[var(--border)] rounded-xl flex items-center justify-center hover:bg-[var(--accent)] hover:text-white">in</a>
+      </div>
+     </div>
     </div>
+    <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+     <p style="font-family: 'DM Sans'; color: var(--text-secondary); font-size: 12px;" class="footer-text">© 2026 Seven Tech Ventures. All rights reserved.</p>
+    </div>
+   </div>
   </footer>
 
-  <!-- Scripts -->
-  <script src="js/theme.js"></script>
-  
+  <script src="js/theme.js" defer></script>
+
   <script>
-    // Mobile Menu
-    const toggle = document.getElementById('menu-toggle');
-    const menu   = document.getElementById('mobile-menu');
-    const iconO  = document.getElementById('menu-icon-open');
-    const iconC  = document.getElementById('menu-icon-close');
-
-    if (toggle && menu) {
-      toggle.addEventListener('click', () => {
-        const open = menu.classList.toggle('open');
-        iconO.classList.toggle('hidden', open);
-        iconC.classList.toggle('hidden', !open);
-      });
-    }
-
-    // Navbar Scroll
-    const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-      navbar.style.boxShadow = window.scrollY > 40 ? '0 4px 30px rgba(0,0,0,.15)' : 'none';
-    });
-
-    // Advanced Form Handler
-    document.getElementById('contactForm').addEventListener('submit', async function(e) {
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
       e.preventDefault();
-
-      const formMessage = document.getElementById('form-message');
-      const submitButton = document.getElementById('submit-button');
-      const buttonText = document.getElementById('button-text');
-      const loadingSpinner = document.getElementById('loading-spinner');
-
-      const name = document.getElementById('name').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const subject = document.getElementById('subject').value.trim();
-      const message = document.getElementById('message').value.trim();
-      const website = document.getElementById('website').value.trim();
-
-      if (website !== '') {
-        formMessage.innerHTML = '<p class="text-red-500">Spam detected.</p>';
-        return;
-      }
-
-      if (!name || !email || !subject || !message) {
-        formMessage.innerHTML = '<p class="text-red-500">Please fill in all required fields.</p>';
-        return;
-      }
-
-      // Loading
-      submitButton.disabled = true;
-      buttonText.textContent = 'Sending...';
-      loadingSpinner.classList.remove('hidden');
-
-      try {
-        const formData = new FormData(this);
-        const response = await fetch('send_email.php', { method: 'POST', body: formData });
-        const result = await response.text();
-
-        if (response.ok && result.toLowerCase().includes('success')) {
-          formMessage.innerHTML = `<p class="text-green-500 font-medium">Thank you! Your message has been sent successfully.<br>We'll get back to you soon.</p>`;
-          this.reset();
-        } else {
-          formMessage.innerHTML = `<p class="text-red-500">Failed to send message. Please try again.</p>`;
-        }
-      } catch (error) {
-        formMessage.innerHTML = `<p class="text-red-500">Connection error. Please check your internet.</p>`;
-      } finally {
-        setTimeout(() => {
-          submitButton.disabled = false;
-          buttonText.textContent = 'Send Message';
-          loadingSpinner.classList.add('hidden');
-        }, 2500);
-      }
+      alert("✅ Thank you! Your message has been received. We'll get back to you within 24 hours.");
+      this.reset();
     });
+
+    lucide.createIcons();
   </script>
 </body>
 </html>

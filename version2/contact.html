@@ -1,0 +1,457 @@
+<!doctype html>
+<html lang="en" class="h-full scroll-smooth">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seven Tech Ventures - Simplifying Complexity</title>
+  <link href="./output.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+   <!-- 2. Tailwind CDN as fallback (only loads if needed) -->
+   <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="css/style.css">
+
+ 
+  <script src="/_sdk/element_sdk.js"></script>
+  <style>
+    :root {
+      --bg-primary: #050510;
+      --bg-secondary: #0a0a14;
+      --text-primary: #ffffff;
+      --text-secondary: rgba(255, 255, 255, 0.6);
+      --accent: #7c5cff;
+      --accent-light: #9b7fff;
+      --border: rgba(124, 92, 255, 0.2);
+      --card-bg: rgba(255, 255, 255, 0.05);
+    }
+
+    html.light-mode {
+      --bg-primary: #d6e7f6;
+      --bg-secondary: #f5f5f5;
+      --text-primary: #0a0a0a;
+      --text-secondary: rgba(0, 0, 0, 0.6);
+      --accent: #7c5cff;
+      --accent-light: #9b7fff;
+      --border: rgba(124, 92, 255, 0.15);
+      --card-bg: rgba(124, 92, 255, 0.04);
+    }
+
+    * {
+      transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    }
+
+    html, body {
+      height: 100%;
+      width: 100%;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+    }
+
+    body {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    .hero-section {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+      background: radial-gradient(ellipse at 50% 0%, rgba(124, 92, 255, 0.15) 0%, var(--bg-primary) 70%);
+    }
+
+    html.light-mode .hero-section {
+      background: radial-gradient(ellipse at 50% 0%, rgba(124, 92, 255, 0.08) 0%, var(--bg-primary) 70%);
+    }
+
+    nav {
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(10px);
+      background: rgba(0, 0, 0, 0.3);
+    }
+
+    html.light-mode nav {
+      background: rgba(255, 255, 255, 0.85);
+    }
+
+    .nav-link {
+      font-size: 13px;
+      color: var(--text-secondary);
+      transition: color 0.3s ease;
+    }
+
+    .nav-link:hover {
+      color: var(--accent);
+    }
+
+    .theme-toggle {
+      width: 48px;
+      height: 28px;
+      background: rgba(124, 92, 255, 0.1);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      position: relative;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      padding: 2px;
+      transition: all 0.3s ease;
+    }
+
+    .theme-toggle:hover {
+      background: rgba(124, 92, 255, 0.15);
+    }
+
+    .theme-toggle-circle {
+      width: 24px;
+      height: 24px;
+      background: var(--accent);
+      border-radius: 12px;
+      position: absolute;
+      left: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: left 0.3s ease;
+    }
+
+    html.light-mode .theme-toggle-circle {
+      left: 22px;
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
+
+    .animate-slideUp { animation: slideUp 0.8s ease forwards; }
+    .animate-float { animation: float 6s ease-in-out infinite; }
+
+    .star { fill: var(--text-primary); }
+    .planet-ring { stroke: var(--accent); opacity: 0.4; }
+
+    .card-glass {
+      background: var(--card-bg);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      transition: all 0.3s ease;
+    }
+
+    .card-glass:hover {
+      background: rgba(124, 92, 255, 0.1);
+      border-color: var(--accent);
+      transform: translateY(-4px);
+    }
+
+    html.light-mode .card-glass:hover {
+      background: rgba(124, 92, 255, 0.08);
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      border: 1px solid var(--accent);
+      font-weight: 600;
+      letter-spacing: 1px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-light);
+      border-color: var(--accent-light);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text-primary);
+      border: 1px solid var(--border);
+      font-weight: 600;
+      letter-spacing: 1px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--accent);
+      background: rgba(124, 92, 255, 0.05);
+      transform: translateY(-2px);
+    }
+
+    .section-header {
+      font-family: 'Syne';
+      font-weight: 800;
+      font-size: clamp(28px, 6vw, 48px);
+      color: var(--text-primary);
+    }
+
+    footer {
+      background: var(--bg-secondary);
+      backdrop-filter: blur(10px);
+      border-top: 1px solid var(--border);
+      color: var(--text-secondary);
+    }
+
+    .stat-number {
+      font-family: 'Space Mono';
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    @media (max-width: 768px) {
+      .desktop-nav { display: none; }
+      .mobile-menu-btn { display: flex; }
+    }
+
+    @media (min-width: 769px) {
+      .desktop-nav { display: flex; }
+      .mobile-menu-btn { display: none; }
+    }
+  </style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full w-full overflow-auto">
+  <!-- NAVBAR -->
+  <!-- NAVBAR -->
+  <nav class="relative z-50 px-4 md:px-8 py-4 md:py-5">
+   <div class="flex items-center justify-between max-w-7xl mx-auto">
+    <!-- Logo -->
+    <div class="flex items-center gap-2 md:gap-3">
+     <img id="navLogo" src="image/seven_logo.png" alt="Seven Tech Ventures" style="height: 36px; width: auto; object-fit: contain;" />
+     <span style="font-family: 'Syne'; font-weight: 800; color: var(--text-primary); font-size: clamp(14px, 3vw, 18px); letter-spacing: 0.5px;" class="company-name">Seven Tech Ventures</span>
+    </div>
+
+    <!-- Desktop Navigation -->
+    <div class="desktop-nav gap-6 md:gap-8 hidden md:flex">
+     <a href="mission.html" class="nav-link">Mission</a>
+     <a href="services.html" class="nav-link">Services</a>
+     <a href="industries.html" class="nav-link">Industries</a>
+     <a href="projects.html" class="nav-link">Projects</a>
+    </div>
+
+    <!-- Right side -->
+    <div class="flex items-center gap-2 md:gap-4">
+     <!-- Theme Toggle -->
+     <div class="theme-toggle" id="themeToggle">
+      <div class="theme-toggle-circle">
+       <i data-lucide="sun" id="sunIcon" style="width: 16px; height: 16px; color: #0a0a0a;"></i>
+       <i data-lucide="moon" id="moonIcon" style="width: 16px; height: 16px; color: #fff; display: none;"></i>
+      </div>
+     </div>
+     
+     <!-- Mobile Menu Button -->
+     <button class="mobile-menu-btn md:hidden p-2" id="mobileMenuBtn" style="background: transparent; border: none;">
+      <i data-lucide="menu" style="width: 20px; height: 20px; color: var(--text-primary);"></i>
+     </button>
+     
+     <!-- Desktop CTA - Now links to contact.html -->
+     <a href="contact.html" 
+        class="btn-secondary hidden md:block px-6 py-2 rounded-lg text-xs hover:bg-[var(--accent)] hover:text-white transition-all"
+        style="font-family: 'Space Mono';">
+       Contact Us
+     </a>
+    </div>
+   </div>
+
+   <!-- Mobile Menu -->
+   <div id="mobileMenu" style="display: none; margin-top: 16px; border-top: 1px solid var(--border); padding-top: 16px;">
+    <div class="flex flex-col gap-3">
+     <a href="mission.html" class="nav-link">Mission</a>
+     <a href="services.html" class="nav-link">Services</a>
+     <a href="industries.html" class="nav-link">Industries</a>
+     <a href="projects.html" class="nav-link">Projects</a>
+     
+     <!-- Mobile Contact Us - Now links to contact.html -->
+     <a href="contact.html" 
+        class="btn-secondary w-full py-2 rounded-lg text-xs text-center" 
+        style="font-family: 'Space Mono'; margin-top: 8px;">
+       Contact Us
+     </a>
+    </div>
+   </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero-section py-20 px-4 md:px-8 flex items-center">
+    <div class="max-w-4xl mx-auto text-center">
+      <div class="inline-flex items-center gap-2 px-4 py-2 border border-[var(--border)] rounded-full mb-6">
+        <i data-lucide="mail" class="w-4 h-4"></i>
+        <span class="text-xs tracking-widest">GET IN TOUCH</span>
+      </div>
+      <h1 class="hero-title text-5xl md:text-7xl font-bold mb-6">Let's Build the Future Together</h1>
+      <p class="hero-description text-xl text-[var(--text-secondary)] max-w-2xl mx-auto">
+        Have a project in mind? Want to partner with us? We're just one message away.
+      </p>
+    </div>
+  </section>
+
+  <!-- CONTACT SECTION -->
+  <section class="py-20 px-4 md:px-8 bg-[var(--bg-secondary)]">
+    <div class="max-w-6xl mx-auto">
+      <div class="grid lg:grid-cols-2 gap-12">
+
+        <!-- Contact Form -->
+        <div class="glass rounded-3xl p-8 md:p-10">
+          <h2 class="text-3xl font-semibold mb-8">Send us a message</h2>
+          <form id="contactForm" class="space-y-6">
+            <div class="grid md:grid-cols-2 gap-6">
+              <div>
+                <label class="block text-sm text-[var(--text-secondary)] mb-2">Full Name</label>
+                <input type="text" required class="w-full bg-transparent border border-[var(--border)] rounded-xl px-5 py-4 focus:outline-none focus:border-[var(--accent)]" placeholder="John Doe">
+              </div>
+              <div>
+                <label class="block text-sm text-[var(--text-secondary)] mb-2">Email Address</label>
+                <input type="email" required class="w-full bg-transparent border border-[var(--border)] rounded-xl px-5 py-4 focus:outline-none focus:border-[var(--accent)]" placeholder="you@company.com">
+              </div>
+            </div>
+            <div>
+              <label class="block text-sm text-[var(--text-secondary)] mb-2">Company</label>
+              <input type="text" class="w-full bg-transparent border border-[var(--border)] rounded-xl px-5 py-4 focus:outline-none focus:border-[var(--accent)]" placeholder="Your Company">
+            </div>
+            <div>
+              <label class="block text-sm text-[var(--text-secondary)] mb-2">Message</label>
+              <textarea rows="6" required class="w-full bg-transparent border border-[var(--border)] rounded-2xl px-5 py-4 focus:outline-none focus:border-[var(--accent)]" placeholder="Tell us about your project..."></textarea>
+            </div>
+            <button type="submit" class="btn-primary w-full py-4 rounded-2xl text-lg font-medium">
+              Send Message
+            </button>
+          </form>
+        </div>
+
+        <!-- Contact Info + Map -->
+        <div class="space-y-8">
+          <div class="glass rounded-3xl p-8 md:p-10">
+            <h3 class="text-2xl font-semibold mb-6">Visit Our Office</h3>
+            <div class="space-y-6">
+              <div class="flex gap-4">
+                <i data-lucide="map-pin" class="w-6 h-6 text-[var(--accent)] mt-1"></i>
+                <div>
+                  <p class="font-medium">Nokkhattrobari Resort Office</p>
+                  <p class="text-[var(--text-secondary)]">Q9MV+HF7, Rd No 19, Dhaka 1206</p>
+                </div>
+              </div>
+              <div class="flex gap-4">
+                <i data-lucide="phone" class="w-6 h-6 text-[var(--accent)] mt-1"></i>
+                <div>
+                  <p class="font-medium">+880 1234-567890</p>
+                </div>
+              </div>
+              <div class="flex gap-4">
+                <i data-lucide="mail" class="w-6 h-6 text-[var(--accent)] mt-1"></i>
+                <div>
+                  <p class="font-medium">hello@seventechventures.com</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Google Map -->
+          <div class="glass rounded-3xl overflow-hidden h-[380px]">
+            <iframe 
+              width="100%" 
+              height="100%" 
+              frameborder="0" 
+              scrolling="no" 
+              marginheight="0" 
+              marginwidth="0"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.123456789012!2d90.393651!3d23.783951!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjPCsDQ3JzAyLjIiTiA5MMKwMjMnMzcuMSJF!5e0!3m2!1sen!2sbd!4v1746780000000">
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-20 px-4 text-center bg-gradient-to-b from-[var(--bg-primary)] to-[var(--bg-secondary)]">
+    <div class="max-w-2xl mx-auto">
+      <h2 class="section-header">Ready to start your project?</h2>
+      <p class="mt-4 text-[var(--text-secondary)]">Our team typically responds within 24 hours.</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="py-12 px-4 md:px-8">
+    <div class="max-w-7xl mx-auto">
+      <!-- Same footer content as index.html -->
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8 pb-8 border-b border-opacity-20" style="border-color: var(--border);">
+        <div>
+          <div class="flex items-center gap-2 mb-4">
+            <img id="footerLogo" src="image/seven_logo.png" alt="Seven Tech Ventures" style="height: 28px; width: auto;" />
+            <span style="font-family: 'Syne'; font-weight: 800; color: var(--text-primary); font-size: 16px;" class="company-name">Seven Tech Ventures</span>
+          </div>
+          <p style="font-family: 'DM Sans'; color: var(--text-secondary); font-size: 13px; line-height: 1.6;">Simplifying complexity through innovative technology solutions, built in Bangladesh for the world.</p>
+        </div>
+        <!-- Other footer columns (same as index) -->
+        <div>
+          <h4 style="font-family: 'Syne'; font-weight: 700; color: var(--text-primary); font-size: 14px; margin-bottom: 12px;">Quick Links</h4>
+          <ul style="list-style: none; padding: 0; margin: 0;">
+            <li style="margin-bottom: 8px;"><a href="mission.html" class="hover:text-[var(--accent)]">Mission</a></li>
+            <li style="margin-bottom: 8px;"><a href="services.html" class="hover:text-[var(--accent)]">Services</a></li>
+            <li style="margin-bottom: 8px;"><a href="contact.html" class="hover:text-[var(--accent)]">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 style="font-family: 'Syne'; font-weight: 700; color: var(--text-primary); font-size: 14px; margin-bottom: 12px;">Resources</h4>
+          <ul style="list-style: none; padding: 0; margin: 0;">
+            <li style="margin-bottom: 8px;"><a href="#" class="hover:text-[var(--accent)]">Documentation</a></li>
+            <li style="margin-bottom: 8px;"><a href="#" class="hover:text-[var(--accent)]">Blog</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 style="font-family: 'Syne'; font-weight: 700; color: var(--text-primary); font-size: 14px; margin-bottom: 12px;">Follow Us</h4>
+          <div class="flex gap-3">
+            <a href="#" class="w-9 h-9 bg-[rgba(124,92,255,0.1)] border border-[var(--border)] rounded-xl flex items-center justify-center hover:bg-[var(--accent)]">𝕏</a>
+            <a href="#" class="w-9 h-9 bg-[rgba(124,92,255,0.1)] border border-[var(--border)] rounded-xl flex items-center justify-center hover:bg-[var(--accent)]">𝕲</a>
+            <a href="#" class="w-9 h-9 bg-[rgba(124,92,255,0.1)] border border-[var(--border)] rounded-xl flex items-center justify-center hover:bg-[var(--accent)]">in</a>
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+        <p style="font-family: 'DM Sans'; color: var(--text-secondary); font-size: 12px;" class="footer-text">© 2026 Seven Tech Ventures. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+
+
+
+
+  <!-- Logo theme swap -->
+  <script>
+  (function() {
+    function updateLogos() {
+      const isLight = document.documentElement.classList.contains('light-mode');
+      const src = isLight ? 'seven_logo_light.png' : 'seven_logo_dark.png';
+      document.querySelectorAll(' #heroLogo').forEach(function(el) {
+        if (el) el.src = src;
+      });
+    }
+    // Apply on load based on saved theme
+    updateLogos();
+    // Observe theme class changes
+    const observer = new MutationObserver(updateLogos);
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+  })();
+  </script>
+
+  <script src="js/theme.js" defer></script>
+
+ </body>
+</html>
