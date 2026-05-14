@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="en" class="h-full scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us - Seven Tech Ventures</title>
+  <link href="./output.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="/_sdk/element_sdk.js"></script>
+  <style>
+    .value-card {
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .value-card:hover {
+      transform: translateY(-8px);
+    }
+    .team-member {
+      transition: all 0.4s ease;
+    }
+    .team-member:hover {
+      transform: translateY(-12px);
+    }
+  </style>
+</head>
+<body class="h-full w-full overflow-auto bg-[var(--bg-primary)] text-[var(--text-primary)]">
+
+  <!-- NAVBAR -->
+<!-- NAVBAR -->
+<nav class="relative z-50 px-4 md:px-8 py-4 md:py-5 border-b border-[var(--border)] backdrop-blur-md bg-[var(--bg-primary)]/80">
+  <div class="flex items-center justify-between max-w-7xl mx-auto">
+    <!-- Logo - Links to Home -->
+    <a href="index.html" class="flex items-center gap-2 md:gap-3">
+      <img id="navLogo" src="image/seven_logo.png" alt="Seven Tech Ventures" style="height: 36px; width: auto; object-fit: contain;" />
+      <span style="font-family: 'Syne'; font-weight: 800; color: var(--text-primary); font-size: clamp(14px, 3vw, 18px); letter-spacing: 0.5px;" class="company-name">Seven Tech Ventures</span>
+    </a>
+
+    <!-- Desktop Navigation -->
+    <div class="desktop-nav gap-6 md:gap-8 hidden md:flex">
+      <a href="index.html" class="nav-link ">Home</a>
+      <a href="services.html" class="nav-link">Services</a>
+      <a href="about.html" class="nav-link active">About</a>
+      <a href="projects.html" class="nav-link">Ventures</a>
+    </div>
+
+    <!-- Right side -->
+    <div class="flex items-center gap-3 md:gap-4">
+      <!-- Theme Toggle -->
+      <div class="theme-toggle" id="themeToggle">
+        <div class="theme-toggle-circle">
+          <i data-lucide="sun" id="sunIcon" style="width: 16px; height: 16px; color: #0a0a0a;"></i>
+          <i data-lucide="moon" id="moonIcon" style="width: 16px; height: 16px; color: #fff; display: none;"></i>
+        </div>
+      </div>
+      
+      <!-- Mobile Menu Button -->
+      <button class="mobile-menu-btn md:hidden p-2" id="mobileMenuBtn">
+        <i data-lucide="menu" style="width: 20px; height: 20px; color: var(--text-primary);"></i>
+      </button>
+      
+      <a href="contact.html" 
+         class="btn-secondary hidden md:block px-6 py-2.5 rounded-lg text-sm hover:bg-[var(--accent)] hover:text-white transition-all"
+         style="font-family: 'Space Mono';">
+        Get In Touch
+      </a>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobileMenu" style="display: none; margin-top: 16px; border-top: 1px solid var(--border); padding-top: 16px;">
+    <div class="flex flex-col gap-3">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="services.html" class="nav-link">Services</a>
+      <a href="about.html" class="nav-link">About</a>
+      <a href="projects.html" class="nav-link">Ventures</a>
+
+      
+      <a href="contact.html" 
+         class="btn-secondary w-full py-3 rounded-lg text-sm text-center mt-4"
+         style="font-family: 'Space Mono';">
+        Get In Touch
+      </a>
+    </div>
+  </div>
+</nav>
+
+  <!-- HERO SECTION -->
+  <section class="hero-section pt-20 pb-16 md:pt-28 md:pb-24 relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 md:px-8 text-center">
+      <div class="inline-flex items-center gap-2 px-4 py-2 border border-[var(--border)] rounded-full mb-6">
+        <span class="text-xs tracking-[2px] uppercase text-[var(--accent)]">Since 2023 • Dhaka, Bangladesh</span>
+      </div>
+      <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6" style="font-family: 'Syne';">
+        We Build <span class="text-[var(--accent)]">Digital Futures</span>
+      </h1>
+      <p class="max-w-2xl mx-auto text-lg md:text-xl text-[var(--text-secondary)]">
+        A passionate technology company based in Mohakhali DOHS, Dhaka, dedicated to simplifying complexity through innovative software solutions.
+      </p>
+    </div>
+  </section>
+
+  <!-- COMPANY INTRODUCTION -->
+  <section class="py-20 px-4 md:px-8">
+    <div class="max-w-6xl mx-auto">
+      <div class="grid md:grid-cols-12 gap-12 items-center">
+        <div class="md:col-span-7">
+          <h2 class="section-header mb-6">Our Story</h2>
+          <p class="text-lg text-[var(--text-secondary)] leading-relaxed">
+            Founded in 2023 in the heart of Dhaka, Seven Tech Ventures emerged from a vision to bridge the gap between local talent and global technology standards. 
+            What started as a small team of passionate developers has grown into a trusted technology partner for businesses across Bangladesh.
+          </p>
+          <p class="text-lg text-[var(--text-secondary)] leading-relaxed mt-6">
+            We combine deep understanding of the Bangladeshi market with world-class technical expertise to deliver solutions that drive real transformation.
+          </p>
+        </div>
+        <div class="md:col-span-5">
+          <div class="card-glass p-8 rounded-3xl">
+            <div class="aspect-video bg-gradient-to-br from-blue-900 to-slate-900 rounded-2xl flex items-center justify-center mb-6">
+              <i data-lucide="play-circle" class="w-20 h-20 text-white/70"></i>
+            </div>
+            <h4 class="font-semibold text-xl">From Mohakhali DOHS to Global Impact</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MISSION & VISION -->
+  <section class="py-20 px-4 md:px-8 bg-[var(--bg-secondary)]">
+    <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-12">
+      <!-- Mission -->
+      <div class="card-glass p-10 rounded-3xl">
+        <div class="w-12 h-12 bg-emerald-500/10 rounded-2xl flex items-center justify-center mb-6">
+          <i data-lucide="target" class="w-7 h-7 text-emerald-400"></i>
+        </div>
+        <h3 class="text-3xl font-semibold mb-4">Our Mission</h3>
+        <p class="text-[var(--text-secondary)] text-lg leading-relaxed">
+          To empower Bangladeshi businesses and startups with world-class technology solutions that drive growth, efficiency, and innovation in the digital economy.
+        </p>
+      </div>
+
+      <!-- Vision -->
+      <div class="card-glass p-10 rounded-3xl">
+        <div class="w-12 h-12 bg-amber-500/10 rounded-2xl flex items-center justify-center mb-6">
+          <i data-lucide="eye" class="w-7 h-7 text-amber-400"></i>
+        </div>
+        <h3 class="text-3xl font-semibold mb-4">Our Vision</h3>
+        <p class="text-[var(--text-secondary)] text-lg leading-relaxed">
+          To become one of the leading IT companies in Bangladesh and a trusted technology partner across South Asia by 2030.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- OUR VALUES -->
+  <section class="py-20 px-4 md:px-8">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16">
+        <h2 class="section-header">Our Core Values</h2>
+      </div>
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="value-card card-glass p-8 rounded-3xl text-center">
+          <i data-lucide="zap" class="w-10 h-10 mx-auto mb-4 text-[var(--accent)]"></i>
+          <h4 class="font-semibold text-xl mb-3">Innovation</h4>
+          <p class="text-[var(--text-secondary)]">We constantly push boundaries and embrace new technologies.</p>
+        </div>
+        <div class="value-card card-glass p-8 rounded-3xl text-center">
+          <i data-lucide="users" class="w-10 h-10 mx-auto mb-4 text-[var(--accent)]"></i>
+          <h4 class="font-semibold text-xl mb-3">Client First</h4>
+          <p class="text-[var(--text-secondary)]">Your success is our success. We build lasting partnerships.</p>
+        </div>
+        <div class="value-card card-glass p-8 rounded-3xl text-center">
+          <i data-lucide="award" class="w-10 h-10 mx-auto mb-4 text-[var(--accent)]"></i>
+          <h4 class="font-semibold text-xl mb-3">Excellence</h4>
+          <p class="text-[var(--text-secondary)]">We deliver nothing less than world-class quality.</p>
+        </div>
+        <div class="value-card card-glass p-8 rounded-3xl text-center">
+          <i data-lucide="heart" class="w-10 h-10 mx-auto mb-4 text-[var(--accent)]"></i>
+          <h4 class="font-semibold text-xl mb-3">Integrity</h4>
+          <p class="text-[var(--text-secondary)]">Transparency, honesty, and ethical practices guide everything we do.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT WE DO -->
+  <section class="py-20 px-4 md:px-8 bg-[var(--bg-secondary)]">
+    <div class="max-w-6xl mx-auto text-center">
+      <h2 class="section-header mb-6">What We Do</h2>
+      <p class="text-[var(--text-secondary)] max-w-2xl mx-auto mb-12">We specialize in turning complex business challenges into simple, powerful digital solutions.</p>
+      
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="card-glass p-8">
+          <h4 class="font-semibold text-xl mb-3">Custom Software</h4>
+          <p class="text-[var(--text-secondary)]">Tailored enterprise solutions built specifically for your needs.</p>
+        </div>
+        <div class="card-glass p-8">
+          <h4 class="font-semibold text-xl mb-3">Mobile & Web Apps</h4>
+          <p class="text-[var(--text-secondary)]">Beautiful, high-performance applications that users love.</p>
+        </div>
+        <div class="card-glass p-8">
+          <h4 class="font-semibold text-xl mb-3">AI & Digital Transformation</h4>
+          <p class="text-[var(--text-secondary)]">Leveraging artificial intelligence to revolutionize your business.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY CHOOSE US -->
+  <section class="py-20 px-4 md:px-8">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-16">
+        <h2 class="section-header">Why Choose Seven Tech Ventures?</h2>
+      </div>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="card-glass p-8 text-center">
+          <div class="text-4xl font-bold text-[var(--accent)] mb-2">50+</div>
+          <p class="font-medium mb-1">Projects Delivered</p>
+          <p class="text-sm text-[var(--text-secondary)]">Successful digital transformations</p>
+        </div>
+        <div class="card-glass p-8 text-center">
+          <div class="text-4xl font-bold text-[var(--accent)] mb-2">35+</div>
+          <p class="font-medium mb-1">Happy Clients</p>
+          <p class="text-sm text-[var(--text-secondary)]">Trusted by leading organizations</p>
+        </div>
+        <div class="card-glass p-8 text-center">
+          <div class="text-4xl font-bold text-[var(--accent)] mb-2">25+</div>
+          <p class="font-medium mb-1">Tech Experts</p>
+          <p class="text-sm text-[var(--text-secondary)]">Passionate professionals</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TECHNOLOGIES -->
+  <section class="py-20 px-4 md:px-8 bg-[var(--bg-secondary)]">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16">
+        <h2 class="section-header">Technologies We Use</h2>
+      </div>
+      <div class="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6 text-center">
+        <div class="card-glass py-8">React / Next.js</div>
+        <div class="card-glass py-8">Flutter</div>
+        <div class="card-glass py-8">Node.js</div>
+        <div class="card-glass py-8">Python</div>
+        <div class="card-glass py-8">AWS Cloud</div>
+        <div class="card-glass py-8">TensorFlow</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM SECTION -->
+  <section class="py-20 px-4 md:px-8">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16">
+        <h2 class="section-header">Meet Our Team</h2>
+        <p class="text-[var(--text-secondary)] mt-3">The brilliant minds behind our success</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="team-member card-glass p-6 rounded-3xl text-center">
+          <div class="w-32 h-32 mx-auto bg-gradient-to-br from-blue-400 to-purple-500 rounded-2xl mb-6"></div>
+          <h4 class="font-semibold text-xl">Shahriar Rahman</h4>
+          <p class="text-[var(--accent)]">CEO & Founder</p>
+          <p class="text-sm text-[var(--text-secondary)] mt-3">15+ years in software architecture and digital transformation.</p>
+        </div>
+        <div class="team-member card-glass p-6 rounded-3xl text-center">
+          <div class="w-32 h-32 mx-auto bg-gradient-to-br from-emerald-400 to-cyan-500 rounded-2xl mb-6"></div>
+          <h4 class="font-semibold text-xl">Nadia Islam</h4>
+          <p class="text-[var(--accent)]">Head of Engineering</p>
+          <p class="text-sm text-[var(--text-secondary)] mt-3">Expert in scalable systems and AI solutions.</p>
+        </div>
+        <div class="team-member card-glass p-6 rounded-3xl text-center">
+          <div class="w-32 h-32 mx-auto bg-gradient-to-br from-rose-400 to-orange-500 rounded-2xl mb-6"></div>
+          <h4 class="font-semibold text-xl">Tanvir Hassan</h4>
+          <p class="text-[var(--accent)]">Creative Director</p>
+          <p class="text-sm text-[var(--text-secondary)] mt-3">UI/UX visionary with a passion for beautiful interfaces.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="py-20 px-4 md:px-8 bg-[var(--bg-secondary)]">
+    <div class="max-w-4xl mx-auto">
+      <h2 class="section-header text-center mb-12">Frequently Asked Questions</h2>
+      <div class="space-y-6">
+        <div class="card-glass p-8">
+          <h4 class="font-semibold mb-3">Where is your office located?</h4>
+          <p class="text-[var(--text-secondary)]">We are based in Mohakhali DOHS, Dhaka, Bangladesh.</p>
+        </div>
+        <div class="card-glass p-8">
+          <h4 class="font-semibold mb-3">Do you work with international clients?</h4>
+          <p class="text-[var(--text-secondary)]">Yes, we proudly serve both local Bangladeshi businesses and international clients.</p>
+        </div>
+        <div class="card-glass p-8">
+          <h4 class="font-semibold mb-3">What is your typical project timeline?</h4>
+          <p class="text-[var(--text-secondary)]">Most projects range from 8 weeks to 6 months depending on complexity.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA SECTION -->
+  <section class="py-24 px-4 md:px-8 text-center">
+    <div class="max-w-2xl mx-auto">
+      <h2 class="text-4xl md:text-5xl font-bold mb-6">Join the Digital Revolution with Us</h2>
+      <p class="text-xl text-[var(--text-secondary)] mb-10">Let's build something extraordinary together.</p>
+      <a href="contact.html" class="btn-primary px-12 py-5 rounded-3xl text-lg inline-block">Get In Touch</a>
+    </div>
+  </section>
+
+<!-- FOOTER -->
+  <footer class="py-12 px-4 md:px-8">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8 pb-8 border-b border-opacity-20" style="border-color: var(--border);">
+        
+        <!-- Company Info -->
+        <div>
+          <div class="flex items-center gap-2 mb-4">
+            <img id="footerLogo" src="image/seven_logo.png" alt="Seven Tech Ventures" style="height: 28px; width: auto; object-fit: contain;" />
+            <span style="font-family: 'Syne'; font-weight: 800; color: var(--text-primary); font-size: 16px;" class="company-name">Seven Tech Ventures</span>
+          </div>
+          <p style="font-family: 'DM Sans'; color: var(--text-secondary); font-size: 13px; line-height: 1.6;">
+            Simplifying complexity through innovative technology solutions, built in Bangladesh for the world.
+          </p>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h4 style="font-family: 'Syne'; font-weight: 700; color: var(--text-primary); font-size: 14px; margin-bottom: 12px;">Quick Links</h4>
+          <ul style="list-style: none; padding: 0; margin: 0;">
+            <li style="margin-bottom: 8px;"><a href="services.html" class="hover:text-[var(--accent)] transition-colors">Services</a></li>
+            <li style="margin-bottom: 8px;"><a href="about.html" class="hover:text-[var(--accent)] transition-colors">About Us</a></li>
+            <li style="margin-bottom: 8px;"><a href="projects.html" class="hover:text-[var(--accent)] transition-colors">Ventures</a></li>
+          </ul>
+        </div>
+
+        <!-- Resources / Legal -->
+        <div>
+          <h4 style="font-family: 'Syne'; font-weight: 700; color: var(--text-primary); font-size: 14px; margin-bottom: 12px;">Resources</h4>
+          <ul style="list-style: none; padding: 0; margin: 0;">
+            <li style="margin-bottom: 8px;"><a href="contact.html" class="hover:text-[var(--accent)] transition-colors">Contact</a></li>
+            <li style="margin-bottom: 8px;"><a href="privacy_policy.html" class="hover:text-[var(--accent)] transition-colors">Privacy Policy</a></li>
+            <li style="margin-bottom: 8px;"><a href="terms_and_conditions.html" class="hover:text-[var(--accent)] transition-colors">Terms & Conditions</a></li>
+          </ul>
+        </div>
+
+        <!-- Location -->
+        <div>
+          <h4 style="font-family: 'Syne'; font-weight: 700; color: var(--text-primary); font-size: 14px; margin-bottom: 12px;">Location</h4>
+          <div class="text-[var(--text-secondary)] text-sm leading-relaxed">
+            B1, 268, Road-19<br>
+            Mohakhali DOHS<br>
+            Dhaka-1206, Bangladesh
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4 text-sm">
+        <p style="font-family: 'DM Sans'; color: var(--text-secondary); font-size: 12px;" class="footer-text">
+          © 2026 Seven Tech Ventures. All rights reserved.
+        </p>
+        <div>
+          <h4 style="font-family: 'Syne'; font-weight: 700; color: var(--text-primary); font-size: 14px; margin-bottom: 12px;">Follow Us</h4>
+          <div class="flex gap-3">
+            <a href="#" class="w-9 h-9 bg-[rgba(124,92,255,0.1)] border border-[var(--border)] rounded-xl flex items-center justify-center hover:bg-[var(--accent)] hover:text-white transition-all">𝕏</a>
+            <a href="#" class="w-9 h-9 bg-[rgba(124,92,255,0.1)] border border-[var(--border)] rounded-xl flex items-center justify-center hover:bg-[var(--accent)] hover:text-white transition-all">𝕲</a>
+            <a href="#" class="w-9 h-9 bg-[rgba(124,92,255,0.1)] border border-[var(--border)] rounded-xl flex items-center justify-center hover:bg-[var(--accent)] hover:text-white transition-all">in</a>
+            <a href="#" class="w-9 h-9 bg-[rgba(124,92,255,0.1)] border border-[var(--border)] rounded-xl flex items-center justify-center hover:bg-[var(--accent)] hover:text-white transition-all">𝕐</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/theme.js"></script>
+</body>
+</html>

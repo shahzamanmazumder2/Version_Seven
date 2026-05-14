@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="en" class="h-full scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy - Seven Tech Ventures</title>
+  <link href="./output.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+
+  <script src="/_sdk/element_sdk.js"></script>
+
+  <style>
+    :root {
+      --bg-primary: #050510;
+      --bg-secondary: #0a0a14;
+      --text-primary: #ffffff;
+      --text-secondary: rgba(255, 255, 255, 0.6);
+      --accent: #7c5cff;
+      --accent-light: #9b7fff;
+      --border: rgba(124, 92, 255, 0.2);
+      --card-bg: rgba(255, 255, 255, 0.05);
+    }
+
+    html.light-mode {
+      --bg-primary: #d6e7f6;
+      --bg-secondary: #f5f5f5;
+      --text-primary: #0a0a0a;
+      --text-secondary: rgba(0, 0, 0, 0.6);
+      --accent: #7c5cff;
+      --accent-light: #9b7fff;
+      --border: rgba(124, 92, 255, 0.15);
+      --card-bg: rgba(124, 92, 255, 0.04);
+    }
+
+    .policy-section {
+      scroll-margin-top: 100px;
+    }
+  </style>
+</head>
+<body class="h-full w-full overflow-auto">
+
+  <!-- NAVBAR -->
+  <nav class="relative z-50 px-4 md:px-8 py-4 md:py-5 border-b border-[var(--border)] backdrop-blur-md bg-[var(--bg-primary)]/80">
+    <div class="flex items-center justify-between max-w-7xl mx-auto">
+      <a href="index.html" class="flex items-center gap-2 md:gap-3">
+        <img id="navLogo" src="image/seven_logo.png" alt="Seven Tech Ventures" style="height: 36px; width: auto; object-fit: contain;" />
+        <span style="font-family: 'Syne'; font-weight: 800; color: var(--text-primary); font-size: clamp(14px, 3vw, 18px); letter-spacing: 0.5px;" class="company-name">Seven Tech Ventures</span>
+      </a>
+
+      <div class="desktop-nav gap-6 md:gap-8 hidden md:flex">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="services.html" class="nav-link">Services</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="projects.html" class="nav-link">Ventures</a>
+      </div>
+
+      <div class="flex items-center gap-3 md:gap-4">
+        <div class="theme-toggle" id="themeToggle">
+          <div class="theme-toggle-circle">
+            <i data-lucide="sun" id="sunIcon" style="width: 16px; height: 16px; color: #0a0a0a;"></i>
+            <i data-lucide="moon" id="moonIcon" style="width: 16px; height: 16px; color: #fff; display: none;"></i>
+          </div>
+        </div>
+        
+        <button class="mobile-menu-btn md:hidden p-2" id="mobileMenuBtn">
+          <i data-lucide="menu" style="width: 20px; height: 20px; color: var(--text-primary);"></i>
+        </button>
+        
+        <a href="contact.html" class="btn-secondary hidden md:block px-6 py-2.5 rounded-lg text-sm hover:bg-[var(--accent)] hover:text-white transition-all" style="font-family: 'Space Mono';">
+          Get In Touch
+        </a>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" style="display: none; margin-top: 16px; border-top: 1px solid var(--border); padding-top: 16px;">
+      <div class="flex flex-col gap-3">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="services.html" class="nav-link">Services</a>
+        <a href="about.html" class="nav-link">About</a>
+        <a href="projects.html" class="nav-link">Ventures</a>
+        <a href="contact.html" class="btn-secondary w-full py-3 rounded-lg text-sm text-center mt-4" style="font-family: 'Space Mono';">Get In Touch</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero-section py-20 px-4 md:px-8 flex items-center">
+    <div class="max-w-4xl mx-auto text-center">
+      <div class="inline-flex items-center gap-2 px-4 py-2 border border-[var(--border)] rounded-full mb-6">
+        <i data-lucide="shield" class="w-4 h-4"></i>
+        <span class="text-xs tracking-widest">PRIVACY POLICY</span>
+      </div>
+      <h1 class="text-5xl md:text-7xl font-bold mb-6">Privacy Policy</h1>
+      <p class="text-xl text-[var(--text-secondary)] max-w-2xl mx-auto">
+        Last Updated: May 14, 2026
+      </p>
+    </div>
+  </section>
+
+  <!-- CONTENT -->
+  <section class="py-20 px-4 md:px-8 bg-[var(--bg-secondary)]">
+    <div class="max-w-4xl mx-auto">
+
+      <div class="glass rounded-3xl p-10 md:p-16 space-y-14">
+
+        <!-- 1. Introduction -->
+        <div class="policy-section">
+          <h2 class="text-3xl font-semibold mb-6">1. Introduction</h2>
+          <p class="text-[var(--text-secondary)] leading-relaxed">
+            At Seven Tech Ventures, we respect your privacy and are committed to protecting your personal data. 
+            This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website or engage with our services.
+          </p>
+        </div>
+
+        <!-- 2. Information We Collect -->
+        <div class="policy-section">
+          <h2 class="text-3xl font-semibold mb-6">2. Information We Collect</h2>
+          <p class="text-[var(--text-secondary)] leading-relaxed mb-4">We may collect the following types of information:</p>
+          <ul class="list-disc pl-6 space-y-3 text-[var(--text-secondary)]">
+            <li><strong>Personal Information:</strong> Name, email address, phone number, company name.</li>
+            <li><strong>Project Information:</strong> Requirements, business details, and communication records.</li>
+            <li><strong>Technical Data:</strong> IP address, browser type, device information, and usage data.</li>
+            <li><strong>Cookies & Tracking:</strong> Data collected through cookies and similar technologies.</li>
+          </ul>
+        </div>
+
+        <!-- 3. How We Collect Information -->
+        <div class="policy-section">
+          <h2 class="text-3xl font-semibold mb-6">3. How We Collect Information</h2>
+          <p class="text-[var(--text-secondary)] leading-relaxed">
+            We collect information directly from you when you fill out forms, contact us, or engage our services. 
+            We also automatically collect technical data through cookies and analytics tools.
+          </p>
+        </div>
+
+        <!-- 4. How We Use Your Information -->
+        <div class="policy-section">
+          <h2 class="text-3xl font-semibold mb-6">4. How We Use Your Information</h2>
+          <ul class="list-disc pl-6 space-y-3 text-[var(--text-secondary)]">
+            <li>To provide and improve our services</li>
+            <li>To communicate with you about projects and proposals</li>
+            <li>To send important updates and announcements</li>
+            <li>To analyze website usage and improve user experience</li>
+            <li>To comply with legal obligations</li>
+          </ul>
+        </div>
+
+        <!-- 5. Sharing of Information -->
+        <div class="policy-section">
+          <h2 class="text-3xl font-semibold mb-6">5. Sharing of Information</h2>
+          <p class="text-[var(--text-secondary)] leading-relaxed">
+            We do not sell your personal data. We may share information with trusted third-party service providers (hosting, payment processors, analytics) only when necessary and under strict confidentiality agreements.
+          </p>
+        </div>
+
+        <!-- 6. Cookies and Tracking -->
+        <div class="policy-section">
+          <h2 class="text-3xl font-semibold mb-6">6. Cookies and Tracking Technologies</h2>
+          <p class="text-[var(--text-secondary)] leading-relaxed">
+            We use cookies to enhance your experience. You can manage cookie preferences through your browser settings.
+          </p>
+        </div>
+
+        <!-- 7. Data Security -->
+        <div class="policy-section">
+          <h2 class="text-3xl font-semibold mb-6">7. Data Security</h2>
+          <p class="text-[var(--text-secondary)] leading-relaxed">
+            We implement industry-standard security measures to protect your data. However, no method of transmission over the internet is 100% secure.
+          </p>
+        </div>
+
+        <!-- 8. Data Retention -->
+        <div class="policy-section">
+          <h2 class="text-3xl font-semibold mb-6">8. Data Retention</h2>
+          <p class="text-[var(--text-secondary)] leading-relaxed">
+            We retain your personal data only as long as necessary to fulfill the purposes outlined in this policy or as required by law.
+          </p>
+        </div>
+
+        <!-- 9. Your Rights -->
+        <div class="policy-section">
+          <h2 class="text-3xl font-semibold mb-6">9. Your Rights</h2>
+          <p class="text-[var(--text-secondary)] leading-relaxed">
+            You have the right to access, correct, delete, or restrict the processing of your personal data. 
+            To exercise these rights, please contact us.
+          </p>
+        </div>
+
+        <!-- 10. International Data Transfers -->
+        <div class="policy-section">
+          <h2 class="text-3xl font-semibold mb-6">10. International Data Transfers</h2>
+          <p class="text-[var(--text-secondary)] leading-relaxed">
+            Your data may be transferred and stored outside Bangladesh. We ensure appropriate safeguards are in place for such transfers.
+          </p>
+        </div>
+
+        <!-- 11. Children's Privacy -->
+        <div class="policy-section">
+          <h2 class="text-3xl font-semibold mb-6">11. Children's Privacy</h2>
+          <p class="text-[var(--text-secondary)] leading-relaxed">
+            Our services are not intended for children under 18. We do not knowingly collect data from children.
+          </p>
+        </div>
+
+        <!-- 12. Changes to This Policy -->
+        <div class="policy-section">
+          <h2 class="text-3xl font-semibold mb-6">12. Changes to This Privacy Policy</h2>
+          <p class="text-[var(--text-secondary)] leading-relaxed">
+            We may update this Privacy Policy from time to time. We will notify you of any material changes by posting the new policy on this page.
+          </p>
+        </div>
+
+        <!-- Contact -->
+        <div class="policy-section border-t border-[var(--border)] pt-12">
+          <h2 class="text-3xl font-semibold mb-6">Contact Us</h2>
+          <p class="text-[var(--text-secondary)] mb-6">
+            If you have any questions about this Privacy Policy, please contact us:
+          </p>
+          <div class="space-y-3 text-[var(--text-secondary)]">
+            <p><strong>Email:</strong> <a href="mailto:hello@seventechventures.com" class="text-[var(--accent)] hover:underline">hello@seventechventures.com</a></p>
+            <p><strong>Phone:</strong> +880 1234-567890</p>
+            <p><strong>Address:</strong> Nokkhattrobari Resort Office, Q9MV+HF7, Rd No 19, Dhaka 1206, Bangladesh</p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="text-center text-xs text-[var(--text-secondary)] mt-12">
+        © 2026 Seven Tech Ventures. All Rights Reserved.
+      </div>
+    </div>
+  </section>
+
+<!-- FOOTER -->
+  <footer class="py-12 px-4 md:px-8">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8 pb-8 border-b border-opacity-20" style="border-color: var(--border);">
+        
+        <!-- Company Info -->
+        <div>
+          <div class="flex items-center gap-2 mb-4">
+            <img id="footerLogo" src="image/seven_logo.png" alt="Seven Tech Ventures" style="height: 28px; width: auto; object-fit: contain;" />
+            <span style="font-family: 'Syne'; font-weight: 800; color: var(--text-primary); font-size: 16px;" class="company-name">Seven Tech Ventures</span>
+          </div>
+          <p style="font-family: 'DM Sans'; color: var(--text-secondary); font-size: 13px; line-height: 1.6;">
+            Simplifying complexity through innovative technology solutions, built in Bangladesh for the world.
+          </p>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h4 style="font-family: 'Syne'; font-weight: 700; color: var(--text-primary); font-size: 14px; margin-bottom: 12px;">Quick Links</h4>
+          <ul style="list-style: none; padding: 0; margin: 0;">
+            <li style="margin-bottom: 8px;"><a href="services.html" class="hover:text-[var(--accent)] transition-colors">Services</a></li>
+            <li style="margin-bottom: 8px;"><a href="about.html" class="hover:text-[var(--accent)] transition-colors">About Us</a></li>
+            <li style="margin-bottom: 8px;"><a href="projects.html" class="hover:text-[var(--accent)] transition-colors">Ventures</a></li>
+          </ul>
+        </div>
+
+        <!-- Resources / Legal -->
+        <div>
+          <h4 style="font-family: 'Syne'; font-weight: 700; color: var(--text-primary); font-size: 14px; margin-bottom: 12px;">Resources</h4>
+          <ul style="list-style: none; padding: 0; margin: 0;">
+            <li style="margin-bottom: 8px;"><a href="contact.html" class="hover:text-[var(--accent)] transition-colors">Contact</a></li>
+            <li style="margin-bottom: 8px;"><a href="privacy_policy.html" class="hover:text-[var(--accent)] transition-colors">Privacy Policy</a></li>
+            <li style="margin-bottom: 8px;"><a href="terms_and_conditions.html" class="hover:text-[var(--accent)] transition-colors">Terms & Conditions</a></li>
+          </ul>
+        </div>
+
+        <!-- Location -->
+        <div>
+          <h4 style="font-family: 'Syne'; font-weight: 700; color: var(--text-primary); font-size: 14px; margin-bottom: 12px;">Location</h4>
+          <div class="text-[var(--text-secondary)] text-sm leading-relaxed">
+            B1, 268, Road-19<br>
+            Mohakhali DOHS<br>
+            Dhaka-1206, Bangladesh
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4 text-sm">
+        <p style="font-family: 'DM Sans'; color: var(--text-secondary); font-size: 12px;" class="footer-text">
+          © 2026 Seven Tech Ventures. All rights reserved.
+        </p>
+        <div>
+          <h4 style="font-family: 'Syne'; font-weight: 700; color: var(--text-primary); font-size: 14px; margin-bottom: 12px;">Follow Us</h4>
+          <div class="flex gap-3">
+            <a href="#" class="w-9 h-9 bg-[rgba(124,92,255,0.1)] border border-[var(--border)] rounded-xl flex items-center justify-center hover:bg-[var(--accent)] hover:text-white transition-all">𝕏</a>
+            <a href="#" class="w-9 h-9 bg-[rgba(124,92,255,0.1)] border border-[var(--border)] rounded-xl flex items-center justify-center hover:bg-[var(--accent)] hover:text-white transition-all">𝕲</a>
+            <a href="#" class="w-9 h-9 bg-[rgba(124,92,255,0.1)] border border-[var(--border)] rounded-xl flex items-center justify-center hover:bg-[var(--accent)] hover:text-white transition-all">in</a>
+            <a href="#" class="w-9 h-9 bg-[rgba(124,92,255,0.1)] border border-[var(--border)] rounded-xl flex items-center justify-center hover:bg-[var(--accent)] hover:text-white transition-all">𝕐</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/theme.js" defer></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      lucide.createIcons();
+    });
+  </script>
+</body>
+</html>
