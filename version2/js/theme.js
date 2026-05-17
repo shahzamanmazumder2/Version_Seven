@@ -11,7 +11,7 @@
     // Logo swap helper — works across all pages that use nav/hero/footer logos
     function swapLogos(isDark) {
       const src = isDark ? 'seven_logo_dark.png' : 'seven_logo_light.png';
-      document.querySelectorAll('#navLogo, #heroLogo, #footerLogo').forEach(function(el) {
+      document.querySelectorAll('#heroLogo').forEach(function(el) {
         if (el) el.src = src;
       });
     }
