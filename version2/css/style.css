@@ -518,3 +518,24 @@
       .desktop-nav { display: flex; }
       .mobile-menu-btn { display: none; }
     }
+
+
+
+
+
+/* Carosel_button */
+
+
+  .service-nav-btn { left: -10px; }
+  .industry-nav-btn { left: -10px; }
+  
+  .service-nav-btn:last-of-type { right: -10px; left: auto; }
+  .industry-nav-btn:last-of-type { right: -10px; left: auto; }
+
+  @media (min-width: 768px) {
+    .service-nav-btn { left: -60px; }
+    .industry-nav-btn { left: -60px; }
+    
+    .service-nav-btn:last-of-type { right: -60px; }
+    .industry-nav-btn:last-of-type { right: -60px; }
+  }

@@ -19,6 +19,14 @@
 .nav-link.active::after, .nav-link:hover::after { width:100%; }
   </style>
   <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+
+
+<style>
+
+</style>
+
+
+  
  </head>
  <body class="h-full w-full overflow-auto">
   <!-- NAVBAR -->
@@ -367,12 +375,6 @@
 </style>
 
 </section>
-
-
-
-
-
-
 
 
 
@@ -768,21 +770,19 @@
     <!-- Carousel Container -->
     <div class="relative" id="carouselWrapper">
 
-      <!-- Left Button -->
-      <button onclick="prevSlide()"
-              class="absolute left-0 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full flex items-center justify-center shadow-xl border transition-all
-                     bg-[var(--card-bg)] hover:bg-[var(--accent)] hover:text-white border-[var(--border)]"
-              style="left: -20px;">
-        <i data-lucide="chevron-left" class="w-6 h-6"></i>
-      </button>
+<!-- Left Button - Services -->
+<button onclick="prevSlide()"
+        class="service-nav-btn absolute top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full flex items-center justify-center shadow-xl border transition-all
+               bg-[var(--card-bg)] hover:bg-[var(--accent)] hover:text-white border-[var(--border)]">
+  <i data-lucide="chevron-left" class="w-6 h-6"></i>
+</button>
 
-      <!-- Right Button -->
-      <button onclick="nextSlide()"
-              class="absolute top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full flex items-center justify-center shadow-xl border transition-all
-                     bg-[var(--card-bg)] hover:bg-[var(--accent)] hover:text-white border-[var(--border)]"
-              style="right: -20px;">
-        <i data-lucide="chevron-right" class="w-6 h-6"></i>
-      </button>
+<!-- Right Button - Services -->
+<button onclick="nextSlide()"
+        class="service-nav-btn absolute top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full flex items-center justify-center shadow-xl border transition-all
+               bg-[var(--card-bg)] hover:bg-[var(--accent)] hover:text-white border-[var(--border)]">
+  <i data-lucide="chevron-right" class="w-6 h-6"></i>
+</button>
 
       <!-- Viewport: clips the track -->
       <div id="carouselViewport" style="overflow: hidden;">
@@ -1041,7 +1041,7 @@
         if (autoInterval) clearInterval(autoInterval);
         autoInterval = setInterval(() => {
           nextSlide();
-        }, 2000);
+        }, 3500);
       }
 
       function stopAutoPlay() {
@@ -1142,32 +1142,6 @@
   </section>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   
 
 
@@ -1186,21 +1160,19 @@
     <!-- Carousel Container -->
     <div class="relative">
 
-      <!-- Left Button -->
-      <button onclick="prevIndustrySlide()"
-              class="absolute top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full flex items-center justify-center shadow-xl border transition-all
-                     bg-[var(--card-bg)] hover:bg-[var(--accent)] hover:text-white border-[var(--border)]"
-              style="left: -20px;">
-        <i data-lucide="chevron-left" class="w-6 h-6"></i>
-      </button>
+<!-- Left Button - Industries -->
+<button onclick="prevIndustrySlide()"
+        class="industry-nav-btn absolute top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full flex items-center justify-center shadow-xl border transition-all
+               bg-[var(--card-bg)] hover:bg-[var(--accent)] hover:text-white border-[var(--border)]">
+  <i data-lucide="chevron-left" class="w-6 h-6"></i>
+</button>
 
-      <!-- Right Button -->
-      <button onclick="nextIndustrySlide()"
-              class="absolute top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full flex items-center justify-center shadow-xl border transition-all
-                     bg-[var(--card-bg)] hover:bg-[var(--accent)] hover:text-white border-[var(--border)]"
-              style="right: -20px;">
-        <i data-lucide="chevron-right" class="w-6 h-6"></i>
-      </button>
+<!-- Right Button - Industries -->
+<button onclick="nextIndustrySlide()"
+        class="industry-nav-btn absolute top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full flex items-center justify-center shadow-xl border transition-all
+               bg-[var(--card-bg)] hover:bg-[var(--accent)] hover:text-white border-[var(--border)]">
+  <i data-lucide="chevron-right" class="w-6 h-6"></i>
+</button>
 
       <!-- Viewport -->
       <div id="industryViewport" style="overflow: hidden;">
@@ -1809,22 +1781,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <!-- FAQ SECTION -->
 <section class="py-24 px-4 md:px-8 bg-[var(--bg-primary)] relative overflow-hidden">
 
@@ -1951,10 +1907,6 @@
 
   </div>
 </section>
-
-
-
-
 
 
 
