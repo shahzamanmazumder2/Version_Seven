@@ -1300,6 +1300,277 @@ window.onload = function () {
   </section>
 
 
+    <!-- Features Section with Rotating Images -->
+    <!-- Platform Capabilities Section - Updated with Local Images -->
+    <section class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+     <div class="text-center mb-16 scroll-animate">
+      <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">Platform Capabilities</h2>
+      <p class="text-xl text-gray-400 max-w-2xl mx-auto">Advanced features built for modern enterprises</p>
+     </div>
+     
+     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      
+      <!-- Features List -->
+      <div class="space-y-6">
+        <!-- Feature 1 -->
+        <div class="feature-card glass rounded-2xl p-8 scroll-animate-left cursor-pointer group hover:border-blue-500 border border-transparent transition-all" data-feature="0">
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+            </div>
+            <div class="flex-1">
+              <h3 class="text-lg font-bold text-white mb-2">Real-Time Threat Detection</h3>
+              <p class="text-gray-400 text-sm">AI-powered monitoring that identifies and neutralizes threats in milliseconds.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="feature-card glass rounded-2xl p-8 scroll-animate cursor-pointer group hover:border-purple-500 border border-transparent transition-all" data-feature="1">
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+              </svg>
+            </div>
+            <div class="flex-1">
+              <h3 class="text-lg font-bold text-white mb-2">End-to-End Encryption</h3>
+              <p class="text-gray-400 text-sm">Military-grade encryption protecting all data in transit and at rest.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="feature-card glass rounded-2xl p-8 scroll-animate-right cursor-pointer group hover:border-cyan-500 border border-transparent transition-all" data-feature="2">
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 bg-gradient-to-br from-cyan-500 to-cyan-600 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+              </svg>
+            </div>
+            <div class="flex-1">
+              <h3 class="text-lg font-bold text-white mb-2">Advanced Analytics</h3>
+              <p class="text-gray-400 text-sm">Comprehensive dashboards with actionable intelligence and predictive insights.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature Images - Local Only -->
+      <div class="relative">
+        <!-- Desktop -->
+        <div class="hidden md:block">
+          <div class="relative w-full h-96 rounded-2xl overflow-hidden glass border border-blue-500/30">
+            <img id="feature-image-main" 
+                 src="image/home_feature1.png" 
+                 alt="Advanced Security Platform" 
+                 class="w-full h-full object-cover transition-all duration-500 hover:scale-105">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+            <div class="absolute bottom-0 left-0 right-0 p-4">
+              <p class="text-white text-sm font-semibold">Advanced Security Platform</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mobile -->
+        <div class="md:hidden">
+          <div class="relative w-full h-64 rounded-2xl overflow-hidden glass border border-blue-500/30">
+            <img id="feature-image-mobile" 
+                 src="image/home_feature1.png" 
+                 alt="Advanced Security Platform" 
+                 class="w-full h-full object-cover transition-all duration-500">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+          </div>
+        </div>
+      </div>
+
+     </div>
+    </section>
+    
+
+
+<section>
+
+
+  <div id="role-section">
+  <p style="color:#888; text-align:center; padding:60px;">Loading vendor section...</p>
+</div>
+
+<script>
+async function loadRoleSection() {
+  try {
+    const res = await fetch('components/role.html');
+    let html = await res.text();
+    document.getElementById('role-section').innerHTML = html;
+
+    // Trigger one-by-one animations
+    setTimeout(() => {
+      const observer = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+          // Left text + Grid
+          document.querySelector('.vendor-text').classList.add('in-view');
+          document.querySelector('.vendor-grid').classList.add('in-view');
+
+          // Cards one by one
+          document.querySelectorAll('.vendor-card').forEach((card, index) => {
+            setTimeout(() => {
+              card.classList.add('in-view');
+            }, 100 + (index * 80));   // one by one with nice delay
+          });
+        }
+      }, { threshold: 0.2 });
+
+      const section = document.querySelector('.section-vendors');
+      if (section) observer.observe(section);
+    }, 100);
+  } catch(e) {
+    console.error('Load error', e);
+  }
+}
+
+document.addEventListener('DOMContentLoaded', loadRoleSection);
+</script>
+
+
+
+</section>
+
+
+
+
+<!-- Front-End Technologies Section -->
+<section>
+  <div id="front-end-tech-section">
+    <p style="color:#888; text-align:center; padding:60px;">Loading front-end technologies section...</p>
+  </div>
+
+  <script>
+  async function loadFrontEndTech() {
+    try {
+      const res = await fetch('components/front_end_tech.html');
+      const html = await res.text();
+      document.getElementById('front-end-tech-section').innerHTML = html;
+
+      setTimeout(() => {
+        const observer = new IntersectionObserver((entries) => {
+          if (entries[0].isIntersecting) {
+            document.querySelector('.front-end-text').classList.add('in-view');
+            document.querySelector('.front-end-grid').classList.add('in-view');
+
+            document.querySelectorAll('.front-end-card').forEach((card, index) => {
+              setTimeout(() => {
+                card.classList.add('in-view');
+              }, 100 + (index * 100));
+            });
+          }
+        }, { threshold: 0.2 });
+
+        const section = document.querySelector('.section-front-end');
+        if (section) observer.observe(section);
+      }, 150);
+
+    } catch(e) {
+      console.error('Failed to load front-end tech section', e);
+      document.getElementById('front-end-tech-section').innerHTML =
+        `<p style="color:red; text-align:center; padding:60px;">Failed to load section.</p>`;
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', loadFrontEndTech);
+  </script>
+</section>
+
+
+
+
+<!-- Back-End Technologies Section -->
+<section>
+  <div id="back-end-tech-section">
+    <p style="color:#888; text-align:center; padding:60px;">Loading back-end technologies section...</p>
+  </div>
+
+  <script>
+  async function loadBackEndTech() {
+    try {
+      const res = await fetch('components/back_end_tech.html');
+      const html = await res.text();
+      document.getElementById('back-end-tech-section').innerHTML = html;
+
+      setTimeout(() => {
+        const observer = new IntersectionObserver((entries) => {
+          if (entries[0].isIntersecting) {
+            document.querySelector('.back-end-text').classList.add('in-view');
+            document.querySelector('.back-end-grid').classList.add('in-view');
+
+            document.querySelectorAll('.back-end-card').forEach((card, index) => {
+              setTimeout(() => {
+                card.classList.add('in-view');
+              }, 100 + (index * 80));
+            });
+          }
+        }, { threshold: 0.2 });
+
+        const section = document.querySelector('.section-back-end');
+        if (section) observer.observe(section);
+      }, 150);
+
+    } catch(e) {
+      console.error('Failed to load back-end tech section', e);
+      document.getElementById('back-end-tech-section').innerHTML =
+        `<p style="color:red; text-align:center; padding:60px;">Failed to load section.</p>`;
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', loadBackEndTech);
+  </script>
+</section>
+
+
+
+
+<!-- Database Technologies Section -->
+<section>
+  <div id="database-tech-section">
+    <p style="color:#888; text-align:center; padding:60px;">Loading database technologies section...</p>
+  </div>
+
+  <script>
+  async function loadDatabaseTech() {
+    try {
+      const res = await fetch('components/database_tech.html');
+      const html = await res.text();
+      document.getElementById('database-tech-section').innerHTML = html;
+
+      setTimeout(() => {
+        const observer = new IntersectionObserver((entries) => {
+          if (entries[0].isIntersecting) {
+            document.querySelector('.database-text').classList.add('in-view');
+            document.querySelector('.database-grid').classList.add('in-view');
+
+            document.querySelectorAll('.database-card').forEach((card, index) => {
+              setTimeout(() => {
+                card.classList.add('in-view');
+              }, 100 + (index * 100));
+            });
+          }
+        }, { threshold: 0.2 });
+
+        const section = document.querySelector('.section-database');
+        if (section) observer.observe(section);
+      }, 150);
+
+    } catch(e) {
+      console.error('Failed to load database tech section', e);
+      document.getElementById('database-tech-section').innerHTML =
+        `<p style="color:red; text-align:center; padding:60px;">Failed to load section.</p>`;
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', loadDatabaseTech);
+  </script>
+</section>
 
 
 

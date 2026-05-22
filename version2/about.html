@@ -12,6 +12,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <script src="/_sdk/element_sdk.js"></script>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="image/seven_logo.png">
   <style>
     .value-card {
       transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -1117,7 +1120,186 @@
 
 
 
+<section>
 
+
+  <div id="role-section" class="py-20 px-4 md:px-8 bg-[var(--bg-secondary)]">
+  <p style="color:#888; text-align:center; padding:60px;">Loading vendor section...</p>
+</div>
+
+<script>
+async function loadRoleSection() {
+  try {
+    const res = await fetch('components/role.html');
+    let html = await res.text();
+    document.getElementById('role-section').innerHTML = html;
+
+    // Trigger one-by-one animations
+    setTimeout(() => {
+      const observer = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+          // Left text + Grid
+          document.querySelector('.vendor-text').classList.add('in-view');
+          document.querySelector('.vendor-grid').classList.add('in-view');
+
+          // Cards one by one
+          document.querySelectorAll('.vendor-card').forEach((card, index) => {
+            setTimeout(() => {
+              card.classList.add('in-view');
+            }, 100 + (index * 80));   // one by one with nice delay
+          });
+        }
+      }, { threshold: 0.2 });
+
+      const section = document.querySelector('.section-vendors');
+      if (section) observer.observe(section);
+    }, 100);
+  } catch(e) {
+    console.error('Load error', e);
+  }
+}
+
+document.addEventListener('DOMContentLoaded', loadRoleSection);
+</script>
+
+
+
+</section>
+
+
+
+
+<!-- Front-End Technologies Section -->
+<section>
+  <div id="front-end-tech-section">
+    <p style="color:#888; text-align:center; padding:60px;">Loading front-end technologies section...</p>
+  </div>
+
+  <script>
+  async function loadFrontEndTech() {
+    try {
+      const res = await fetch('components/front_end_tech.html');
+      const html = await res.text();
+      document.getElementById('front-end-tech-section').innerHTML = html;
+
+      setTimeout(() => {
+        const observer = new IntersectionObserver((entries) => {
+          if (entries[0].isIntersecting) {
+            document.querySelector('.front-end-text').classList.add('in-view');
+            document.querySelector('.front-end-grid').classList.add('in-view');
+
+            document.querySelectorAll('.front-end-card').forEach((card, index) => {
+              setTimeout(() => {
+                card.classList.add('in-view');
+              }, 100 + (index * 100));
+            });
+          }
+        }, { threshold: 0.2 });
+
+        const section = document.querySelector('.section-front-end');
+        if (section) observer.observe(section);
+      }, 150);
+
+    } catch(e) {
+      console.error('Failed to load front-end tech section', e);
+      document.getElementById('front-end-tech-section').innerHTML =
+        `<p style="color:red; text-align:center; padding:60px;">Failed to load section.</p>`;
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', loadFrontEndTech);
+  </script>
+</section>
+
+
+
+
+<!-- Back-End Technologies Section -->
+<section class="py-20 px-4 md:px-8 bg-[var(--bg-secondary)]" >
+  <div id="back-end-tech-section">
+    <p style=" text-align:center; padding:60px;">Loading back-end technologies section...</p>
+  </div>
+
+  <script>
+  async function loadBackEndTech() {
+    try {
+      const res = await fetch('components/back_end_tech.html');
+      const html = await res.text();
+      document.getElementById('back-end-tech-section').innerHTML = html;
+
+      setTimeout(() => {
+        const observer = new IntersectionObserver((entries) => {
+          if (entries[0].isIntersecting) {
+            document.querySelector('.back-end-text').classList.add('in-view');
+            document.querySelector('.back-end-grid').classList.add('in-view');
+
+            document.querySelectorAll('.back-end-card').forEach((card, index) => {
+              setTimeout(() => {
+                card.classList.add('in-view');
+              }, 100 + (index * 80));
+            });
+          }
+        }, { threshold: 0.2 });
+
+        const section = document.querySelector('.section-back-end');
+        if (section) observer.observe(section);
+      }, 150);
+
+    } catch(e) {
+      console.error('Failed to load back-end tech section', e);
+      document.getElementById('back-end-tech-section').innerHTML =
+        `<p style="color:red; text-align:center; padding:60px;">Failed to load section.</p>`;
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', loadBackEndTech);
+  </script>
+</section>
+
+
+
+
+<!-- Database Technologies Section -->
+<section>
+  <div id="database-tech-section">
+    <p style="color:#888; text-align:center; padding:60px;">Loading database technologies section...</p>
+  </div>
+
+  <script>
+  async function loadDatabaseTech() {
+    try {
+      const res = await fetch('components/database_tech.html');
+      const html = await res.text();
+      document.getElementById('database-tech-section').innerHTML = html;
+
+      setTimeout(() => {
+        const observer = new IntersectionObserver((entries) => {
+          if (entries[0].isIntersecting) {
+            document.querySelector('.database-text').classList.add('in-view');
+            document.querySelector('.database-grid').classList.add('in-view');
+
+            document.querySelectorAll('.database-card').forEach((card, index) => {
+              setTimeout(() => {
+                card.classList.add('in-view');
+              }, 100 + (index * 100));
+            });
+          }
+        }, { threshold: 0.2 });
+
+        const section = document.querySelector('.section-database');
+        if (section) observer.observe(section);
+      }, 150);
+
+    } catch(e) {
+      console.error('Failed to load database tech section', e);
+      document.getElementById('database-tech-section').innerHTML =
+        `<p style="color:red; text-align:center; padding:60px;">Failed to load section.</p>`;
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', loadDatabaseTech);
+  </script>
+</section>
 
 
 

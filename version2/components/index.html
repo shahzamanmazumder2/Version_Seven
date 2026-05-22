@@ -1,0 +1,1350 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="image/seven_logo.png">
+
+   
+    <title>Seven Tech Ventures | Home </title>
+
+
+
+
+ 
+  <!-- 2. Tailwind CDN as fallback (only loads if needed) -->
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+
+ <link href="output.css" rel="stylesheet">
+  
+  <style>
+    /* ===== THEME VARIABLES ===== */
+    :root {
+      --bg-primary: #0a0e27;
+      --bg-secondary: #1a1a3e;
+      --bg-tertiary: #0d0d1f;
+      --text-primary: #ffffff;
+      --text-secondary: #d1d5db;
+      --text-muted: #9ca3af;
+      --glass-bg: rgba(255, 255, 255, 0.03);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --card-bg: rgba(255, 255, 255, 0.03);
+      --card-hover: rgba(255, 255, 255, 0.07);
+      --gradient-main: linear-gradient(135deg, #0a0e27 0%, #1a1a3e 50%, #0d0d1f 100%);
+    }
+
+    html.light-mode {
+      --bg-primary: #f0f4ff;
+      --bg-secondary: #e8eeff;
+      --bg-tertiary: #dce4ff;
+      --text-primary: #0f172a;
+      --text-secondary: #334155;
+      --text-muted: #64748b;
+      --glass-bg: rgba(255, 255, 255, 0.65);
+      --glass-border: rgba(59, 130, 246, 0.2);
+      --card-bg: rgba(255, 255, 255, 0.7);
+      --card-hover: rgba(255, 255, 255, 0.9);
+      --gradient-main: linear-gradient(135deg, #dce4ff 0%, #e8eeff 50%, #f0f4ff 100%);
+    }
+
+    /* Apply theme vars */
+    body { background: var(--bg-primary); color: var(--text-primary); transition: background 0.3s ease, color 0.3s ease; }
+    #app-wrapper { background: var(--gradient-main) !important; }
+    .gradient-bg { background: var(--gradient-main) !important; }
+
+    /* Light mode text overrides */
+    html.light-mode .text-white { color: var(--text-primary) !important; }
+    html.light-mode .text-gray-300 { color: var(--text-secondary) !important; }
+    html.light-mode .text-gray-400 { color: var(--text-muted) !important; }
+    html.light-mode .text-gray-200 { color: var(--text-secondary) !important; }
+    html.light-mode #brand-name { color: #0f172a !important; }
+    html.light-mode .glow-text { text-shadow: 0 0 40px rgba(59, 130, 246, 0.3); }
+    html.light-mode .case-study-overlay { background: linear-gradient(180deg, transparent 0%, rgba(240, 244, 255, 0.9) 100%); }
+
+    /* Glass effect in light mode */
+    .glass {
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-border);
+    }
+
+    /* Theme Toggle Button */
+    #theme-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      border: 1px solid var(--glass-border);
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      color: var(--text-secondary);
+      flex-shrink: 0;
+    }
+    #theme-toggle:hover {
+      background: var(--card-hover);
+      border-color: #3b82f6;
+      color: #3b82f6;
+      transform: scale(1.05);
+    }
+    #theme-toggle svg { transition: transform 0.5s ease; }
+    #theme-toggle:hover svg { transform: rotate(20deg); }
+
+    html.light-mode #theme-toggle {
+      background: rgba(255,255,255,0.7);
+      border-color: rgba(59,130,246,0.25);
+      color: #475569;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    * { font-family: 'Space Grotesk', sans-serif; }
+    
+    .gradient-bg {
+      background: linear-gradient(135deg, #0a0e27 0%, #1a1a3e 50%, #0d0d1f 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    /* Auto-rotating tech backgrounds */
+    .hero-gradient {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      z-index: 1;
+      transition: opacity 8s ease-in-out;
+    }
+    
+    @keyframes bgFadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    /* Tech pattern overlay */
+    .tech-pattern {
+      position: absolute;
+      inset: 0;
+      opacity: 0.03;
+      background-image: 
+        linear-gradient(0deg, transparent 24%, rgba(59, 130, 246, 0.05) 25%, rgba(59, 130, 246, 0.05) 26%, transparent 27%, transparent 74%, rgba(59, 130, 246, 0.05) 75%, rgba(59, 130, 246, 0.05) 76%, transparent 77%, transparent),
+        linear-gradient(90deg, transparent 24%, rgba(59, 130, 246, 0.05) 25%, rgba(59, 130, 246, 0.05) 26%, transparent 27%, transparent 74%, rgba(59, 130, 246, 0.05) 75%, rgba(59, 130, 246, 0.05) 76%, transparent 77%, transparent);
+      background-size: 50px 50px;
+      z-index: 2;
+    }
+    
+    .glow-text {
+      text-shadow: 0 0 80px rgba(59, 130, 246, 0.6);
+    }
+    
+    .btn-glow {
+      box-shadow: 0 0 30px rgba(59, 130, 246, 0.4), inset 0 1px 0 rgba(255,255,255,0.1);
+    }
+    
+    .btn-glow:hover {
+      box-shadow: 0 0 50px rgba(59, 130, 246, 0.6), inset 0 1px 0 rgba(255,255,255,0.2);
+    }
+    
+    .glass {
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    
+    .float-animation {
+      animation: float 6s ease-in-out infinite;
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0); }
+      25% { transform: translate(30px, -40px); }
+      50% { transform: translate(-20px, -60px); }
+      75% { transform: translate(40px, -30px); }
+    }
+    
+    @keyframes floatReverse {
+      0%, 100% { transform: translate(0, 0); }
+      25% { transform: translate(-35px, 45px); }
+      50% { transform: translate(25px, 55px); }
+      75% { transform: translate(-40px, 35px); }
+    }
+    
+    @keyframes floatSlow {
+      0%, 100% { transform: translate(0, 0); }
+      33% { transform: translate(50px, -50px); }
+      66% { transform: translate(-40px, 40px); }
+    }
+    
+    @keyframes floatFast {
+      0%, 100% { transform: translate(0, 0); }
+      20% { transform: translate(-30px, -35px); }
+      40% { transform: translate(35px, -25px); }
+      60% { transform: translate(-35px, 30px); }
+      80% { transform: translate(30px, 35px); }
+    }
+    
+
+    
+    .fade-in {
+      animation: fadeIn 0.8s ease-out forwards;
+      opacity: 0;
+    }
+    
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+    
+    .slide-up {
+      animation: slideUp 0.8s ease-out forwards;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    
+    @keyframes slideUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .delay-100 { animation-delay: 0.1s; }
+    .delay-200 { animation-delay: 0.2s; }
+    .delay-300 { animation-delay: 0.3s; }
+    .delay-400 { animation-delay: 0.4s; }
+    .delay-500 { animation-delay: 0.5s; }
+    
+    .orb {
+      position: absolute;
+      border-radius: 5%;
+      filter: blur(0px);
+      opacity: 0.05;
+      z-index: 3;
+    }
+    
+    .nav-link {
+      position: relative;
+    }
+
+    
+    
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+      transition: width 0.3s ease;
+    }
+    
+    .nav-link.active::after {
+      width: 100%;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    
+    .content-wrapper {
+      position: relative;
+      z-index: 10;
+    }
+
+    /* Scroll Animation Utilities */
+    .scroll-animate {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .scroll-animate.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .scroll-animate-left {
+      opacity: 0;
+      transform: translateX(-60px);
+      transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .scroll-animate-left.in-view {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .scroll-animate-right {
+      opacity: 0;
+      transform: translateX(60px);
+      transition: all 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .scroll-animate-right.in-view {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .service-card {
+      transition: all 0.4s ease;
+      border: 2px solid transparent;
+    }
+
+    .service-card:hover {
+      transform: translateY(-8px);
+      border-color: #3b82f6;
+      box-shadow: 0 20px 40px rgba(59, 130, 246, 0.2);
+    }
+
+    .case-study-card {
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s ease;
+    }
+
+    .case-study-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 50px rgba(59, 130, 246, 0.3);
+    }
+
+    .case-study-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 0%, rgba(10, 14, 39, 0.9) 100%);
+    }
+
+    .counter {
+      font-size: 2.5rem;
+      font-weight: bold;
+      background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .insight-card {
+      transition: all 0.4s ease;
+      border-left: 4px solid #3b82f6;
+    }
+
+    .insight-card:hover {
+      border-left-color: #8b5cf6;
+      transform: translateX(8px);
+      box-shadow: 0 10px 30px rgba(59, 130, 246, 0.15);
+    }
+
+    .testimonial-card {
+      position: relative;
+    }
+
+    .testimonial-quote {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      font-style: italic;
+    }
+
+    .star-rating {
+      color: #fbbf24;
+      font-size: 1.2rem;
+      letter-spacing: 2px;
+    }
+
+    @keyframes slideInCarousel {
+      from {
+        opacity: 0;
+        transform: translateX(100%);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .carousel-item {
+      animation: slideInCarousel 0.6s ease-out;
+    }
+
+    .differentiator-icon {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .differentiator-block:hover .differentiator-icon {
+      transform: scale(1.1) rotate(5deg);
+    }
+
+    .cta-section {
+      background: linear-gradient(135deg, rgba(10, 14, 39, 0.8), rgba(30, 20, 60, 0.8));
+      border: 1px solid rgba(59, 130, 246, 0.3);
+    }
+  </style>
+
+
+
+
+ </head>
+ <body class="h-full">
+  <div id="app-wrapper" class="h-full w-full gradient-bg overflow-auto">
+   <!-- Dynamic gradient background -->
+   <div class="hero-gradient"></div>
+   
+   <!-- Tech grid pattern -->
+
+   
+   
+   
+  
+   
+   
+   <!-- Content Wrapper -->
+   <div class="content-wrapper">
+
+
+
+
+<!-- Navbar -->
+<nav class="relative fade-in">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-20">
+
+<!-- Logo - Clickable -->
+<a href="index.html" class="flex items-center gap-2 group">
+  <div class="w-10 h-8 rounded-xl flex items-center justify-center shadow-lg overflow-hidden">
+    <img src="image/seven_logo.png" alt="CCAI Logo" class="h-8 w-auto transition-transform group-hover:scale-105">
+  </div>
+  <span id="brand-name" class="text-white font-bold text-xl tracking-tight">Seven Tach Ventures</span>
+</a>
+
+
+      <!-- Desktop Navigation -->
+      <div class="hidden md:flex items-center gap-8">
+        <a href="./index.html"      class="nav-link nav-item text-gray-300 hover:text-white transition-colors text-sm font-medium" data-page="home">Home</a>
+        <a href="./services.html"  class="nav-link nav-item text-gray-300 hover:text-white transition-colors text-sm font-medium" data-page="solutions">Solutions</a>
+        <a href="./aboutus.html"    class="nav-link nav-item text-gray-300 hover:text-white transition-colors text-sm font-medium" data-page="about">About</a>
+        <a href="./research.html"   class="nav-link nav-item text-gray-300 hover:text-white transition-colors text-sm font-medium" data-page="research">Research</a>
+      </div>
+
+      <!-- Contact Button + Theme Toggle (Desktop) -->
+      <div class="hidden md:flex items-center gap-3">
+        <!-- Theme Toggle -->
+        <button id="theme-toggle" title="Toggle light/dark mode" aria-label="Toggle theme">
+          <!-- Moon icon (shown in dark mode) -->
+          <svg id="icon-moon" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1111.21 3a7 7 0 009.79 9.79z"/>
+          </svg>
+          <!-- Sun icon (shown in light mode, hidden by default) -->
+          <svg id="icon-sun" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m8.66-9h-1M4.34 12h-1m15.07-6.07-.71.71M6.34 17.66l-.71.71m12.73 0-.71-.71M6.34 6.34l-.71-.71M12 5a7 7 0 100 14A7 7 0 0012 5z"/>
+          </svg>
+        </button>
+        <a href="./contact.html">
+          <button class="px-6 py-2.5 bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-sm font-semibold rounded-xl hover:from-blue-500 hover:to-indigo-500 transition-all duration-300 shadow-lg shadow-blue-900/20 hover:shadow-blue-700/30 btn-glow">
+            Contact Us
+          </button>
+        </a>
+      </div>
+
+      <!-- Mobile Menu Button + Theme Toggle (Mobile) -->
+      <div class="md:hidden flex items-center gap-2">
+        <button id="mobile-menu-btn" class="text-gray-300 hover:text-white p-2 focus:outline-none">
+          <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+            <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden glass rounded-2xl mt-3 p-5 border border-white/5">
+      <div class="flex flex-col gap-3">
+        <a href="./index.html"     class="text-gray-200 hover:text-white transition-colors text-base font-medium py-2.5 px-4 rounded-lg hover:bg-white/5">Home</a>
+        <a href="./aboutus.html"   class="text-gray-200 hover:text-white transition-colors text-base font-medium py-2.5 px-4 rounded-lg hover:bg-white/5">About</a>
+        <a href="./services.html" class="text-gray-200 hover:text-white transition-colors text-base font-medium py-2.5 px-4 rounded-lg hover:bg-white/5">Solutions</a>
+        <a href="./research.html"  class="text-gray-200 hover:text-white transition-colors text-base font-medium py-2.5 px-4 rounded-lg hover:bg-white/5">Research</a>
+        <a href="./contact.html"   class="mt-3 px-6 py-3.5 bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-base font-semibold rounded-xl hover:from-blue-500 hover:to-indigo-500 transition-all duration-300 text-center shadow-md">
+          Contact Us
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+    
+    <!-- Core Services Overview (for index.html) -->
+    <section class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 scroll-animate">
+     <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-bold text-white mb-4 scroll-animate">Our Core Services</h2>
+      <p class="text-xl text-gray-400 max-w-2xl mx-auto scroll-animate">Enterprise-grade technology solutions across digital transformation, cybersecurity, AI, and intelligence</p>
+     </div>
+     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Service Card 1: Digital Transformation -->
+      <div class="service-card glass rounded-2xl p-8 scroll-animate-left">
+       <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center mb-6">
+        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+        </svg>
+       </div>
+       <h3 class="text-xl font-bold text-white mb-3">Digital Transformation</h3>
+       <p class="text-gray-400 mb-6">Modernizing legacy systems with AI, cloud, and intelligent automation for future-ready enterprises.</p>
+       <a href="services.html#dt-section" class="text-blue-400 hover:text-blue-300 font-semibold transition-colors">Learn More →</a>
+      </div>
+
+      <!-- Service Card 2: Cybersecurity Solutions -->
+      <div class="service-card glass rounded-2xl p-8 scroll-animate">
+       <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center mb-6">
+        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+        </svg>
+       </div>
+       <h3 class="text-xl font-bold text-white mb-3">Cybersecurity Solutions</h3>
+       <p class="text-gray-400 mb-6">Comprehensive protection including VAPT, threat monitoring, and proactive defense for critical assets.</p>
+       <a href="services.html#cs-section" class="text-blue-400 hover:text-blue-300 font-semibold transition-colors">Learn More →</a>
+      </div>
+
+      <!-- Service Card 3: Big Data Analytics -->
+      <div class="service-card glass rounded-2xl p-8 scroll-animate-right">
+       <div class="w-16 h-16 bg-gradient-to-br from-cyan-500 to-cyan-600 rounded-xl flex items-center justify-center mb-6">
+        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+        </svg>
+       </div>
+       <h3 class="text-xl font-bold text-white mb-3">Big Data Analytics</h3>
+       <p class="text-gray-400 mb-6">Actionable insights from complex data using advanced OSINT and business intelligence.</p>
+       <a href="services.html#bd-section" class="text-blue-400 hover:text-blue-300 font-semibold transition-colors">Learn More →</a>
+      </div>
+
+      <!-- Service Card 4: Artificial Intelligence -->
+      <div class="service-card glass rounded-2xl p-8 scroll-animate-left">
+       <div class="w-16 h-16 bg-gradient-to-br from-indigo-500 to-indigo-600 rounded-xl flex items-center justify-center mb-6">
+        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+        </svg>
+       </div>
+       <h3 class="text-xl font-bold text-white mb-3">Artificial Intelligence</h3>
+       <p class="text-gray-400 mb-6">Next-generation AI for misinformation detection, conversational systems, and intelligent OSINT.</p>
+       <a href="services.html#ai-section" class="text-blue-400 hover:text-blue-300 font-semibold transition-colors">Learn More →</a>
+      </div>
+
+      <!-- Service Card 5: Software Development -->
+      <div class="service-card glass rounded-2xl p-8 scroll-animate">
+       <div class="w-16 h-16 bg-gradient-to-br from-pink-500 to-pink-600 rounded-xl flex items-center justify-center mb-6">
+        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+        </svg>
+       </div>
+       <h3 class="text-xl font-bold text-white mb-3">Software Development</h3>
+       <p class="text-gray-400 mb-6">Intelligence-driven custom software for defense, security, and enterprise platforms.</p>
+       <a href="services.html#sd-section" class="text-blue-400 hover:text-blue-300 font-semibold transition-colors">Learn More →</a>
+      </div>
+
+      <!-- Service Card 6: Human Resource Development -->
+      <div class="service-card glass rounded-2xl p-8 scroll-animate-right">
+       <div class="w-16 h-16 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center mb-6">
+        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C6.5 6.253 2 10.998 2 17s4.5 10.747 10 10.747c5.5 0 10-4.998 10-10.747S17.5 6.253 12 6.253z" />
+        </svg>
+       </div>
+       <h3 class="text-xl font-bold text-white mb-3">Human Resource Management</h3>
+       <p class="text-gray-400 mb-6">Specialized training in cybersecurity, AI, and digital transformation for your workforce.</p>
+       <a href="services.html#hr-section" class="text-blue-400 hover:text-blue-300 font-semibold transition-colors">Learn More →</a>
+      </div>
+     </div>
+    </section>
+    
+    
+
+
+
+
+<section>
+
+
+
+<!-- Technologies We Work On Section -->
+<div id="tech-we-work-section">
+  <p style="color:#888; text-align:center; padding:60px;">Loading technologies section...</p>
+</div>
+
+<script>
+async function loadTechWeWork() {
+  try {
+    const res = await fetch('tech_we_work.html');
+    const html = await res.text();
+    document.getElementById('tech-we-work-section').innerHTML = html;
+
+    // Trigger animations after loading
+    setTimeout(() => {
+      const observer = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+          document.querySelector('.tech-text').classList.add('in-view');
+          document.querySelector('.tech-grid').classList.add('in-view');
+
+          document.querySelectorAll('.tech-card').forEach((card, index) => {
+            setTimeout(() => {
+              card.classList.add('in-view');
+            }, 100 + (index * 80));
+          });
+        }
+      }, { threshold: 0.2 });
+
+      const section = document.querySelector('.section-technologies');
+      if (section) observer.observe(section);
+    }, 150);
+
+  } catch (e) {
+    console.error('Failed to load Technologies We Work section', e);
+    document.getElementById('tech-we-work-section').innerHTML = 
+      `<p style="color:red; text-align:center; padding:60px;">Failed to load technologies section.</p>`;
+  }
+}
+
+// Load when page is ready
+document.addEventListener('DOMContentLoaded', loadTechWeWork);
+</script>
+
+
+
+
+
+</section>
+
+
+    
+
+
+
+
+
+<!-- Portfolio Section -->
+<section>
+  <div id="portfolio-section">
+    <p style="color:#888; text-align:center; padding:100px;">Loading portfolio section...</p>
+  </div>
+
+  <script>
+  async function loadPortfolioSection() {
+    try {
+      const res = await fetch('portfolio_section.html');
+      const html = await res.text();
+      document.getElementById('portfolio-section').innerHTML = html;
+
+      // Crucial: Call initialization after loading
+      setTimeout(() => {
+        if (typeof window.initPortfolioSection === 'function') {
+          window.initPortfolioSection();
+        }
+      }, 200);
+
+    } catch(e) {
+      console.error(e);
+      document.getElementById('portfolio-section').innerHTML = 
+        `<p style="color:red; text-align:center; padding:100px;">Failed to load portfolio section.</p>`;
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', loadPortfolioSection);
+  </script>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+    
+    <!-- Why Choose Us / Differentiators -->
+    <section class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 scroll-animate">
+     <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-bold text-white mb-4 scroll-animate">Why Choose Us</h2>
+      <p class="text-xl text-gray-400 max-w-2xl mx-auto scroll-animate">Unmatched expertise and proven track record in enterprise security</p>
+     </div>
+     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Differentiator 1 -->
+      <div class="differentiator-block glass rounded-2xl p-8 scroll-animate-left hover:border-blue-500 border border-transparent transition-all">
+       <div class="differentiator-icon">
+        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m7 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+       </div>
+       <h3 class="text-lg font-bold text-white mb-2">Defense-Grade Expertise</h3>
+       <p class="text-gray-400 text-sm">Team of certified security architects with decades of military-grade cybersecurity experience.</p>
+      </div><!-- Differentiator 2 -->
+      <div class="differentiator-block glass rounded-2xl p-8 scroll-animate hover:border-purple-500 border border-transparent transition-all">
+       <div class="differentiator-icon">
+        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+        </svg>
+       </div>
+       <h3 class="text-lg font-bold text-white mb-2">Proven in High-Stakes Environments</h3>
+       <p class="text-gray-400 text-sm">Battle-tested strategies deployed in mission-critical environments across Fortune 500 enterprises.</p>
+      </div><!-- Differentiator 3 -->
+      <div class="differentiator-block glass rounded-2xl p-8 scroll-animate-right hover:border-cyan-500 border border-transparent transition-all">
+       <div class="differentiator-icon">
+        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+        </svg>
+       </div>
+       <h3 class="text-lg font-bold text-white mb-2">End-to-End Delivery</h3>
+       <p class="text-gray-400 text-sm">Comprehensive solutions from assessment through implementation to 24/7 managed security operations.</p>
+      </div><!-- Differentiator 4 -->
+      <div class="differentiator-block glass rounded-2xl p-8 scroll-animate-left hover:border-blue-500 border border-transparent transition-all">
+       <div class="differentiator-icon">
+        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+        </svg>
+       </div>
+       <h3 class="text-lg font-bold text-white mb-2">OSINT + Premium Data Access</h3>
+       <p class="text-gray-400 text-sm">Exclusive access to classified threat intelligence and advanced reconnaissance capabilities.</p>
+      </div><!-- Differentiator 5 -->
+      <div class="differentiator-block glass rounded-2xl p-8 scroll-animate hover:border-purple-500 border border-transparent transition-all">
+       <div class="differentiator-icon">
+        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+       </div>
+       <h3 class="text-lg font-bold text-white mb-2">24/7 Global Support</h3>
+       <p class="text-gray-400 text-sm">Round-the-clock monitoring and response across all time zones with dedicated account teams.</p>
+      </div><!-- Differentiator 6 -->
+      <div class="differentiator-block glass rounded-2xl p-8 scroll-animate-right hover:border-cyan-500 border border-transparent transition-all">
+       <div class="differentiator-icon">
+        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+       </div>
+       <h3 class="text-lg font-bold text-white mb-2">Continuous Innovation</h3>
+       <p class="text-gray-400 text-sm">Constantly evolving threat detection powered by AI and machine learning advancements.</p>
+      </div>
+     </div>
+    </section>
+    
+    
+
+  
+    <!-- Features Section with Rotating Images -->
+    <!-- Platform Capabilities Section - Updated with Local Images -->
+    <section class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+     <div class="text-center mb-16 scroll-animate">
+      <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">Platform Capabilities</h2>
+      <p class="text-xl text-gray-400 max-w-2xl mx-auto">Advanced features built for modern enterprises</p>
+     </div>
+     
+     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      
+      <!-- Features List -->
+      <div class="space-y-6">
+        <!-- Feature 1 -->
+        <div class="feature-card glass rounded-2xl p-8 scroll-animate-left cursor-pointer group hover:border-blue-500 border border-transparent transition-all" data-feature="0">
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+            </div>
+            <div class="flex-1">
+              <h3 class="text-lg font-bold text-white mb-2">Real-Time Threat Detection</h3>
+              <p class="text-gray-400 text-sm">AI-powered monitoring that identifies and neutralizes threats in milliseconds.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="feature-card glass rounded-2xl p-8 scroll-animate cursor-pointer group hover:border-purple-500 border border-transparent transition-all" data-feature="1">
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+              </svg>
+            </div>
+            <div class="flex-1">
+              <h3 class="text-lg font-bold text-white mb-2">End-to-End Encryption</h3>
+              <p class="text-gray-400 text-sm">Military-grade encryption protecting all data in transit and at rest.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="feature-card glass rounded-2xl p-8 scroll-animate-right cursor-pointer group hover:border-cyan-500 border border-transparent transition-all" data-feature="2">
+          <div class="flex items-start gap-4">
+            <div class="w-12 h-12 bg-gradient-to-br from-cyan-500 to-cyan-600 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+              </svg>
+            </div>
+            <div class="flex-1">
+              <h3 class="text-lg font-bold text-white mb-2">Advanced Analytics</h3>
+              <p class="text-gray-400 text-sm">Comprehensive dashboards with actionable intelligence and predictive insights.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Feature Images - Local Only -->
+      <div class="relative">
+        <!-- Desktop -->
+        <div class="hidden md:block">
+          <div class="relative w-full h-96 rounded-2xl overflow-hidden glass border border-blue-500/30">
+            <img id="feature-image-main" 
+                 src="image/home_feature1.png" 
+                 alt="Advanced Security Platform" 
+                 class="w-full h-full object-cover transition-all duration-500 hover:scale-105">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+            <div class="absolute bottom-0 left-0 right-0 p-4">
+              <p class="text-white text-sm font-semibold">Advanced Security Platform</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mobile -->
+        <div class="md:hidden">
+          <div class="relative w-full h-64 rounded-2xl overflow-hidden glass border border-blue-500/30">
+            <img id="feature-image-mobile" 
+                 src="image/home_feature1.png" 
+                 alt="Advanced Security Platform" 
+                 class="w-full h-full object-cover transition-all duration-500">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+          </div>
+        </div>
+      </div>
+
+     </div>
+    </section>
+    
+
+
+<section>
+
+
+  <div id="role-section">
+  <p style="color:#888; text-align:center; padding:60px;">Loading vendor section...</p>
+</div>
+
+<script>
+async function loadRoleSection() {
+  try {
+    const res = await fetch('role.html');
+    let html = await res.text();
+    document.getElementById('role-section').innerHTML = html;
+
+    // Trigger one-by-one animations
+    setTimeout(() => {
+      const observer = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+          // Left text + Grid
+          document.querySelector('.vendor-text').classList.add('in-view');
+          document.querySelector('.vendor-grid').classList.add('in-view');
+
+          // Cards one by one
+          document.querySelectorAll('.vendor-card').forEach((card, index) => {
+            setTimeout(() => {
+              card.classList.add('in-view');
+            }, 100 + (index * 80));   // one by one with nice delay
+          });
+        }
+      }, { threshold: 0.2 });
+
+      const section = document.querySelector('.section-vendors');
+      if (section) observer.observe(section);
+    }, 100);
+  } catch(e) {
+    console.error('Load error', e);
+  }
+}
+
+document.addEventListener('DOMContentLoaded', loadRoleSection);
+</script>
+
+
+
+</section>
+
+
+
+
+<!-- Front-End Technologies Section -->
+<section>
+  <div id="front-end-tech-section">
+    <p style="color:#888; text-align:center; padding:60px;">Loading front-end technologies section...</p>
+  </div>
+
+  <script>
+  async function loadFrontEndTech() {
+    try {
+      const res = await fetch('front_end_tech.html');
+      const html = await res.text();
+      document.getElementById('front-end-tech-section').innerHTML = html;
+
+      setTimeout(() => {
+        const observer = new IntersectionObserver((entries) => {
+          if (entries[0].isIntersecting) {
+            document.querySelector('.front-end-text').classList.add('in-view');
+            document.querySelector('.front-end-grid').classList.add('in-view');
+
+            document.querySelectorAll('.front-end-card').forEach((card, index) => {
+              setTimeout(() => {
+                card.classList.add('in-view');
+              }, 100 + (index * 100));
+            });
+          }
+        }, { threshold: 0.2 });
+
+        const section = document.querySelector('.section-front-end');
+        if (section) observer.observe(section);
+      }, 150);
+
+    } catch(e) {
+      console.error('Failed to load front-end tech section', e);
+      document.getElementById('front-end-tech-section').innerHTML =
+        `<p style="color:red; text-align:center; padding:60px;">Failed to load section.</p>`;
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', loadFrontEndTech);
+  </script>
+</section>
+
+
+
+
+<!-- Back-End Technologies Section -->
+<section>
+  <div id="back-end-tech-section">
+    <p style="color:#888; text-align:center; padding:60px;">Loading back-end technologies section...</p>
+  </div>
+
+  <script>
+  async function loadBackEndTech() {
+    try {
+      const res = await fetch('back_end_tech.html');
+      const html = await res.text();
+      document.getElementById('back-end-tech-section').innerHTML = html;
+
+      setTimeout(() => {
+        const observer = new IntersectionObserver((entries) => {
+          if (entries[0].isIntersecting) {
+            document.querySelector('.back-end-text').classList.add('in-view');
+            document.querySelector('.back-end-grid').classList.add('in-view');
+
+            document.querySelectorAll('.back-end-card').forEach((card, index) => {
+              setTimeout(() => {
+                card.classList.add('in-view');
+              }, 100 + (index * 80));
+            });
+          }
+        }, { threshold: 0.2 });
+
+        const section = document.querySelector('.section-back-end');
+        if (section) observer.observe(section);
+      }, 150);
+
+    } catch(e) {
+      console.error('Failed to load back-end tech section', e);
+      document.getElementById('back-end-tech-section').innerHTML =
+        `<p style="color:red; text-align:center; padding:60px;">Failed to load section.</p>`;
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', loadBackEndTech);
+  </script>
+</section>
+
+
+
+
+<!-- Database Technologies Section -->
+<section>
+  <div id="database-tech-section">
+    <p style="color:#888; text-align:center; padding:60px;">Loading database technologies section...</p>
+  </div>
+
+  <script>
+  async function loadDatabaseTech() {
+    try {
+      const res = await fetch('database_tech.html');
+      const html = await res.text();
+      document.getElementById('database-tech-section').innerHTML = html;
+
+      setTimeout(() => {
+        const observer = new IntersectionObserver((entries) => {
+          if (entries[0].isIntersecting) {
+            document.querySelector('.database-text').classList.add('in-view');
+            document.querySelector('.database-grid').classList.add('in-view');
+
+            document.querySelectorAll('.database-card').forEach((card, index) => {
+              setTimeout(() => {
+                card.classList.add('in-view');
+              }, 100 + (index * 100));
+            });
+          }
+        }, { threshold: 0.2 });
+
+        const section = document.querySelector('.section-database');
+        if (section) observer.observe(section);
+      }, 150);
+
+    } catch(e) {
+      console.error('Failed to load database tech section', e);
+      document.getElementById('database-tech-section').innerHTML =
+        `<p style="color:red; text-align:center; padding:60px;">Failed to load section.</p>`;
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', loadDatabaseTech);
+  </script>
+</section>
+
+
+        <!-- Final CTA Block -->
+
+    
+
+    
+
+<!-- FOOTER - Same for ALL pages -->
+
+
+   </div>
+  </div>
+  <script>
+    // Tech background images that rotate automatically
+// === Background Rotation - Local Images Only ===
+// Easy to customize timing
+
+const techBackgrounds = [
+  'linear-gradient(135deg, rgba(10, 14, 39, 0.85) 0%, rgba(26, 26, 62, 0.85) 50%, rgba(13, 13, 31, 0.85) 100%), url("image/home_hero1.png")',
+  'linear-gradient(135deg, rgba(10, 14, 39, 0.85) 0%, rgba(26, 26, 62, 0.85) 50%, rgba(13, 13, 31, 0.85) 100%), url("image/home_hero2.png")',
+  'linear-gradient(135deg, rgba(10, 14, 39, 0.85) 0%, rgba(26, 26, 62, 0.85) 50%, rgba(13, 13, 31, 0.85) 100%), url("image/home_hero3.png")',
+  'linear-gradient(135deg, rgba(10, 14, 39, 0.85) 0%, rgba(26, 26, 62, 0.85) 50%, rgba(13, 13, 31, 0.85) 100%), url("image/home_hero4.png")',
+  'linear-gradient(135deg, rgba(10, 14, 39, 0.85) 0%, rgba(26, 26, 62, 0.85) 50%, rgba(13, 13, 31, 0.85) 100%), url("image/home_hero5.png")',
+  'linear-gradient(135deg, rgba(10, 14, 39, 0.85) 0%, rgba(26, 26, 62, 0.85) 50%, rgba(13, 13, 31, 0.85) 100%), url("image/home_hero6.png")'
+];
+
+let currentBgIndex = 0;
+
+// === CUSTOMIZE THESE TWO VALUES ===
+const displayTime = 8000;     // How long each image stays fully visible (in milliseconds)
+const transitionTime = 3000;  // How long the fade between images takes
+
+const bgLayer1 = document.createElement('div');
+const bgLayer2 = document.createElement('div');
+
+bgLayer1.className = bgLayer2.className = 'hero-gradient';
+bgLayer1.style.position = bgLayer2.style.position = 'absolute';
+bgLayer1.style.inset = bgLayer2.style.inset = '0';
+bgLayer1.style.backgroundSize = bgLayer2.style.backgroundSize = 'cover';
+bgLayer1.style.backgroundPosition = bgLayer2.style.backgroundPosition = 'center';
+bgLayer1.style.zIndex = bgLayer2.style.zIndex = '1';
+bgLayer1.style.transition = `opacity ${transitionTime}ms ease-in-out`;
+bgLayer2.style.transition = `opacity ${transitionTime}ms ease-in-out`;
+
+const heroContainer = document.querySelector('.gradient-bg');
+
+if (heroContainer) {
+  heroContainer.appendChild(bgLayer1);
+  heroContainer.appendChild(bgLayer2);
+
+  bgLayer1.style.backgroundImage = techBackgrounds[0];
+  bgLayer2.style.backgroundImage = techBackgrounds[1];
+  bgLayer1.style.opacity = '1';
+  bgLayer2.style.opacity = '0';
+
+  setInterval(() => {
+    currentBgIndex = (currentBgIndex + 1) % techBackgrounds.length;
+
+    const activeLayer = parseFloat(bgLayer1.style.opacity) > 0.5 ? bgLayer1 : bgLayer2;
+    const nextLayer = activeLayer === bgLayer1 ? bgLayer2 : bgLayer1;
+
+    nextLayer.style.backgroundImage = techBackgrounds[currentBgIndex];
+    nextLayer.style.opacity = '1';
+    activeLayer.style.opacity = '0';
+  }, displayTime + transitionTime);
+  
+  
+  
+  // Total time before next change
+}
+
+
+
+
+
+
+
+
+
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuIcon = document.getElementById('menu-icon');
+    let isMenuOpen = false;
+
+    mobileMenuBtn.addEventListener('click', () => {
+      isMenuOpen = !isMenuOpen;
+      mobileMenu.classList.toggle('hidden');
+      menuIcon.setAttribute('d', isMenuOpen 
+        ? 'M6 18L18 6M6 6l12 12' 
+        : 'M4 6h16M4 12h16M4 18h16'
+      );
+    });
+
+    // Navigation active state handler
+    const navItems = document.querySelectorAll('.nav-item');
+    
+    function setActivePage(page) {
+      navItems.forEach(item => {
+        if (item.dataset.page === page) {
+          item.classList.add('active', 'text-white');
+          item.classList.remove('text-gray-300');
+        } else {
+          item.classList.remove('active', 'text-white');
+          item.classList.add('text-gray-300');
+        }
+      });
+    }
+
+    // Handle hash navigation
+    window.addEventListener('hashchange', () => {
+      const page = window.location.hash.slice(1) || 'home';
+      setActivePage(page);
+    });
+
+    // Set initial active page
+    const initialPage = window.location.hash.slice(1) || 'home';
+    setActivePage(initialPage);
+
+    // Handle nav link clicks
+    navItems.forEach(item => {
+      item.addEventListener('click', (e) => {
+        const page = item.dataset.page;
+        setActivePage(page);
+        if (isMenuOpen) {
+          isMenuOpen = false;
+          mobileMenu.classList.add('hidden');
+          menuIcon.setAttribute('d', 'M4 6h16M4 12h16M4 18h16');
+        }
+      });
+    });
+
+    // Scroll Animation Observer
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const scrollObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          scrollObserver.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    // Observe all scroll-animate elements
+    document.querySelectorAll('.scroll-animate, .scroll-animate-left, .scroll-animate-right').forEach(el => {
+      scrollObserver.observe(el);
+    });
+
+    // Animated Counter for metrics
+    function animateCounter(elementId, finalValue, duration = 2000) {
+      const element = document.getElementById(elementId);
+      if (!element) return;
+
+      const startValue = 0;
+      const startTime = performance.now();
+      const valueText = element.textContent;
+      const isPercentage = valueText.includes('%');
+      const suffix = isPercentage ? '%' : valueText.replace(/[0-9]/g, '');
+
+      const animate = (currentTime) => {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        
+        let displayValue;
+        if (isPercentage) {
+          displayValue = Math.floor(finalValue * progress);
+        } else {
+          displayValue = Math.floor(finalValue * progress);
+        }
+
+        element.textContent = displayValue + suffix;
+
+        if (progress < 1) {
+          requestAnimationFrame(animate);
+        }
+      };
+
+      requestAnimationFrame(animate);
+    }
+
+    // Trigger counter animation when metrics section is in view
+    const metricsObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+      animateCounter('projects-counter', 28);
+      animateCounter('accuracy-counter', 96);
+      animateCounter('enterprises-counter', 12);
+      animateCounter('threats-counter', 1.4);   // special handling for 1.4K
+          metricsObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    const metricsSection = document.querySelector('.grid.grid-cols-1.md\\:grid-cols-4');
+    if (metricsSection) {
+      metricsObserver.observe(metricsSection);
+    }
+
+    // Feature images
+const featureImages = [
+  "image/home_feature1.png",
+  "image/home_feature2.png",
+  "image/home_feature3.png",
+  "image/home_feature4.png",
+  "image/home_feature5.png",
+  "image/home_feature6.png"
+];
+
+let currentFeatureIndex = 0;
+
+const featureMain = document.getElementById('feature-image-main');
+const featureMobile = document.getElementById('feature-image-mobile');
+
+function updateFeatureImage() {
+  if (featureMain) featureMain.src = featureImages[currentFeatureIndex];
+  if (featureMobile) featureMobile.src = featureImages[currentFeatureIndex];
+}
+
+// Auto-rotate every 5 seconds
+setInterval(() => {
+  currentFeatureIndex = (currentFeatureIndex + 1) % featureImages.length;
+  updateFeatureImage();
+}, 5000);
+
+// Click on feature cards to change image
+document.querySelectorAll('.feature-card').forEach((card, index) => {
+  card.addEventListener('click', () => {
+    currentFeatureIndex = index % featureImages.length; // Cycle through available images
+    updateFeatureImage();
+  });
+});
+
+// Initialize first image
+updateFeatureImage();
+
+    // FAQ Accordion functionality
+    document.querySelectorAll('.faq-toggle').forEach(button => {
+      button.addEventListener('click', function() {
+        const faqItem = this.closest('.faq-item');
+        const content = faqItem.querySelector('.faq-content');
+        const svg = faqItem.querySelector('svg');
+        const isOpen = !content.classList.contains('hidden');
+
+        // Close all other FAQs
+        document.querySelectorAll('.faq-item').forEach(item => {
+          if (item !== faqItem) {
+            const otherContent = item.querySelector('.faq-content');
+            const otherSvg = item.querySelector('svg');
+            otherContent.classList.add('hidden');
+            otherContent.style.maxHeight = '0';
+            otherSvg.style.transform = 'rotate(0deg)';
+          }
+        });
+
+        // Toggle current FAQ
+        if (isOpen) {
+          content.classList.add('hidden');
+          content.style.maxHeight = '0';
+          svg.style.transform = 'rotate(0deg)';
+        } else {
+          content.classList.remove('hidden');
+          content.style.maxHeight = content.scrollHeight + 'px';
+          svg.style.transform = 'rotate(180deg)';
+        }
+      });
+    });
+    // ===== THEME TOGGLE =====
+    const themeToggle = document.getElementById('theme-toggle');
+    const iconMoon = document.getElementById('icon-moon');
+    const iconSun = document.getElementById('icon-sun');
+    const htmlEl = document.documentElement;
+
+    // Check saved preference
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light') {
+      htmlEl.classList.add('light-mode');
+      iconMoon.classList.add('hidden');
+      iconSun.classList.remove('hidden');
+    }
+
+    themeToggle.addEventListener('click', () => {
+      const isLight = htmlEl.classList.toggle('light-mode');
+      if (isLight) {
+        iconMoon.classList.add('hidden');
+        iconSun.classList.remove('hidden');
+        localStorage.setItem('theme', 'light');
+      } else {
+        iconMoon.classList.remove('hidden');
+        iconSun.classList.add('hidden');
+        localStorage.setItem('theme', 'dark');
+      }
+    });
+
+  </script>
+
+
+
+ </body>
+
+
+
+
+ </html>
