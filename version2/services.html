@@ -178,103 +178,529 @@
     <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-96 h-96 bg-[var(--accent)]/10 rounded-full blur-3xl"></div>
   </section>
 
-  <!-- SERVICES GRID -->
-  <section id="services-grid" class="py-20 px-4 md:px-8 bg-[var(--bg-secondary)]">
-    <div class="max-w-7xl mx-auto">
+
+
+  <!-- SERVICES CAROUSEL -->
+<section id="services" class="py-20 px-4 md:px-8 bg-[var(--bg-secondary)]">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-12">
+      <span class="uppercase tracking-widest text-sm text-[var(--accent)]">Our Capabilities</span>
+      <h2 class="section-header mt-3">Our Services</h2>
+      <p class="mt-4 text-lg text-[var(--text-secondary)] max-w-2xl mx-auto">
+        Empowering businesses in Bangladesh and beyond with cutting-edge technology solutions
+      </p>
+    </div>
+
+    <!-- Carousel Container -->
+    <div class="relative">
+
+<!-- Left Button -->
+      <button onclick="prevSlide()"
+              class="absolute left-0 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full flex items-center justify-center shadow-xl border transition-all
+                     bg-[var(--card-bg)] hover:bg-[var(--accent)] hover:text-white border-[var(--border)]"
+              style="left: -20px;">
+        <i data-lucide="chevron-left" class="w-6 h-6"></i>
+      </button>
+
+      <!-- Right Button -->
+      <button onclick="nextSlide()"
+              class="absolute top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full flex items-center justify-center shadow-xl border transition-all
+                     bg-[var(--card-bg)] hover:bg-[var(--accent)] hover:text-white border-[var(--border)]"
+              style="right: -20px;">
+        <i data-lucide="chevron-right" class="w-6 h-6"></i>
+      </button>
+
+      <!-- Viewport: clips the track -->
+      <div id="carouselViewport" style="overflow: hidden;">
+        <!-- Track: flex row of cards, shifted by JS -->
+        <div id="servicesTrack" style="display: flex; gap: 24px; transition: transform 500ms ease-out; will-change: transform;">
+
+          <!-- Card 1 -->
+          <div class="card-glass group flex-shrink-0 carousel-card">
+            <div class="h-56 overflow-hidden rounded-t-3xl">
+              <img src="https://picsum.photos/id/1015/800/500" alt="Custom Software" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <div class="p-8">
+              <h3 class="text-xl font-semibold mb-3">Custom Software Development</h3>
+              <p class="text-[var(--text-secondary)] mb-5">Tailor-made software solutions designed for Bangladeshi businesses, startups, and enterprises.</p>
+              <ul class="space-y-2 text-sm text-[var(--text-secondary)]">
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> ERP Systems</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> CRM Solutions</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Business Automation</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="card-glass group flex-shrink-0 carousel-card">
+            <div class="h-56 overflow-hidden rounded-t-3xl">
+              <img src="https://picsum.photos/id/201/800/500" alt="Web & Mobile" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <div class="p-8">
+              <h3 class="text-xl font-semibold mb-3">Web & Mobile App Development</h3>
+              <p class="text-[var(--text-secondary)] mb-5">Modern, responsive websites and high-performance Android & iOS applications.</p>
+              <ul class="space-y-2 text-sm text-[var(--text-secondary)]">
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> React / Next.js</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Flutter & React Native</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> E-commerce Platforms</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="card-glass group flex-shrink-0 carousel-card">
+            <div class="h-56 overflow-hidden rounded-t-3xl">
+              <img src="https://picsum.photos/id/237/800/500" alt="AI" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <div class="p-8">
+              <h3 class="text-xl font-semibold mb-3">AI & Digital Transformation</h3>
+              <p class="text-[var(--text-secondary)] mb-5">Artificial Intelligence, Machine Learning, and complete digital transformation solutions.</p>
+              <ul class="space-y-2 text-sm text-[var(--text-secondary)]">
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Chatbots & Predictive Analytics</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> NLP & LLM Integration</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Computer Vision</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="card-glass group flex-shrink-0 carousel-card">
+            <div class="h-56 overflow-hidden rounded-t-3xl">
+              <img src="https://picsum.photos/id/180/800/500" alt="Cloud" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <div class="p-8">
+              <h3 class="text-xl font-semibold mb-3">Cloud & DevOps</h3>
+              <p class="text-[var(--text-secondary)] mb-5">Scalable cloud infrastructure with full CI/CD pipelines.</p>
+              <ul class="space-y-2 text-sm text-[var(--text-secondary)]">
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> AWS & Azure</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Docker & Kubernetes</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> CI/CD Pipeline Automation</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Card 5 -->
+          <div class="card-glass group flex-shrink-0 carousel-card">
+            <div class="h-56 overflow-hidden rounded-t-3xl">
+              <img src="https://picsum.photos/id/106/800/500" alt="Cybersecurity" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <div class="p-8">
+              <h3 class="text-xl font-semibold mb-3">Cybersecurity & Compliance</h3>
+              <p class="text-[var(--text-secondary)] mb-5">Protect your systems with enterprise-grade security solutions.</p>
+              <ul class="space-y-2 text-sm text-[var(--text-secondary)]">
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Penetration Testing</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Vulnerability Assessment</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> ISO 27001 / GDPR Advisory</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Card 6 -->
+          <div class="card-glass group flex-shrink-0 carousel-card">
+            <div class="h-56 overflow-hidden rounded-t-3xl">
+              <img src="https://picsum.photos/id/133/800/500" alt="Data Analytics" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <div class="p-8">
+              <h3 class="text-xl font-semibold mb-3">Data Analytics & BI</h3>
+              <p class="text-[var(--text-secondary)] mb-5">Turn raw data into actionable intelligence with real-time dashboards.</p>
+              <ul class="space-y-2 text-sm text-[var(--text-secondary)]">
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Real-time Dashboards</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Power BI / Tableau</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Predictive Reporting</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Card 7 -->
+          <div class="card-glass group flex-shrink-0 carousel-card">
+            <div class="h-56 overflow-hidden rounded-t-3xl">
+              <img src="https://picsum.photos/id/160/800/500" alt="IT Strategy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <div class="p-8">
+              <h3 class="text-xl font-semibold mb-3">IT Strategy & Consulting</h3>
+              <p class="text-[var(--text-secondary)] mb-5">Strategic guidance from senior technologists.</p>
+              <ul class="space-y-2 text-sm text-[var(--text-secondary)]">
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Digital Transformation Roadmap</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Tech Stack Evaluation</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> CTO-as-a-Service</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Card 8 -->
+          <div class="card-glass group flex-shrink-0 carousel-card">
+            <div class="h-56 overflow-hidden rounded-t-3xl">
+              <img src="https://picsum.photos/id/175/800/500" alt="E-Commerce" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <div class="p-8">
+              <h3 class="text-xl font-semibold mb-3">E-Commerce Solutions</h3>
+              <p class="text-[var(--text-secondary)] mb-5">End-to-end e-commerce platforms built for performance.</p>
+              <ul class="space-y-2 text-sm text-[var(--text-secondary)]">
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Custom Storefront Development</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Payment Gateway Integration</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Multi-vendor Marketplace</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Card 9 -->
+          <div class="card-glass group flex-shrink-0 carousel-card">
+            <div class="h-56 overflow-hidden rounded-t-3xl">
+              <img src="https://picsum.photos/id/225/800/500" alt="Managed IT Support" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <div class="p-8">
+              <h3 class="text-xl font-semibold mb-3">Managed IT Support</h3>
+              <p class="text-[var(--text-secondary)] mb-5">Ongoing technical support, maintenance, and SLA-backed services.</p>
+              <ul class="space-y-2 text-sm text-[var(--text-secondary)]">
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> 24/7 System Monitoring</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Bug Fixes & Patch Management</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Performance Optimisation</li>
+              </ul>
+            </div>
+          </div>
+
+        </div><!-- end track -->
+      </div><!-- end viewport -->
+
+      <!-- Dot Indicators -->
+      <div id="carouselDots" class="flex justify-center gap-2 mt-8"></div>
+
+    </div><!-- end relative wrapper -->
+  </div>
+
+  <script>
+    (function () {
+      const GAP = 24;
+      let currentIndex = 0;
+      const track = document.getElementById('servicesTrack');
+      const viewport = document.getElementById('carouselViewport');
+      const dotsContainer = document.getElementById('carouselDots');
+      const cards = Array.from(track.querySelectorAll('.carousel-card'));
+      const totalCards = cards.length;
+
+      function getVisible() {
+        const w = window.innerWidth;
+        if (w < 768) return 1;
+        if (w < 1024) return 2;
+        return 3;
+      }
+
+      function getCardWidth() {
+        // viewport width divided by visible count, minus gap share
+        const vw = viewport.offsetWidth;
+        const visible = getVisible();
+        return (vw - GAP * (visible - 1)) / visible;
+      }
+
+      function setCardWidths() {
+        const cw = getCardWidth();
+        cards.forEach(c => {
+          c.style.width = cw + 'px';
+          c.style.flexShrink = '0';
+        });
+      }
+
+      function maxIndex() {
+        return totalCards - getVisible();
+      }
+
+      function buildDots() {
+        dotsContainer.innerHTML = '';
+        const total = maxIndex() + 1;
+        for (let i = 0; i < total; i++) {
+          const dot = document.createElement('button');
+          dot.style.cssText = 'width:8px;height:8px;border-radius:50%;border:none;cursor:pointer;transition:all 0.3s;padding:0;';
+          dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+          dot.addEventListener('click', () => goTo(i));
+          dotsContainer.appendChild(dot);
+        }
+        updateDots();
+      }
+
+      function updateDots() {
+        const dots = dotsContainer.querySelectorAll('button');
+        dots.forEach((d, i) => {
+          if (i === currentIndex) {
+            d.style.background = 'var(--accent, #6366f1)';
+            d.style.width = '24px';
+            d.style.borderRadius = '4px';
+          } else {
+            d.style.background = 'var(--border, #d1d5db)';
+            d.style.width = '8px';
+            d.style.borderRadius = '50%';
+          }
+        });
+      }
+
+      function goTo(index) {
+        const max = maxIndex();
+        currentIndex = Math.max(0, Math.min(index, max));
+        const cw = getCardWidth();
+        const offset = currentIndex * (cw + GAP);
+        track.style.transform = `translateX(-${offset}px)`;
+        updateDots();
+      }
+
+      window.nextSlide = function () {
+        const max = maxIndex();
+        goTo(currentIndex < max ? currentIndex + 1 : 0);
+      };
+
+      window.prevSlide = function () {
+        const max = maxIndex();
+        goTo(currentIndex > 0 ? currentIndex - 1 : max);
+      };
+
+      function init() {
+        setCardWidths();
+        buildDots();
+        goTo(0);
+      }
+
+      let resizeTimer;
+      window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+          setCardWidths();
+          buildDots();
+          goTo(Math.min(currentIndex, maxIndex()));
+        }, 150);
+      });
+
+      // Init after layout is painted
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        // Small delay to ensure offsetWidth is available
+        requestAnimationFrame(() => requestAnimationFrame(init));
+      }
+    })();
+  </script>
+</section>
+
+
+
+  <!-- SERVICES -->
+  <section id="services" class="py-20 px-4 md:px-8">
+    <div class="max-w-6xl mx-auto">
       <div class="text-center mb-16">
-        <span class="uppercase tracking-widest text-sm text-[var(--accent)]">Our Expertise</span>
-        <h2 class="section-header mt-3">Comprehensive IT Services</h2>
+        <span class="uppercase tracking-widest text-sm text-[var(--accent)]">Our Capabilities</span>
+        <h2 class="section-header mt-3">Our Features</h2>
+        <p class="mt-4 text-lg text-[var(--text-secondary)] max-w-2xl mx-auto">
+          Empowering businesses in Bangladesh and beyond with cutting-edge technology solutions
+        </p>
       </div>
 
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <!-- Service 1 -->
-        <div class="service-card card-glass group p-8 rounded-3xl">
-          <div class="w-14 h-14 bg-blue-500/10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-            <img src="https://picsum.photos/id/1015/80/80" alt="Custom Software" class="w-8 h-8">
+      <div class="grid md:grid-cols-3 gap-6">
+
+        <!-- 1 -->
+        <div class="card-glass group">
+          <div class="w-12 h-12 bg-[var(--accent)] rounded-2xl flex items-center justify-center mb-6 transition-transform group-hover:scale-110">
+            <i data-lucide="code" class="w-6 h-6 text-white"></i>
           </div>
-          <h3 class="text-2xl font-semibold mb-3">Custom Software Development</h3>
-          <p class="text-[var(--text-secondary)] mb-6">Bespoke enterprise applications tailored to your unique business processes.</p>
-          <ul class="space-y-3 text-sm">
-            <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i> ERP Systems</li>
-            <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i> CRM Solutions</li>
-            <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i> Business Automation</li>
+          <h3 class="text-xl font-semibold mb-3">Custom Software Development</h3>
+          <p class="text-[var(--text-secondary)]">Tailor-made software solutions designed for Bangladeshi businesses, startups, and enterprises.</p>
+          <ul class="mt-4 space-y-2 text-sm text-[var(--text-secondary)]">
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4"></i> Enterprise Resource Planning</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4"></i> Business Process Automation</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4"></i> SaaS Product Engineering</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4"></i> API Design &amp; Integration</li>
           </ul>
         </div>
 
-        <!-- Service 2 -->
-        <div class="service-card card-glass group p-8 rounded-3xl">
-          <div class="w-14 h-14 bg-purple-500/10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-            <img src="https://picsum.photos/id/201/80/80" alt="Mobile App" class="w-8 h-8">
+        <!-- 2 -->
+        <div class="card-glass group">
+          <div class="w-12 h-12 bg-[var(--accent)] rounded-2xl flex items-center justify-center mb-6 transition-transform group-hover:scale-110">
+            <i data-lucide="smartphone" class="w-6 h-6 text-white"></i>
           </div>
-          <h3 class="text-2xl font-semibold mb-3">Web &amp; Mobile App Development</h3>
-          <p class="text-[var(--text-secondary)] mb-6">Stunning, high-performance websites and cross-platform mobile applications.</p>
-          <ul class="space-y-3 text-sm">
-            <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i> React &amp; Next.js</li>
-            <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i> Flutter &amp; React Native</li>
-            <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i> E-commerce Platforms</li>
+          <h3 class="text-xl font-semibold mb-3">Web &amp; Mobile App Development</h3>
+          <p class="text-[var(--text-secondary)]">Modern, responsive websites and high-performance Android &amp; iOS applications.</p>
+          <ul class="mt-4 space-y-2 text-sm text-[var(--text-secondary)]">
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4"></i> E-commerce Platforms</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4"></i> FinTech &amp; Delivery Apps</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4"></i> React / Next.js / Flutter</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4"></i> Progressive Web Apps</li>
           </ul>
         </div>
 
-        <!-- Service 3 -->
-        <div class="service-card card-glass group p-8 rounded-3xl">
-          <div class="w-14 h-14 bg-amber-500/10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-            <img src="https://picsum.photos/id/237/80/80" alt="AI" class="w-8 h-8">
+        <!-- 3 -->
+        <div class="card-glass group">
+          <div class="w-12 h-12 bg-[var(--accent)] rounded-2xl flex items-center justify-center mb-6 transition-transform group-hover:scale-110">
+            <i data-lucide="brain" class="w-6 h-6 text-white"></i>
           </div>
-          <h3 class="text-2xl font-semibold mb-3">AI &amp; Machine Learning</h3>
-          <p class="text-[var(--text-secondary)] mb-6">Intelligent solutions that automate processes and provide deep business insights.</p>
-          <ul class="space-y-3 text-sm">
-            <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i> Predictive Analytics</li>
-            <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i> Chatbots &amp; NLP</li>
-            <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i> Computer Vision</li>
+          <h3 class="text-xl font-semibold mb-3">AI &amp; Digital Transformation</h3>
+          <p class="text-[var(--text-secondary)]">Artificial Intelligence, Machine Learning, and complete digital transformation solutions.</p>
+          <ul class="mt-4 space-y-2 text-sm text-[var(--text-secondary)]">
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4"></i> Chatbots &amp; Predictive Analytics</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4"></i> Cloud Migration &amp; Automation</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4"></i> NLP &amp; LLM Integration</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4"></i> Computer Vision</li>
           </ul>
         </div>
 
-        <!-- Service 4 -->
-        <div class="service-card card-glass group p-8 rounded-3xl">
-          <div class="w-14 h-14 bg-cyan-500/10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-            <img src="https://picsum.photos/id/180/80/80" alt="Cloud" class="w-8 h-8">
+        <!-- 4 -->
+        <div class="card-glass group">
+          <div class="w-12 h-12 bg-[var(--accent)] rounded-2xl flex items-center justify-center mb-6 transition-transform group-hover:scale-110">
+            <i data-lucide="cloud" class="w-6 h-6 text-white"></i>
           </div>
-          <h3 class="text-2xl font-semibold mb-3">Cloud Solutions &amp; DevOps</h3>
-          <p class="text-[var(--text-secondary)] mb-6">Scalable cloud infrastructure with modern deployment pipelines.</p>
-          <ul class="space-y-3 text-sm">
-            <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i> AWS &amp; Azure</li>
-            <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i> CI/CD Pipelines</li>
-            <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i> Kubernetes &amp; Docker</li>
+          <h3 class="text-xl font-semibold mb-3">Cloud &amp; DevOps</h3>
+          <p class="text-[var(--text-secondary)]">Scalable cloud infrastructure with full CI/CD pipelines and 24/7 monitoring across AWS, GCP, and Azure.</p>
+          <ul class="mt-4 space-y-2 text-sm text-[var(--text-secondary)]">
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4"></i> Cloud Migration</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4"></i> Docker &amp; Kubernetes</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4"></i> CI/CD Pipeline Automation</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4"></i> Infrastructure as Code</li>
           </ul>
         </div>
 
-        <!-- Service 5 -->
-        <div class="service-card card-glass group p-8 rounded-3xl">
-          <div class="w-14 h-14 bg-rose-500/10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-            <img src="https://picsum.photos/id/106/80/80" alt="Cybersecurity" class="w-8 h-8">
+        <!-- 5 -->
+        <div class="card-glass group">
+          <div class="w-12 h-12 bg-[var(--accent)] rounded-2xl flex items-center justify-center mb-6 transition-transform group-hover:scale-110">
+            <i data-lucide="shield-check" class="w-6 h-6 text-white"></i>
           </div>
-          <h3 class="text-2xl font-semibold mb-3">Cybersecurity &amp; Compliance</h3>
-          <p class="text-[var(--text-secondary)] mb-6">Protect your digital assets with enterprise-grade security solutions.</p>
-          <ul class="space-y-3 text-sm">
-            <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i> Penetration Testing</li>
-            <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i> Data Protection</li>
-            <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i> Compliance (GDPR, PCI)</li>
+          <h3 class="text-xl font-semibold mb-3">Cybersecurity &amp; Compliance</h3>
+          <p class="text-[var(--text-secondary)]">Protect your systems and data with enterprise-grade security audits, testing, and compliance frameworks.</p>
+          <ul class="mt-4 space-y-2 text-sm text-[var(--text-secondary)]">
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4"></i> Penetration Testing</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4"></i> Vulnerability Assessment</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4"></i> ISO 27001 / GDPR Advisory</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4"></i> Security Monitoring</li>
           </ul>
         </div>
 
-        <!-- Service 6 -->
-        <div class="service-card card-glass group p-8 rounded-3xl">
-          <div class="w-14 h-14 bg-emerald-500/10 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-            <img src="https://picsum.photos/id/133/80/80" alt="UI/UX" class="w-8 h-8">
+        <!-- 6 -->
+        <div class="card-glass group">
+          <div class="w-12 h-12 bg-[var(--accent)] rounded-2xl flex items-center justify-center mb-6 transition-transform group-hover:scale-110">
+            <i data-lucide="bar-chart-2" class="w-6 h-6 text-white"></i>
           </div>
-          <h3 class="text-2xl font-semibold mb-3">UI/UX Design &amp; Branding</h3>
-          <p class="text-[var(--text-secondary)] mb-6">Beautiful, intuitive interfaces that users love and remember.</p>
-          <ul class="space-y-3 text-sm">
-            <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i> User Research</li>
-            <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i> Prototyping</li>
-            <li class="flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i> Brand Identity</li>
+          <h3 class="text-xl font-semibold mb-3">Data Analytics &amp; BI</h3>
+          <p class="text-[var(--text-secondary)]">Turn raw data into actionable intelligence with real-time dashboards and business intelligence tools.</p>
+          <ul class="mt-4 space-y-2 text-sm text-[var(--text-secondary)]">
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4"></i> Real-time Dashboards</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4"></i> ETL &amp; Data Pipelines</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4"></i> Power BI / Tableau</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4"></i> Predictive Reporting</li>
           </ul>
+        </div>
+
+        <!-- 7 -->
+        <div class="card-glass group">
+          <div class="w-12 h-12 bg-[var(--accent)] rounded-2xl flex items-center justify-center mb-6 transition-transform group-hover:scale-110">
+            <i data-lucide="lightbulb" class="w-6 h-6 text-white"></i>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">IT Strategy &amp; Consulting</h3>
+          <p class="text-[var(--text-secondary)]">Strategic guidance from senior technologists who understand the Bangladeshi market and global standards.</p>
+          <ul class="mt-4 space-y-2 text-sm text-[var(--text-secondary)]">
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4"></i> Digital Transformation Roadmap</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4"></i> Tech Stack Evaluation</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4"></i> CTO-as-a-Service</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4"></i> Legacy System Modernisation</li>
+          </ul>
+        </div>
+
+        <!-- 8 -->
+        <div class="card-glass group">
+          <div class="w-12 h-12 bg-[var(--accent)] rounded-2xl flex items-center justify-center mb-6 transition-transform group-hover:scale-110">
+            <i data-lucide="shopping-cart" class="w-6 h-6 text-white"></i>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">E-Commerce Solutions</h3>
+          <p class="text-[var(--text-secondary)]">End-to-end e-commerce platforms built for performance, conversion, and seamless user experience.</p>
+          <ul class="mt-4 space-y-2 text-sm text-[var(--text-secondary)]">
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4"></i> Custom Storefront Development</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4"></i> Payment Gateway Integration</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4"></i> Inventory &amp; Order Management</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4"></i> Multi-vendor Marketplace</li>
+          </ul>
+        </div>
+
+        <!-- 9 -->
+        <div class="card-glass group">
+          <div class="w-12 h-12 bg-[var(--accent)] rounded-2xl flex items-center justify-center mb-6 transition-transform group-hover:scale-110">
+            <i data-lucide="headphones" class="w-6 h-6 text-white"></i>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">Managed IT Support</h3>
+          <p class="text-[var(--text-secondary)]">Ongoing technical support, maintenance, and SLA-backed managed services to keep your systems running.</p>
+          <ul class="mt-4 space-y-2 text-sm text-[var(--text-secondary)]">
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4"></i> 24/7 System Monitoring</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4"></i> Bug Fixes &amp; Patch Management</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4"></i> Performance Optimisation</li>
+            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4"></i> Dedicated Account Manager</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+
+
+
+<!-- SERVICES CAROUSEL -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- WHY CHOOSE US -->
+  <section class="py-20 px-4 md:px-8 bg-[var(--bg-secondary)]">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-16">
+        <h2 class="section-header">Why Choose Seven Tech?</h2>
+      </div>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="card-glass p-8 text-center">
+          <i data-lucide="award" class="w-12 h-12 mx-auto mb-6 text-[var(--accent)]"></i>
+          <h3 class="text-xl font-semibold mb-3">Proven Track Record</h3>
+          <p class="text-[var(--text-secondary)]">50+ successful projects delivered to leading Bangladeshi organizations.</p>
+        </div>
+        <div class="card-glass p-8 text-center">
+          <i data-lucide="users" class="w-12 h-12 mx-auto mb-6 text-[var(--accent)]"></i>
+          <h3 class="text-xl font-semibold mb-3">Local + Global Expertise</h3>
+          <p class="text-[var(--text-secondary)]">Dhaka-based team with international standards and delivery practices.</p>
+        </div>
+        <div class="card-glass p-8 text-center">
+          <i data-lucide="clock" class="w-12 h-12 mx-auto mb-6 text-[var(--accent)]"></i>
+          <h3 class="text-xl font-semibold mb-3">Agile &amp; Transparent</h3>
+          <p class="text-[var(--text-secondary)]">Weekly updates, clear milestones, and full project visibility.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- TECHNOLOGIES -->
+
+
+
+
+
+    <!-- TECHNOLOGIES -->
   <section class="pt-20 px-4 md:px-8">
     <div class=" mx-auto">
       <div class="text-center mb-16">
@@ -543,307 +969,591 @@
     </div>
   </section>
 
-  <!-- DEVELOPMENT PROCESS -->
-  <section class="py-20 px-4 md:px-8 bg-[var(--bg-secondary)]">
-    <div class="max-w-5xl mx-auto">
-      <div class="text-center mb-16">
-        <h2 class="section-header">Our Development Process</h2>
-      </div>
-      <div class="grid md:grid-cols-4 gap-8 relative">
-        <div class="text-center">
-          <div class="w-16 h-16 mx-auto rounded-2xl bg-[var(--accent)] flex items-center justify-center text-2xl font-bold mb-4">01</div>
-          <h4 class="font-semibold mb-2">Discovery</h4>
-          <p class="text-sm text-[var(--text-secondary)]">Requirements gathering &amp; planning</p>
-        </div>
-        <div class="text-center">
-          <div class="w-16 h-16 mx-auto rounded-2xl bg-[var(--accent)] flex items-center justify-center text-2xl font-bold mb-4">02</div>
-          <h4 class="font-semibold mb-2">Design</h4>
-          <p class="text-sm text-[var(--text-secondary)]">UI/UX &amp; architecture design</p>
-        </div>
-        <div class="text-center">
-          <div class="w-16 h-16 mx-auto rounded-2xl bg-[var(--accent)] flex items-center justify-center text-2xl font-bold mb-4">03</div>
-          <h4 class="font-semibold mb-2">Development</h4>
-          <p class="text-sm text-[var(--text-secondary)]">Agile coding &amp; iteration</p>
-        </div>
-        <div class="text-center">
-          <div class="w-16 h-16 mx-auto rounded-2xl bg-[var(--accent)] flex items-center justify-center text-2xl font-bold mb-4">04</div>
-          <h4 class="font-semibold mb-2">Launch &amp; Support</h4>
-          <p class="text-sm text-[var(--text-secondary)]">Deployment, training &amp; maintenance</p>
-        </div>
-      </div>
+
+
+<!-- INDUSTRIES WE SERVE CAROUSEL -->
+<section id="industries" class="py-20 px-4 md:px-8 bg-[var(--bg-primary)]">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-12">
+      <span class="uppercase tracking-widest text-sm text-[var(--accent)]">Who We Work With</span>
+      <h2 class="section-header mt-3">Industries We Serve</h2>
+      <p class="mt-4 text-lg text-[var(--text-secondary)] max-w-2xl mx-auto">
+        Delivering specialised technology solutions across diverse industries in Bangladesh and globally
+      </p>
     </div>
-  </section>
 
-  <!-- WHY CHOOSE US -->
-  <section class="py-20 px-4 md:px-8">
-    <div class="max-w-6xl mx-auto">
-      <div class="text-center mb-16">
-        <h2 class="section-header">Why Choose Seven Tech?</h2>
-      </div>
-      <div class="grid md:grid-cols-3 gap-8">
-        <div class="card-glass p-8 text-center">
-          <i data-lucide="award" class="w-12 h-12 mx-auto mb-6 text-[var(--accent)]"></i>
-          <h3 class="text-xl font-semibold mb-3">Proven Track Record</h3>
-          <p class="text-[var(--text-secondary)]">50+ successful projects delivered to leading Bangladeshi organizations.</p>
-        </div>
-        <div class="card-glass p-8 text-center">
-          <i data-lucide="users" class="w-12 h-12 mx-auto mb-6 text-[var(--accent)]"></i>
-          <h3 class="text-xl font-semibold mb-3">Local + Global Expertise</h3>
-          <p class="text-[var(--text-secondary)]">Dhaka-based team with international standards and delivery practices.</p>
-        </div>
-        <div class="card-glass p-8 text-center">
-          <i data-lucide="clock" class="w-12 h-12 mx-auto mb-6 text-[var(--accent)]"></i>
-          <h3 class="text-xl font-semibold mb-3">Agile &amp; Transparent</h3>
-          <p class="text-[var(--text-secondary)]">Weekly updates, clear milestones, and full project visibility.</p>
-        </div>
-      </div>
+    <!-- Carousel Container -->
+    <div class="relative">
+
+      <!-- Left Button -->
+      <button onclick="prevIndustrySlide()"
+              class="absolute top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full flex items-center justify-center shadow-xl border transition-all
+                     bg-[var(--card-bg)] hover:bg-[var(--accent)] hover:text-white border-[var(--border)]"
+              style="left: -20px;">
+        <i data-lucide="chevron-left" class="w-6 h-6"></i>
+      </button>
+
+      <!-- Right Button -->
+      <button onclick="nextIndustrySlide()"
+              class="absolute top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full flex items-center justify-center shadow-xl border transition-all
+                     bg-[var(--card-bg)] hover:bg-[var(--accent)] hover:text-white border-[var(--border)]"
+              style="right: -20px;">
+        <i data-lucide="chevron-right" class="w-6 h-6"></i>
+      </button>
+
+      <!-- Viewport -->
+      <div id="industryViewport" style="overflow: hidden;">
+        <!-- Track -->
+        <div id="industryTrack" style="display: flex; gap: 24px; transition: transform 500ms ease-out; will-change: transform;">
+
+          <!-- Card 1: Healthcare -->
+          <div class="card-glass group flex-shrink-0 industry-card">
+            <div class="relative h-52 overflow-hidden rounded-t-3xl">
+              <img src="https://images.unsplash.com/photo-1551076805-e1869033e561?w=800&q=80" alt="Healthcare" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-5">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center">
+                    <i data-lucide="heart-pulse" class="w-5 h-5 text-white"></i>
+                  </div>
+                  <h3 class="text-white text-lg font-semibold">Healthcare</h3>
+                </div>
+              </div>
+            </div>
+            <div class="p-6">
+              <p class="text-[var(--text-secondary)] mb-4 text-sm leading-relaxed">Digital health platforms, hospital management systems, and telemedicine solutions for modern healthcare providers.</p>
+              <ul class="space-y-2 text-sm text-[var(--text-secondary)]">
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Hospital Management Systems</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Telemedicine Platforms</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Patient Data Analytics</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Card 2: Finance & Banking -->
+          <div class="card-glass group flex-shrink-0 industry-card">
+            <div class="relative h-52 overflow-hidden rounded-t-3xl">
+              <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?w=800&q=80" alt="Finance & Banking" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-5">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center">
+                    <i data-lucide="landmark" class="w-5 h-5 text-white"></i>
+                  </div>
+                  <h3 class="text-white text-lg font-semibold">Finance & Banking</h3>
+                </div>
+              </div>
+            </div>
+            <div class="p-6">
+              <p class="text-[var(--text-secondary)] mb-4 text-sm leading-relaxed">Secure fintech applications, core banking solutions, and digital payment systems for banks and financial institutions.</p>
+              <ul class="space-y-2 text-sm text-[var(--text-secondary)]">
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Core Banking Software</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Digital Payment Gateways</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Fraud Detection AI</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Card 3: Retail & E-Commerce -->
+          <div class="card-glass group flex-shrink-0 industry-card">
+            <div class="relative h-52 overflow-hidden rounded-t-3xl">
+              <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80" alt="Retail & E-Commerce" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-5">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center">
+                    <i data-lucide="shopping-bag" class="w-5 h-5 text-white"></i>
+                  </div>
+                  <h3 class="text-white text-lg font-semibold">Retail & E-Commerce</h3>
+                </div>
+              </div>
+            </div>
+            <div class="p-6">
+              <p class="text-[var(--text-secondary)] mb-4 text-sm leading-relaxed">Omnichannel retail platforms, inventory management, and customer engagement tools for retailers of all sizes.</p>
+              <ul class="space-y-2 text-sm text-[var(--text-secondary)]">
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Omnichannel Platforms</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Inventory Management</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> POS & CRM Integration</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Card 4: Education & EdTech -->
+          <div class="card-glass group flex-shrink-0 industry-card">
+            <div class="relative h-52 overflow-hidden rounded-t-3xl">
+              <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=800&q=80" alt="Education" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-5">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center">
+                    <i data-lucide="graduation-cap" class="w-5 h-5 text-white"></i>
+                  </div>
+                  <h3 class="text-white text-lg font-semibold">Education & EdTech</h3>
+                </div>
+              </div>
+            </div>
+            <div class="p-6">
+              <p class="text-[var(--text-secondary)] mb-4 text-sm leading-relaxed">Learning management systems, ed-tech apps, and student information platforms for schools, colleges, and online educators.</p>
+              <ul class="space-y-2 text-sm text-[var(--text-secondary)]">
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> LMS & Virtual Classrooms</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Student Information Systems</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> AI-Powered Tutoring</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Card 5: Manufacturing & Industry -->
+          <div class="card-glass group flex-shrink-0 industry-card">
+            <div class="relative h-52 overflow-hidden rounded-t-3xl">
+              <img src="https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=800&q=80" alt="Manufacturing" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-5">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center">
+                    <i data-lucide="factory" class="w-5 h-5 text-white"></i>
+                  </div>
+                  <h3 class="text-white text-lg font-semibold">Manufacturing</h3>
+                </div>
+              </div>
+            </div>
+            <div class="p-6">
+              <p class="text-[var(--text-secondary)] mb-4 text-sm leading-relaxed">Smart factory solutions, ERP integration, and supply chain automation for garment, textile, and industrial manufacturers.</p>
+              <ul class="space-y-2 text-sm text-[var(--text-secondary)]">
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Smart Factory & IoT</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Supply Chain Automation</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Quality Control Systems</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Card 6: Logistics & Transport -->
+          <div class="card-glass group flex-shrink-0 industry-card">
+            <div class="relative h-52 overflow-hidden rounded-t-3xl">
+              <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&q=80" alt="Logistics" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-5">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center">
+                    <i data-lucide="truck" class="w-5 h-5 text-white"></i>
+                  </div>
+                  <h3 class="text-white text-lg font-semibold">Logistics & Transport</h3>
+                </div>
+              </div>
+            </div>
+            <div class="p-6">
+              <p class="text-[var(--text-secondary)] mb-4 text-sm leading-relaxed">Fleet management, real-time tracking, and last-mile delivery platforms for logistics and transportation companies.</p>
+              <ul class="space-y-2 text-sm text-[var(--text-secondary)]">
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Fleet & Route Management</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Real-time GPS Tracking</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Warehouse Management</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Card 7: Real Estate -->
+          <div class="card-glass group flex-shrink-0 industry-card">
+            <div class="relative h-52 overflow-hidden rounded-t-3xl">
+              <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&q=80" alt="Real Estate" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-5">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center">
+                    <i data-lucide="building-2" class="w-5 h-5 text-white"></i>
+                  </div>
+                  <h3 class="text-white text-lg font-semibold">Real Estate</h3>
+                </div>
+              </div>
+            </div>
+            <div class="p-6">
+              <p class="text-[var(--text-secondary)] mb-4 text-sm leading-relaxed">Property listing portals, CRM for agents, and smart building management systems for developers and real estate firms.</p>
+              <ul class="space-y-2 text-sm text-[var(--text-secondary)]">
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Property Listing Platforms</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Agent CRM & Automation</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Smart Building Systems</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Card 8: Telecommunications -->
+          <div class="card-glass group flex-shrink-0 industry-card">
+            <div class="relative h-52 overflow-hidden rounded-t-3xl">
+              <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=800&q=80" alt="Telecommunications" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-5">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center">
+                    <i data-lucide="signal" class="w-5 h-5 text-white"></i>
+                  </div>
+                  <h3 class="text-white text-lg font-semibold">Telecommunications</h3>
+                </div>
+              </div>
+            </div>
+            <div class="p-6">
+              <p class="text-[var(--text-secondary)] mb-4 text-sm leading-relaxed">BSS/OSS modernisation, customer self-service portals, and network analytics for telecom operators and ISPs.</p>
+              <ul class="space-y-2 text-sm text-[var(--text-secondary)]">
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> BSS/OSS Modernisation</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Self-Service Customer Portals</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Network Analytics</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Card 9: Agriculture & AgroTech -->
+          <div class="card-glass group flex-shrink-0 industry-card">
+            <div class="relative h-52 overflow-hidden rounded-t-3xl">
+              <img src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?w=800&q=80" alt="Agriculture" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-5">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center">
+                    <i data-lucide="sprout" class="w-5 h-5 text-white"></i>
+                  </div>
+                  <h3 class="text-white text-lg font-semibold">Agriculture & AgroTech</h3>
+                </div>
+              </div>
+            </div>
+            <div class="p-6">
+              <p class="text-[var(--text-secondary)] mb-4 text-sm leading-relaxed">Precision farming tools, crop monitoring via AI, and agri-supply chain platforms tailored for Bangladesh's agricultural sector.</p>
+              <ul class="space-y-2 text-sm text-[var(--text-secondary)]">
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Crop Monitoring & AI</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Agri Supply Chain Apps</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Smart Irrigation Systems</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Card 10: Government & Public Sector -->
+          <div class="card-glass group flex-shrink-0 industry-card">
+            <div class="relative h-52 overflow-hidden rounded-t-3xl">
+              <img src="https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?w=800&q=80" alt="Government" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-5">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center">
+                    <i data-lucide="shield-check" class="w-5 h-5 text-white"></i>
+                  </div>
+                  <h3 class="text-white text-lg font-semibold">Government & Public Sector</h3>
+                </div>
+              </div>
+            </div>
+            <div class="p-6">
+              <p class="text-[var(--text-secondary)] mb-4 text-sm leading-relaxed">e-Governance platforms, digital citizen services, and public data management solutions for government agencies.</p>
+              <ul class="space-y-2 text-sm text-[var(--text-secondary)]">
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> e-Governance Portals</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Digital Citizen Services</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Public Data Management</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Card 11: Media & Entertainment -->
+          <div class="card-glass group flex-shrink-0 industry-card">
+            <div class="relative h-52 overflow-hidden rounded-t-3xl">
+              <img src="https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=800&q=80" alt="Media & Entertainment" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-5">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center">
+                    <i data-lucide="play-circle" class="w-5 h-5 text-white"></i>
+                  </div>
+                  <h3 class="text-white text-lg font-semibold">Media & Entertainment</h3>
+                </div>
+              </div>
+            </div>
+            <div class="p-6">
+              <p class="text-[var(--text-secondary)] mb-4 text-sm leading-relaxed">OTT streaming platforms, content management systems, and audience analytics for media houses and entertainment brands.</p>
+              <ul class="space-y-2 text-sm text-[var(--text-secondary)]">
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> OTT & Streaming Platforms</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Content Management Systems</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Audience Analytics</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Card 12: Energy & Utilities -->
+          <div class="card-glass group flex-shrink-0 industry-card">
+            <div class="relative h-52 overflow-hidden rounded-t-3xl">
+              <img src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=800&q=80" alt="Energy & Utilities" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+              <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-5">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center">
+                    <i data-lucide="zap" class="w-5 h-5 text-white"></i>
+                  </div>
+                  <h3 class="text-white text-lg font-semibold">Energy & Utilities</h3>
+                </div>
+              </div>
+            </div>
+            <div class="p-6">
+              <p class="text-[var(--text-secondary)] mb-4 text-sm leading-relaxed">Smart grid management, energy consumption analytics, and utility billing systems for power and energy companies.</p>
+              <ul class="space-y-2 text-sm text-[var(--text-secondary)]">
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Smart Grid Management</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Energy Analytics Dashboard</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Utility Billing Systems</li>
+              </ul>
+            </div>
+          </div>
+
+        </div><!-- end track -->
+      </div><!-- end viewport -->
+
+      <!-- Dot Indicators -->
+      <div id="industryDots" class="flex justify-center gap-2 mt-8"></div>
+
+    </div><!-- end relative wrapper -->
+  </div>
+
+  <script>
+    (function () {
+      const GAP = 24;
+      let currentIndex = 0;
+      const track = document.getElementById('industryTrack');
+      const viewport = document.getElementById('industryViewport');
+      const dotsContainer = document.getElementById('industryDots');
+      const cards = Array.from(track.querySelectorAll('.industry-card'));
+      const totalCards = cards.length;
+
+      function getVisible() {
+        const w = window.innerWidth;
+        if (w < 768) return 1;
+        if (w < 1024) return 2;
+        return 3;
+      }
+
+      function getCardWidth() {
+        const vw = viewport.offsetWidth;
+        const visible = getVisible();
+        return (vw - GAP * (visible - 1)) / visible;
+      }
+
+      function setCardWidths() {
+        const cw = getCardWidth();
+        cards.forEach(c => {
+          c.style.width = cw + 'px';
+          c.style.flexShrink = '0';
+        });
+      }
+
+      function maxIndex() {
+        return totalCards - getVisible();
+      }
+
+      function buildDots() {
+        dotsContainer.innerHTML = '';
+        const total = maxIndex() + 1;
+        for (let i = 0; i < total; i++) {
+          const dot = document.createElement('button');
+          dot.style.cssText = 'width:8px;height:8px;border-radius:50%;border:none;cursor:pointer;transition:all 0.3s;padding:0;';
+          dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+          dot.addEventListener('click', () => goTo(i));
+          dotsContainer.appendChild(dot);
+        }
+        updateDots();
+      }
+
+      function updateDots() {
+        const dots = dotsContainer.querySelectorAll('button');
+        dots.forEach((d, i) => {
+          if (i === currentIndex) {
+            d.style.background = 'var(--accent, #6366f1)';
+            d.style.width = '24px';
+            d.style.borderRadius = '4px';
+          } else {
+            d.style.background = 'var(--border, #d1d5db)';
+            d.style.width = '8px';
+            d.style.borderRadius = '50%';
+          }
+        });
+      }
+
+      function goTo(index) {
+        const max = maxIndex();
+        currentIndex = Math.max(0, Math.min(index, max));
+        const cw = getCardWidth();
+        const offset = currentIndex * (cw + GAP);
+        track.style.transform = `translateX(-${offset}px)`;
+        updateDots();
+      }
+
+      window.nextIndustrySlide = function () {
+        const max = maxIndex();
+        goTo(currentIndex < max ? currentIndex + 1 : 0);
+      };
+
+      window.prevIndustrySlide = function () {
+        const max = maxIndex();
+        goTo(currentIndex > 0 ? currentIndex - 1 : max);
+      };
+
+      function init() {
+        setCardWidths();
+        buildDots();
+        goTo(0);
+      }
+
+      let resizeTimer;
+      window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+          setCardWidths();
+          buildDots();
+          goTo(Math.min(currentIndex, maxIndex()));
+        }, 150);
+      });
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        requestAnimationFrame(() => requestAnimationFrame(init));
+      }
+    })();
+  </script>
+</section>
+
+
+<!-- DEVELOPMENT PROCESS -->
+<section class="relative py-24 px-4 md:px-8 ">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-16">
+      <span class="uppercase tracking-widest text-sm text-[var(--accent)]">Our Methodology</span>
+      <h2 class="section-header mt-3">Our Development Process</h2>
+      <p class="text-[var(--text-secondary)] max-w-2xl mx-auto mt-4">
+        A structured, transparent, and agile approach that ensures quality and timely delivery
+      </p>
     </div>
-  </section>
 
-  <!-- INDUSTRIES -->
-  <section class="py-20 px-4 md:px-8 bg-[var(--bg-secondary)]">
-    <div class="max-w-6xl mx-auto">
-      <div class="text-center mb-16">
-        <h2 class="section-header">Industries We Serve</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-7 gap-6 relative">
+      
+      <!-- Step 1 -->
+      <button onclick="showProcessModal(1)" 
+              class="card-glass group col-span-1 lg:col-span-1 p-6 rounded-3xl text-center hover:scale-105 transition-all cursor-pointer border border-[var(--border)] hover:border-blue-500">
+        <div class="w-14 h-14 mx-auto mb-4 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center text-2xl font-bold text-white">01</div>
+        <h3 class="font-semibold text-[var(--text-primary)] mb-1">Discovery</h3>
+        <p class="text-sm text-[var(--text-secondary)]">Research & Requirements</p>
+      </button>
+
+      <!-- Connector -->
+      <div class="hidden lg:flex items-center justify-center">
+        <div class="w-full h-0.5 bg-gradient-to-r from-blue-500 to-purple-500"></div>
       </div>
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-        <div class="card-glass text-center py-10">FinTech</div>
-        <div class="card-glass text-center py-10">E-commerce</div>
-        <div class="card-glass text-center py-10">Healthcare</div>
-        <div class="card-glass text-center py-10">Education</div>
-        <div class="card-glass text-center py-10">Logistics</div>
-        <div class="card-glass text-center py-10">Telecom</div>
-        <div class="card-glass text-center py-10">Retail</div>
-        <div class="card-glass text-center py-10">Agriculture</div>
+
+      <!-- Step 2 -->
+      <button onclick="showProcessModal(2)" 
+              class="card-glass group col-span-1 lg:col-span-1 p-6 rounded-3xl text-center hover:scale-105 transition-all cursor-pointer border border-[var(--border)] hover:border-purple-500">
+        <div class="w-14 h-14 mx-auto mb-4 bg-gradient-to-br from-purple-500 to-violet-600 rounded-2xl flex items-center justify-center text-2xl font-bold text-white">02</div>
+        <h3 class="font-semibold text-[var(--text-primary)] mb-1">Planning</h3>
+        <p class="text-sm text-[var(--text-secondary)]">Strategy & Roadmap</p>
+      </button>
+
+      <!-- Connector -->
+      <div class="hidden lg:flex items-center justify-center">
+        <div class="w-full h-0.5 bg-gradient-to-r from-purple-500 to-cyan-500"></div>
       </div>
+
+      <!-- Step 3 -->
+      <button onclick="showProcessModal(3)" 
+              class="card-glass group col-span-1 lg:col-span-1 p-6 rounded-3xl text-center hover:scale-105 transition-all cursor-pointer border border-[var(--border)] hover:border-cyan-500">
+        <div class="w-14 h-14 mx-auto mb-4 bg-gradient-to-br from-cyan-500 to-teal-600 rounded-2xl flex items-center justify-center text-2xl font-bold text-white">03</div>
+        <h3 class="font-semibold text-[var(--text-primary)] mb-1">Design</h3>
+        <p class="text-sm text-[var(--text-secondary)]">UI/UX & Prototyping</p>
+      </button>
+
+      <!-- Connector -->
+      <div class="hidden lg:flex items-center justify-center">
+        <div class="w-full h-0.5 bg-gradient-to-r from-cyan-500 to-emerald-500"></div>
+      </div>
+
+      <!-- Step 4 -->
+      <button onclick="showProcessModal(4)" 
+              class="card-glass group col-span-1 lg:col-span-1 p-6 rounded-3xl text-center hover:scale-105 transition-all cursor-pointer border border-[var(--border)] hover:border-emerald-500">
+        <div class="w-14 h-14 mx-auto mb-4 bg-gradient-to-br from-emerald-500 to-green-600 rounded-2xl flex items-center justify-center text-2xl font-bold text-white">04</div>
+        <h3 class="font-semibold text-[var(--text-primary)] mb-1">Development</h3>
+        <p class="text-sm text-[var(--text-secondary)]">Coding & Iteration</p>
+      </button>
+
+      <!-- Step 5 -->
+      <button onclick="showProcessModal(5)" 
+              class="card-glass group col-span-1 lg:col-span-1 p-6 rounded-3xl text-center hover:scale-105 transition-all cursor-pointer border border-[var(--border)] hover:border-pink-500 lg:col-start-2">
+        <div class="w-14 h-14 mx-auto mb-4 bg-gradient-to-br from-pink-500 to-rose-600 rounded-2xl flex items-center justify-center text-2xl font-bold text-white">05</div>
+        <h3 class="font-semibold text-[var(--text-primary)] mb-1">Testing</h3>
+        <p class="text-sm text-[var(--text-secondary)]">QA & Security</p>
+      </button>
+
+      <!-- Connector -->
+      <div class="hidden lg:flex items-center justify-center">
+        <div class="w-full h-0.5 bg-gradient-to-r from-pink-500 to-orange-500"></div>
+      </div>
+
+      <!-- Step 6 -->
+      <button onclick="showProcessModal(6)" 
+              class="card-glass group col-span-1 lg:col-span-1 p-6 rounded-3xl text-center hover:scale-105 transition-all cursor-pointer border border-[var(--border)] hover:border-orange-500">
+        <div class="w-14 h-14 mx-auto mb-4 bg-gradient-to-br from-orange-500 to-amber-600 rounded-2xl flex items-center justify-center text-2xl font-bold text-white">06</div>
+        <h3 class="font-semibold text-[var(--text-primary)] mb-1">Deployment</h3>
+        <p class="text-sm text-[var(--text-secondary)]">Launch & Go Live</p>
+      </button>
+
+      <!-- Connector -->
+      <div class="hidden lg:flex items-center justify-center">
+        <div class="w-full h-0.5 bg-gradient-to-r from-orange-500 to-red-500"></div>
+      </div>
+
+      <!-- Step 7 -->
+      <button onclick="showProcessModal(7)" 
+              class="card-glass group col-span-1 lg:col-span-1 p-6 rounded-3xl text-center hover:scale-105 transition-all cursor-pointer border border-[var(--border)] hover:border-red-500">
+        <div class="w-14 h-14 mx-auto mb-4 bg-gradient-to-br from-red-500 to-rose-600 rounded-2xl flex items-center justify-center text-2xl font-bold text-white">07</div>
+        <h3 class="font-semibold text-[var(--text-primary)] mb-1">Support</h3>
+        <p class="text-sm text-[var(--text-secondary)]">Maintenance & Growth</p>
+      </button>
     </div>
-  </section>
+  </div>
+</section>
 
 
-  <!-- SERVICES -->
-  <section id="services" class="py-20 px-4 md:px-8">
-    <div class="max-w-6xl mx-auto">
-      <div class="text-center mb-16">
-        <span class="uppercase tracking-widest text-sm text-[var(--accent)]">Our Capabilities</span>
-        <h2 class="section-header mt-3">Our Features</h2>
-        <p class="mt-4 text-lg text-[var(--text-secondary)] max-w-2xl mx-auto">
-          Empowering businesses in Bangladesh and beyond with cutting-edge technology solutions
-        </p>
-      </div>
 
-      <div class="grid md:grid-cols-3 gap-6">
 
-        <!-- 1 -->
-        <div class="card-glass group">
-          <div class="w-12 h-12 bg-[var(--accent)] rounded-2xl flex items-center justify-center mb-6 transition-transform group-hover:scale-110">
-            <i data-lucide="code" class="w-6 h-6 text-white"></i>
-          </div>
-          <h3 class="text-xl font-semibold mb-3">Custom Software Development</h3>
-          <p class="text-[var(--text-secondary)]">Tailor-made software solutions designed for Bangladeshi businesses, startups, and enterprises.</p>
-          <ul class="mt-4 space-y-2 text-sm text-[var(--text-secondary)]">
-            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4"></i> Enterprise Resource Planning</li>
-            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4"></i> Business Process Automation</li>
-            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4"></i> SaaS Product Engineering</li>
-            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4"></i> API Design &amp; Integration</li>
-          </ul>
-        </div>
 
-        <!-- 2 -->
-        <div class="card-glass group">
-          <div class="w-12 h-12 bg-[var(--accent)] rounded-2xl flex items-center justify-center mb-6 transition-transform group-hover:scale-110">
-            <i data-lucide="smartphone" class="w-6 h-6 text-white"></i>
-          </div>
-          <h3 class="text-xl font-semibold mb-3">Web &amp; Mobile App Development</h3>
-          <p class="text-[var(--text-secondary)]">Modern, responsive websites and high-performance Android &amp; iOS applications.</p>
-          <ul class="mt-4 space-y-2 text-sm text-[var(--text-secondary)]">
-            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4"></i> E-commerce Platforms</li>
-            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4"></i> FinTech &amp; Delivery Apps</li>
-            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4"></i> React / Next.js / Flutter</li>
-            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4"></i> Progressive Web Apps</li>
-          </ul>
-        </div>
 
-        <!-- 3 -->
-        <div class="card-glass group">
-          <div class="w-12 h-12 bg-[var(--accent)] rounded-2xl flex items-center justify-center mb-6 transition-transform group-hover:scale-110">
-            <i data-lucide="brain" class="w-6 h-6 text-white"></i>
-          </div>
-          <h3 class="text-xl font-semibold mb-3">AI &amp; Digital Transformation</h3>
-          <p class="text-[var(--text-secondary)]">Artificial Intelligence, Machine Learning, and complete digital transformation solutions.</p>
-          <ul class="mt-4 space-y-2 text-sm text-[var(--text-secondary)]">
-            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4"></i> Chatbots &amp; Predictive Analytics</li>
-            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4"></i> Cloud Migration &amp; Automation</li>
-            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4"></i> NLP &amp; LLM Integration</li>
-            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4"></i> Computer Vision</li>
-          </ul>
-        </div>
 
-        <!-- 4 -->
-        <div class="card-glass group">
-          <div class="w-12 h-12 bg-[var(--accent)] rounded-2xl flex items-center justify-center mb-6 transition-transform group-hover:scale-110">
-            <i data-lucide="cloud" class="w-6 h-6 text-white"></i>
-          </div>
-          <h3 class="text-xl font-semibold mb-3">Cloud &amp; DevOps</h3>
-          <p class="text-[var(--text-secondary)]">Scalable cloud infrastructure with full CI/CD pipelines and 24/7 monitoring across AWS, GCP, and Azure.</p>
-          <ul class="mt-4 space-y-2 text-sm text-[var(--text-secondary)]">
-            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4"></i> Cloud Migration</li>
-            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4"></i> Docker &amp; Kubernetes</li>
-            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4"></i> CI/CD Pipeline Automation</li>
-            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4"></i> Infrastructure as Code</li>
-          </ul>
-        </div>
-
-        <!-- 5 -->
-        <div class="card-glass group">
-          <div class="w-12 h-12 bg-[var(--accent)] rounded-2xl flex items-center justify-center mb-6 transition-transform group-hover:scale-110">
-            <i data-lucide="shield-check" class="w-6 h-6 text-white"></i>
-          </div>
-          <h3 class="text-xl font-semibold mb-3">Cybersecurity &amp; Compliance</h3>
-          <p class="text-[var(--text-secondary)]">Protect your systems and data with enterprise-grade security audits, testing, and compliance frameworks.</p>
-          <ul class="mt-4 space-y-2 text-sm text-[var(--text-secondary)]">
-            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4"></i> Penetration Testing</li>
-            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4"></i> Vulnerability Assessment</li>
-            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4"></i> ISO 27001 / GDPR Advisory</li>
-            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4"></i> Security Monitoring</li>
-          </ul>
-        </div>
-
-        <!-- 6 -->
-        <div class="card-glass group">
-          <div class="w-12 h-12 bg-[var(--accent)] rounded-2xl flex items-center justify-center mb-6 transition-transform group-hover:scale-110">
-            <i data-lucide="bar-chart-2" class="w-6 h-6 text-white"></i>
-          </div>
-          <h3 class="text-xl font-semibold mb-3">Data Analytics &amp; BI</h3>
-          <p class="text-[var(--text-secondary)]">Turn raw data into actionable intelligence with real-time dashboards and business intelligence tools.</p>
-          <ul class="mt-4 space-y-2 text-sm text-[var(--text-secondary)]">
-            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4"></i> Real-time Dashboards</li>
-            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4"></i> ETL &amp; Data Pipelines</li>
-            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4"></i> Power BI / Tableau</li>
-            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4"></i> Predictive Reporting</li>
-          </ul>
-        </div>
-
-        <!-- 7 -->
-        <div class="card-glass group">
-          <div class="w-12 h-12 bg-[var(--accent)] rounded-2xl flex items-center justify-center mb-6 transition-transform group-hover:scale-110">
-            <i data-lucide="lightbulb" class="w-6 h-6 text-white"></i>
-          </div>
-          <h3 class="text-xl font-semibold mb-3">IT Strategy &amp; Consulting</h3>
-          <p class="text-[var(--text-secondary)]">Strategic guidance from senior technologists who understand the Bangladeshi market and global standards.</p>
-          <ul class="mt-4 space-y-2 text-sm text-[var(--text-secondary)]">
-            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4"></i> Digital Transformation Roadmap</li>
-            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4"></i> Tech Stack Evaluation</li>
-            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4"></i> CTO-as-a-Service</li>
-            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4"></i> Legacy System Modernisation</li>
-          </ul>
-        </div>
-
-        <!-- 8 -->
-        <div class="card-glass group">
-          <div class="w-12 h-12 bg-[var(--accent)] rounded-2xl flex items-center justify-center mb-6 transition-transform group-hover:scale-110">
-            <i data-lucide="shopping-cart" class="w-6 h-6 text-white"></i>
-          </div>
-          <h3 class="text-xl font-semibold mb-3">E-Commerce Solutions</h3>
-          <p class="text-[var(--text-secondary)]">End-to-end e-commerce platforms built for performance, conversion, and seamless user experience.</p>
-          <ul class="mt-4 space-y-2 text-sm text-[var(--text-secondary)]">
-            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4"></i> Custom Storefront Development</li>
-            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4"></i> Payment Gateway Integration</li>
-            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4"></i> Inventory &amp; Order Management</li>
-            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4"></i> Multi-vendor Marketplace</li>
-          </ul>
-        </div>
-
-        <!-- 9 -->
-        <div class="card-glass group">
-          <div class="w-12 h-12 bg-[var(--accent)] rounded-2xl flex items-center justify-center mb-6 transition-transform group-hover:scale-110">
-            <i data-lucide="headphones" class="w-6 h-6 text-white"></i>
-          </div>
-          <h3 class="text-xl font-semibold mb-3">Managed IT Support</h3>
-          <p class="text-[var(--text-secondary)]">Ongoing technical support, maintenance, and SLA-backed managed services to keep your systems running.</p>
-          <ul class="mt-4 space-y-2 text-sm text-[var(--text-secondary)]">
-            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4"></i> 24/7 System Monitoring</li>
-            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4"></i> Bug Fixes &amp; Patch Management</li>
-            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4"></i> Performance Optimisation</li>
-            <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4"></i> Dedicated Account Manager</li>
-          </ul>
-        </div>
-
-      </div>
+  
+<!-- PROCESS MODAL -->
+<div id="process-modal" class="fixed inset-0 bg-black/70 hidden flex items-center justify-center z-[100] p-4">
+  <div class="bg-[var(--bg-primary)] rounded-3xl max-w-md w-full overflow-hidden shadow-2xl">
+    <div class="p-8">
+      <div id="modal-icon" class="w-20 h-20 mx-auto mb-6 text-5xl flex items-center justify-center"></div>
+      <h3 id="modal-title" class="text-3xl font-bold text-center mb-4"></h3>
+      <p id="modal-description" class="text-[var(--text-secondary)] text-center leading-relaxed"></p>
     </div>
-  </section>
-
-    <!-- TECHNOLOGIES WE USE -->
-  <section class="py-20 px-4 md:px-8 bg-[var(--bg-secondary)]">
-    <div class="max-w-6xl mx-auto">
-      <div class="text-center mb-16">
-        <span class="uppercase tracking-widest text-sm text-[var(--accent)]">Tech Stack</span>
-        <h2 class="section-header mt-3">Technologies We Master</h2>
-      </div>
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-        <div class="card-glass text-center p-6">React / Next.js</div>
-        <div class="card-glass text-center p-6">Flutter / React Native</div>
-        <div class="card-glass text-center p-6">Node.js / Laravel</div>
-        <div class="card-glass text-center p-6">AWS & Cloud</div>
-        <div class="card-glass text-center p-6">Python & AI/ML</div>
-        <div class="card-glass text-center p-6">PostgreSQL / MongoDB</div>
-        <div class="card-glass text-center p-6">Docker & Kubernetes</div>
-        <div class="card-glass text-center p-6">Tailwind + Framer Motion</div>
-      </div>
+    <div class="border-t border-[var(--border)] p-6">
+      <button onclick="closeModal()" 
+              class="w-full py-4 bg-[var(--accent)] hover:bg-[var(--accent-light)] text-white font-semibold rounded-2xl transition-all">
+        Close
+      </button>
     </div>
-  </section>
+  </div>
+</div>
+  
+<script>
+const processData = {
+  1: { icon: "🔍", title: "Discovery", description: "We start with deep discussions to understand your business goals, challenges, target users, and technical requirements." },
+  2: { icon: "📋", title: "Planning", description: "Creating detailed project roadmap, selecting the best technology stack, defining milestones, and setting realistic timelines." },
+  3: { icon: "🎨", title: "Design", description: "Crafting modern, intuitive UI/UX designs with wireframes, high-fidelity mockups, and interactive prototypes." },
+  4: { icon: "💻", title: "Development", description: "Agile development using clean, scalable code with regular sprint reviews and continuous client feedback." },
+  5: { icon: "🧪", title: "Testing & QA", description: "Comprehensive testing including functional, performance, security, and user acceptance testing." },
+  6: { icon: "🚀", title: "Deployment", description: "Smooth deployment to production with proper CI/CD setup and monitoring systems." },
+  7: { icon: "🛠️", title: "Support & Maintenance", description: "Post-launch support, regular updates, security patches, and continuous improvement." }
+};
 
-    <!-- DEVELOPMENT PROCESS -->
-  <section class="py-20 px-4 md:px-8">
-    <div class="max-w-5xl mx-auto">
-      <div class="text-center mb-16">
-        <span class="uppercase tracking-widest text-sm text-[var(--accent)]">How We Work</span>
-        <h2 class="section-header mt-3">Our Proven Process</h2>
-      </div>
+function showProcessModal(step) {
+  const modal = document.getElementById('process-modal');
+  const data = processData[step];
+  
+  document.getElementById('modal-icon').innerHTML = data.icon;
+  document.getElementById('modal-title').textContent = data.title;
+  document.getElementById('modal-description').textContent = data.description;
+  
+  modal.classList.remove('hidden');
+  modal.classList.add('flex');
+}
 
-      <div class="space-y-12">
-        <div class="flex flex-col md:flex-row gap-8 items-start">
-          <div class="w-12 h-12 rounded-2xl bg-[var(--accent)] flex-shrink-0 flex items-center justify-center text-white font-bold text-xl">01</div>
-          <div class="flex-1">
-            <h3 class="text-2xl font-semibold mb-3">Discovery & Strategy</h3>
-            <p class="text-[var(--text-secondary)]">Deep requirement analysis, competitor research, and technical roadmap creation.</p>
-          </div>
-        </div>
+function closeModal() {
+  const modal = document.getElementById('process-modal');
+  modal.classList.add('hidden');
+  modal.classList.remove('flex');
+}
 
-        <div class="flex flex-col md:flex-row gap-8 items-start">
-          <div class="w-12 h-12 rounded-2xl bg-[var(--accent)] flex-shrink-0 flex items-center justify-center text-white font-bold text-xl">02</div>
-          <div class="flex-1">
-            <h3 class="text-2xl font-semibold mb-3">UI/UX Design</h3>
-            <p class="text-[var(--text-secondary)]">Modern, user-centered design tailored for Bangladeshi users and global standards.</p>
-          </div>
-        </div>
-
-        <div class="flex flex-col md:flex-row gap-8 items-start">
-          <div class="w-12 h-12 rounded-2xl bg-[var(--accent)] flex-shrink-0 flex items-center justify-center text-white font-bold text-xl">03</div>
-          <div class="flex-1">
-            <h3 class="text-2xl font-semibold mb-3">Agile Development</h3>
-            <p class="text-[var(--text-secondary)]">Iterative development with bi-weekly sprints and continuous client feedback.</p>
-          </div>
-        </div>
-
-        <div class="flex flex-col md:flex-row gap-8 items-start">
-          <div class="w-12 h-12 rounded-2xl bg-[var(--accent)] flex-shrink-0 flex items-center justify-center text-white font-bold text-xl">04</div>
-          <div class="flex-1">
-            <h3 class="text-2xl font-semibold mb-3">Testing & Quality Assurance</h3>
-            <p class="text-[var(--text-secondary)]">Rigorous manual + automated testing ensuring reliability and performance.</p>
-          </div>
-        </div>
-
-        <div class="flex flex-col md:flex-row gap-8 items-start">
-          <div class="w-12 h-12 rounded-2xl bg-[var(--accent)] flex-shrink-0 flex items-center justify-center text-white font-bold text-xl">05</div>
-          <div class="flex-1">
-            <h3 class="text-2xl font-semibold mb-3">Deployment & Support</h3>
-            <p class="text-[var(--text-secondary)]">Seamless deployment, training, and long-term maintenance & support.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
+// Close on outside click
+document.getElementById('process-modal').addEventListener('click', (e) => {
+  if (e.target === e.currentTarget) closeModal();
+});
+</script>
 
 
     <!-- SERVICE HIGHLIGHTS / VALUE PROPS -->
