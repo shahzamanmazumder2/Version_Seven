@@ -29,7 +29,7 @@
   </style>
 
   <style>
-    :root {
+    /* :root {
       --bg-primary: #050510;
       --bg-secondary: #0a0a14;
       --text-primary: #ffffff;
@@ -48,7 +48,7 @@
       --accent-light: #9b7fff;
       --border: rgba(124, 92, 255, 0.15);
       --card-bg: rgba(244, 244, 245, 0.856);
-    }
+    } */
     * { transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; }
     html, body { height: 100%; width: 100%; background-color: var(--bg-primary); color: var(--text-primary); }
     body { box-sizing: border-box; margin: 0; padding: 0; }
@@ -275,20 +275,271 @@
   </section>
 
   <!-- TECHNOLOGIES -->
-  <section class="py-20 px-4 md:px-8">
-    <div class="max-w-7xl mx-auto">
+  <section class="pt-20 px-4 md:px-8">
+    <div class=" mx-auto">
       <div class="text-center mb-16">
         <span class="uppercase tracking-widest text-sm text-[var(--accent)]">Tech Stack</span>
         <h2 class="section-header mt-3">Technologies We Master</h2>
       </div>
-      <div class="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
-        <div class="card-glass text-center py-8 hover:scale-105 transition-transform">React / Next.js</div>
-        <div class="card-glass text-center py-8 hover:scale-105 transition-transform">Flutter</div>
-        <div class="card-glass text-center py-8 hover:scale-105 transition-transform">Node.js</div>
-        <div class="card-glass text-center py-8 hover:scale-105 transition-transform">Python / Django</div>
-        <div class="card-glass text-center py-8 hover:scale-105 transition-transform">AWS / Azure</div>
-        <div class="card-glass text-center py-8 hover:scale-105 transition-transform">TensorFlow / PyTorch</div>
+<section class="py-14 border-b border-[var(--border)] bg-[var(--bg-primary)] overflow-hidden">
+
+
+  <!-- Marquee Wrapper -->
+  <div class="relative overflow-hidden">
+
+    <!-- Left Fade -->
+    <div class="absolute left-0 top-0 h-full w-24 bg-gradient-to-r from-[var(--bg-primary)] to-transparent z-10"></div>
+
+    <!-- Right Fade -->
+    <div class="absolute right-0 top-0 h-full w-24 bg-gradient-to-l from-[var(--bg-primary)] to-transparent z-10"></div>
+
+    <!-- Infinite Track -->
+    <div class="marquee">
+
+      <div class="marquee-content">
+
+        <!-- React -->
+        <div class="tech-item">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="">
+          <span>React</span>
+        </div>
+
+        <!-- Next -->
+        <div class="tech-item">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" alt="">
+          <span>Next.js</span>
+        </div>
+
+        <!-- Node -->
+        <div class="tech-item">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="">
+          <span>Node.js</span>
+        </div>
+
+        <!-- Python -->
+        <div class="tech-item">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="">
+          <span>Python</span>
+        </div>
+
+        <!-- Docker -->
+        <div class="tech-item">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="">
+          <span>Docker</span>
+        </div>
+
+        <!-- AWS -->
+        <div class="tech-item">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="">
+          <span>AWS</span>
+        </div>
+
+        <!-- MongoDB -->
+        <div class="tech-item">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="">
+          <span>MongoDB</span>
+        </div>
+
+        <!-- Firebase -->
+        <div class="tech-item">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" alt="">
+          <span>Firebase</span>
+        </div>
+
+        <!-- Tailwind -->
+        <div class="tech-item">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" alt="">
+          <span>Tailwind</span>
+        </div>
+
+        <!-- TypeScript -->
+        <div class="tech-item">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="">
+          <span>TypeScript</span>
+        </div>
+
+        <!-- Git -->
+        <div class="tech-item">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="">
+          <span>Git</span>
+        </div>
+
+        <!-- Linux -->
+        <div class="tech-item">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="">
+          <span>Linux</span>
+        </div>
+
+        <!-- MySQL -->
+        <div class="tech-item">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="">
+          <span>MySQL</span>
+        </div>
+
+        <!-- Figma -->
+        <div class="tech-item">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="">
+          <span>Figma</span>
+        </div>
+
+        <!-- Laravel -->
+        <div class="tech-item">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-original.svg" alt="">
+          <span>Laravel</span>
+        </div>
+
       </div>
+
+      <!-- DUPLICATE SET -->
+      <div class="marquee-content">
+
+        <!-- React -->
+        <div class="tech-item">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="">
+          <span>React</span>
+        </div>
+
+        <!-- Next -->
+        <div class="tech-item">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" alt="">
+          <span>Next.js</span>
+        </div>
+
+        <!-- Node -->
+        <div class="tech-item">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="">
+          <span>Node.js</span>
+        </div>
+
+        <!-- Python -->
+        <div class="tech-item">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="">
+          <span>Python</span>
+        </div>
+
+        <!-- Docker -->
+        <div class="tech-item">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="">
+          <span>Docker</span>
+        </div>
+
+        <!-- AWS -->
+        <div class="tech-item">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="">
+          <span>AWS</span>
+        </div>
+
+        <!-- MongoDB -->
+        <div class="tech-item">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="">
+          <span>MongoDB</span>
+        </div>
+
+        <!-- Firebase -->
+        <div class="tech-item">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg" alt="">
+          <span>Firebase</span>
+        </div>
+
+        <!-- Tailwind -->
+        <div class="tech-item">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" alt="">
+          <span>Tailwind</span>
+        </div>
+
+        <!-- TypeScript -->
+        <div class="tech-item">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="">
+          <span>TypeScript</span>
+        </div>
+
+        <!-- Git -->
+        <div class="tech-item">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="">
+          <span>Git</span>
+        </div>
+
+        <!-- Linux -->
+        <div class="tech-item">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="">
+          <span>Linux</span>
+        </div>
+
+        <!-- MySQL -->
+        <div class="tech-item">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="">
+          <span>MySQL</span>
+        </div>
+
+        <!-- Figma -->
+        <div class="tech-item">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="">
+          <span>Figma</span>
+        </div>
+
+        <!-- Laravel -->
+        <div class="tech-item">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-original.svg" alt="">
+          <span>Laravel</span>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+<style>
+.marquee {
+  display: flex;
+  width: max-content;
+  animation: scroll 30s linear infinite;
+}
+
+.marquee-content {
+  display: flex;
+  align-items: center;
+  gap: 70px;
+  padding-right: 70px;
+}
+
+.tech-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: max-content;
+}
+
+.tech-item img {
+  height: 56px;
+  margin-bottom: 10px;
+  transition: transform 0.3s ease;
+}
+
+.tech-item img:hover {
+  transform: scale(1.12);
+}
+
+.tech-item span {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.marquee:hover {
+  animation-play-state: paused;
+}
+
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+</style>
+
+</section>
     </div>
   </section>
 
