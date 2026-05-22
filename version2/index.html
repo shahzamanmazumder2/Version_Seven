@@ -754,7 +754,7 @@
 
 
 
-  <!-- SERVICES CAROUSEL -->
+<!-- SERVICES CAROUSEL -->
 <section id="services" class="py-20 px-4 md:px-8 bg-[var(--bg-secondary)]">
   <div class="max-w-7xl mx-auto">
     <div class="text-center mb-12">
@@ -766,9 +766,9 @@
     </div>
 
     <!-- Carousel Container -->
-    <div class="relative">
+    <div class="relative" id="carouselWrapper">
 
-<!-- Left Button -->
+      <!-- Left Button -->
       <button onclick="prevSlide()"
               class="absolute left-0 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full flex items-center justify-center shadow-xl border transition-all
                      bg-[var(--card-bg)] hover:bg-[var(--accent)] hover:text-white border-[var(--border)]"
@@ -789,53 +789,9 @@
         <!-- Track: flex row of cards, shifted by JS -->
         <div id="servicesTrack" style="display: flex; gap: 24px; transition: transform 500ms ease-out; will-change: transform;">
 
-          <!-- Card 1 -->
-          <div class="card-glass group flex-shrink-0 carousel-card">
-            <div class="h-56 overflow-hidden rounded-t-3xl">
-              <img src="https://picsum.photos/id/1015/800/500" alt="Custom Software" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-            </div>
-            <div class="p-8">
-              <h3 class="text-xl font-semibold mb-3">Custom Software Development</h3>
-              <p class="text-[var(--text-secondary)] mb-5">Tailor-made software solutions designed for Bangladeshi businesses, startups, and enterprises.</p>
-              <ul class="space-y-2 text-sm text-[var(--text-secondary)]">
-                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> ERP Systems</li>
-                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> CRM Solutions</li>
-                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Business Automation</li>
-              </ul>
-            </div>
-          </div>
 
-          <!-- Card 2 -->
-          <div class="card-glass group flex-shrink-0 carousel-card">
-            <div class="h-56 overflow-hidden rounded-t-3xl">
-              <img src="https://picsum.photos/id/201/800/500" alt="Web & Mobile" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-            </div>
-            <div class="p-8">
-              <h3 class="text-xl font-semibold mb-3">Web & Mobile App Development</h3>
-              <p class="text-[var(--text-secondary)] mb-5">Modern, responsive websites and high-performance Android & iOS applications.</p>
-              <ul class="space-y-2 text-sm text-[var(--text-secondary)]">
-                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> React / Next.js</li>
-                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Flutter & React Native</li>
-                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> E-commerce Platforms</li>
-              </ul>
-            </div>
-          </div>
 
-          <!-- Card 3 -->
-          <div class="card-glass group flex-shrink-0 carousel-card">
-            <div class="h-56 overflow-hidden rounded-t-3xl">
-              <img src="https://picsum.photos/id/237/800/500" alt="AI" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-            </div>
-            <div class="p-8">
-              <h3 class="text-xl font-semibold mb-3">AI & Digital Transformation</h3>
-              <p class="text-[var(--text-secondary)] mb-5">Artificial Intelligence, Machine Learning, and complete digital transformation solutions.</p>
-              <ul class="space-y-2 text-sm text-[var(--text-secondary)]">
-                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Chatbots & Predictive Analytics</li>
-                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> NLP & LLM Integration</li>
-                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Computer Vision</li>
-              </ul>
-            </div>
-          </div>
+
 
           <!-- Card 4 -->
           <div class="card-glass group flex-shrink-0 carousel-card">
@@ -853,10 +809,63 @@
             </div>
           </div>
 
+
+          <!-- Card 6 -->
+          <div class="card-glass group flex-shrink-0 carousel-card">
+            <div class="h-56 overflow-hidden rounded-t-3xl">
+              <img src="image/services_data.png" alt="Data Analytics" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <div class="p-8">
+              <h3 class="text-xl font-semibold mb-3">Data Analytics & BI</h3>
+              <p class="text-[var(--text-secondary)] mb-5">Turn raw data into actionable intelligence with real-time dashboards.</p>
+              <ul class="space-y-2 text-sm text-[var(--text-secondary)]">
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Real-time Dashboards</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Power BI / Tableau</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Predictive Reporting</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="card-glass group flex-shrink-0 carousel-card">
+            <div class="h-56 overflow-hidden rounded-t-3xl">
+              <img src="image/services_ai.png" alt="AI" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <div class="p-8">
+              <h3 class="text-xl font-semibold mb-3">AI & Digital Transformation</h3>
+              <p class="text-[var(--text-secondary)] mb-5">Artificial Intelligence, Machine Learning, and complete digital transformation solutions.</p>
+              <ul class="space-y-2 text-sm text-[var(--text-secondary)]">
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Chatbots & Predictive Analytics</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> NLP & LLM Integration</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Computer Vision</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Card 1 -->
+          <div class="card-glass group flex-shrink-0 carousel-card">
+            <div class="h-56 overflow-hidden rounded-t-3xl">
+              <img src="image/services_custom.png" alt="Custom Software" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <div class="p-8">
+              <h3 class="text-xl font-semibold mb-3">Custom Software Development</h3>
+              <p class="text-[var(--text-secondary)] mb-5">Tailor-made software solutions designed for Bangladeshi businesses, startups, and enterprises.</p>
+              <ul class="space-y-2 text-sm text-[var(--text-secondary)]">
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> ERP Systems</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> CRM Solutions</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Business Automation</li>
+              </ul>
+            </div>
+          </div>
+
+
+
+
+
           <!-- Card 5 -->
           <div class="card-glass group flex-shrink-0 carousel-card">
             <div class="h-56 overflow-hidden rounded-t-3xl">
-              <img src="https://picsum.photos/id/106/800/500" alt="Cybersecurity" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+              <img src="image/services_cyber.png" alt="Cybersecurity" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
             </div>
             <div class="p-8">
               <h3 class="text-xl font-semibold mb-3">Cybersecurity & Compliance</h3>
@@ -869,21 +878,7 @@
             </div>
           </div>
 
-          <!-- Card 6 -->
-          <div class="card-glass group flex-shrink-0 carousel-card">
-            <div class="h-56 overflow-hidden rounded-t-3xl">
-              <img src="https://picsum.photos/id/133/800/500" alt="Data Analytics" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-            </div>
-            <div class="p-8">
-              <h3 class="text-xl font-semibold mb-3">Data Analytics & BI</h3>
-              <p class="text-[var(--text-secondary)] mb-5">Turn raw data into actionable intelligence with real-time dashboards.</p>
-              <ul class="space-y-2 text-sm text-[var(--text-secondary)]">
-                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Real-time Dashboards</li>
-                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Power BI / Tableau</li>
-                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Predictive Reporting</li>
-              </ul>
-            </div>
-          </div>
+
 
           <!-- Card 7 -->
           <div class="card-glass group flex-shrink-0 carousel-card">
@@ -901,10 +896,26 @@
             </div>
           </div>
 
+          <!-- Card 2 -->
+          <div class="card-glass group flex-shrink-0 carousel-card">
+            <div class="h-56 overflow-hidden rounded-t-3xl">
+              <img src="image/services_web.png" alt="Web & Mobile" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            </div>
+            <div class="p-8">
+              <h3 class="text-xl font-semibold mb-3">Web & Mobile App Development</h3>
+              <p class="text-[var(--text-secondary)] mb-5">Modern, responsive websites and high-performance Android & iOS applications.</p>
+              <ul class="space-y-2 text-sm text-[var(--text-secondary)]">
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> React / Next.js</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> Flutter & React Native</li>
+                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i> E-commerce Platforms</li>
+              </ul>
+            </div>
+          </div>
+
           <!-- Card 8 -->
           <div class="card-glass group flex-shrink-0 carousel-card">
             <div class="h-56 overflow-hidden rounded-t-3xl">
-              <img src="https://picsum.photos/id/175/800/500" alt="E-Commerce" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+              <img src="image/services_it.png" alt="E-Commerce" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
             </div>
             <div class="p-8">
               <h3 class="text-xl font-semibold mb-3">E-Commerce Solutions</h3>
@@ -920,7 +931,7 @@
           <!-- Card 9 -->
           <div class="card-glass group flex-shrink-0 carousel-card">
             <div class="h-56 overflow-hidden rounded-t-3xl">
-              <img src="https://picsum.photos/id/225/800/500" alt="Managed IT Support" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+              <img src="image/services_manage.png" alt="Managed IT Support" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
             </div>
             <div class="p-8">
               <h3 class="text-xl font-semibold mb-3">Managed IT Support</h3>
@@ -946,8 +957,10 @@
     (function () {
       const GAP = 24;
       let currentIndex = 0;
+      let autoInterval = null;
       const track = document.getElementById('servicesTrack');
       const viewport = document.getElementById('carouselViewport');
+      const wrapper = document.getElementById('carouselWrapper');
       const dotsContainer = document.getElementById('carouselDots');
       const cards = Array.from(track.querySelectorAll('.carousel-card'));
       const totalCards = cards.length;
@@ -960,7 +973,6 @@
       }
 
       function getCardWidth() {
-        // viewport width divided by visible count, minus gap share
         const vw = viewport.offsetWidth;
         const visible = getVisible();
         return (vw - GAP * (visible - 1)) / visible;
@@ -1025,11 +1037,27 @@
         goTo(currentIndex > 0 ? currentIndex - 1 : max);
       };
 
+      function startAutoPlay() {
+        if (autoInterval) clearInterval(autoInterval);
+        autoInterval = setInterval(() => {
+          nextSlide();
+        }, 2000);
+      }
+
+      function stopAutoPlay() {
+        if (autoInterval) clearInterval(autoInterval);
+      }
+
       function init() {
         setCardWidths();
         buildDots();
         goTo(0);
+        startAutoPlay();
       }
+
+      // Pause on hover
+      wrapper.addEventListener('mouseenter', stopAutoPlay);
+      wrapper.addEventListener('mouseleave', startAutoPlay);
 
       let resizeTimer;
       window.addEventListener('resize', () => {
@@ -1041,11 +1069,10 @@
         }, 150);
       });
 
-      // Init after layout is painted
+      // Init
       if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', init);
       } else {
-        // Small delay to ensure offsetWidth is available
         requestAnimationFrame(() => requestAnimationFrame(init));
       }
     })();
@@ -1827,23 +1854,7 @@
     <div class="space-y-5">
 
       <!-- FAQ Item -->
-      <details class="group card-glass rounded-2xl p-6 border border-white/10 transition-all duration-300">
-        <summary class="flex items-center justify-between cursor-pointer list-none">
-          <h4 class="text-lg font-semibold">
-            What services do you provide?
-          </h4>
 
-          <div class="w-9 h-9 rounded-full bg-[var(--accent)]/10 flex items-center justify-center text-[var(--accent)] group-open:rotate-45 transition duration-300">
-            +
-          </div>
-        </summary>
-
-        <p class="mt-5 text-[var(--text-secondary)] leading-relaxed">
-          We provide website development, mobile app development, UI/UX design,
-          cloud solutions, backend API development, DevOps, AI automation,
-          and cybersecurity services for startups and enterprises.
-        </p>
-      </details>
 
       <!-- FAQ Item -->
       <details class="group card-glass rounded-2xl p-6 border border-white/10 transition-all duration-300">
